@@ -7,4 +7,5 @@ target 'Carsharing Aggregator' do
   pod 'SwiftKeychainWrapper'
   pod 'Kingfisher', '~> 7.0'
   pod 'YandexMapsMobile', '4.4.0-lite'
+  pod 'SwiftLint'
 end
