@@ -100,6 +100,7 @@
 				E24315EC2B03A706004F729A /* Frameworks */,
 				E24315ED2B03A706004F729A /* Resources */,
 				68F9C9C1EB9378A7E5A294D4 /* [CP] Embed Pods Frameworks */,
+				76972E32426E2A2DF1FBA2C3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -171,6 +172,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76972E32426E2A2DF1FBA2C3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FF296FB49BD6156DCCC18142 /* [CP] Check Pods Manifest.lock */ = {
