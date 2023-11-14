@@ -1,20 +1,24 @@
 PODS:
+  - Kingfisher (7.10.0)
   - SnapKit (5.6.0)
   - SwiftKeychainWrapper (4.0.1)
 
 DEPENDENCIES:
+  - Kingfisher (~> 7.0)
   - SnapKit (~> 5.6.0)
   - SwiftKeychainWrapper
 
 SPEC REPOS:
   trunk:
+    - Kingfisher
     - SnapKit
     - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
+  Kingfisher: a18f05d3b6d37d8650ee4a3e61d57a28fc6207f6
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 
-PODFILE CHECKSUM: 18e180da04e228ff9b58619e2f65ecf8aeaf3280
+PODFILE CHECKSUM: 5afe1c3507ee1e3de957939066a4f52129407280
 
 COCOAPODS: 1.12.1
