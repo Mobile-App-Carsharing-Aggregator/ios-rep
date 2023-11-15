@@ -14,6 +14,7 @@
 		E2B5D6512B048EF900801719 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */; };
 		E2B5D65A2B04918A00801719 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E2B5D6592B04918A00801719 /* SnapKit */; };
 		E2B5D65C2B04918A00801719 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E2B5D65B2B04918A00801719 /* SnapKit-Dynamic */; };
+		E2B5D65F2B04932500801719 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E2B5D65E2B04932500801719 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B5D65F2B04932500801719 /* Kingfisher in Frameworks */,
 				E2B5D65A2B04918A00801719 /* SnapKit in Frameworks */,
 				E2B5D65C2B04918A00801719 /* SnapKit-Dynamic in Frameworks */,
 			);
@@ -87,6 +89,7 @@
 			packageProductDependencies = (
 				E2B5D6592B04918A00801719 /* SnapKit */,
 				E2B5D65B2B04918A00801719 /* SnapKit-Dynamic */,
+				E2B5D65E2B04932500801719 /* Kingfisher */,
 			);
 			productName = "Carsharing Aggregator";
 			productReference = E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */;
@@ -118,6 +121,7 @@
 			mainGroup = E2B5D6382B048EF800801719;
 			packageReferences = (
 				E2B5D6582B04918A00801719 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E2B5D65D2B04932500801719 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = E2B5D6422B048EF800801719 /* Products */;
 			projectDirPath = "";
@@ -372,6 +376,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		E2B5D65D2B04932500801719 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -384,6 +396,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2B5D6582B04918A00801719 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
+		};
+		E2B5D65E2B04932500801719 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2B5D65D2B04932500801719 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
