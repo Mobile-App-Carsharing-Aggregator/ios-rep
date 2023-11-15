@@ -1,0 +1,20 @@
+PODS:
+  - SwiftLint (0.54.0)
+  - YandexMapsMobile (4.4.0-lite)
+
+DEPENDENCIES:
+  - SwiftLint
+  - YandexMapsMobile (= 4.4.0-lite)
+
+SPEC REPOS:
+  trunk:
+    - SwiftLint
+    - YandexMapsMobile
+
+SPEC CHECKSUMS:
+  SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
+  YandexMapsMobile: 74934971bbd3716e6daecfebed696c07b83b6b22
+
+PODFILE CHECKSUM: eb42a4f9bf06204f30d256d23f2f0071f8d55732
+
+COCOAPODS: 1.12.1
