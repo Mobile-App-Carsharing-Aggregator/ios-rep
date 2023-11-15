@@ -10,7 +10,6 @@
 		E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6442B048EF800801719 /* AppDelegate.swift */; };
 		E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6462B048EF800801719 /* SceneDelegate.swift */; };
 		E2B5D6492B048EF800801719 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6482B048EF800801719 /* ViewController.swift */; };
-		E2B5D64C2B048EF800801719 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64A2B048EF800801719 /* Main.storyboard */; };
 		E2B5D64E2B048EF900801719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64D2B048EF900801719 /* Assets.xcassets */; };
 		E2B5D6512B048EF900801719 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		E2B5D6442B048EF800801719 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2B5D6462B048EF800801719 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E2B5D6482B048EF800801719 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E2B5D64B2B048EF800801719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E2B5D64D2B048EF900801719 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2B5D6502B048EF900801719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2B5D6522B048EF900801719 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 				E2B5D6442B048EF800801719 /* AppDelegate.swift */,
 				E2B5D6462B048EF800801719 /* SceneDelegate.swift */,
 				E2B5D6482B048EF800801719 /* ViewController.swift */,
-				E2B5D64A2B048EF800801719 /* Main.storyboard */,
 				E2B5D64D2B048EF900801719 /* Assets.xcassets */,
 				E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */,
 				E2B5D6522B048EF900801719 /* Info.plist */,
@@ -127,7 +124,6 @@
 			files = (
 				E2B5D6512B048EF900801719 /* LaunchScreen.storyboard in Resources */,
 				E2B5D64E2B048EF900801719 /* Assets.xcassets in Resources */,
-				E2B5D64C2B048EF800801719 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +143,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E2B5D64A2B048EF800801719 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E2B5D64B2B048EF800801719 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,9 +285,9 @@
 				INFOPLIST_FILE = "Carsharing Aggregator/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,9 +313,9 @@
 				INFOPLIST_FILE = "Carsharing Aggregator/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
