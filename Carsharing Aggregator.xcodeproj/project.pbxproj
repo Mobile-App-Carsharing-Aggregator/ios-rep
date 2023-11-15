@@ -127,7 +127,6 @@
 				E2B5D6582B04918A00801719 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				E2B5D65D2B04932500801719 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E2B5D6602B04934800801719 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
-				E2B5D66B2B04E87800801719 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = E2B5D6422B048EF800801719 /* Products */;
 			projectDirPath = "";
