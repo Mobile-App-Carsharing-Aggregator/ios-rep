@@ -86,6 +86,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E2B5D6712B04E89C00801719 /* PBXTargetDependency */,
 			);
 			name = "Carsharing Aggregator";
 			packageProductDependencies = (
@@ -126,6 +127,7 @@
 				E2B5D6582B04918A00801719 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				E2B5D65D2B04932500801719 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E2B5D6602B04934800801719 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				E2B5D66B2B04E87800801719 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = E2B5D6422B048EF800801719 /* Products */;
 			projectDirPath = "";
@@ -160,6 +162,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2B5D6712B04E89C00801719 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E2B5D6702B04E89C00801719 /* SwiftLintPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */ = {
@@ -314,9 +323,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.agaripov.Carsharing-Aggregator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -342,9 +354,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.agaripov.Carsharing-Aggregator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -396,6 +411,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		E2B5D66B2B04E87800801719 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.54.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -418,6 +441,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2B5D6602B04934800801719 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		E2B5D6702B04E89C00801719 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2B5D66B2B04E87800801719 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
