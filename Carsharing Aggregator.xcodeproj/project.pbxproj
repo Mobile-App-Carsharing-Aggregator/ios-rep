@@ -64,46 +64,7 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
-		374F9D292B136428002814E2 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				374F9D2A2B1365CE002814E2 /* UINavigationCotroller+Ext.swift */,
-				374F9D2D2B1385ED002814E2 /* Coordinator+Ext.swift */,
-				374F9D2F2B138B4D002814E2 /* ParentCoordinator+Ext.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		374F9D2C2B1383E4002814E2 /* AuthCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				374F9D332B138F82002814E2 /* RegistrationCoordinator */,
-				374F9D312B138F5A002814E2 /* LoginCoordinator */,
-			);
-			path = AuthCoordinator;
-			sourceTree = "<group>";
-		};
-		374F9D312B138F5A002814E2 /* LoginCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LoginCoordinator;
-			sourceTree = "<group>";
-		};
-		374F9D332B138F82002814E2 /* RegistrationCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = RegistrationCoordinator;
-			sourceTree = "<group>";
-		};
-		374F9D342B1395E9002814E2 /* TabBarCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TabBarCoordinator;
-			sourceTree = "<group>";
-		};
+
 		62E768AB367BD5B6FBF1FD35 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +85,9 @@
 		C4C9B25B2B1378CF00399C79 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				32453BD82B147CFA003E7AA8 /* Coordinator+Ext.swift */,
+				32453BDA2B147CFA003E7AA8 /* ParentCoordinator+Ext.swift */,
+				32453BD92B147CFA003E7AA8 /* UINavigationCotroller+Ext.swift */,
 				C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */,
 			);
 			path = Extensions;
@@ -151,8 +115,8 @@
 			isa = PBXGroup;
 			children = (
 
-				374F9D292B136428002814E2 /* Extensions */,
-				374F9D262B13574A002814E2 /* Coordinators */,
+				32453BE02B148051003E7AA8 /* Coordinators */,
+				C4C9B25B2B1378CF00399C79 /* Extensions */,
 				E2B5D6442B048EF800801719 /* AppDelegate.swift */,
 				E2B5D6462B048EF800801719 /* SceneDelegate.swift */,
 				E2B5D6482B048EF800801719 /* ViewController.swift */,
@@ -287,14 +251,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				374F9D2B2B1365CE002814E2 /* UINavigationCotroller+Ext.swift in Sources */,
-				374F9D282B135784002814E2 /* AppCoordinators.swift in Sources */,
-				374F9D302B138B4D002814E2 /* ParentCoordinator+Ext.swift in Sources */,
-				374F9D2E2B1385ED002814E2 /* Coordinator+Ext.swift in Sources */,
+				32453BE22B148051003E7AA8 /* AppCoordinators.swift in Sources */,
 				E2B5D6492B048EF800801719 /* ViewController.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
+				32453BDD2B147CFA003E7AA8 /* ParentCoordinator+Ext.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
 				C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */,
+				32453BDC2B147CFA003E7AA8 /* UINavigationCotroller+Ext.swift in Sources */,
+				32453BDB2B147CFA003E7AA8 /* Coordinator+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
