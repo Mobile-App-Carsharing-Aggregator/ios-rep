@@ -1,0 +1,60 @@
+included:
+ - Carsharing Aggregator
+  
+warning_threshold: 20
+
+analyzer_rules:
+  - unused_import
+  - unused_declaration
+
+disabled_rules:
+  - trailing_whitespace
+  - cyclomatic_complexity
+  - identifier_name
+  - unused_setter_value
+  - weak_delegate
+  - function_body_length
+  - empty_count
+  - force_cast
+  - opening_brace
+
+opt_in_rules:
+  - overridden_super_call
+  - prohibited_super_call
+  - empty_count
+  - explicit_init
+  - operator_usage_whitespace
+  - array_init
+  - block_based_kvo
+  - closure_body_length
+  - closure_spacing
+
+large_tuple: 4
+
+line_length:
+  warning: 160
+
+function_parameter_count:
+  warning: 10
+  error: 15
+
+file_length:
+  warning: 500
+
+type_body_length:
+  warning: 300
+  error: 450
+
+nesting:
+  type_level:
+    warning: 3
+  function_level:
+    warning: 5
+
+identifier_name:
+  min_length: 1
+  max_length: 65
+
+type_name:
+  min_length: 3
+  max_length: 65

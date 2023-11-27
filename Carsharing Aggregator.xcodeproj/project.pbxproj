@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */; };
+		37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */; };
+		37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */; };
+		37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A24E2B149B1B002C26DA /* AppCoordinators.swift */; };
+		37A1A2512B149B57002C26DA /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2502B149B57002C26DA /* RegistrationCoordinator.swift */; };
+		37A1A2532B149B63002C26DA /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2522B149B63002C26DA /* LoginCoordinator.swift */; };
+		37A1A2552B149B7B002C26DA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2542B149B7B002C26DA /* TabBarCoordinator.swift */; };
+		37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306A2B0922CE00468D95 /* Kingfisher */; };
+		37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */; };
+		5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */; };
+		C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */; };
 		E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6442B048EF800801719 /* AppDelegate.swift */; };
 		E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6462B048EF800801719 /* SceneDelegate.swift */; };
 		E2B5D6492B048EF800801719 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6482B048EF800801719 /* ViewController.swift */; };
@@ -15,6 +26,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20052997AFA8816DFF0028E6 /* Pods-Carsharing Aggregator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.debug.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.debug.xcconfig"; sourceTree = "<group>"; };
+		37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationCotroller+Ext.swift"; sourceTree = "<group>"; };
+		37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
+		37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
+		37A1A24E2B149B1B002C26DA /* AppCoordinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinators.swift; sourceTree = "<group>"; };
+		37A1A2502B149B57002C26DA /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationCoordinator.swift; path = "Carsharing Aggregator/Coordinators/RegistrationCoordinator.swift"; sourceTree = SOURCE_ROOT; };
+		37A1A2522B149B63002C26DA /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginCoordinator.swift; path = "Carsharing Aggregator/Coordinators/LoginCoordinator.swift"; sourceTree = SOURCE_ROOT; };
+		37A1A2542B149B7B002C26DA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carsharing_Aggregator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extensions.swift"; sourceTree = "<group>"; };
+		D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.release.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.release.xcconfig"; sourceTree = "<group>"; };
 		E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carsharing Aggregator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B5D6442B048EF800801719 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2B5D6462B048EF800801719 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,17 +51,93 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */,
+				5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */,
+				37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37A1A2492B149B1B002C26DA /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				37A1A24A2B149B1B002C26DA /* TabBarCoordinator */,
+				37A1A24B2B149B1B002C26DA /* AuthCoordinator */,
+				37A1A24E2B149B1B002C26DA /* AppCoordinators.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		37A1A24A2B149B1B002C26DA /* TabBarCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				37A1A2542B149B7B002C26DA /* TabBarCoordinator.swift */,
+			);
+			path = TabBarCoordinator;
+			sourceTree = "<group>";
+		};
+		37A1A24B2B149B1B002C26DA /* AuthCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				37A1A24C2B149B1B002C26DA /* RegistrationCoordinator */,
+				37A1A24D2B149B1B002C26DA /* LoginCoordinator */,
+			);
+			path = AuthCoordinator;
+			sourceTree = "<group>";
+		};
+		37A1A24C2B149B1B002C26DA /* RegistrationCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				37A1A2502B149B57002C26DA /* RegistrationCoordinator.swift */,
+			);
+			path = RegistrationCoordinator;
+			sourceTree = "<group>";
+		};
+		37A1A24D2B149B1B002C26DA /* LoginCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				37A1A2522B149B63002C26DA /* LoginCoordinator.swift */,
+			);
+			path = LoginCoordinator;
+			sourceTree = "<group>";
+		};
+		62E768AB367BD5B6FBF1FD35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20052997AFA8816DFF0028E6 /* Pods-Carsharing Aggregator.debug.xcconfig */,
+				D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		638B10F2C136D2E435874579 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4C9B25B2B1378CF00399C79 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */,
+				37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */,
+				37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */,
+				37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E2B5D6382B048EF800801719 = {
 			isa = PBXGroup;
 			children = (
 				E2B5D6432B048EF800801719 /* Carsharing Aggregator */,
 				E2B5D6422B048EF800801719 /* Products */,
+				62E768AB367BD5B6FBF1FD35 /* Pods */,
+				638B10F2C136D2E435874579 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +152,8 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
+				37A1A2492B149B1B002C26DA /* Coordinators */,
+				C4C9B25B2B1378CF00399C79 /* Extensions */,
 				E2B5D6442B048EF800801719 /* AppDelegate.swift */,
 				E2B5D6462B048EF800801719 /* SceneDelegate.swift */,
 				E2B5D6482B048EF800801719 /* ViewController.swift */,
@@ -71,15 +171,22 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E2B5D6552B048EF900801719 /* Build configuration list for PBXNativeTarget "Carsharing Aggregator" */;
 			buildPhases = (
+				F2835E6D2687E4AA0D92DC00 /* [CP] Check Pods Manifest.lock */,
 				E2B5D63D2B048EF800801719 /* Sources */,
 				E2B5D63E2B048EF800801719 /* Frameworks */,
 				E2B5D63F2B048EF800801719 /* Resources */,
+				C3EAD451D4B9D733F773AD88 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E2B5D6712B04E89C00801719 /* PBXTargetDependency */,
 			);
 			name = "Carsharing Aggregator";
+			packageProductDependencies = (
+				37E7306A2B0922CE00468D95 /* Kingfisher */,
+				37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */,
+			);
 			productName = "Carsharing Aggregator";
 			productReference = E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +215,11 @@
 				Base,
 			);
 			mainGroup = E2B5D6382B048EF800801719;
+			packageReferences = (
+				37E730692B0922CE00468D95 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				37E7306D2B0923F300468D95 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+			);
 			productRefGroup = E2B5D6422B048EF800801719 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -129,18 +241,75 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C3EAD451D4B9D733F773AD88 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2835E6D2687E4AA0D92DC00 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Carsharing Aggregator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E2B5D63D2B048EF800801719 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */,
 				E2B5D6492B048EF800801719 /* ViewController.swift in Sources */,
+				37A1A2532B149B63002C26DA /* LoginCoordinator.swift in Sources */,
+				37A1A2512B149B57002C26DA /* RegistrationCoordinator.swift in Sources */,
+				37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */,
+				37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */,
+				37A1A2552B149B7B002C26DA /* TabBarCoordinator.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
+				37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */,
+				C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2B5D6712B04E89C00801719 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E2B5D6702B04E89C00801719 /* SwiftLintPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */ = {
@@ -191,7 +360,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -254,7 +423,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -275,12 +444,13 @@
 		};
 		E2B5D6562B048EF900801719 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20052997AFA8816DFF0028E6 /* Pods-Carsharing Aggregator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G2Z3KJVPLW;
+				DEVELOPMENT_TEAM = S8LHJXGXB8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Carsharing Aggregator/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -293,22 +463,26 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.agaripov.Carsharing-Aggregator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ermolaev.Carsharing-Aggregator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		E2B5D6572B048EF900801719 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G2Z3KJVPLW;
+				DEVELOPMENT_TEAM = S8LHJXGXB8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Carsharing Aggregator/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -321,11 +495,14 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.agaripov.Carsharing-Aggregator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ermolaev.Carsharing-Aggregator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -351,6 +528,59 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		37E730692B0922CE00468D95 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+		37E7306D2B0923F300468D95 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+		E2B5D66B2B04E87800801719 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.54.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		37E7306A2B0922CE00468D95 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37E730692B0922CE00468D95 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37E7306D2B0923F300468D95 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+		E2B5D6702B04E89C00801719 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2B5D66B2B04E87800801719 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E2B5D6392B048EF800801719 /* Project object */;
 }
