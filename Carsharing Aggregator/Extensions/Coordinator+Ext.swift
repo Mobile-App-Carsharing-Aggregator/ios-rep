@@ -9,6 +9,8 @@ extension Coordinator {
         }
     }
     
+    
+    
     func pushViewController(viewController vc: UIViewController, animated: Bool) {
         navigationController.customPushViewController(viewController: vc, direction: .fromBottom, transitionType: .push)
         navigationController.pushViewController(vc, animated: false)
