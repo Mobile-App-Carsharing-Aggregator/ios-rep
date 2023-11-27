@@ -39,6 +39,4 @@ extension UIImage {
     static let tabOrder = UIImage(resource: .order)
     static let tabLocation = UIImage(systemName: "location")
     
-
 }
-

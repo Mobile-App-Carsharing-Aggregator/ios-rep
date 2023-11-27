@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32453C022B14D764003E7AA8 /* YBaseMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C012B14D764003E7AA8 /* YBaseMapView.swift */; };
+		32453C042B14D7AD003E7AA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C032B14D7AD003E7AA8 /* MapViewController.swift */; };
+		32453C072B152AAA003E7AA8 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C062B152AAA003E7AA8 /* TabBarView.swift */; };
+		32453C092B152BAF003E7AA8 /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C082B152BAF003E7AA8 /* UIView+extensions.swift */; };
+		32453C0B2B153FCE003E7AA8 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C0A2B153FCE003E7AA8 /* TabBarCoordinator.swift */; };
 		37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */; };
 		37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */; };
 		37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */; };
@@ -28,6 +33,11 @@
 
 /* Begin PBXFileReference section */
 		20052997AFA8816DFF0028E6 /* Pods-Carsharing Aggregator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.debug.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.debug.xcconfig"; sourceTree = "<group>"; };
+		32453C012B14D764003E7AA8 /* YBaseMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBaseMapView.swift; sourceTree = "<group>"; };
+		32453C032B14D7AD003E7AA8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		32453C062B152AAA003E7AA8 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		32453C082B152BAF003E7AA8 /* UIView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
+		32453C0A2B153FCE003E7AA8 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationCotroller+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
@@ -62,6 +72,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32453BFC2B14D6EF003E7AA8 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				32453BFE2B14D716003E7AA8 /* Model */,
+				32453BFF2B14D720003E7AA8 /* View */,
+				32453BFD2B14D70F003E7AA8 /* Coordinators */,
+				32453C002B14D725003E7AA8 /* ViewModels */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		32453BFD2B14D70F003E7AA8 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				32453C0A2B153FCE003E7AA8 /* TabBarCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		32453BFE2B14D716003E7AA8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		32453BFF2B14D720003E7AA8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32453C012B14D764003E7AA8 /* YBaseMapView.swift */,
+				32453C032B14D7AD003E7AA8 /* MapViewController.swift */,
+				32453C062B152AAA003E7AA8 /* TabBarView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		32453C002B14D725003E7AA8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		37A1A2492B149B1B002C26DA /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +151,7 @@
 				37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */,
 				37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */,
 				37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */,
+				32453C082B152BAF003E7AA8 /* UIView+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -174,6 +228,7 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
+				32453BFC2B14D6EF003E7AA8 /* Map */,
 				37A1A2492B149B1B002C26DA /* Application */,
 				E221FFCD2B14BC0F002A5268 /* Onboarding */,
 				C4C9B25B2B1378CF00399C79 /* Extensions */,
@@ -195,6 +250,7 @@
 				E2B5D63E2B048EF800801719 /* Frameworks */,
 				E2B5D63F2B048EF800801719 /* Resources */,
 				C3EAD451D4B9D733F773AD88 /* [CP] Copy Pods Resources */,
+				32453C052B15299A003E7AA8 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -261,6 +317,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		32453C052B15299A003E7AA8 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		C3EAD451D4B9D733F773AD88 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,13 +386,18 @@
 				E221FFD72B14BEAB002A5268 /* OnboardingViewController.swift in Sources */,
 				E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */,
 				37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */,
+				32453C0B2B153FCE003E7AA8 /* TabBarCoordinator.swift in Sources */,
 				37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */,
+				32453C092B152BAF003E7AA8 /* UIView+extensions.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
 				E221FFDC2B14C254002A5268 /* OnboardingViewModel.swift in Sources */,
+				32453C022B14D764003E7AA8 /* YBaseMapView.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
 				E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */,
 				37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */,
 				C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */,
+				32453C072B152AAA003E7AA8 /* TabBarView.swift in Sources */,
+				32453C042B14D7AD003E7AA8 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
