@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		374F9D282B135784002814E2 /* AppCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374F9D272B135784002814E2 /* AppCoordinators.swift */; };
+		374F9D2B2B1365CE002814E2 /* UINavigationCotroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374F9D2A2B1365CE002814E2 /* UINavigationCotroller+Ext.swift */; };
+		374F9D2E2B1385ED002814E2 /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374F9D2D2B1385ED002814E2 /* Coordinator+Ext.swift */; };
+		374F9D302B138B4D002814E2 /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374F9D2F2B138B4D002814E2 /* ParentCoordinator+Ext.swift */; };
 		37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306A2B0922CE00468D95 /* Kingfisher */; };
 		37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */; };
 		5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */; };
@@ -20,6 +24,10 @@
 
 /* Begin PBXFileReference section */
 		20052997AFA8816DFF0028E6 /* Pods-Carsharing Aggregator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.debug.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.debug.xcconfig"; sourceTree = "<group>"; };
+		374F9D272B135784002814E2 /* AppCoordinators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinators.swift; sourceTree = "<group>"; };
+		374F9D2A2B1365CE002814E2 /* UINavigationCotroller+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationCotroller+Ext.swift"; sourceTree = "<group>"; };
+		374F9D2D2B1385ED002814E2 /* Coordinator+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
+		374F9D2F2B138B4D002814E2 /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
 		8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carsharing_Aggregator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extensions.swift"; sourceTree = "<group>"; };
 		D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.release.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.release.xcconfig"; sourceTree = "<group>"; };
@@ -46,6 +54,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		374F9D262B13574A002814E2 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				374F9D342B1395E9002814E2 /* TabBarCoordinator */,
+				374F9D2C2B1383E4002814E2 /* AuthCoordinator */,
+				374F9D272B135784002814E2 /* AppCoordinators.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		374F9D292B136428002814E2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				374F9D2A2B1365CE002814E2 /* UINavigationCotroller+Ext.swift */,
+				374F9D2D2B1385ED002814E2 /* Coordinator+Ext.swift */,
+				374F9D2F2B138B4D002814E2 /* ParentCoordinator+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		374F9D2C2B1383E4002814E2 /* AuthCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				374F9D332B138F82002814E2 /* RegistrationCoordinator */,
+				374F9D312B138F5A002814E2 /* LoginCoordinator */,
+			);
+			path = AuthCoordinator;
+			sourceTree = "<group>";
+		};
+		374F9D312B138F5A002814E2 /* LoginCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoginCoordinator;
+			sourceTree = "<group>";
+		};
+		374F9D332B138F82002814E2 /* RegistrationCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RegistrationCoordinator;
+			sourceTree = "<group>";
+		};
+		374F9D342B1395E9002814E2 /* TabBarCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TabBarCoordinator;
+			sourceTree = "<group>";
+		};
 		62E768AB367BD5B6FBF1FD35 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +150,9 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
-				C4C9B25B2B1378CF00399C79 /* Extensions */,
+
+				374F9D292B136428002814E2 /* Extensions */,
+				374F9D262B13574A002814E2 /* Coordinators */,
 				E2B5D6442B048EF800801719 /* AppDelegate.swift */,
 				E2B5D6462B048EF800801719 /* SceneDelegate.swift */,
 				E2B5D6482B048EF800801719 /* ViewController.swift */,
@@ -227,6 +287,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				374F9D2B2B1365CE002814E2 /* UINavigationCotroller+Ext.swift in Sources */,
+				374F9D282B135784002814E2 /* AppCoordinators.swift in Sources */,
+				374F9D302B138B4D002814E2 /* ParentCoordinator+Ext.swift in Sources */,
+				374F9D2E2B1385ED002814E2 /* Coordinator+Ext.swift in Sources */,
 				E2B5D6492B048EF800801719 /* ViewController.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
