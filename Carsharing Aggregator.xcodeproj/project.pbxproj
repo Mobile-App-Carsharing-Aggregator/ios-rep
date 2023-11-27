@@ -11,16 +11,17 @@
 		37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */; };
 		37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */; };
 		37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A24E2B149B1B002C26DA /* AppCoordinators.swift */; };
-		37A1A2512B149B57002C26DA /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2502B149B57002C26DA /* RegistrationCoordinator.swift */; };
-		37A1A2532B149B63002C26DA /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2522B149B63002C26DA /* LoginCoordinator.swift */; };
-		37A1A2552B149B7B002C26DA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2542B149B7B002C26DA /* TabBarCoordinator.swift */; };
 		37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306A2B0922CE00468D95 /* Kingfisher */; };
 		37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */; };
 		5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */; };
 		C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */; };
+		E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */; };
+		E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD42B14BD82002A5268 /* RootCoordinator.swift */; };
+		E221FFD72B14BEAB002A5268 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD62B14BEAB002A5268 /* OnboardingViewController.swift */; };
+		E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD92B14C19A002A5268 /* ViewModel.swift */; };
+		E221FFDC2B14C254002A5268 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFDB2B14C254002A5268 /* OnboardingViewModel.swift */; };
 		E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6442B048EF800801719 /* AppDelegate.swift */; };
 		E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6462B048EF800801719 /* SceneDelegate.swift */; };
-		E2B5D6492B048EF800801719 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6482B048EF800801719 /* ViewController.swift */; };
 		E2B5D64E2B048EF900801719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64D2B048EF900801719 /* Assets.xcassets */; };
 		E2B5D6512B048EF900801719 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -31,16 +32,17 @@
 		37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
 		37A1A24E2B149B1B002C26DA /* AppCoordinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinators.swift; sourceTree = "<group>"; };
-		37A1A2502B149B57002C26DA /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationCoordinator.swift; path = "Carsharing Aggregator/Coordinators/RegistrationCoordinator.swift"; sourceTree = SOURCE_ROOT; };
-		37A1A2522B149B63002C26DA /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginCoordinator.swift; path = "Carsharing Aggregator/Coordinators/LoginCoordinator.swift"; sourceTree = SOURCE_ROOT; };
-		37A1A2542B149B7B002C26DA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carsharing_Aggregator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extensions.swift"; sourceTree = "<group>"; };
 		D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.release.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.release.xcconfig"; sourceTree = "<group>"; };
+		E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		E221FFD42B14BD82002A5268 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		E221FFD62B14BEAB002A5268 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		E221FFD92B14C19A002A5268 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		E221FFDB2B14C254002A5268 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carsharing Aggregator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B5D6442B048EF800801719 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2B5D6462B048EF800801719 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E2B5D6482B048EF800801719 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E2B5D64D2B048EF900801719 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2B5D6502B048EF900801719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2B5D6522B048EF900801719 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,47 +62,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		37A1A2492B149B1B002C26DA /* Coordinators */ = {
+		37A1A2492B149B1B002C26DA /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				37A1A24A2B149B1B002C26DA /* TabBarCoordinator */,
-				37A1A24B2B149B1B002C26DA /* AuthCoordinator */,
-				37A1A24E2B149B1B002C26DA /* AppCoordinators.swift */,
+				E221FFD82B14C0AF002A5268 /* Protocols */,
+				E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */,
+				E2B5D6442B048EF800801719 /* AppDelegate.swift */,
+				E2B5D6462B048EF800801719 /* SceneDelegate.swift */,
+				E221FFD42B14BD82002A5268 /* RootCoordinator.swift */,
 			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		37A1A24A2B149B1B002C26DA /* TabBarCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				37A1A2542B149B7B002C26DA /* TabBarCoordinator.swift */,
-			);
-			path = TabBarCoordinator;
-			sourceTree = "<group>";
-		};
-		37A1A24B2B149B1B002C26DA /* AuthCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				37A1A24C2B149B1B002C26DA /* RegistrationCoordinator */,
-				37A1A24D2B149B1B002C26DA /* LoginCoordinator */,
-			);
-			path = AuthCoordinator;
-			sourceTree = "<group>";
-		};
-		37A1A24C2B149B1B002C26DA /* RegistrationCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				37A1A2502B149B57002C26DA /* RegistrationCoordinator.swift */,
-			);
-			path = RegistrationCoordinator;
-			sourceTree = "<group>";
-		};
-		37A1A24D2B149B1B002C26DA /* LoginCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				37A1A2522B149B63002C26DA /* LoginCoordinator.swift */,
-			);
-			path = LoginCoordinator;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		62E768AB367BD5B6FBF1FD35 /* Pods */ = {
@@ -131,6 +102,57 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E221FFCD2B14BC0F002A5268 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				E221FFD12B14BC3E002A5268 /* Coordinators */,
+				E221FFD02B14BC38002A5268 /* Model */,
+				E221FFCE2B14BC20002A5268 /* View */,
+				E221FFCF2B14BC29002A5268 /* ViewModels */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		E221FFCE2B14BC20002A5268 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E221FFD62B14BEAB002A5268 /* OnboardingViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E221FFCF2B14BC29002A5268 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E221FFDB2B14C254002A5268 /* OnboardingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E221FFD02B14BC38002A5268 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E221FFD92B14C19A002A5268 /* ViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E221FFD12B14BC3E002A5268 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		E221FFD82B14C0AF002A5268 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				37A1A24E2B149B1B002C26DA /* AppCoordinators.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		E2B5D6382B048EF800801719 = {
 			isa = PBXGroup;
 			children = (
@@ -152,13 +174,10 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
-				37A1A2492B149B1B002C26DA /* Coordinators */,
+				37A1A2492B149B1B002C26DA /* Application */,
+				E221FFCD2B14BC0F002A5268 /* Onboarding */,
 				C4C9B25B2B1378CF00399C79 /* Extensions */,
-				E2B5D6442B048EF800801719 /* AppDelegate.swift */,
-				E2B5D6462B048EF800801719 /* SceneDelegate.swift */,
-				E2B5D6482B048EF800801719 /* ViewController.swift */,
 				E2B5D64D2B048EF900801719 /* Assets.xcassets */,
-				E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */,
 				E2B5D6522B048EF900801719 /* Info.plist */,
 			);
 			path = "Carsharing Aggregator";
@@ -289,14 +308,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */,
-				E2B5D6492B048EF800801719 /* ViewController.swift in Sources */,
-				37A1A2532B149B63002C26DA /* LoginCoordinator.swift in Sources */,
-				37A1A2512B149B57002C26DA /* RegistrationCoordinator.swift in Sources */,
+				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
+				E221FFD72B14BEAB002A5268 /* OnboardingViewController.swift in Sources */,
+				E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */,
 				37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */,
 				37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */,
-				37A1A2552B149B7B002C26DA /* TabBarCoordinator.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
+				E221FFDC2B14C254002A5268 /* OnboardingViewModel.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
+				E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */,
 				37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */,
 				C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */,
 			);
