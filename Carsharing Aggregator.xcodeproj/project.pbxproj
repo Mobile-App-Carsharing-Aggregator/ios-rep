@@ -10,6 +10,7 @@
 		32453BDB2B147CFA003E7AA8 /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453BD82B147CFA003E7AA8 /* Coordinator+Ext.swift */; };
 		32453BDC2B147CFA003E7AA8 /* UINavigationCotroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453BD92B147CFA003E7AA8 /* UINavigationCotroller+Ext.swift */; };
 		32453BDD2B147CFA003E7AA8 /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453BDA2B147CFA003E7AA8 /* ParentCoordinator+Ext.swift */; };
+		32453BE22B148051003E7AA8 /* AppCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453BE12B148051003E7AA8 /* AppCoordinators.swift */; };
 		37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306A2B0922CE00468D95 /* Kingfisher */; };
 		37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */; };
 		5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */; };
@@ -26,6 +27,7 @@
 		32453BD82B147CFA003E7AA8 /* Coordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
 		32453BD92B147CFA003E7AA8 /* UINavigationCotroller+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationCotroller+Ext.swift"; sourceTree = "<group>"; };
 		32453BDA2B147CFA003E7AA8 /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
+		32453BE12B148051003E7AA8 /* AppCoordinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinators.swift; sourceTree = "<group>"; };
 		8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carsharing_Aggregator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extensions.swift"; sourceTree = "<group>"; };
 		D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.release.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.release.xcconfig"; sourceTree = "<group>"; };
@@ -52,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32453BE02B148051003E7AA8 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				32453BE12B148051003E7AA8 /* AppCoordinators.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		62E768AB367BD5B6FBF1FD35 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
+				32453BE02B148051003E7AA8 /* Coordinators */,
 				C4C9B25B2B1378CF00399C79 /* Extensions */,
 				E2B5D6442B048EF800801719 /* AppDelegate.swift */,
 				E2B5D6462B048EF800801719 /* SceneDelegate.swift */,
@@ -236,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32453BE22B148051003E7AA8 /* AppCoordinators.swift in Sources */,
 				E2B5D6492B048EF800801719 /* ViewController.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
 				32453BDD2B147CFA003E7AA8 /* ParentCoordinator+Ext.swift in Sources */,
