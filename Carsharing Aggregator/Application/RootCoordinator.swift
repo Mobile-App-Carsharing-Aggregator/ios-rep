@@ -17,14 +17,9 @@ final class RootCoordinator: Coordinator, ParentCoordinator {
     }
     
     func start() {
-        let viewControllerRef = OnboardingViewController()
-        let onboardingCoordinator = OnboardingCoordinator(viewControllerRef: viewControllerRef, navigationController: navigationController)
+        let onboardingCoordinator = RegistrationCoordinator(navigationController: navigationController)
         onboardingCoordinator.parent = self
         addChild(onboardingCoordinator)
         onboardingCoordinator.start()
-    }
-
-    func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
-        
     }
 }

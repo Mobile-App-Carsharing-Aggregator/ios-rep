@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3731419F2B14DF8E00F176AC /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3731419E2B14DF8E00F176AC /* RegistrationCoordinator.swift */; };
+		373141A12B15FDB900F176AC /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373141A02B15FDB900F176AC /* RegistrationViewController.swift */; };
+		373141A32B15FE1E00F176AC /* DisposableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373141A22B15FE1E00F176AC /* DisposableViewController.swift */; };
+		373BB9F72B162F0B00045A1A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 373BB9F62B162F0B00045A1A /* SnapKit */; };
 		37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */; };
 		37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */; };
 		37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */; };
@@ -28,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		20052997AFA8816DFF0028E6 /* Pods-Carsharing Aggregator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.debug.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.debug.xcconfig"; sourceTree = "<group>"; };
+		3731419E2B14DF8E00F176AC /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
+		373141A02B15FDB900F176AC /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		373141A22B15FE1E00F176AC /* DisposableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposableViewController.swift; sourceTree = "<group>"; };
 		37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationCotroller+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
@@ -54,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */,
+				373BB9F72B162F0B00045A1A /* SnapKit in Frameworks */,
 				5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */,
 				37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */,
 			);
@@ -62,6 +70,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		373141992B14DAAA00F176AC /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				3731419D2B14DBE100F176AC /* ViewModel */,
+				3731419C2B14DBDB00F176AC /* View */,
+				3731419B2B14DBD300F176AC /* Model */,
+				3731419A2B14DBC100F176AC /* Coordinator */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		3731419A2B14DBC100F176AC /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3731419E2B14DF8E00F176AC /* RegistrationCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		3731419B2B14DBD300F176AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3731419C2B14DBDB00F176AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				373141A02B15FDB900F176AC /* RegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3731419D2B14DBE100F176AC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		37A1A2492B149B1B002C26DA /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				37A1A24E2B149B1B002C26DA /* AppCoordinators.swift */,
+				373141A22B15FE1E00F176AC /* DisposableViewController.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -175,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				37A1A2492B149B1B002C26DA /* Application */,
+				373141992B14DAAA00F176AC /* Registration */,
 				E221FFCD2B14BC0F002A5268 /* Onboarding */,
 				C4C9B25B2B1378CF00399C79 /* Extensions */,
 				E2B5D64D2B048EF900801719 /* Assets.xcassets */,
@@ -205,6 +256,7 @@
 			packageProductDependencies = (
 				37E7306A2B0922CE00468D95 /* Kingfisher */,
 				37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */,
+				373BB9F62B162F0B00045A1A /* SnapKit */,
 			);
 			productName = "Carsharing Aggregator";
 			productReference = E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */;
@@ -311,12 +363,15 @@
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
 				E221FFD72B14BEAB002A5268 /* OnboardingViewController.swift in Sources */,
 				E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */,
+				373141A12B15FDB900F176AC /* RegistrationViewController.swift in Sources */,
 				37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */,
 				37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */,
+				373141A32B15FE1E00F176AC /* DisposableViewController.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
 				E221FFDC2B14C254002A5268 /* OnboardingViewModel.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
 				E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */,
+				3731419F2B14DF8E00F176AC /* RegistrationCoordinator.swift in Sources */,
 				37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */,
 				C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */,
 			);
@@ -585,6 +640,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		373BB9F62B162F0B00045A1A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		37E7306A2B0922CE00468D95 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 37E730692B0922CE00468D95 /* XCRemoteSwiftPackageReference "Kingfisher" */;

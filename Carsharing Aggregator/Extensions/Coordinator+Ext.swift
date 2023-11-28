@@ -1,16 +1,14 @@
 import UIKit
 
 extension Coordinator {
-    func popViewController(animated: Bool, useCustomAnimation: Bool) {
+    func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType = .push) {
         
         switch useCustomAnimation {
         case true: navigationController.customPopViewController(direction: .fromTop, transitionType: .push)
         case false: navigationController.popViewController(animated: animated)
         }
     }
-    
-    
-    
+     
     func pushViewController(viewController vc: UIViewController, animated: Bool) {
         navigationController.customPushViewController(viewController: vc, direction: .fromBottom, transitionType: .push)
         navigationController.pushViewController(vc, animated: false)

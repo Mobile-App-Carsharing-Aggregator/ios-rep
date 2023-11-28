@@ -27,10 +27,4 @@ final class OnboardingCoordinator: ChildCoordinator {
         guard let viewControllerRef else { return }
         navigationController.pushViewController(viewControllerRef, animated: true)
     }
-    
-    func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
-        
-    }
-    
-    
 }
