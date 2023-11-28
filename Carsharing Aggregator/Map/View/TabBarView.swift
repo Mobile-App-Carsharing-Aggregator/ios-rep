@@ -85,7 +85,6 @@ final class TabBarView: UIView {
         
         self.layer.cornerRadius = 16
         self.clipsToBounds = true
-        
     }
     
     required init?(coder: NSCoder) {

@@ -8,23 +8,14 @@
 import UIKit
 
 final class TabBarCoordinator: ParentCoordinator {
-    
     var childCoordinators: [Coordinator] = []
-    
     var navigationController: UINavigationController
     
-    init(childCoordinators: [Coordinator], navigationController: UINavigationController) {
-        self.childCoordinators = childCoordinators
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-    }
-    
-    func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
-        
     }
     
     func start() {
         
     }
-    
-    
 }

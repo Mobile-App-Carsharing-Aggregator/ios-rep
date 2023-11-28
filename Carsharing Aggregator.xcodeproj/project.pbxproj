@@ -12,6 +12,9 @@
 		32453C072B152AAA003E7AA8 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C062B152AAA003E7AA8 /* TabBarView.swift */; };
 		32453C092B152BAF003E7AA8 /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C082B152BAF003E7AA8 /* UIView+extensions.swift */; };
 		32453C0B2B153FCE003E7AA8 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C0A2B153FCE003E7AA8 /* TabBarCoordinator.swift */; };
+		32453C1D2B16109B003E7AA8 /* MapObjectTapListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C1C2B16109B003E7AA8 /* MapObjectTapListener.swift */; };
+		32453C212B1621A7003E7AA8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 32453C202B1621A7003E7AA8 /* SnapKit */; };
+		32453C232B1621A7003E7AA8 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 32453C222B1621A7003E7AA8 /* SnapKit-Dynamic */; };
 		37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */; };
 		37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */; };
 		37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */; };
@@ -38,6 +41,7 @@
 		32453C062B152AAA003E7AA8 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		32453C082B152BAF003E7AA8 /* UIView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
 		32453C0A2B153FCE003E7AA8 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		32453C1C2B16109B003E7AA8 /* MapObjectTapListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapObjectTapListener.swift; sourceTree = "<group>"; };
 		37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationCotroller+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
@@ -63,7 +67,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32453C232B1621A7003E7AA8 /* SnapKit-Dynamic in Frameworks */,
 				37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */,
+				32453C212B1621A7003E7AA8 /* SnapKit in Frameworks */,
 				5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */,
 				37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */,
 			);
@@ -79,6 +85,7 @@
 				32453BFF2B14D720003E7AA8 /* View */,
 				32453BFD2B14D70F003E7AA8 /* Coordinators */,
 				32453C002B14D725003E7AA8 /* ViewModels */,
+				32453C1C2B16109B003E7AA8 /* MapObjectTapListener.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -261,6 +268,8 @@
 			packageProductDependencies = (
 				37E7306A2B0922CE00468D95 /* Kingfisher */,
 				37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */,
+				32453C202B1621A7003E7AA8 /* SnapKit */,
+				32453C222B1621A7003E7AA8 /* SnapKit-Dynamic */,
 			);
 			productName = "Carsharing Aggregator";
 			productReference = E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */;
@@ -392,6 +401,7 @@
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
 				E221FFDC2B14C254002A5268 /* OnboardingViewModel.swift in Sources */,
 				32453C022B14D764003E7AA8 /* YBaseMapView.swift in Sources */,
+				32453C1D2B16109B003E7AA8 /* MapObjectTapListener.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
 				E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */,
 				37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */,
@@ -549,7 +559,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S8LHJXGXB8;
+				DEVELOPMENT_TEAM = KUYRA3PMPA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Carsharing Aggregator/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -581,7 +591,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S8LHJXGXB8;
+				DEVELOPMENT_TEAM = KUYRA3PMPA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Carsharing Aggregator/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -664,6 +674,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		32453C202B1621A7003E7AA8 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		32453C222B1621A7003E7AA8 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
 		37E7306A2B0922CE00468D95 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 37E730692B0922CE00468D95 /* XCRemoteSwiftPackageReference "Kingfisher" */;
