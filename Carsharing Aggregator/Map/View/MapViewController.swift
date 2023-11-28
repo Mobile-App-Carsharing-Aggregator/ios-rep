@@ -48,7 +48,7 @@ final class MapViewController: UIViewController {
     }
     
     private func addPlacemark(_ map: YMKMap, geometry: YMKPoint) {
-        let image = UIImage.pointBlack
+        guard let image = UIImage.pointBlack else { return }
         let placemark = map.mapObjects.addPlacemark()
         placemark.geometry = geometry
         placemark.setIconWith(image)
