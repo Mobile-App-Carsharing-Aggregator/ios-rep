@@ -7,6 +7,13 @@
 
 import Foundation
 
-struct ProfileViewModel {
+protocol ProfileViewModelProtocol {
+    var numberOfSections: [Int] { get }
+}
+
+struct ProfileViewModel: ProfileViewModelProtocol {
+    var numberOfSections: [Int] = [1, 6, 3]
     
+    
+
 }

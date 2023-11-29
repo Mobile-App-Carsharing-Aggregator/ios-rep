@@ -24,7 +24,11 @@ final class ProfileCoordinator: ChildCoordinator {
         let profileVC = ProfileViewController()
         viewControllerRef = profileVC
         profileVC.coordinator = self
-        navigationController.customPushViewController(viewController: profileVC, direction: .fromBottom, transitionType: .push)
+        navigationController.customPushViewController(
+            viewController: profileVC,
+            direction: .fromBottom,
+            transitionType: .push
+        )
     }
     
     func coordinatorDidFinish() {
