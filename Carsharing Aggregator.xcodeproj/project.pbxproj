@@ -125,6 +125,20 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		3273FC9A2B172F7300C3C137 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		3273FC9B2B172F7C00C3C137 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
 		37A1A2492B149B1B002C26DA /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +252,8 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
+				3273FC9B2B172F7C00C3C137 /* Filter */,
+				3273FC9A2B172F7300C3C137 /* Profile */,
 				32453BFC2B14D6EF003E7AA8 /* Map */,
 				37A1A2492B149B1B002C26DA /* Application */,
 				E221FFCD2B14BC0F002A5268 /* Onboarding */,

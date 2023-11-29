@@ -8,14 +8,14 @@
 import UIKit
 
 final class TabBarCoordinator: ParentCoordinator {
-    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    var childCoordinators: [Coordinator] = []
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func start() {
-        
+      
     }
 }

@@ -77,14 +77,24 @@ final class TabBarView: UIView {
         return button
     }()
     
+    private lazy var borderView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 16
+        view.backgroundColor = .clear
+        view.clipsToBounds = true
+        return view
+    }()
+    
     init() {
         super.init(frame: .zero)
         self.addSubviews()
         self.setupLayout()
         self.configureTabBarStackView()
         
-        self.layer.cornerRadius = 16
-        self.clipsToBounds = true
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 3, height: 3)
+        self.layer.shadowOpacity = 0.7
+        self.layer.shadowRadius = 4.0
     }
     
     required init?(coder: NSCoder) {
@@ -92,8 +102,9 @@ final class TabBarView: UIView {
     }
  
     private func addSubviews() {
-        addSubview(actionsStackView)
-        addSubview(locationContainerView)
+        addSubview(borderView)
+        borderView.addSubview(actionsStackView)
+        borderView.addSubview(locationContainerView)
         locationContainerView.addSubview(locationButton)
     }
     
@@ -114,6 +125,10 @@ final class TabBarView: UIView {
     }
     
     private func setupLayout() {
+        borderView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
         locationContainerView.snp.makeConstraints { make in
             make.trailing.top.bottom.equalToSuperview()
             make.width.equalTo(buttonWidth)
