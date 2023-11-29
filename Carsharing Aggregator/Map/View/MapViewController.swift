@@ -82,7 +82,19 @@ final class MapViewController: UIViewController {
 
 extension MapViewController: TabViewDelegate {
     func profileButtonTapped() {
+        let popOverViewController = PopOverViewController()
+        popOverViewController.modalPresentationStyle = .popover
+        popOverViewController.preferredContentSize = CGSize(width: 240, height: 64)
         
+        guard let presentationVC = popOverViewController.popoverPresentationController else { return }
+        presentationVC.delegate = self
+        presentationVC.sourceView = tabView
+        presentationVC.permittedArrowDirections = .down
+        presentationVC.sourceRect = CGRect(x: Int(tabView.bounds.midX) - 140,
+                                           y: Int(tabView.bounds.minY - 5),
+                                           width: 0,
+                                           height: 0)
+        present(popOverViewController, animated: true)
     }
     
     func filtersButtonTapped() {
@@ -99,5 +111,11 @@ extension MapViewController: TabViewDelegate {
     
     func locationButtonTapped() {
         
+    }
+}
+
+extension MapViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        .none
     }
 }
