@@ -23,6 +23,8 @@ final class ProfileCoordinator: ChildCoordinator {
     func start() {
         let profileVC = ProfileViewController()
         viewControllerRef = profileVC
+        let profileVM = ProfileViewModel()
+        profileVC.viewModel = profileVM
         profileVC.coordinator = self
         navigationController.customPushViewController(
             viewController: profileVC,

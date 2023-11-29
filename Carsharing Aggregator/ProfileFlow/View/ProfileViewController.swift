@@ -37,7 +37,7 @@ final class ProfileViewController: UIViewController {
     
     //  MARK: - Properties
     weak var coordinator: Coordinator?
-    private var viewModel: ProfileViewModelProtocol?
+    var viewModel: ProfileViewModelProtocol?
     
     //  MARK: - Lifecycle
     override func viewDidLoad() {
@@ -101,8 +101,8 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // TO DO: need ask viewModel
-        3
+        guard let model = viewModel else { return 0 }
+        return model.numberOfSections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -174,8 +174,8 @@ extension ProfileViewController: UITableViewDataSource {
     //  MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        // TO DO: need ask viewModel
-        guard section == 0 || section == 1 else { return nil }
+        guard let model = viewModel else { return nil }
+        guard section > (model.numberOfSections.count - 1) else { return nil }
         
         let separatorView = UIView()
         separatorView.backgroundColor = UIColor.systemGray
@@ -183,7 +183,8 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        guard section == 0 || section == 1 else { return 0.0 }
+        guard let model = viewModel else { return 0 }
+        guard section > (model.numberOfSections.count - 1) else { return 0 }
         
         return 1.0
     }
