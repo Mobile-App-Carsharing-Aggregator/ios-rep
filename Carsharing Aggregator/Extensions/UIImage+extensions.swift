@@ -39,4 +39,10 @@ extension UIImage {
     static let tabFilters = UIImage(named: "filters")
     static let tabOrder = UIImage(named: "order")
     static let tabLocation = UIImage(named: "compas")
+    
+    //MARK: - Images
+    
+    static let onboardingBackgroundImage = UIImage(named: "onboarding background image")
+    static let onboardingCustomLogo = UIImage(named: "onboarding logo")
+    
 }
