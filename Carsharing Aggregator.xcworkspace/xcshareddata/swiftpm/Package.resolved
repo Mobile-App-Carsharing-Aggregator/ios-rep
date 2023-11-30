@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "snapkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SnapKit/SnapKit",
-      "state" : {
-        "branch" : "develop",
-        "revision" : "4d52cc3768ec5d345827b063dfa59e98a929965d"
-      }
-    },
-    {
       "identity" : "swiftkeychainwrapper",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jrendel/SwiftKeychainWrapper",
