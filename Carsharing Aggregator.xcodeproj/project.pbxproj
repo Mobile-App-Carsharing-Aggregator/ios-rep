@@ -80,11 +80,7 @@
 			files = (
 				32453C232B1621A7003E7AA8 /* SnapKit-Dynamic in Frameworks */,
 				37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */,
-<<<<<<< HEAD
-				32453C212B1621A7003E7AA8 /* SnapKit in Frameworks */,
-=======
 				37B6F3F82B168922001F9D55 /* SnapKit in Frameworks */,
->>>>>>> develop
 				5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */,
 				37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */,
 			);
@@ -269,12 +265,9 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				3273FCD52B18944800C3C137 /* Profile2 */,
 				32453BFC2B14D6EF003E7AA8 /* Map+TabBar */,
-=======
 				37B6F3F42B1688E9001F9D55 /* Models */,
->>>>>>> develop
 				37A1A2492B149B1B002C26DA /* Application */,
 				E221FFCD2B14BC0F002A5268 /* Onboarding */,
 				C4C9B25B2B1378CF00399C79 /* Extensions */,
@@ -307,12 +300,7 @@
 			packageProductDependencies = (
 				37E7306A2B0922CE00468D95 /* Kingfisher */,
 				37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */,
-<<<<<<< HEAD
-				32453C202B1621A7003E7AA8 /* SnapKit */,
-				32453C222B1621A7003E7AA8 /* SnapKit-Dynamic */,
-=======
 				37B6F3F72B168922001F9D55 /* SnapKit */,
->>>>>>> develop
 			);
 			productName = "Carsharing Aggregator";
 			productReference = E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */;
@@ -722,23 +710,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-<<<<<<< HEAD
-		32453C202B1621A7003E7AA8 /* SnapKit */ = {
-=======
+
 		37B6F3F72B168922001F9D55 /* SnapKit */ = {
->>>>>>> develop
 			isa = XCSwiftPackageProductDependency;
 			package = 37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-<<<<<<< HEAD
 		32453C222B1621A7003E7AA8 /* SnapKit-Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
 		};
-=======
->>>>>>> develop
 		37E7306A2B0922CE00468D95 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 37E730692B0922CE00468D95 /* XCRemoteSwiftPackageReference "Kingfisher" */;
