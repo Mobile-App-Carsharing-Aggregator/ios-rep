@@ -13,21 +13,21 @@
 		32453C092B152BAF003E7AA8 /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C082B152BAF003E7AA8 /* UIView+extensions.swift */; };
 		32453C0B2B153FCE003E7AA8 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C0A2B153FCE003E7AA8 /* TabBarCoordinator.swift */; };
 		32453C1D2B16109B003E7AA8 /* MapObjectTapListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C1C2B16109B003E7AA8 /* MapObjectTapListener.swift */; };
-		32453C212B1621A7003E7AA8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 32453C202B1621A7003E7AA8 /* SnapKit */; };
-		32453C232B1621A7003E7AA8 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 32453C222B1621A7003E7AA8 /* SnapKit-Dynamic */; };
 		3273FC992B17131500C3C137 /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273FC982B17131500C3C137 /* PopOverViewController.swift */; };
-		3273FCC92B187BD500C3C137 /* ProfileViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273FCC82B187BD500C3C137 /* ProfileViewController2.swift */; };
-		3273FCCB2B187BEE00C3C137 /* ProfileCoordinators2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273FCCA2B187BEE00C3C137 /* ProfileCoordinators2.swift */; };
 		37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */; };
 		37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */; };
 		37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */; };
 		37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A24E2B149B1B002C26DA /* AppCoordinators.swift */; };
 		37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6F3F52B1688F8001F9D55 /* UserModel.swift */; };
-		37B6F3F82B168922001F9D55 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37B6F3F72B168922001F9D55 /* SnapKit */; };
 		37B6F3FA2B1689F5001F9D55 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6F3F92B1689F5001F9D55 /* CarModel.swift */; };
 		37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306A2B0922CE00468D95 /* Kingfisher */; };
 		37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */; };
 		5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */; };
+		C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F72B1633B70060287C /* ProfileViewController.swift */; };
+		C462D8FA2B1633CB0060287C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F92B1633CB0060287C /* ProfileViewModel.swift */; };
+		C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8FB2B1634580060287C /* ProfileCoordinator.swift */; };
+		C462D9042B18D8B20060287C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C462D9032B18D8B20060287C /* SnapKit */; };
+		C462D9062B18D8B20060287C /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C462D9052B18D8B20060287C /* SnapKit-Dynamic */; };
 		C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */; };
 		E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */; };
 		E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD42B14BD82002A5268 /* RootCoordinator.swift */; };
@@ -49,8 +49,6 @@
 		32453C0A2B153FCE003E7AA8 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		32453C1C2B16109B003E7AA8 /* MapObjectTapListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapObjectTapListener.swift; sourceTree = "<group>"; };
 		3273FC982B17131500C3C137 /* PopOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
-		3273FCC82B187BD500C3C137 /* ProfileViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController2.swift; sourceTree = "<group>"; };
-		3273FCCA2B187BEE00C3C137 /* ProfileCoordinators2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinators2.swift; sourceTree = "<group>"; };
 		37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationCotroller+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
@@ -58,6 +56,9 @@
 		37B6F3F52B1688F8001F9D55 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		37B6F3F92B1689F5001F9D55 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
 		8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carsharing_Aggregator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C462D8F72B1633B70060287C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C462D8F92B1633CB0060287C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		C462D8FB2B1634580060287C /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extensions.swift"; sourceTree = "<group>"; };
 		D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.release.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.release.xcconfig"; sourceTree = "<group>"; };
 		E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
@@ -78,9 +79,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32453C232B1621A7003E7AA8 /* SnapKit-Dynamic in Frameworks */,
+				C462D9062B18D8B20060287C /* SnapKit-Dynamic in Frameworks */,
 				37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */,
-				37B6F3F82B168922001F9D55 /* SnapKit in Frameworks */,
+				C462D9042B18D8B20060287C /* SnapKit in Frameworks */,
 				5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */,
 				37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */,
 			);
@@ -134,15 +135,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		3273FCD52B18944800C3C137 /* Profile2 */ = {
-			isa = PBXGroup;
-			children = (
-				3273FCCA2B187BEE00C3C137 /* ProfileCoordinators2.swift */,
-				3273FCC82B187BD500C3C137 /* ProfileViewController2.swift */,
-			);
-			path = Profile2;
-			sourceTree = "<group>";
-		};
 		37A1A2492B149B1B002C26DA /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +171,40 @@
 				8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C462D8F62B1633950060287C /* ProfileFlow */ = {
+			isa = PBXGroup;
+			children = (
+				C462D8FF2B166BCC0060287C /* ViewModel */,
+				C462D8FE2B166BBD0060287C /* View */,
+				C462D8FD2B166BA90060287C /* Coordinator */,
+			);
+			path = ProfileFlow;
+			sourceTree = "<group>";
+		};
+		C462D8FD2B166BA90060287C /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C462D8FB2B1634580060287C /* ProfileCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		C462D8FE2B166BBD0060287C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C462D8F72B1633B70060287C /* ProfileViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C462D8FF2B166BCC0060287C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C462D8F92B1633CB0060287C /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C4C9B25B2B1378CF00399C79 /* Extensions */ = {
@@ -265,7 +291,7 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
-				3273FCD52B18944800C3C137 /* Profile2 */,
+				C462D8F62B1633950060287C /* ProfileFlow */,
 				32453BFC2B14D6EF003E7AA8 /* Map+TabBar */,
 				37B6F3F42B1688E9001F9D55 /* Models */,
 				37A1A2492B149B1B002C26DA /* Application */,
@@ -300,7 +326,8 @@
 			packageProductDependencies = (
 				37E7306A2B0922CE00468D95 /* Kingfisher */,
 				37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */,
-				37B6F3F72B168922001F9D55 /* SnapKit */,
+				C462D9032B18D8B20060287C /* SnapKit */,
+				C462D9052B18D8B20060287C /* SnapKit-Dynamic */,
 			);
 			productName = "Carsharing Aggregator";
 			productReference = E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */;
@@ -332,8 +359,8 @@
 			mainGroup = E2B5D6382B048EF800801719;
 			packageReferences = (
 				37E730692B0922CE00468D95 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				37E7306D2B0923F300468D95 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				C462D9022B18D8B20060287C /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = E2B5D6422B048EF800801719 /* Products */;
 			projectDirPath = "";
@@ -421,7 +448,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3273FCC92B187BD500C3C137 /* ProfileViewController2.swift in Sources */,
 				37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */,
 				37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */,
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
@@ -431,16 +457,18 @@
 				3273FC992B17131500C3C137 /* PopOverViewController.swift in Sources */,
 				32453C0B2B153FCE003E7AA8 /* TabBarCoordinator.swift in Sources */,
 				37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */,
+				C462D8FA2B1633CB0060287C /* ProfileViewModel.swift in Sources */,
 				32453C092B152BAF003E7AA8 /* UIView+extensions.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
 				37B6F3FA2B1689F5001F9D55 /* CarModel.swift in Sources */,
 				E221FFDC2B14C254002A5268 /* OnboardingViewModel.swift in Sources */,
 				32453C022B14D764003E7AA8 /* YBaseMapView.swift in Sources */,
 				32453C1D2B16109B003E7AA8 /* MapObjectTapListener.swift in Sources */,
-				3273FCCB2B187BEE00C3C137 /* ProfileCoordinators2.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
 				E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */,
+				C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */,
 				37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */,
+				C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */,
 				C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */,
 				32453C072B152AAA003E7AA8 /* TabBarView.swift in Sources */,
 				32453C042B14D7AD003E7AA8 /* TabBarViewController.swift in Sources */,
@@ -683,17 +711,17 @@
 				kind = branch;
 			};
 		};
-		37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		37E7306D2B0923F300468D95 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
 			requirement = {
 				branch = develop;
 				kind = branch;
 			};
 		};
-		37E7306D2B0923F300468D95 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+		C462D9022B18D8B20060287C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
 			requirement = {
 				branch = develop;
 				kind = branch;
@@ -710,17 +738,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-
-		37B6F3F72B168922001F9D55 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		32453C222B1621A7003E7AA8 /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
 		37E7306A2B0922CE00468D95 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 37E730692B0922CE00468D95 /* XCRemoteSwiftPackageReference "Kingfisher" */;
@@ -730,6 +747,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37E7306D2B0923F300468D95 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		C462D9032B18D8B20060287C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C462D9022B18D8B20060287C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		C462D9052B18D8B20060287C /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C462D9022B18D8B20060287C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
 		};
 		E2B5D6702B04E89C00801719 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
