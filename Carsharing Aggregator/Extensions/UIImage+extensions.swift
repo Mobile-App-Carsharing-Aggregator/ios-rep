@@ -31,6 +31,7 @@ extension UIImage {
     static let locationMark = UIImage(named: "locationmark")
     static let swithLight = UIImage(named: "light")
     static let starFeedback = UIImage(named: "starbig")
+    static let user = UIImage(named: "userPoint")
 
     // tabBar icons
     static let tabProfile = UIImage(named: "profile")

@@ -17,8 +17,7 @@ final class RootCoordinator: Coordinator, ParentCoordinator {
     }
     
     func start() {
-        let viewControllerRef = OnboardingViewController()
-        let onboardingCoordinator = OnboardingCoordinator(viewControllerRef: viewControllerRef, navigationController: navigationController)
+        let onboardingCoordinator = TabBarCoordinator( navigationController: navigationController)
         onboardingCoordinator.parent = self
         addChild(onboardingCoordinator)
         onboardingCoordinator.start()
