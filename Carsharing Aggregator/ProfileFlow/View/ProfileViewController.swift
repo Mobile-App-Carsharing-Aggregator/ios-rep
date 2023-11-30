@@ -39,6 +39,7 @@ final class ProfileViewController: UIViewController {
     weak var coordinator: Coordinator?
     var viewModel: ProfileViewModelProtocol?
     
+    
     //  MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
