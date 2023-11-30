@@ -13,7 +13,6 @@
 		32453C092B152BAF003E7AA8 /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C082B152BAF003E7AA8 /* UIView+extensions.swift */; };
 		32453C0B2B153FCE003E7AA8 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C0A2B153FCE003E7AA8 /* TabBarCoordinator.swift */; };
 		32453C1D2B16109B003E7AA8 /* MapObjectTapListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32453C1C2B16109B003E7AA8 /* MapObjectTapListener.swift */; };
-		32453C212B1621A7003E7AA8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 32453C202B1621A7003E7AA8 /* SnapKit */; };
 		32453C232B1621A7003E7AA8 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 32453C222B1621A7003E7AA8 /* SnapKit-Dynamic */; };
 		3273FC992B17131500C3C137 /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273FC982B17131500C3C137 /* PopOverViewController.swift */; };
 		3273FCC92B187BD500C3C137 /* ProfileViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273FCC82B187BD500C3C137 /* ProfileViewController2.swift */; };
@@ -29,11 +28,13 @@
 		37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */; };
 		5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */; };
 		C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */; };
+		E22100002B18E26A002A5268 /* SecondOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFFF2B18E26A002A5268 /* SecondOnboardingViewModel.swift */; };
 		E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */; };
 		E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD42B14BD82002A5268 /* RootCoordinator.swift */; };
-		E221FFD72B14BEAB002A5268 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD62B14BEAB002A5268 /* OnboardingViewController.swift */; };
+		E221FFD72B14BEAB002A5268 /* FirstOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD62B14BEAB002A5268 /* FirstOnboardingViewController.swift */; };
 		E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD92B14C19A002A5268 /* ViewModel.swift */; };
-		E221FFDC2B14C254002A5268 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFDB2B14C254002A5268 /* OnboardingViewModel.swift */; };
+		E221FFDC2B14C254002A5268 /* FirstOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFDB2B14C254002A5268 /* FirstOnboardingViewModel.swift */; };
+		E221FFFE2B18DD30002A5268 /* SecondOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFFD2B18DD30002A5268 /* SecondOnboardingViewController.swift */; };
 		E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6442B048EF800801719 /* AppDelegate.swift */; };
 		E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6462B048EF800801719 /* SceneDelegate.swift */; };
 		E2B5D64E2B048EF900801719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64D2B048EF900801719 /* Assets.xcassets */; };
@@ -62,9 +63,11 @@
 		D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.release.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.release.xcconfig"; sourceTree = "<group>"; };
 		E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		E221FFD42B14BD82002A5268 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
-		E221FFD62B14BEAB002A5268 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		E221FFD62B14BEAB002A5268 /* FirstOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingViewController.swift; sourceTree = "<group>"; };
 		E221FFD92B14C19A002A5268 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		E221FFDB2B14C254002A5268 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		E221FFDB2B14C254002A5268 /* FirstOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingViewModel.swift; sourceTree = "<group>"; };
+		E221FFFD2B18DD30002A5268 /* SecondOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingViewController.swift; sourceTree = "<group>"; };
+		E221FFFF2B18E26A002A5268 /* SecondOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingViewModel.swift; sourceTree = "<group>"; };
 		E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carsharing Aggregator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B5D6442B048EF800801719 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2B5D6462B048EF800801719 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,9 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				E221FFD12B14BC3E002A5268 /* Coordinators */,
-				E221FFD02B14BC38002A5268 /* Model */,
 				E221FFCE2B14BC20002A5268 /* View */,
 				E221FFCF2B14BC29002A5268 /* ViewModels */,
+				E221FFD02B14BC38002A5268 /* Model */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -207,7 +210,8 @@
 		E221FFCE2B14BC20002A5268 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E221FFD62B14BEAB002A5268 /* OnboardingViewController.swift */,
+				E221FFD62B14BEAB002A5268 /* FirstOnboardingViewController.swift */,
+				E221FFFD2B18DD30002A5268 /* SecondOnboardingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,7 +219,8 @@
 		E221FFCF2B14BC29002A5268 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				E221FFDB2B14C254002A5268 /* OnboardingViewModel.swift */,
+				E221FFDB2B14C254002A5268 /* FirstOnboardingViewModel.swift */,
+				E221FFFF2B18E26A002A5268 /* SecondOnboardingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -265,10 +270,10 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
+				37A1A2492B149B1B002C26DA /* Application */,
 				3273FCD52B18944800C3C137 /* Profile2 */,
 				32453BFC2B14D6EF003E7AA8 /* Map+TabBar */,
 				37B6F3F42B1688E9001F9D55 /* Models */,
-				37A1A2492B149B1B002C26DA /* Application */,
 				E221FFCD2B14BC0F002A5268 /* Onboarding */,
 				C4C9B25B2B1378CF00399C79 /* Extensions */,
 				E2B5D64D2B048EF900801719 /* Assets.xcassets */,
@@ -425,16 +430,18 @@
 				37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */,
 				37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */,
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
-				E221FFD72B14BEAB002A5268 /* OnboardingViewController.swift in Sources */,
+				E221FFD72B14BEAB002A5268 /* FirstOnboardingViewController.swift in Sources */,
 				E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */,
 				37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */,
 				3273FC992B17131500C3C137 /* PopOverViewController.swift in Sources */,
 				32453C0B2B153FCE003E7AA8 /* TabBarCoordinator.swift in Sources */,
 				37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */,
 				32453C092B152BAF003E7AA8 /* UIView+extensions.swift in Sources */,
+				E22100002B18E26A002A5268 /* SecondOnboardingViewModel.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
 				37B6F3FA2B1689F5001F9D55 /* CarModel.swift in Sources */,
-				E221FFDC2B14C254002A5268 /* OnboardingViewModel.swift in Sources */,
+				E221FFFE2B18DD30002A5268 /* SecondOnboardingViewController.swift in Sources */,
+				E221FFDC2B14C254002A5268 /* FirstOnboardingViewModel.swift in Sources */,
 				32453C022B14D764003E7AA8 /* YBaseMapView.swift in Sources */,
 				32453C1D2B16109B003E7AA8 /* MapObjectTapListener.swift in Sources */,
 				3273FCCB2B187BEE00C3C137 /* ProfileCoordinators2.swift in Sources */,
@@ -710,16 +717,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-
-		37B6F3F72B168922001F9D55 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
 		32453C222B1621A7003E7AA8 /* SnapKit-Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
+		};
+		37B6F3F72B168922001F9D55 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37E7306C2B0923DF00468D95 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		37E7306A2B0922CE00468D95 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

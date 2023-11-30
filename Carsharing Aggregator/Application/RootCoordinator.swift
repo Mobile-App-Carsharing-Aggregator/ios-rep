@@ -17,13 +17,24 @@ final class RootCoordinator: Coordinator, ParentCoordinator {
     }
     
     func start() {
-        let onboardingCoordinator = TabBarCoordinator( navigationController: navigationController)
+        let onboardingCoordinator = OnboardingCoordinator(navigationController: navigationController)
         onboardingCoordinator.parent = self
+        onboardingCoordinator.delegate = self
         addChild(onboardingCoordinator)
         onboardingCoordinator.start()
     }
 
     func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
         
+    }
+}
+
+extension RootCoordinator: OnboardingCoordinatorDelegate {
+    func startTabBarFlow() {
+        let tabBarCoordinator = TabBarCoordinator( navigationController: navigationController)
+        tabBarCoordinator.parent = self
+        addChild(tabBarCoordinator)
+        navigationController.viewControllers = []
+        tabBarCoordinator.start()
     }
 }
