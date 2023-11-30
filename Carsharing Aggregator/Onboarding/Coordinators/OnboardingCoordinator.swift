@@ -7,30 +7,51 @@
 
 import UIKit
 
-final class OnboardingCoordinator: ChildCoordinator {
+protocol OnboardingCoordinatorProtocol: AnyObject {
+    func showSecondView()
+    func completeOnboarding()
+}
 
+final class OnboardingCoordinator: ChildCoordinator {
     
+    weak var delegate: OnboardingCoordinatorDelegate?
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
     var parent: ParentCoordinator?
     
-    init(viewControllerRef: UIViewController, navigationController: UINavigationController) {
-        self.viewControllerRef = viewControllerRef
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func coordinatorDidFinish() {
-        
+        parent?.childDidFinish(self)
     }
 
     func start() {
-        guard let viewControllerRef else { return }
-        navigationController.pushViewController(viewControllerRef, animated: true)
+        let viewModel = FirstOnboardingViewModel(coordinator: self)
+        var viewController = FirstOnboardingViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
     }
+    
     
     func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
         
     }
+}
+
+extension OnboardingCoordinator: OnboardingCoordinatorProtocol {
+    func showSecondView() {
+        let viewModel = SecondOnboardingViewModel(coordinator: self)
+        var viewController = SecondOnboardingViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
+    }
     
-    
+    func completeOnboarding() {
+        parent?.childDidFinish(self)
+        delegate?.startTabBarFlow()
+    }
+}
+
+protocol OnboardingCoordinatorDelegate: AnyObject {
+    func startTabBarFlow()
 }

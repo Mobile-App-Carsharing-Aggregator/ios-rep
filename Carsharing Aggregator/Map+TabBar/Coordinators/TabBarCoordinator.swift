@@ -26,6 +26,6 @@ final class TabBarCoordinator: ParentCoordinator, ChildCoordinator {
         viewControllerRef = tabBarVC
         tabBarVC.coordinator = self
         navigationController.setNavigationBarHidden(false, animated: false)
-        navigationController.pushViewController(tabBarVC, animated: false)
+        navigationController.pushViewController(tabBarVC, animated: true)
     }
 }
