@@ -101,8 +101,8 @@ extension TabBarViewController: TabViewDelegate {
     func profileButtonTapped() {
         presentPopOver()
         if let navVC = coordinator?.navigationController {
-            let profileCoordinator2 = ProfileCoordinators2(navigationController: navVC)
-            profileCoordinator2.start()
+            let profileCoordinator = ProfileCoordinator(navigationController: navVC)
+            profileCoordinator.start()
         }
     }
     

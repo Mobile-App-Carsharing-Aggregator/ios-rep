@@ -26,6 +26,8 @@
 		C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F72B1633B70060287C /* ProfileViewController.swift */; };
 		C462D8FA2B1633CB0060287C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F92B1633CB0060287C /* ProfileViewModel.swift */; };
 		C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8FB2B1634580060287C /* ProfileCoordinator.swift */; };
+		C462D9042B18D8B20060287C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C462D9032B18D8B20060287C /* SnapKit */; };
+		C462D9062B18D8B20060287C /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C462D9052B18D8B20060287C /* SnapKit-Dynamic */; };
 		C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */; };
 		E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */; };
 		E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD42B14BD82002A5268 /* RootCoordinator.swift */; };
@@ -77,7 +79,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C462D9062B18D8B20060287C /* SnapKit-Dynamic in Frameworks */,
 				37E7306B2B0922CE00468D95 /* Kingfisher in Frameworks */,
+				C462D9042B18D8B20060287C /* SnapKit in Frameworks */,
 				5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */,
 				37E7306F2B0923F300468D95 /* SwiftKeychainWrapper in Frameworks */,
 			);
@@ -322,6 +326,8 @@
 			packageProductDependencies = (
 				37E7306A2B0922CE00468D95 /* Kingfisher */,
 				37E7306E2B0923F300468D95 /* SwiftKeychainWrapper */,
+				C462D9032B18D8B20060287C /* SnapKit */,
+				C462D9052B18D8B20060287C /* SnapKit-Dynamic */,
 			);
 			productName = "Carsharing Aggregator";
 			productReference = E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */;
@@ -354,6 +360,7 @@
 			packageReferences = (
 				37E730692B0922CE00468D95 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				37E7306D2B0923F300468D95 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				C462D9022B18D8B20060287C /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = E2B5D6422B048EF800801719 /* Products */;
 			projectDirPath = "";
@@ -712,6 +719,14 @@
 				kind = branch;
 			};
 		};
+		C462D9022B18D8B20060287C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
 		E2B5D66B2B04E87800801719 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint";
@@ -732,6 +747,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37E7306D2B0923F300468D95 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		C462D9032B18D8B20060287C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C462D9022B18D8B20060287C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		C462D9052B18D8B20060287C /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C462D9022B18D8B20060287C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
 		};
 		E2B5D6702B04E89C00801719 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;

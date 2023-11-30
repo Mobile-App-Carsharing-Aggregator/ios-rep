@@ -12,7 +12,7 @@ final class ProfileCoordinator: ChildCoordinator {
     // MARK: - Properties
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
-    var parent: ParentCoordinator?
+    var parent: TabBarCoordinator?
     
     // MARK: - LifeCycle
     init( navigationController: UINavigationController) {
