@@ -32,11 +32,6 @@ final class OnboardingCoordinator: ChildCoordinator {
         var viewController = FirstOnboardingViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
-    
-    
-    func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
-        
-    }
 }
 
 extension OnboardingCoordinator: OnboardingCoordinatorProtocol {
@@ -48,10 +43,12 @@ extension OnboardingCoordinator: OnboardingCoordinatorProtocol {
     
     func completeOnboarding() {
         parent?.childDidFinish(self)
-        delegate?.startTabBarFlow()
+        delegate?.startAuthFlow()
     }
 }
 
 protocol OnboardingCoordinatorDelegate: AnyObject {
+    func startAuthFlow()
     func startTabBarFlow()
+    
 }

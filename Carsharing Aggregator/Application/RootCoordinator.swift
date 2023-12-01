@@ -23,13 +23,23 @@ final class RootCoordinator: Coordinator, ParentCoordinator {
         addChild(onboardingCoordinator)
         onboardingCoordinator.start()
     }
-
-    func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
-        
+    
+    func openAuthCoordinator() {
+        let authCoordinator = AuthCoordinator(navigationController: navigationController)
+        authCoordinator.parent = self
+        addChild(authCoordinator)
+        authCoordinator.start()
     }
 }
 
 extension RootCoordinator: OnboardingCoordinatorDelegate {
+    func startAuthFlow() {
+        let authCoordinator = AuthCoordinator(navigationController: navigationController)
+        authCoordinator.parent = self
+        addChild(authCoordinator)
+        authCoordinator.start()
+    }
+    
     func startTabBarFlow() {
         let tabBarCoordinator = TabBarCoordinator( navigationController: navigationController)
         tabBarCoordinator.parent = self

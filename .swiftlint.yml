@@ -1,7 +1,7 @@
 included:
  - Carsharing Aggregator
   
-warning_threshold: 20
+warning_threshold: 50
 
 analyzer_rules:
   - unused_import

@@ -10,7 +10,7 @@ import SnapKit
 
 final class ProfileViewController: UIViewController {
     
-    //  MARK: - UI
+    // MARK: - UI
     private lazy var profileNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Jon Snow"
@@ -20,7 +20,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var profileItemButton: UIButton = {
         let button = UIButton.systemButton(
-            with: .chevronForward,
+            with: .forward!,
             target: self,
             action: #selector(didTapProfileItemButton)
         )
@@ -35,12 +35,11 @@ final class ProfileViewController: UIViewController {
         return table
     }()
     
-    //  MARK: - Properties
+    // MARK: - Properties
     weak var coordinator: Coordinator?
     var viewModel: ProfileViewModelProtocol?
     
-    
-    //  MARK: - Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,7 +49,7 @@ final class ProfileViewController: UIViewController {
         tableView.delegate = self
     }
     
-    //  MARK: - Methods
+    // MARK: - Methods
     private func setupUI() {
         view.backgroundColor = .white
         [profileNameLabel, profileItemButton, tableView].forEach {
@@ -79,25 +78,21 @@ final class ProfileViewController: UIViewController {
         }
     }
     
-    //  MARK: - Actions
+    // MARK: - Actions
     @objc
     private func didTapProfileItemButton() {
         
     }
 }
 
-    //  MARK: - UITableViewDataSource
+    // MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-           case 0: 
-            return 1
-           case 1: 
-            return 6
-           case 2: 
-            return 3
-           default: 
-            return 0
+        case 0: return 1
+        case 1: return 6
+        case 2: return 3
+        default: return 0
         }
     }
     
@@ -172,7 +167,7 @@ extension ProfileViewController: UITableViewDataSource {
     
 }
 
-    //  MARK: - UITableViewDelegate
+    // MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let model = viewModel else { return nil }
@@ -189,6 +184,4 @@ extension ProfileViewController: UITableViewDelegate {
         
         return 1.0
     }
-    
 }
-

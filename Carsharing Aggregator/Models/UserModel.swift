@@ -33,7 +33,6 @@ struct Order: Codable {
     let endPoint: String
 }
 
-
 enum TypeOfOrder: Codable {
     case Active
     case Finished

@@ -12,7 +12,7 @@ final class SecondOnboardingViewController: UIViewController {
     
     var viewModel: SecondOnboardingViewModel
     
-    //MARK: - UI Elements
+    // MARK: - UI Elements
     
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -30,7 +30,7 @@ final class SecondOnboardingViewController: UIViewController {
         return label
     }()
     
-    private let continueButton: UIButton = {
+    private lazy var continueButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .black
         button.tintColor = .white
@@ -41,7 +41,7 @@ final class SecondOnboardingViewController: UIViewController {
         return button
     }()
     
-    //MARK: - LifeCycle
+    // MARK: - LifeCycle
     
     init(viewModel: SecondOnboardingViewModel) {
         self.viewModel = viewModel
@@ -58,7 +58,7 @@ final class SecondOnboardingViewController: UIViewController {
         setupLayout()
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
         
     private func setupUI() {
         view.backgroundColor = .white
@@ -87,7 +87,7 @@ final class SecondOnboardingViewController: UIViewController {
         }
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc
     private func beginButtonTapped() {

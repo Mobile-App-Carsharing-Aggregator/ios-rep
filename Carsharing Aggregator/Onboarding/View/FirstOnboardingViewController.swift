@@ -12,7 +12,7 @@ final class FirstOnboardingViewController: UIViewController {
     
     var viewModel: FirstOnboardingViewModel
     
-    //MARK: - UI Elements
+    // MARK: - UI Elements
     
     private let backGroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -28,7 +28,7 @@ final class FirstOnboardingViewController: UIViewController {
         return imageView
     }()
     
-    private let beginButton: UIButton = {
+    private lazy var beginButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .black
         button.tintColor = .white
@@ -39,7 +39,7 @@ final class FirstOnboardingViewController: UIViewController {
         return button
     }()
     
-    //MARK: - LifeCycle
+    // MARK: - LifeCycle
     
     init(viewModel: FirstOnboardingViewModel) {
         self.viewModel = viewModel
@@ -56,7 +56,7 @@ final class FirstOnboardingViewController: UIViewController {
         setupLayout()
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
         
     private func setupUI() {
         view.addSubview(backGroundImageView)
@@ -82,7 +82,7 @@ final class FirstOnboardingViewController: UIViewController {
         }
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc
     private func beginButtonTapped() {
