@@ -1,25 +1,21 @@
 import UIKit
 import SnapKit
-//import SwiftUI
-//
-//struct ViewControllerPreview: UIViewControllerRepresentable {
-//    let viewControllerGenerator: () -> RegistrationViewController
-//    
-//    init(viewControllerGenerator: @escaping () -> RegistrationViewController) {
-//        self.viewControllerGenerator = viewControllerGenerator
-//    }
-//    func makeUIViewController(context: Context) -> some UIViewController {
-//        viewControllerGenerator()
-//    }
-//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//        
-//    }
-//}
 
-
-final class RegistrationViewController: UIViewController, DisposoableViewController {
-    weak var coordinator: RegistrationCoordinator?
+final class RegistrationViewController: UIViewController {
     
+    var viewModel: RegistrationViewModel
+    
+    init(viewModel: RegistrationViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    let nameValidType: String.ValidTypes = .name
+    let emailValueType: String.ValidTypes = .email
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 0.741, green: 0.741, blue: 0.741, alpha: 1)
@@ -177,19 +173,13 @@ final class RegistrationViewController: UIViewController, DisposoableViewControl
     }()
     
     @objc private func didTappedContinueButton() {
-        
+        viewModel.openDocumentsCoordinator()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
-    
-    func cleanUp() {
-        coordinator?.coordinatorDidFinish()
-    }
-    
-    
     
 }
 
@@ -273,11 +263,27 @@ extension RegistrationViewController {
     }
 }
 
-
-//struct ViewControllerProvider: PreviewProvider {
-//    static var previews: some View {
-//        ViewControllerPreview {
-//            RegistrationViewController()
-//        }.edgesIgnoringSafeArea(.all)
-//    }
-//}
+extension RegistrationViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        switch textField {
+        case nameTextField: textField.setTextField(textField: nameTextField,
+                                                   validType: nameValidType,
+                                                   string: string,
+                                                   range: range)
+        case surnameTextField: textField.setTextField(textField: surnameTextField,
+                                                      validType: nameValidType,
+                                                      string: string,
+                                                      range: range)
+        case emailTextField: textField.setTextField(textField: emailTextField,
+                                                    validType: emailValueType,
+                                                    string: string,
+                                                    range: range)
+        default:
+            break
+        }
+        
+        return false
+    }
+}

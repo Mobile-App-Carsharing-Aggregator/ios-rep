@@ -47,4 +47,54 @@ extension UINavigationController {
         
         self.view.layer.add(transition, forKey: kCATransition)
     }
+    
+    func setAttributesForCarsharingTitle(loginVC: UIViewController) {
+        self.setNavigationBarHidden(false, animated: false)
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
+        loginVC.navigationItem.title = "Carsharing"
+        
+        let backButton = UIBarButtonItem(
+                    image: UIImage(systemName: "chevron.backward"),
+                    style: .plain,
+                    target: self,
+                    action: #selector(backButtonTapped)
+                )
+        backButton.tintColor = UIColor.black
+        loginVC.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    
+    func setAttributesForRegistrationTitle(loginVC: UIViewController) {
+        self.setNavigationBarHidden(false, animated: false)
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .semibold)]
+        loginVC.navigationItem.title = "Регистрация"
+        
+        let backButton = UIBarButtonItem(
+                    image: UIImage(systemName: "chevron.backward"),
+                    style: .plain,
+                    target: self,
+                    action: #selector(backButtonTapped)
+                )
+        backButton.tintColor = UIColor.black
+        loginVC.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    func setAttributesForDocumentsTitle(loginVC: UIViewController) {
+        self.setNavigationBarHidden(false, animated: false)
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .semibold)]
+        loginVC.navigationItem.title = "Документы"
+        
+        let backButton = UIBarButtonItem(
+                    image: UIImage(systemName: "chevron.backward"),
+                    style: .plain,
+                    target: self,
+                    action: #selector(backButtonTapped)
+                )
+        backButton.tintColor = UIColor.black
+        loginVC.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func backButtonTapped() {
+            self.popViewController(animated: true)
+        }
 }

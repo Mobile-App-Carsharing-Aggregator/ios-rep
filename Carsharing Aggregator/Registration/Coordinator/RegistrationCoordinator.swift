@@ -1,7 +1,7 @@
 import UIKit
 
 final class RegistrationCoordinator: ChildCoordinator, Coordinator {
-    var parent: RootCoordinator?
+    var parent: AuthCoordinator?
     
     var viewControllerRef: UIViewController?
     
@@ -17,11 +17,14 @@ final class RegistrationCoordinator: ChildCoordinator, Coordinator {
     }
 
     func start() {
-        let registrationVC = RegistrationViewController()
-        viewControllerRef = registrationVC
-        registrationVC.coordinator = self
-        navigationController.setNavigationBarHidden(false, animated: false)
-        registrationVC.navigationItem.title = "Регистрация"
-        navigationController.pushViewController(registrationVC, animated: false)
+        let viewModel = RegistrationViewModel()
+        let registerVC = RegistrationViewController(viewModel: viewModel)
+        viewModel.coordinator = self
+        navigationController.setAttributesForRegistrationTitle(loginVC: registerVC)
+        navigationController.pushViewController(registerVC, animated: true)
+    }
+    
+    func openDocumentsCoordinator() {
+        parent?.openDocumentsCoordinator()
     }
 }

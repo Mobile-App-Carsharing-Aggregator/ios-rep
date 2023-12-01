@@ -17,9 +17,9 @@ final class RootCoordinator: Coordinator, ParentCoordinator {
     }
     
     func start() {
-        let onboardingCoordinator = RegistrationCoordinator(navigationController: navigationController)
-        onboardingCoordinator.parent = self
-        addChild(onboardingCoordinator)
-        onboardingCoordinator.start()
+        let authCoordinator = AuthCoordinator(navigationController: navigationController)
+        authCoordinator.parent = self
+        addChild(authCoordinator)
+        authCoordinator.start()
     }
 }
