@@ -1,5 +1,5 @@
 //
-//  YBaseMapView.swift
+//  BaseMapView.swift
 //  Carsharing Aggregator
 //
 //  Created by Viktoria Lobanova on 27.11.2023.
@@ -8,10 +8,14 @@
 import UIKit
 import YandexMapsMobile
 
-class YBaseMapView: UIView {
-
+class BaseMapView: UIView {
+    
+    // MARK: - Public properties
+    
     @objc public var mapView: YMKMapView!
 
+    // MARK: - LifeCycle
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -19,15 +23,17 @@ class YBaseMapView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        YMKMapKit.setApiKey("press Your APIKey. https://yandex.ru/dev/mapkit/doc/ru/ios/generated/getting_started ")
+        YMKMapKit.setApiKey("c5c953cf-8196-4d75-8b27-43526ebf9d25")
         YMKMapKit.setLocale("ru_RU")
         YMKMapKit.sharedInstance().onStart()
         setup()
     }
 
+    // MARK: - Methods
+    
     private func setup() {
         // OpenGl is deprecated under M1 simulator, we should use Vulkan
-        mapView = YMKMapView(frame: bounds, vulkanPreferred: YBaseMapView.isM1Simulator())
+        mapView = YMKMapView(frame: bounds, vulkanPreferred: BaseMapView.isM1Simulator())
         mapView.mapWindow.map.mapType = .map
     }
 

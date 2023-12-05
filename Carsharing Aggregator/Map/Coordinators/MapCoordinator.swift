@@ -1,5 +1,5 @@
 //
-//  TabBarCoordinator.swift
+//  MapCoordinator.swift
 //  Carsharing Aggregator
 //
 //  Created by Viktoria Lobanova on 28.11.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TabBarCoordinator: ParentCoordinator, ChildCoordinator {
+final class MapCoordinator: ParentCoordinator, ChildCoordinator {
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
@@ -22,10 +22,17 @@ final class TabBarCoordinator: ParentCoordinator, ChildCoordinator {
     }
     
     func start() {
-        let tabBarVC = TabBarViewController()
-        viewControllerRef = tabBarVC
-        tabBarVC.coordinator = self
+        let viewModel = MapViewModel()
+        let mapVC = MapViewController(viewModel: viewModel)
+        viewModel.coordinator = self
         navigationController.setNavigationBarHidden(false, animated: false)
-        navigationController.pushViewController(tabBarVC, animated: true)
+        navigationController.pushViewController(mapVC, animated: true)
+    }
+    
+    func openProfile() {
+            let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
+        profileCoordinator.parent = self
+        addChild(profileCoordinator)
+        profileCoordinator.start()
     }
 }
