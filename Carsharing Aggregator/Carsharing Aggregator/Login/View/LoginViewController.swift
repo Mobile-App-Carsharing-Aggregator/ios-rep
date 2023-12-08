@@ -1,6 +1,5 @@
 import UIKit
 
-
 final class LoginViewController: UIViewController {
     weak var coordinator: LoginCoordinator?
     
@@ -27,9 +26,7 @@ final class LoginViewController: UIViewController {
         return view
     }()
     
-
-    
-    private lazy var sendCodeButton: UIButton = {
+private lazy var sendCodeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Отправить код", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -100,4 +97,3 @@ extension LoginViewController {
         }
     }
 }
-

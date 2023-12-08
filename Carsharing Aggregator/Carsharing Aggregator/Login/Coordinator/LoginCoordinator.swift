@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class LoginCoordinator: ChildCoordinator, Coordinator {
     var viewControllerRef: UIViewController?
     weak var parent: AuthCoordinator?
@@ -31,5 +30,4 @@ class LoginCoordinator: ChildCoordinator, Coordinator {
     func openRegisterCoordinator() {
         parent?.openRegisterCoordinator()
     }
-    
 }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class DocumentsViewModel {
     weak var coordinator: DocumentCoordinator?
     

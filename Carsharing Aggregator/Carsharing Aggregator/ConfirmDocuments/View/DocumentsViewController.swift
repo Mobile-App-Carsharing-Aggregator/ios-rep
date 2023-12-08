@@ -1,7 +1,5 @@
 import UIKit
 
-
-
 final class DocumentsViewController: UIViewController {
     var viewModel: DocumentsViewModel
     
@@ -152,7 +150,6 @@ final class DocumentsViewController: UIViewController {
     @objc private func photoWithDocumentsButtonTapped() {
             print("Button tapped")
         }
-    
 }
 
 extension DocumentsViewController {
