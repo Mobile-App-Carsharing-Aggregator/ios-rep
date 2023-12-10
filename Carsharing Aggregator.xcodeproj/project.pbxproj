@@ -57,6 +57,7 @@
 		E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6462B048EF800801719 /* SceneDelegate.swift */; };
 		E2B5D64E2B048EF900801719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64D2B048EF900801719 /* Assets.xcassets */; };
 		E2B5D6512B048EF900801719 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */; };
+		E2F06ACB2B25DCB700E088DE /* CarsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06ACA2B25DCB700E088DE /* CarsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 		E2B5D64D2B048EF900801719 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2B5D6502B048EF900801719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2B5D6522B048EF900801719 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2F06ACA2B25DCB700E088DE /* CarsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -485,6 +487,7 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
+				E2F06AC92B25DC9500E088DE /* Services */,
 				37A1A2492B149B1B002C26DA /* Application */,
 				C462D8F62B1633950060287C /* ProfileFlow */,
 				32453BFC2B14D6EF003E7AA8 /* Map+TabBar */,
@@ -495,6 +498,14 @@
 				E2B5D6522B048EF900801719 /* Info.plist */,
 			);
 			path = "Carsharing Aggregator";
+			sourceTree = "<group>";
+		};
+		E2F06AC92B25DC9500E088DE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E2F06ACA2B25DCB700E088DE /* CarsService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -648,6 +659,7 @@
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
 				370ADEAC2B199C6F0090300E /* DocumentsViewModel.swift in Sources */,
 				370ADE8A2B199AE50090300E /* RegistrationViewModel.swift in Sources */,
+				E2F06ACB2B25DCB700E088DE /* CarsService.swift in Sources */,
 				E221FFD72B14BEAB002A5268 /* FirstOnboardingViewController.swift in Sources */,
 				370ADE8F2B199B200090300E /* RegistrationModel.swift in Sources */,
 				370ADE9E2B199BD30090300E /* VerifyCodeView.swift in Sources */,
