@@ -17,9 +17,14 @@ struct Car: Codable {
     let engineType: EngineType
     let type: CarType
     var rating: Double
-    var coordinates: Float
+    var coordinates: Coordinates
     var coefficient: Double
     let childSeat: Bool
+}
+
+struct Coordinates: Codable {
+    let latitude: Float
+    let longitude: Float
 }
 
 struct CarsharingCompany: Codable {
