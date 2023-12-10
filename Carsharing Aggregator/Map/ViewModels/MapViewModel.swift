@@ -23,6 +23,10 @@ class MapViewModel {
         coordinator?.openProfile()
     }
     
+    func openFilters() {
+        coordinator?.openFilters()
+    }
+    
     func coordinatorDidFinish() {
         coordinator?.coordinatorDidFinish()
     }

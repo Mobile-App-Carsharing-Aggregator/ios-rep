@@ -71,7 +71,7 @@ final class TabBarView: UIView {
     
     private lazy var locationButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage.tabLocation, for: .normal)
+        button.setImage(UIImage.locationButton, for: .normal)
         button.tintColor = .black
         button.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
         return button

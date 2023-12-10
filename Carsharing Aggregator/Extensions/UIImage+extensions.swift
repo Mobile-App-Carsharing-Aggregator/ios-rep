@@ -33,12 +33,14 @@ extension UIImage {
     static let starFeedback = UIImage(named: "starbig")
     static let user = UIImage(named: "userPoint")
 
-    // tabBar icons
+    // map icons
     static let tabProfile = UIImage(named: "profile")
     static let tabCarSearch = UIImage(named: "carSearch")
     static let tabFilters = UIImage(named: "filters")
     static let tabOrder = UIImage(named: "order")
-    static let tabLocation = UIImage(named: "compas")
+    static let locationButton = UIImage(named: "compas")
+    static let plusButton = UIImage(named: "plus")
+    static let minusButton = UIImage(named: "minus")
     
     // MARK: - Images
     

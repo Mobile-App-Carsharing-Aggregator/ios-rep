@@ -24,8 +24,21 @@ final class MapViewController: UIViewController {
     private let fontSize: CGFloat = 15
     private let marginSize: CGFloat = 5
     private let strokeSize: CGFloat = 5
-    var viewModel: MapViewModel
-    var tabView = TabBarView()
+    
+    // MARK: - UI
+    
+    private var viewModel: MapViewModel
+    private var tabView = TabBarView()
+    private lazy var compasView = MapButtonView(with: UIImage.compas, radius: 24) { [weak self] in
+        self?.locButtonTapped()
+    }
+    private lazy var plusButton = MapButtonView(with: UIImage.plus, radius: 12) { [weak self] in
+        self?.plusButtonTapped()
+    }
+    
+    private lazy var minusButton = MapButtonView(with: UIImage.minus, radius: 12) { [weak self] in
+        self?.minusButtonTapped()
+    }
     
     // MARK: - LifeCycle
     
@@ -96,43 +109,7 @@ final class MapViewController: UIViewController {
         }
     }
     
-    private func presentPopOver() {
-        let popOverViewController = PopOverViewController()
-        popOverViewController.modalPresentationStyle = .popover
-        popOverViewController.preferredContentSize = CGSize(width: 240, height: 64)
-        
-        guard let presentationVC = popOverViewController.popoverPresentationController else { return }
-        presentationVC.delegate = self
-        presentationVC.sourceView = tabView
-        presentationVC.permittedArrowDirections = .down
-        presentationVC.sourceRect = CGRect(x: Int(tabView.bounds.midX) - 140,
-                                           y: Int(tabView.bounds.minY - 5),
-                                           width: 0,
-                                           height: 0)
-        present(popOverViewController, animated: true)
-    }
-}
-
-// MARK: - Extension TabViewDelegate
-
-extension MapViewController: TabViewDelegate {
-    func profileButtonTapped() {
-        viewModel.openProfile()
-    }
-    
-    func filtersButtonTapped() {
-        
-    }
-    
-    func carSearchButtonTapped() {
-        
-    }
-    
-    func orderButtonTapped() {
-        
-    }
-    
-    func locationButtonTapped() {
+    private func locButtonTapped() {
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         
@@ -160,6 +137,38 @@ extension MapViewController: TabViewDelegate {
                 YMKCameraPosition(target: YMKPoint(latitude: 0, longitude: 0), zoom: 15, azimuth: 0, tilt: 0))
         }
     }
+    
+    private func plusButtonTapped() {
+        
+    }
+    
+    private func minusButtonTapped() {
+        
+    }
+}
+
+// MARK: - Extension TabViewDelegate
+
+extension MapViewController: TabViewDelegate {
+    func profileButtonTapped() {
+        viewModel.openProfile()
+    }
+    
+    func filtersButtonTapped() {
+        viewModel.openFilters()
+    }
+    
+    func carSearchButtonTapped() {
+        
+    }
+    
+    func orderButtonTapped() {
+        
+    }
+    
+    func locationButtonTapped() {
+      
+    }
 }
 
 // MARK: - Extension UIPopoverPresentationControllerDelegate
@@ -176,6 +185,9 @@ extension MapViewController {
     private func addSubviews() {
         view.addSubview(mapView)
         mapView.addSubview(tabView)
+        mapView.addSubview(compasView)
+        mapView.addSubview(minusButton)
+        mapView.addSubview(plusButton)
     }
     
     private func setupLayout() {
@@ -188,6 +200,16 @@ extension MapViewController {
             make.leading.equalTo(mapView.snp.leading).offset(24)
             make.trailing.equalTo(mapView.snp.trailing).offset(-24)
             make.bottom.equalTo(mapView.snp.bottom).offset(-50)
+        }
+        
+        compasView.snp.makeConstraints { make in
+            make.height.width.equalTo(48)
+            make.trailing.equalTo(mapView.snp.trailing).offset(-21)
+            make.bottom.equalTo(tabView.snp.bottom).offset(-72)
+        }
+        
+        minusButton.snp.makeConstraints { make in
+            make.height
         }
     }
 }

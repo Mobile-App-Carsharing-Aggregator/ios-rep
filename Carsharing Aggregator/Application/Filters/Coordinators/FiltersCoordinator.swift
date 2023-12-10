@@ -1,13 +1,13 @@
 //
-//  ProfileCoordinator.swift
+//  FiltersCoordinator.swift
 //  Carsharing Aggregator
 //
-//  Created by Vitaly Anpilov on 28.11.2023.
+//  Created by Viktoria Lobanova on 08.12.2023.
 //
 
 import UIKit
 
-final class ProfileCoordinator: ChildCoordinator {
+final class FiltersCoordinator: ChildCoordinator {
     
     // MARK: - Properties
     var viewControllerRef: UIViewController?
@@ -21,16 +21,10 @@ final class ProfileCoordinator: ChildCoordinator {
     
     // MARK: - Methods
     func start() {
-        let profileVC = ProfileViewController()
-        viewControllerRef = profileVC
-        let profileVM = ProfileViewModel()
-        profileVC.viewModel = profileVM
-        profileVC.coordinator = self
-        navigationController.customPushViewController(
-            viewController: profileVC,
-            direction: .fromBottom,
-            transitionType: .push
-        )
+        let viewModel = FiltersViewModel()
+        let filtersVC = FiltersViewController(viewModel: viewModel)
+        viewModel.coordinator = self
+        navigationController.pushViewController(filtersVC, animated: true)
     }
     
     func coordinatorDidFinish() {

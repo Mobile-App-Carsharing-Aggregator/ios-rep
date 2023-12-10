@@ -30,9 +30,16 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
     }
     
     func openProfile() {
-            let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
         profileCoordinator.parent = self
         addChild(profileCoordinator)
         profileCoordinator.start()
+    }
+    
+    func openFilters() {
+        let filtersCoordinator = FiltersCoordinator(navigationController: navigationController)
+        filtersCoordinator.parent = self
+        addChild(filtersCoordinator)
+        filtersCoordinator.start()
     }
 }
