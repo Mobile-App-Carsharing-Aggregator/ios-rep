@@ -17,7 +17,7 @@ final class MapButtonView: UIView {
     
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.85)
         view.layer.cornerRadius = radiusButton
         return view
     }()
@@ -32,7 +32,6 @@ final class MapButtonView: UIView {
     
     private lazy var borderView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 24
         view.backgroundColor = .clear
         view.clipsToBounds = true
         return view

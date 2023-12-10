@@ -196,7 +196,7 @@ extension MapViewController {
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         tabView.snp.makeConstraints { make in
-            make.height.equalTo(72)
+            make.height.equalTo(60)
             make.leading.equalTo(mapView.snp.leading).offset(24)
             make.trailing.equalTo(mapView.snp.trailing).offset(-24)
             make.bottom.equalTo(mapView.snp.bottom).offset(-50)
@@ -205,11 +205,19 @@ extension MapViewController {
         compasView.snp.makeConstraints { make in
             make.height.width.equalTo(48)
             make.trailing.equalTo(mapView.snp.trailing).offset(-21)
-            make.bottom.equalTo(tabView.snp.bottom).offset(-72)
+            make.bottom.equalTo(tabView.snp.top).offset(-72)
         }
         
         minusButton.snp.makeConstraints { make in
-            make.height
+            make.height.width.equalTo(48)
+            make.trailing.equalTo(compasView.snp.trailing)
+            make.bottom.equalTo(compasView.snp.top).offset(-208)
+        }
+        
+        plusButton.snp.makeConstraints { make in
+            make.height.width.equalTo(48)
+            make.trailing.equalTo(compasView.snp.trailing)
+            make.bottom.equalTo(minusButton.snp.top).offset(-20)
         }
     }
 }
