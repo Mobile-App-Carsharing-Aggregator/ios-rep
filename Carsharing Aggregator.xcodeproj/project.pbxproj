@@ -61,6 +61,8 @@
 		E2F06ACE2B273BD500E088DE /* NetwrokRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06ACD2B273BD500E088DE /* NetwrokRequest.swift */; };
 		E2F06AD02B273CF600E088DE /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06ACF2B273CF600E088DE /* NetworkClient.swift */; };
 		E2F06AD22B273DB000E088DE /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06AD12B273DB000E088DE /* NetworkTask.swift */; };
+		E2F06AD42B274B4700E088DE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06AD32B274B4700E088DE /* UserService.swift */; };
+		E2F06AD62B274B7A00E088DE /* UserRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06AD52B274B7A00E088DE /* UserRegistration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +121,8 @@
 		E2F06ACD2B273BD500E088DE /* NetwrokRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwrokRequest.swift; sourceTree = "<group>"; };
 		E2F06ACF2B273CF600E088DE /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		E2F06AD12B273DB000E088DE /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
+		E2F06AD32B274B4700E088DE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		E2F06AD52B274B7A00E088DE /* UserRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +355,7 @@
 			children = (
 				37B6F3F52B1688F8001F9D55 /* UserModel.swift */,
 				37B6F3F92B1689F5001F9D55 /* CarModel.swift */,
+				E2F06AD52B274B7A00E088DE /* UserRegistration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -511,6 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				E2F06ACA2B25DCB700E088DE /* CarsService.swift */,
+				E2F06AD32B274B4700E088DE /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -680,6 +686,7 @@
 				E2F06ACB2B25DCB700E088DE /* CarsService.swift in Sources */,
 				E221FFD72B14BEAB002A5268 /* FirstOnboardingViewController.swift in Sources */,
 				370ADE8F2B199B200090300E /* RegistrationModel.swift in Sources */,
+				E2F06AD62B274B7A00E088DE /* UserRegistration.swift in Sources */,
 				370ADE9E2B199BD30090300E /* VerifyCodeView.swift in Sources */,
 				E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */,
 				37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */,
@@ -704,6 +711,7 @@
 				370ADE972B199B810090300E /* LoginViewController.swift in Sources */,
 				370ADE882B199AD20090300E /* RegistrationViewController.swift in Sources */,
 				32453C1D2B16109B003E7AA8 /* MapObjectTapListener.swift in Sources */,
+				E2F06AD42B274B4700E088DE /* UserService.swift in Sources */,
 				370ADEA82B199C490090300E /* DocumentsModel.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
 				E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */,
