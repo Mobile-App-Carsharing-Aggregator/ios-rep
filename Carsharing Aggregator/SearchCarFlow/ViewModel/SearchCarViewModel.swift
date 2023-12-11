@@ -20,13 +20,17 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
     
     
     // MARK: - Properties
-    weak var coordinator: Coordinator?
+    weak var coordinator: SearchCarCoordinator?
     private let carsService = CarsService.shared
     
     
     //   MARK: - Methods
     func startObserve() {
         getCars()
+    }
+    
+    func cleanUp() {
+        
     }
     
     private func getCars() {

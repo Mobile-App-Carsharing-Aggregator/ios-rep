@@ -7,15 +7,16 @@
 
 import UIKit
 
-final class SearchCarCoordinator: ChildCoordinator {
+final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
     
     // MARK: - Properties
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
     var parent: TabBarCoordinator?
+    var childCoordinators: [Coordinator] = []
     
     // MARK: - LifeCycle
-    init( navigationController: UINavigationController) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
@@ -35,10 +36,6 @@ final class SearchCarCoordinator: ChildCoordinator {
     
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
-    }
-    
-    func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
-        
     }
     
 }

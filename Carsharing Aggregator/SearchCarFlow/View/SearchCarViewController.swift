@@ -102,6 +102,14 @@ final class SearchCarViewController: UIViewController {
         viewModel?.startObserve()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if self.isMovingFromParent {
+            viewModel?.cleanUp()
+        }
+    }
+    
     // MARK: - Methods
     private func bind() {
         guard let viewModel = viewModel else { return }
@@ -180,7 +188,9 @@ final class SearchCarViewController: UIViewController {
     
     @objc
     private func didTapBackButton() {
-        
+        viewModel?.cleanUp()
+        // TO DO - Need change
+        navigationController?.popViewController(animated: true)
     }
 }
 
