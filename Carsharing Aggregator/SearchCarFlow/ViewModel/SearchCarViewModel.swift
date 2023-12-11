@@ -16,5 +16,4 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
     private let carsService = CarsService.shared
     
     private (set) var listOfCars: [Car] = []
-   
 }
