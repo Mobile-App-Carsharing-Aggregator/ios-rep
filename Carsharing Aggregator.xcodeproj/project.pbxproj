@@ -58,6 +58,9 @@
 		E2B5D64E2B048EF900801719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64D2B048EF900801719 /* Assets.xcassets */; };
 		E2B5D6512B048EF900801719 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */; };
 		E2F06ACB2B25DCB700E088DE /* CarsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06ACA2B25DCB700E088DE /* CarsService.swift */; };
+		E2F06ACE2B273BD500E088DE /* NetwrokRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06ACD2B273BD500E088DE /* NetwrokRequest.swift */; };
+		E2F06AD02B273CF600E088DE /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06ACF2B273CF600E088DE /* NetworkClient.swift */; };
+		E2F06AD22B273DB000E088DE /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06AD12B273DB000E088DE /* NetworkTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +116,9 @@
 		E2B5D6502B048EF900801719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2B5D6522B048EF900801719 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2F06ACA2B25DCB700E088DE /* CarsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsService.swift; sourceTree = "<group>"; };
+		E2F06ACD2B273BD500E088DE /* NetwrokRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwrokRequest.swift; sourceTree = "<group>"; };
+		E2F06ACF2B273CF600E088DE /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		E2F06AD12B273DB000E088DE /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +335,7 @@
 		37A1A2492B149B1B002C26DA /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				E2F06ACC2B273BB600E088DE /* NetworkClient */,
 				370ADE7D2B199A3E0090300E /* Auth */,
 				E221FFD82B14C0AF002A5268 /* Protocols */,
 				E2B5D64F2B048EF900801719 /* LaunchScreen.storyboard */,
@@ -508,6 +515,16 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		E2F06ACC2B273BB600E088DE /* NetworkClient */ = {
+			isa = PBXGroup;
+			children = (
+				E2F06ACD2B273BD500E088DE /* NetwrokRequest.swift */,
+				E2F06ACF2B273CF600E088DE /* NetworkClient.swift */,
+				E2F06AD12B273DB000E088DE /* NetworkTask.swift */,
+			);
+			path = NetworkClient;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -654,6 +671,7 @@
 			files = (
 				370ADEA02B199BDF0090300E /* VerifyNumberView.swift in Sources */,
 				370ADEAE2B199C7A0090300E /* DocumentCoordinator.swift in Sources */,
+				E2F06AD02B273CF600E088DE /* NetworkClient.swift in Sources */,
 				37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */,
 				37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */,
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
@@ -670,11 +688,13 @@
 				370ADE992B199B8D0090300E /* LoginViewModel.swift in Sources */,
 				37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */,
 				C462D8FA2B1633CB0060287C /* ProfileViewModel.swift in Sources */,
+				E2F06ACE2B273BD500E088DE /* NetwrokRequest.swift in Sources */,
 				32453C092B152BAF003E7AA8 /* UIView+extensions.swift in Sources */,
 				E22100002B18E26A002A5268 /* SecondOnboardingViewModel.swift in Sources */,
 				370ADE9B2B199B9C0090300E /* LoginModel.swift in Sources */,
 				370ADE952B199B740090300E /* LoginCoordinator.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
+				E2F06AD22B273DB000E088DE /* NetworkTask.swift in Sources */,
 				37B6F3FA2B1689F5001F9D55 /* CarModel.swift in Sources */,
 				E221FFFE2B18DD30002A5268 /* SecondOnboardingViewController.swift in Sources */,
 				E221FFDC2B14C254002A5268 /* FirstOnboardingViewModel.swift in Sources */,
