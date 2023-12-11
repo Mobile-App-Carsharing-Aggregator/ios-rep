@@ -18,14 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(true, animated: false)
-        
-        let coord = SearchCarCoordinator(navigationController: navigationController)
-        coord.start()
+        let rootCoordinator = RootCoordinator(navigationController: navigationController)
+        rootCoordinator.start()
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-//        let rootCoordinator = RootCoordinator(navigationController: navigationController)
-//        rootCoordinator.start()
-//        window?.rootViewController = navigationController
-//        window?.makeKeyAndVisible()
     }
 }

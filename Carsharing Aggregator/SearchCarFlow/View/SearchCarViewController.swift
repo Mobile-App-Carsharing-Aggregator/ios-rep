@@ -134,7 +134,7 @@ final class SearchCarViewController: UIViewController {
     private func setupConstraints() {
         passengerCarFilterButton.snp.makeConstraints { make in
             make.leading.equalTo(view).offset(21)
-            make.top.equalTo(view).offset(82)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(24)
             make.size.equalTo(CGSize(width: 104, height: 40))
         }
         
