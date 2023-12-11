@@ -15,6 +15,7 @@ enum HttpMethod: String {
 }
 
 protocol NetworkRequest {
+    //associatedtype DTO: Encodable
     var endpoint: URL? { get }
     var httpMethod: HttpMethod { get }
     var dto: Encodable? { get }

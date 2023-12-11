@@ -5,13 +5,13 @@
 //  Created by Aleksandr Garipov on 11.12.2023.
 //
 
-fileprivate struct UserRegistrationRequest: NetworkRequest {
-    var endpoint: URL? {
-        URL(string: "http://193.107.238.139/api/v1/auth/users/")
-    }
-    var httpMethod: HttpMethod { .post }
-    var dto: UserRegistration
-}
+private struct UserRegistrationRequest: NetworkRequest {
+     var endpoint: URL? {
+         URL(string: "http://193.107.238.139/api/v1/users/")
+     }
+     var httpMethod: HttpMethod { .post }
+     var dto: Encodable?
+ }
 
 import Foundation
 
@@ -29,7 +29,7 @@ final class DefaultUserService: UserServiceProtocol {
     private init() {}
     
     
-    func createUser(with dto: UserRegistration, completion: @escaping (Result<UserRegistrationResponse, NetworkError>) -> Void) {
+    func createUser(with dto: UserRegistration, completion: @escaping (Result<UserRegistrationResponse, NetworkError>) -> Void) {  
         let registerRequest = UserRegistrationRequest(dto: dto)
         
         networkClient.send(request: registerRequest, type: UserRegistrationResponse.self) { result in
@@ -42,6 +42,4 @@ final class DefaultUserService: UserServiceProtocol {
         }
         
     }
-    
-    
 }
