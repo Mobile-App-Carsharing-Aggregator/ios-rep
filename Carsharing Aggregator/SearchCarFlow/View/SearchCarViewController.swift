@@ -42,26 +42,28 @@ final class SearchCarViewController: UIViewController {
     }()
     
     private lazy var passengerCarFilterButton: UIButton = {
-        let view = UIButton()
+        let view = UIButton(type: .system)
         view.backgroundColor = .white
         view.setTitle("Легковые", for: .normal)
+        view.tintColor = .black
         view.titleLabel?.textAlignment = .center
         view.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         view.layer.masksToBounds = true
-        view.layer.cornerRadius = 24
+        view.layer.cornerRadius = 20
         view.layer.borderWidth = 2
         view.addTarget(self, action: #selector(didTapTruckCarFilterButton), for: .touchUpInside)
         return view
     }()
     
     private lazy var truckCarFilterButton: UIButton = {
-        let view = UIButton()
+        let view = UIButton(type: .system)
         view.backgroundColor = .white
         view.setTitle("Грузовые", for: .normal)
+        view.tintColor = .black
         view.titleLabel?.textAlignment = .center
         view.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         view.layer.masksToBounds = true
-        view.layer.cornerRadius = 24
+        view.layer.cornerRadius = 20
         view.layer.borderWidth = 2
         view.addTarget(self, action: #selector(didTapTruckCarFilterButton), for: .touchUpInside)
         return view
@@ -75,8 +77,7 @@ final class SearchCarViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    weak var coordinator: Coordinator?
-    var viewModel: SearchCarViewModelProtocol?
+    var viewModel: SearchCarViewModel?
     private let collectionParams = UICollectionView.CollectionParams(
         cellCount: 2,
         leftInset: 21,
@@ -90,13 +91,26 @@ final class SearchCarViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bind()
         setupUI()
         carsCollection.dataSource = self
         carsCollection.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.startObserve()
+    }
+    
     // MARK: - Methods
+    private func bind() {
+        guard let viewModel = viewModel else { return }
+        viewModel.$listOfCars.bind { [weak self] _ in
+            self?.carsCollection.reloadData()
+        }
+    }
+    
+    // MARK: - Layout Methods
     private func setupNavBar() {
         title = "Машины"
         navigationItem.rightBarButtonItem = resetFiltersButton
@@ -108,7 +122,7 @@ final class SearchCarViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
-        [carsCollection, passengerCarFilterButton, truckCarFilterButton].forEach {
+        [carsCollection, passengerCarFilterButton, truckCarFilterButton, searchButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
@@ -121,11 +135,13 @@ final class SearchCarViewController: UIViewController {
         passengerCarFilterButton.snp.makeConstraints { make in
             make.leading.equalTo(view).offset(21)
             make.top.equalTo(view).offset(82)
+            make.size.equalTo(CGSize(width: 104, height: 40))
         }
         
         truckCarFilterButton.snp.makeConstraints { make in
-            make.top.equalTo(passengerCarFilterButton.snp.trailing).offset(12)
-            make.top.equalTo(view).offset(82)
+            make.leading.equalTo(passengerCarFilterButton.snp.trailing).offset(12)
+            make.centerY.equalTo(passengerCarFilterButton.snp.centerY)
+            make.size.equalTo(CGSize(width: 104, height: 40))
         }
         
         searchButton.snp.makeConstraints { make in

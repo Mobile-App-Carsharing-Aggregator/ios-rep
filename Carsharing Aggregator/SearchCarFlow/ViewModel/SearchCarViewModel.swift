@@ -9,11 +9,27 @@ import UIKit
 
 protocol SearchCarViewModelProtocol {
     var listOfCars: [Car] { get }
+    func startObserve()
 }
 
 final class SearchCarViewModel: SearchCarViewModelProtocol {
     
+    // MARK: - Observables
+    @Observable
+    private (set) var listOfCars: [Car] = []
+    
+    
+    // MARK: - Properties
+    weak var coordinator: Coordinator?
     private let carsService = CarsService.shared
     
-    private (set) var listOfCars: [Car] = []
+    
+    //   MARK: - Methods
+    func startObserve() {
+        getCars()
+    }
+    
+    private func getCars() {
+        listOfCars = carsService.getMockCars()
+    }
 }

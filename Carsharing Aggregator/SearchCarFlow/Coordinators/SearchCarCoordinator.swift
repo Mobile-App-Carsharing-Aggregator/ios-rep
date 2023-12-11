@@ -25,7 +25,7 @@ final class SearchCarCoordinator: ChildCoordinator {
         viewControllerRef = vc
         let vm = SearchCarViewModel()
         vc.viewModel = vm
-        vc.coordinator = self
+        vm.coordinator = self
         navigationController.customPushViewController(
             viewController: vc,
             direction: .fromBottom,
