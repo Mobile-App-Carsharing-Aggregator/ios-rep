@@ -28,12 +28,13 @@ extension UIImage {
     static let fuelPump = UIImage(named: "fuel")
     static let footPrints = UIImage(named: "foots")
     static let starRating = UIImage(named: "starsmall")
+    static let locationMark2 = UIImage(named: "location")
     static let locationMark = UIImage(named: "locationmark")
     static let swithLight = UIImage(named: "light")
     static let starFeedback = UIImage(named: "starbig")
     static let user = UIImage(named: "userPoint")
 
-    // tabBar icons
+    // MARK: - TabBar icons
     static let tabProfile = UIImage(named: "profile")
     static let tabCarSearch = UIImage(named: "carSearch")
     static let tabFilters = UIImage(named: "filters")
@@ -41,9 +42,12 @@ extension UIImage {
     static let tabLocation = UIImage(named: "compas")
     
     // MARK: - Images
-    
     static let onboardingBackgroundImage = UIImage(named: "onboarding background image")
     static let onboardingCustomLogo = UIImage(named: "onboarding logo")
     static let onboardingCustomLogoSecond = UIImage(named: "onboarding logo 2")
-    
+    static let car1 = UIImage(named: "carBig")
+    static let car2 = UIImage(named: "carSmall")
+    static let city = UIImage(named: "cityCarsharing")
+    static let deli = UIImage(named: "deliCarsharing")
+    static let drive = UIImage(named: "driveCarsharing")
 }
