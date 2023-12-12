@@ -24,4 +24,3 @@ struct CarsharingColors {
 struct BackgroundColors {
     let white = UIColor(named: "whiteBackgroundColor") ?? UIColor.white
 }
-

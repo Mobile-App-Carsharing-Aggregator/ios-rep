@@ -13,8 +13,31 @@ class FiltersViewController: UIViewController {
     // MARK: - Properties
     var viewModel: FiltersViewModel
     private let sections = MockData.shared.pageData
+    var selectedFilter: [Int : [IndexPath]]?
     
     // MARK: - UI
+    
+    private lazy var titleVC: UILabel = {
+        let label = UILabel()
+        label.text = "Фильтр"
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.textColor = UIColor.black
+        return label
+    }()
+    
+    private lazy var buttonBackward: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.tintColor = UIColor.black
+        return button
+    }()
+    
+    private lazy var buttonClose: UIButton = {
+        let button = UIButton()
+        button.tintColor = UIColor.black
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        return button
+    }()
     
     private lazy var collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewLayout()
@@ -57,14 +80,36 @@ class FiltersViewController: UIViewController {
 // MARK: - Create Layout
 extension FiltersViewController {
     private func addSubviews() {
+        view.addSubview(titleVC)
+        view.addSubview(buttonClose)
+        view.addSubview(buttonBackward)
         view.addSubview(collectionView)
     }
     
     private func setupLayout() {
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalToSuperview().offset(20)
+            make.top.equalTo(titleVC.snp.bottom).offset(10)
             make.bottom.equalToSuperview().offset(-20)
+        }
+        
+        titleVC.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(26)
+            make.height.equalTo(22)
+            make.width.equalTo(63)
+        }
+        
+        buttonClose.snp.makeConstraints { make in
+            make.centerY.equalTo(titleVC.snp.centerY)
+            make.height.width.equalTo(40)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
+        buttonBackward.snp.makeConstraints { make in
+            make.centerY.equalTo(titleVC.snp.centerY)
+            make.height.width.equalTo(40)
+            make.leading.equalToSuperview().offset(10)
         }
     }
     

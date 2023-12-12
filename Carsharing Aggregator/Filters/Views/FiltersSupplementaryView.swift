@@ -15,7 +15,7 @@ class FiltersSupplementaryView: UICollectionReusableView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 21, weight: .medium)
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
         return label
     }()
     
