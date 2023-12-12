@@ -46,5 +46,6 @@ extension UIImage {
     
     static let onboardingBackgroundImage = UIImage(named: "onboarding background image")
     static let onboardingCustomLogo = UIImage(named: "onboarding logo")
+    static let onboardingCustomLogoSecond = UIImage(named: "onboarding logo 2")
     
 }

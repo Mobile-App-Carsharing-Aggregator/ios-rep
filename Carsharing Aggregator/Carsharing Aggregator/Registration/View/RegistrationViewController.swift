@@ -57,7 +57,10 @@ final class RegistrationViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         var paragraphtyle = NSMutableParagraphStyle()
         paragraphtyle.lineHeightMultiple = 1.15
-        label.attributedText = NSMutableAttributedString(string: "Фамилия", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphtyle])
+        label.attributedText = NSMutableAttributedString(
+            string: "Фамилия",
+            attributes: [NSAttributedString.Key.kern: -0.41,
+            NSAttributedString.Key.paragraphStyle: paragraphtyle])
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -121,7 +124,6 @@ final class RegistrationViewController: UIViewController {
         // TODO: make logic in viemodel?
     }
     
-    
     private lazy var buttonTermsOfBooking: UIButton = {
         let button = UIButton()
         let underlineAttributed = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
@@ -137,7 +139,6 @@ final class RegistrationViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     
     @objc private func didTappedTermsOfBooking() { print("DID TAPPED") }
     
@@ -180,9 +181,7 @@ final class RegistrationViewController: UIViewController {
         super.viewDidLoad()
         setupView()
     }
-    
 }
-
 
 extension RegistrationViewController {
     

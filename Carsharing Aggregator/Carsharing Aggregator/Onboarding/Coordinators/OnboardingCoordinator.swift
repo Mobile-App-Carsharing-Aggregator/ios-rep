@@ -9,7 +9,6 @@ import UIKit
 
 final class OnboardingCoordinator: ChildCoordinator {
 
-    
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
     var parent: ParentCoordinator?

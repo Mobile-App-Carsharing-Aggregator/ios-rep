@@ -33,7 +33,6 @@ class VerifyNumberView: UIView {
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.black.cgColor
         textField.translatesAutoresizingMaskIntoConstraints = false
-            //textField.isHidden = true
         return textField
     }()
     

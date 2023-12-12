@@ -25,11 +25,11 @@ final class CarsService: CarsServiceProtocol {
     }
 }
 
-//MARK: - MOCK
+// MARK: - MOCK
 
 extension CarsService {
     
-    private func getMockCars() -> [Car] {
+     func getMockCars() -> [Car] {
         var cars: [Car] = []
         let carsharingCompany: [CarsharingCompany] = CarsharingCompany.allCases
         let engineTypes: [EngineType] = [.diesel, .electro, .benzine]
@@ -88,5 +88,5 @@ fileprivate let carsLocations: [Coordinates] = [
         Coordinates(latitude: 55.739630, longitude: 37.594764),
         Coordinates(latitude: 55.742048, longitude: 37.595123),
         Coordinates(latitude: 55.744743, longitude: 37.586652),
-        Coordinates(latitude: 55.714843, longitude: 37.565741),
-    ]
+        Coordinates(latitude: 55.714843, longitude: 37.565741)
+]
