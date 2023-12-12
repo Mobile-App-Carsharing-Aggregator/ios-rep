@@ -24,7 +24,7 @@ final class FiltersCoordinator: ChildCoordinator {
         let viewModel = FiltersViewModel()
         let filtersVC = FiltersViewController(viewModel: viewModel)
         viewModel.coordinator = self
-        filtersVC.modalPresentationStyle = .popover
+        filtersVC.modalPresentationStyle = .pageSheet
         viewControllerRef?.present(filtersVC, animated: true)
         
     }
