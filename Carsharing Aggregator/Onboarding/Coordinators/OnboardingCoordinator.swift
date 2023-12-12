@@ -9,7 +9,8 @@ import UIKit
 
 protocol OnboardingCoordinatorProtocol: AnyObject {
     func showSecondView()
-    func completeOnboarding()
+    func startAuthFlow()
+    func startMainTabbarFlow()
 }
 
 final class OnboardingCoordinator: ChildCoordinator {
@@ -41,9 +42,14 @@ extension OnboardingCoordinator: OnboardingCoordinatorProtocol {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func completeOnboarding() {
+    func startAuthFlow() {
         parent?.childDidFinish(self)
         delegate?.startAuthFlow()
+    }
+    
+    func startMainTabbarFlow() {
+        parent?.childDidFinish(self)
+        delegate?.startTabBarFlow()
     }
 }
 

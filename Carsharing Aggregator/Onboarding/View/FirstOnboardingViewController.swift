@@ -32,7 +32,7 @@ final class FirstOnboardingViewController: UIViewController {
         let button = UIButton(type: .system)
         button.backgroundColor = .black
         button.tintColor = .white
-        button.setTitle("Начать", for: .normal)
+        button.setTitle("Погнали", for: .normal)
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(beginButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -70,9 +70,8 @@ final class FirstOnboardingViewController: UIViewController {
         }
         
         logoImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(220)
-            make.leading.trailing.equalToSuperview().inset(44)
-            make.height.equalTo(158)
+            make.top.equalToSuperview().inset(150)
+            make.leading.trailing.equalToSuperview().inset(21)
         }
         
         beginButton.snp.makeConstraints { make in
