@@ -29,7 +29,7 @@ final class CarsService: CarsServiceProtocol {
 
 extension CarsService {
     
-    private func getMockCars() -> [Car] {
+     func getMockCars() -> [Car] {
         var cars: [Car] = []
         let carsharingCompany = [CarsharingCompany(name: "Яндекс Драйв"), CarsharingCompany(name: "Сити мобиль"), CarsharingCompany(name: "Супер Каршеринг компани")]
         let engineTypes: [EngineType] = [.diesel, .electro, .benzine]

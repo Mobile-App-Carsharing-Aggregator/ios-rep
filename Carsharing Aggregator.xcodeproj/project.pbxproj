@@ -42,6 +42,12 @@
 		37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6F3F52B1688F8001F9D55 /* UserModel.swift */; };
 		37B6F3FA2B1689F5001F9D55 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6F3F92B1689F5001F9D55 /* CarModel.swift */; };
 		5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */; };
+		C40379252B262567008F22F8 /* SearchCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379242B262567008F22F8 /* SearchCarViewController.swift */; };
+		C40379272B262579008F22F8 /* SearchCarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379262B262579008F22F8 /* SearchCarViewModel.swift */; };
+		C40379292B262590008F22F8 /* SearchCarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379282B262590008F22F8 /* SearchCarCoordinator.swift */; };
+		C403792B2B262B47008F22F8 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403792A2B262B47008F22F8 /* CarCell.swift */; };
+		C403792F2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */; };
+		C40379322B270F7D008F22F8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379312B270F7D008F22F8 /* Observable.swift */; };
 		C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F72B1633B70060287C /* ProfileViewController.swift */; };
 		C462D8FA2B1633CB0060287C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F92B1633CB0060287C /* ProfileViewModel.swift */; };
 		C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8FB2B1634580060287C /* ProfileCoordinator.swift */; };
@@ -99,6 +105,12 @@
 		37B6F3F52B1688F8001F9D55 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		37B6F3F92B1689F5001F9D55 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
 		8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carsharing_Aggregator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C40379242B262567008F22F8 /* SearchCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCarViewController.swift; sourceTree = "<group>"; };
+		C40379262B262579008F22F8 /* SearchCarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCarViewModel.swift; sourceTree = "<group>"; };
+		C40379282B262590008F22F8 /* SearchCarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCarCoordinator.swift; sourceTree = "<group>"; };
+		C403792A2B262B47008F22F8 /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
+		C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ReuseIdentifier+Ext.swift"; sourceTree = "<group>"; };
+		C40379312B270F7D008F22F8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		C462D8F72B1633B70060287C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C462D8F92B1633CB0060287C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C462D8FB2B1634580060287C /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -377,6 +389,49 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C40379202B2624DA008F22F8 /* SearchCarFlow */ = {
+			isa = PBXGroup;
+			children = (
+				C40379232B262541008F22F8 /* Coordinators */,
+				C40379222B26250C008F22F8 /* View */,
+				C40379212B2624FB008F22F8 /* ViewModel */,
+			);
+			path = SearchCarFlow;
+			sourceTree = "<group>";
+		};
+		C40379212B2624FB008F22F8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C40379262B262579008F22F8 /* SearchCarViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C40379222B26250C008F22F8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C40379242B262567008F22F8 /* SearchCarViewController.swift */,
+				C403792A2B262B47008F22F8 /* CarCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C40379232B262541008F22F8 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C40379282B262590008F22F8 /* SearchCarCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		C40379302B270F2B008F22F8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C40379312B270F7D008F22F8 /* Observable.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		C462D8F62B1633950060287C /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +476,7 @@
 				37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */,
 				370ADEB12B199CE60090300E /* UITextField+Ext.swift */,
 				32453C082B152BAF003E7AA8 /* UIView+extensions.swift */,
+				C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -499,6 +555,7 @@
 		E2B5D6432B048EF800801719 /* Carsharing Aggregator */ = {
 			isa = PBXGroup;
 			children = (
+				C40379202B2624DA008F22F8 /* SearchCarFlow */,
 				E2F06AC92B25DC9500E088DE /* Services */,
 				37A1A2492B149B1B002C26DA /* Application */,
 				C462D8F62B1633950060287C /* ProfileFlow */,
@@ -506,6 +563,7 @@
 				37B6F3F42B1688E9001F9D55 /* Models */,
 				E221FFCD2B14BC0F002A5268 /* Onboarding */,
 				C4C9B25B2B1378CF00399C79 /* Extensions */,
+				C40379302B270F2B008F22F8 /* Helpers */,
 				E2B5D64D2B048EF900801719 /* Assets.xcassets */,
 				E2B5D6522B048EF900801719 /* Info.plist */,
 			);
@@ -681,10 +739,12 @@
 				37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */,
 				37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */,
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
+				C40379292B262590008F22F8 /* SearchCarCoordinator.swift in Sources */,
 				370ADEAC2B199C6F0090300E /* DocumentsViewModel.swift in Sources */,
 				370ADE8A2B199AE50090300E /* RegistrationViewModel.swift in Sources */,
 				E2F06ACB2B25DCB700E088DE /* CarsService.swift in Sources */,
 				E221FFD72B14BEAB002A5268 /* FirstOnboardingViewController.swift in Sources */,
+				C40379252B262567008F22F8 /* SearchCarViewController.swift in Sources */,
 				370ADE8F2B199B200090300E /* RegistrationModel.swift in Sources */,
 				E2F06AD62B274B7A00E088DE /* UserRegistration.swift in Sources */,
 				370ADE9E2B199BD30090300E /* VerifyCodeView.swift in Sources */,
@@ -713,14 +773,18 @@
 				32453C1D2B16109B003E7AA8 /* MapObjectTapListener.swift in Sources */,
 				E2F06AD42B274B4700E088DE /* UserService.swift in Sources */,
 				370ADEA82B199C490090300E /* DocumentsModel.swift in Sources */,
+				C40379272B262579008F22F8 /* SearchCarViewModel.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
 				E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */,
 				370ADE8C2B199AF20090300E /* RegistrationCoordinator.swift in Sources */,
 				370ADEB22B199CE60090300E /* UITextField+Ext.swift in Sources */,
+				C403792F2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift in Sources */,
+				C403792B2B262B47008F22F8 /* CarCell.swift in Sources */,
 				C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */,
 				370ADEA22B199BE80090300E /* VerifyTextField.swift in Sources */,
 				37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */,
 				C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */,
+				C40379322B270F7D008F22F8 /* Observable.swift in Sources */,
 				C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */,
 				32453C072B152AAA003E7AA8 /* TabBarView.swift in Sources */,
 				32453C042B14D7AD003E7AA8 /* TabBarViewController.swift in Sources */,

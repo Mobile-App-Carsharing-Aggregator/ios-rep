@@ -111,7 +111,10 @@ extension TabBarViewController: TabViewDelegate {
     }
     
     func carSearchButtonTapped() {
-        
+        if let navVC = coordinator?.navigationController {
+            let searchCarCoordinator = SearchCarCoordinator(navigationController: navVC)
+            searchCarCoordinator.start()
+        }
     }
     
     func orderButtonTapped() {
