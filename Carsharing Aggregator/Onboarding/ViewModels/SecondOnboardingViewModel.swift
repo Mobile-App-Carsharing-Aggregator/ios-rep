@@ -9,7 +9,7 @@ import Foundation
 
 protocol SecondOnboardingViewModelProtocol: AnyObject {
     var coordinator: OnboardingCoordinator? { get set }
-    func completeOnboarding()
+    func loginButtonTapped()
 }
 
 final class SecondOnboardingViewModel: SecondOnboardingViewModelProtocol {
@@ -19,7 +19,11 @@ final class SecondOnboardingViewModel: SecondOnboardingViewModelProtocol {
         self.coordinator = coordinator
     }
     
-    func completeOnboarding() {
-        coordinator?.completeOnboarding()
+    func loginButtonTapped() {
+        coordinator?.startAuthFlow()
+    }
+    
+    func skipButtonTapped() {
+        coordinator?.startMainTabbarFlow()
     }
 }
