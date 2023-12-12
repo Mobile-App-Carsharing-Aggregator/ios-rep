@@ -10,7 +10,6 @@ import SnapKit
 final class TransitionToCarSharingButton: UIView {
     
     //MARK: - Layout properties
-    
     private var bookingLabel: UILabel = {
         let label = UILabel()
         label.text = "Забронировать"
@@ -23,7 +22,6 @@ final class TransitionToCarSharingButton: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .carsharing.greyDark
-        
         return label
     }()
     
@@ -34,7 +32,6 @@ final class TransitionToCarSharingButton: UIView {
         stack.alignment = .center
         return stack
     }()
-    
     
     private lazy var logo: UIImageView = {
         let image = UIImageView()
@@ -54,8 +51,6 @@ final class TransitionToCarSharingButton: UIView {
     
     //MARK: - Properties
     
-//    weak var delegate: TransitionToCarSharingButtonDelegate?
-    
     // MARK: - Actions
     
     @objc
@@ -64,7 +59,6 @@ final class TransitionToCarSharingButton: UIView {
     }
     
     //MARK: - Methods
-    
     func configure(with company: String, companyLogo: UIImage) {
         priceLabel.text = company + " " + "от 7 ₽/мин"
         logo.image = companyLogo

@@ -56,19 +56,14 @@ final class PrepareBookingCarViewController: UIViewController {
         return view
     }()
     
-    
     // MARK: - Properties
-    
     var car: Car?
-    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         setupUI()
     }
-    
     
     // MARK: - Methods
     
@@ -144,13 +139,12 @@ final class PrepareBookingCarViewController: UIViewController {
             make.trailing.equalTo(view.snp.trailing).offset(-16)
             make.top.equalTo(carTypeLabel.snp.bottom).offset(40)
         }
-        
     }
     
     // MARK: - Actions
     @objc
     private func didTapBackButton() {
-        
+        dismiss(animated: true)
     }
     
     @objc
