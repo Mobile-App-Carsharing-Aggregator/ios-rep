@@ -12,8 +12,7 @@ final class TabButtonView: UIView {
     
     private let imageButton: UIImage
     private let textLabel: String
-    private let action: () -> Void
-    
+  
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: imageButton)
         return imageView
@@ -28,10 +27,9 @@ final class TabButtonView: UIView {
         return title
     }()
     
-    init(with image: UIImage, text: String, action: @escaping () -> Void) {
+    init(with image: UIImage, text: String) {
         self.imageButton = image
         self.textLabel = text
-        self.action = action
         
         super.init(frame: .zero)
         
@@ -47,22 +45,17 @@ final class TabButtonView: UIView {
         addSubview(imageView)
         addSubview(titleButton)
     }
-    
-    @objc private func mapButtonTapped() {
-       action()
-    }
-    
+   
     private func setupLayout() {
         imageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.width.height.equalTo(24)
-            make.top.equalToSuperview().offset(4)
+            make.top.equalToSuperview().offset(10)
         }
         titleButton.snp.makeConstraints { make in
-            make.centerY.equalTo(imageView.snp.centerY)
+            make.centerX.equalTo(imageView.snp.centerX)
             make.height.equalTo(12)
-            make.bottom.equalToSuperview().offset(6)
+            make.top.equalTo(imageView.snp.bottom).offset(2)
         }
     }
 }
-

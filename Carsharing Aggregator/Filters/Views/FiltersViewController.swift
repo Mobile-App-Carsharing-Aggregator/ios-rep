@@ -73,7 +73,7 @@ extension FiltersViewController {
             let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(80), heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = .init(top: 8, leading: 0, bottom: 8, trailing: 0)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(64))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(56))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
             group.contentInsets = .init(top: 0, leading: 21, bottom: 0, trailing: 21)
             group.interItemSpacing = .fixed(12)
@@ -113,7 +113,10 @@ extension FiltersViewController: UICollectionViewDataSource {
             else {
                     return UICollectionViewCell()
                 }
-            cell.configure(title: carsharing[indexPath.row].title)
+            cell.configure(
+                title: carsharing[indexPath.row].title,
+                textColor: UIColor.black,
+                borderColor: UIColor.black)
             return cell
             
         case .typeOfCar(let typeOfCar):
@@ -123,7 +126,10 @@ extension FiltersViewController: UICollectionViewDataSource {
             else {
                     return UICollectionViewCell()
                 }
-            cell.configure(title: typeOfCar[indexPath.row].title)
+            cell.configure(
+                title: typeOfCar[indexPath.row].title,
+                textColor: UIColor.black,
+                borderColor: UIColor.black)
             return cell
             
         case .powerReserve(let powerReserve):
@@ -133,7 +139,10 @@ extension FiltersViewController: UICollectionViewDataSource {
             else {
                     return UICollectionViewCell()
                 }
-            cell.configure(title: powerReserve[indexPath.row].title)
+            cell.configure(
+                title: powerReserve[indexPath.row].title,
+                textColor: UIColor.black,
+                borderColor: UIColor.black)
             return cell
             
         case .rating(let powerReserve):
@@ -167,26 +176,6 @@ extension FiltersViewController: UICollectionViewDataSource {
         }
 }
 }
-
-// MARK: Extension UICollectionViewDelegateFlowLayout
-
-//extension FiltersViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(
-//        _ collectionView: UICollectionView,
-//        layout collectionViewLayout: UICollectionViewLayout,
-//        minimumLineSpacingForSectionAt section: Int
-//    ) -> CGFloat {
-//        return 50
-//    }
-//    
-//    func collectionView(
-//        _ collectionView: UICollectionView,
-//        layout collectionViewLayout: UICollectionViewLayout,
-//        minimumInteritemSpacingForSectionAt section: Int
-//    ) -> CGFloat {
-//        return 7
-//    }
-//}
 
 extension FiltersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -15,7 +15,7 @@ final class FiltersCoordinator: ChildCoordinator {
     var parent: MapCoordinator?
     
     // MARK: - LifeCycle
-    init( navigationController: UINavigationController) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
@@ -24,7 +24,9 @@ final class FiltersCoordinator: ChildCoordinator {
         let viewModel = FiltersViewModel()
         let filtersVC = FiltersViewController(viewModel: viewModel)
         viewModel.coordinator = self
-        navigationController.pushViewController(filtersVC, animated: true)
+        filtersVC.modalPresentationStyle = .popover
+        viewControllerRef?.present(filtersVC, animated: true)
+        
     }
     
     func coordinatorDidFinish() {

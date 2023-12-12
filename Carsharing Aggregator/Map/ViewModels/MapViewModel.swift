@@ -15,16 +15,16 @@ class MapViewModel {
         GeometryProvider.userPoint
     }
     
-    func carsLocations() -> [YMKPoint] {
-        GeometryProvider.carsLocations
+    func carsLocations(completion: @escaping ([Car]) -> Void) {
+        CarsService.shared.getCars(completion: completion)
     }
     
     func openProfile() {
         coordinator?.openProfile()
     }
     
-    func openFilters() {
-        coordinator?.openFilters()
+    func openFilters(on vc: UIViewController) {
+        coordinator?.openFilters(on: vc)
     }
     
     func coordinatorDidFinish() {

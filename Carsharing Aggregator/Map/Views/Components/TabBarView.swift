@@ -17,63 +17,39 @@ protocol TabViewDelegate: AnyObject {
 final class TabBarView: UIView {
     
     weak var delegate: TabViewDelegate?
-    
-    private let buttonWidth = 48
-    
+   
     private lazy var actionsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.backgroundColor = UIColor.white.withAlphaComponent(0.85)
+        stackView.backgroundColor = UIColor.white.withAlphaComponent(1)
         stackView.layer.cornerRadius = 24
         stackView.distribution = .equalSpacing
         stackView.spacing = 8
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
     private lazy var profileButton: UIButton = {
         let button = UIButton()
-//        button.setImage(UIImage.tabProfile, for: .normal)
-//        button.setTitle("Профиль", for: .normal)
-//        button.setTitleColor(UIColor.black, for: .normal)
+        let customView = TabButtonView(with: UIImage.profile, text: "Профиль")
+        button.addSubview(customView)
         button.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
-        let customView = TabButtonView(with: UIImage.tabProfile, text: "Профиль") {
-            <#code#>
-        }
-        addSubview(customView)
-        
-        let imageView = UIImageView(image: UIImage.tabProfile)
-        let label = UILabel()
-        
-        customView.addSubview(imageView)
-        customView.addSubview(label)
-        
-        label.text = "Профиль"
-        label.font = .systemFont(ofSize: 10)
-        label.textColor = .black
-        
-        imageView.frame = CGRect(x: 4, y: 4, width: 24, height: 24)
-        label.frame = CGRect(x: 4, y: 32, width: 24, height: 10)
-        
         return button
     }()
     
     private lazy var filtersButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage.tabFilters, for: .normal)
-        button.setTitle("Фильтры", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 10, weight: .regular)
+        let customView = TabButtonView(with: UIImage.filters, text: "Фильтры")
+        button.addSubview(customView)
         button.addTarget(self, action: #selector(filtersButtonTapped), for: .touchUpInside)
         return button
     }()
     
     private lazy var carSearchButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage.tabCarSearch, for: .normal)
-        button.setTitle("Поиск машины", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        let customView = TabButtonView(with: UIImage.carSearch, text: "Поиск машины")
+        button.addSubview(customView)
         button.addTarget(self, action: #selector(carSearchButtonTapped), for: .touchUpInside)
         return button
     }()

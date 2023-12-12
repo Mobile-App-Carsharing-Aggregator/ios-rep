@@ -13,16 +13,14 @@ class FilterCollectionViewCell: UICollectionViewCell {
     static let identifare = "FilterCollectionViewCell"
     private let label: UILabel = {
         let label = UILabel()
-        label.textColor = .black
         label.font = .systemFont(ofSize: 16)
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.cornerRadius = 24
+        layer.cornerRadius = 20
         layer.borderWidth = 2
-        layer.borderColor = UIColor.black.cgColor
         addSubview()
         setupLayout()
     }
@@ -31,8 +29,11 @@ class FilterCollectionViewCell: UICollectionViewCell {
         fatalError()
     }
     
-    func configure(title: String) {
+    func configure(title: String, textColor: UIColor, borderColor: UIColor) {
+        backgroundColor = .white.withAlphaComponent(0.9)
         label.text = title
+        layer.borderColor = borderColor.cgColor
+        label.textColor = textColor
         label.sizeToFit()
     }
     

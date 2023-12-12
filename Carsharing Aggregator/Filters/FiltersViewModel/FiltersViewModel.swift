@@ -9,6 +9,4 @@ import Foundation
 
 class FiltersViewModel {
     weak var coordinator: FiltersCoordinator?
-    
-    
 }
