@@ -1,6 +1,5 @@
 import UIKit
 
-
 class AuthCoordinator: ParentCoordinator, Coordinator {
     var parent: RootCoordinator?
     

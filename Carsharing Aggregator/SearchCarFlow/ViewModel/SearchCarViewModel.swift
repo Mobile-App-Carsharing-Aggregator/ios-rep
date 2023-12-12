@@ -18,13 +18,11 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
     @Observable
     private (set) var listOfCars: [Car] = []
     
-    
     // MARK: - Properties
     weak var coordinator: SearchCarCoordinator?
     private let carsService = CarsService.shared
     
-    
-    //   MARK: - Methods
+    // MARK: - Methods
     func startObserve() {
         getCars()
     }

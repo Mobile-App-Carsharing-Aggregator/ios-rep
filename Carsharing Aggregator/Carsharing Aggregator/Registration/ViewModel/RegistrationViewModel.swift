@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class RegistrationViewModel {
     weak var coordinator: RegistrationCoordinator?
     

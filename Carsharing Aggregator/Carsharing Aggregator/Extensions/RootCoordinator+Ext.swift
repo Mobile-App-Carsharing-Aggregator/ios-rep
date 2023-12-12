@@ -2,5 +2,4 @@ import Foundation
 
 extension RootCoordinator {
     
-
 }

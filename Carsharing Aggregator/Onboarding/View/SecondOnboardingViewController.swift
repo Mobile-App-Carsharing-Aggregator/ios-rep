@@ -123,8 +123,6 @@ final class SecondOnboardingViewController: UIViewController {
     private func skipButtonTapped() {
         viewModel.skipButtonTapped()
     }
-    
-    
 }
 
 //extension SecondOnboardingViewController {
@@ -141,6 +139,3 @@ final class SecondOnboardingViewController: UIViewController {
 //        }
 //    }
 //}
-
-
-

@@ -14,7 +14,7 @@ extension UINavigationController {
     }
     
     func popToViewController(ofClass: AnyClass, animated: Bool) {
-        if let vc = viewControllers.last(where: {$0.isKind(of: ofClass)}) {
+        if let vc = viewControllers.last(where: { $0.isKind(of: ofClass) }) {
             popToViewController(vc, animated: animated)
         }
     }
@@ -33,7 +33,6 @@ extension UINavigationController {
         addTransition(transitionDirection: direction, transitionType: transitionType, duration: _durationTime)
         pushViewController(vc, animated: false)
     }
-    
     
     private func addTransition(transitionDirection direction: VCTransition, transitionType: CATransitionType, duration: CFTimeInterval) {
         let transition = CATransition()
@@ -62,7 +61,6 @@ extension UINavigationController {
         backButton.tintColor = UIColor.black
         loginVC.navigationItem.leftBarButtonItem = backButton
     }
-    
     
     func setAttributesForRegistrationTitle(loginVC: UIViewController) {
         self.setNavigationBarHidden(false, animated: false)

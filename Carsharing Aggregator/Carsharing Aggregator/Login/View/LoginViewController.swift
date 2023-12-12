@@ -1,6 +1,5 @@
 import UIKit
 
-
 final class LoginViewController: UIViewController {
     weak var coordinator: LoginCoordinator?
     
@@ -26,8 +25,6 @@ final class LoginViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-
     
     private lazy var sendCodeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -100,4 +97,3 @@ extension LoginViewController {
         }
     }
 }
-

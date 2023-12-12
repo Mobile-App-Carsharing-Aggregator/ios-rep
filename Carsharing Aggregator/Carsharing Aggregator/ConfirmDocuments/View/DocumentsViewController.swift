@@ -1,7 +1,5 @@
 import UIKit
 
-
-
 final class DocumentsViewController: UIViewController {
     var viewModel: DocumentsViewModel
     
@@ -20,7 +18,10 @@ final class DocumentsViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         var paragraphtyle = NSMutableParagraphStyle()
         paragraphtyle.lineHeightMultiple = 1.15
-        label.attributedText = NSMutableAttributedString(string: "Паспорт", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphtyle])
+        label.attributedText = NSMutableAttributedString(
+            string: "Паспорт",
+            attributes: [NSAttributedString.Key.kern: -0.41,
+            NSAttributedString.Key.paragraphStyle: paragraphtyle])
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -31,7 +32,10 @@ final class DocumentsViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         var paragraphtyle = NSMutableParagraphStyle()
         paragraphtyle.lineHeightMultiple = 1.15
-        label.attributedText = NSMutableAttributedString(string: "Водительское удоствериние", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphtyle])
+        label.attributedText = NSMutableAttributedString(
+            string: "Водительское удоствериние",
+            attributes: [NSAttributedString.Key.kern: -0.41,
+            NSAttributedString.Key.paragraphStyle: paragraphtyle])
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -87,7 +91,6 @@ final class DocumentsViewController: UIViewController {
         return label
     }()
 
-    
     private lazy var licenseButtonArrow: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage.circleArrows, for: .normal)
