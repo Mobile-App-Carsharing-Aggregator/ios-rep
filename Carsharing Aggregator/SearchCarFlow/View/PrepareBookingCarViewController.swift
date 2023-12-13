@@ -48,11 +48,15 @@ final class PrepareBookingCarViewController: UIViewController {
         return label
     }()
     
-    private lazy var carRatingView: UIView = {
-        let view = UIView()
-        
-        
-        return view
+    private lazy var carRatingLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .carsharing.greyLight
+        label.textColor = .carsharing.black
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 12
+        return label
     }()
     
     // MARK: - Properties
@@ -81,6 +85,22 @@ final class PrepareBookingCarViewController: UIViewController {
         vStack.addArrangedSubview(city)
     }
     
+    private func configureCarInfo() {
+        carImage.image = UIImage(systemName: "car.side.lock.open.fill")
+        guard let car = car else { return }
+        carRatingLabel.text = String(car.rating) + " " + "stars"
+        carTypeLabel.text = {
+            switch car.type {
+            case .coupe: return "Купе"
+            case .hatchback: return "Хэтчбек"
+            case .minivan: return "Минивен"
+            case .sedan: return "Седан"
+            case .universal: return "Универсал"
+            case .other: return "Другое"
+            }
+        }()
+    }
+    
     private func setupNavBar() {
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = closeButton
@@ -92,23 +112,11 @@ final class PrepareBookingCarViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
-        [carImage, vStack, carTypeLabel, carRatingView].forEach {
+        [carImage, vStack, carTypeLabel, carRatingLabel].forEach {
             view.addSubview($0)
         }
         
-        carImage.image = UIImage(systemName: "car.side.lock.open.fill")
-        carTypeLabel.text = {
-            switch car?.type {
-            case .coupe: return "Купе"
-            case .hatchback: return "Хэтчбек"
-            case .minivan: return "Минивен"
-            case .sedan: return "Седан"
-            case .universal: return "Универсал"
-            case .other: return "Другое"
-            default: return ""
-            }
-        }()
-        
+        configureCarInfo()
         configureStack()
         setupNavBar()
         setupConstraints()
@@ -127,9 +135,10 @@ final class PrepareBookingCarViewController: UIViewController {
             make.size.equalTo(CGSize(width: 74, height: 24))
         }
         
-        carRatingView.snp.makeConstraints { make in
+        carRatingLabel.snp.makeConstraints { make in
             make.centerY.equalTo(carTypeLabel.snp.centerY)
             make.leading.equalTo(carTypeLabel.snp.trailing).offset(8)
+            make.size.equalTo(CGSize(width: 74, height: 24))
         }
         
         vStack.snp.makeConstraints { make in

@@ -23,10 +23,9 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
     // MARK: - Methods
     func start() {
         let vc = SearchCarViewController()
-        viewControllerRef = vc
         let vm = SearchCarViewModel()
-        vc.viewModel = vm
         vm.coordinator = self
+        vc.viewModel = vm
         navigationController.customPushViewController(
             viewController: vc,
             direction: .fromBottom,
@@ -36,6 +35,9 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
     
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
+    }
+    
+    func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
     }
     
 }
