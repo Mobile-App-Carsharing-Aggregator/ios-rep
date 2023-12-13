@@ -30,5 +30,4 @@ class LoginCoordinator: ChildCoordinator, Coordinator {
     func openRegisterCoordinator() {
         parent?.openRegisterCoordinator()
     }
-    
 }
