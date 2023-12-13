@@ -12,7 +12,7 @@ final class TabButtonView: UIView {
     
     private let imageButton: UIImage
     private let textLabel: String
-  
+    
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: imageButton)
         return imageView
@@ -45,7 +45,7 @@ final class TabButtonView: UIView {
         addSubview(imageView)
         addSubview(titleButton)
     }
-   
+    
     private func setupLayout() {
         imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

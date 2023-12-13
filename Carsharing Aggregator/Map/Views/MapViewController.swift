@@ -22,7 +22,6 @@ final class MapViewController: UIViewController {
     private var userLocationLayer: YMKUserLocationLayer?
     private var cars: [Car] = []
     private var carsByService: [CarsharingCompany: [Car]] = [:]
-    private var selectedCarsharing: [IndexPath] = []
     
     private let fontSize: CGFloat = 15
     private let marginSize: CGFloat = 5
@@ -78,7 +77,11 @@ final class MapViewController: UIViewController {
         carsharingCollectionView.dataSource = self
         
         initMap()
+        addUser(map)
         //loadCars()
+        viewModel.onRefreshAction = { [weak self] indexPath in
+            self?.carsharingCollectionView.reloadItems(at: [indexPath])
+        }
     }
     
     // MARK: - Private methods
@@ -140,7 +143,14 @@ final class MapViewController: UIViewController {
         }
     }
     
-    private func locButtonTapped() {
+    private func addUser(_ map: YMKMap) {
+        guard let image = UIImage.user else { return }
+        let placemark = map.mapObjects.addPlacemark()
+        placemark.geometry = GeometryProvider.userPoint
+        placemark.setIconWith(image)
+    }
+    
+    private func locTest(){
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         
@@ -149,7 +159,7 @@ final class MapViewController: UIViewController {
         
         mapView.mapWindow.map.isRotateGesturesEnabled = false
             
-        if let userLocationLayer {
+        if userLocationLayer != nil {
             guard let currentPosition = locationManager.location else { return }
             let point = YMKPoint(latitude: currentPosition.coordinate.latitude, longitude: currentPosition.coordinate.longitude)
             mapView.mapWindow.map.move(
@@ -167,6 +177,18 @@ final class MapViewController: UIViewController {
             mapView.mapWindow.map.move(with:
                 YMKCameraPosition(target: YMKPoint(latitude: 0, longitude: 0), zoom: 15, azimuth: 0, tilt: 0))
         }
+    }
+    
+    private func locButtonTapped() {
+        map.move(
+            with: YMKCameraPosition(
+                target: viewModel.userPoint(),
+                zoom: 15,
+                azimuth: 0,
+                tilt: 0
+            ),
+            animation: YMKAnimation(type: YMKAnimationType.linear, duration: 0),
+            cameraCallback: nil)
     }
     
     private func plusButtonTapped() {
@@ -366,7 +388,7 @@ extension MapViewController: YMKUserLocationObjectListener {
 extension MapViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        CarsharingCompany.allCases.count
+        viewModel.sections[section].items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -377,13 +399,18 @@ extension MapViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        let company = CarsharingCompany.allCases[indexPath.row]
-        
+        let section = viewModel.sections[indexPath.section]
+        let item = section.items[indexPath.row]
+        let isSelected = viewModel.filters(for: section).contains(item)
+        guard let company = CarsharingCompany(rawValue: item.title) else {
+            return UICollectionViewCell()
+        }
         cell.configure(
             title: company.name,
-            textColor: company.color,
+            textColor: isSelected ? UIColor.white : company.color,
             borderColor: company.color
         )
+        cell.backgroundColor = isSelected ? company.color : UIColor.background.white
         
         return cell
     }
@@ -393,24 +420,9 @@ extension MapViewController: UICollectionViewDataSource {
 
 extension MapViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? FilterCollectionViewCell
-        let company = CarsharingCompany.allCases[indexPath.row]
-        
-        if selectedCarsharing.contains(indexPath) {
-            cell?.configure(
-                title: company.name,
-                textColor: company.color,
-                borderColor: company.color)
-            cell?.backgroundColor = UIColor.background.white
-            selectedCarsharing = selectedCarsharing.filter { $0 != indexPath }
-        } else {
-            cell?.configure(
-                title: company.name,
-                textColor: UIColor.white,
-                borderColor: company.color)
-            cell?.backgroundColor = company.color
-            selectedCarsharing.append(indexPath)
-        }
+        let section = viewModel.sections[indexPath.section]
+        let item = viewModel.sections[indexPath.section].items[indexPath.row]
+        viewModel.change(item, in: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

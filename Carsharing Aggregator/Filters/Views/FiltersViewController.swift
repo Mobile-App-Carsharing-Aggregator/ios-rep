@@ -13,7 +13,6 @@ class FiltersViewController: UIViewController {
     // MARK: - Properties
     var viewModel: FiltersViewModel
     private let sections = MockData.shared.pageData
-    var selectedFilter: [Int : [IndexPath]]?
     
     // MARK: - UI
     
@@ -29,6 +28,9 @@ class FiltersViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.tintColor = UIColor.black
+        button.addTarget(self,
+                         action: #selector(closeFilters),
+                         for: .touchUpInside)
         return button
     }()
     
@@ -36,6 +38,9 @@ class FiltersViewController: UIViewController {
         let button = UIButton()
         button.tintColor = UIColor.black
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.addTarget(self,
+                         action: #selector(closeFilters),
+                         for: .touchUpInside)
         return button
     }()
     
@@ -47,7 +52,8 @@ class FiltersViewController: UIViewController {
         collectionView.backgroundColor = .none
         collectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: FilterCollectionViewCell.identifare)
         collectionView.register(RatingCollectionViewCell.self, forCellWithReuseIdentifier: RatingCollectionViewCell.identifare)
-        collectionView.register(FiltersSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: FiltersSupplementaryView.identifier)
+        collectionView.register(FiltersSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: FiltersSupplementaryView.identifier)
         collectionView.collectionViewLayout = createLayout()
         return collectionView
     }()
@@ -72,8 +78,13 @@ class FiltersViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        collectionView.reloadData()
+        viewModel.onRefreshAction = { [weak self] indexPath in
+            self?.collectionView.reloadItems(at: [indexPath])
+        }
+    }
+    
+    @objc private func closeFilters() {
+        viewModel.coordinator?.coordinatorDidFinish()
     }
 }
 
@@ -142,62 +153,44 @@ extension FiltersViewController {
 extension FiltersViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        sections.count
+        viewModel.sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sections[section].count
+        viewModel.sections[section].items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let section = viewModel.sections[indexPath.section]
+        let item = section.items[indexPath.row]
+        let isSelected = viewModel.filters(for: section).contains(item)
         switch sections[indexPath.section] {
-        case .carsharing(let carsharing):
+        case .carsharing, .typeOfCar, .powerReserve:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: FilterCollectionViewCell.identifare,
                 for: indexPath) as? FilterCollectionViewCell
             else {
-                    return UICollectionViewCell()
-                }
+                return UICollectionViewCell()
+            }
             cell.configure(
-                title: carsharing[indexPath.row].title,
+                title: item.title,
                 textColor: UIColor.black,
-                borderColor: UIColor.black)
+                borderColor: isSelected ? UIColor.background.green : UIColor.black)
+            cell.backgroundColor = isSelected ? UIColor.background.green : UIColor.background.white
             return cell
             
-        case .typeOfCar(let typeOfCar):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: FilterCollectionViewCell.identifare,
-                for: indexPath) as? FilterCollectionViewCell
-            else {
-                    return UICollectionViewCell()
-                }
-            cell.configure(
-                title: typeOfCar[indexPath.row].title,
-                textColor: UIColor.black,
-                borderColor: UIColor.black)
-            return cell
-            
-        case .powerReserve(let powerReserve):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: FilterCollectionViewCell.identifare,
-                for: indexPath) as? FilterCollectionViewCell
-            else {
-                    return UICollectionViewCell()
-                }
-            cell.configure(
-                title: powerReserve[indexPath.row].title,
-                textColor: UIColor.black,
-                borderColor: UIColor.black)
-            return cell
-            
-        case .rating(let powerReserve):
+        case .rating:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RatingCollectionViewCell.identifare,
                 for: indexPath) as? RatingCollectionViewCell
             else {
-                    return UICollectionViewCell()
-                }
-            cell.configure(title: powerReserve[indexPath.row].title, image: powerReserve[indexPath.row].image)
+                return UICollectionViewCell()
+            }
+            cell.configure(
+                title: item.title,
+                image: item.image,
+                borderColor: isSelected ? UIColor.background.green : UIColor.black,
+                background: isSelected ? UIColor.background.green : UIColor.background.white)
             return cell
         }
     }
@@ -207,10 +200,10 @@ extension FiltersViewController: UICollectionViewDataSource {
         viewForSupplementaryElementOfKind kind: String,
         at indexPath: IndexPath
     ) -> UICollectionReusableView {
-
+        
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-           let header = collectionView.dequeueReusableSupplementaryView(
+            let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: FiltersSupplementaryView.identifier,
                 for: indexPath) as! FiltersSupplementaryView
@@ -219,12 +212,14 @@ extension FiltersViewController: UICollectionViewDataSource {
         default:
             return UICollectionReusableView()
         }
-}
+    }
 }
 
 extension FiltersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let item = viewModel.sections[indexPath.section].items[indexPath.row]
+        let section = viewModel.sections[indexPath.section]
+        viewModel.change(item, in: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

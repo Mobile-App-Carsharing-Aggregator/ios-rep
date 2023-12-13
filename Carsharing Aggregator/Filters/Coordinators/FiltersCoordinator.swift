@@ -21,6 +21,7 @@ final class FiltersCoordinator: ChildCoordinator {
     
     // MARK: - Methods
     func start() {
+        //selectedFilters -> init
         let viewModel = FiltersViewModel()
         let filtersVC = FiltersViewController(viewModel: viewModel)
         viewModel.coordinator = self
@@ -31,6 +32,7 @@ final class FiltersCoordinator: ChildCoordinator {
     
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
+        viewControllerRef?.dismiss(animated: true)
     }
     
     func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {

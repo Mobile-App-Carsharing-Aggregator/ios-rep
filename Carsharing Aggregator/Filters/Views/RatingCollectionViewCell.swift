@@ -26,9 +26,8 @@ class RatingCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.cornerRadius = 24
+        layer.cornerRadius = 20
         layer.borderWidth = 2
-        layer.borderColor = UIColor.black.cgColor
         addSubview()
         setupLayout()
     }
@@ -37,9 +36,11 @@ class RatingCollectionViewCell: UICollectionViewCell {
         fatalError()
     }
     
-    func configure(title: String, image: String) {
+    func configure(title: String, image: String, borderColor: UIColor, background: UIColor) {
         label.text = title
         star.image = UIImage(named: image)
+        layer.borderColor = borderColor.cgColor
+        backgroundColor = background
     }
     
     private func addSubview() {
@@ -60,5 +61,5 @@ class RatingCollectionViewCell: UICollectionViewCell {
             make.width.equalTo(24)
             make.leading.equalTo(label.snp.trailing).offset(8)
         }
-   }
+    }
 }

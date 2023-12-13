@@ -27,11 +27,11 @@ struct Coordinates: Codable {
     let longitude: Float
 }
 
-enum CarsharingCompany: Codable, CaseIterable {
-    case yandexDrive
-    case cityDrive
-    case delimobil
-    case rentmee
+enum CarsharingCompany: String, Codable, CaseIterable {
+    case yandexDrive = "Яндекс.Драйв"
+    case cityDrive = "СитиДрайв"
+    case delimobil = "Делимобиль"
+    case rentmee = "Rentmee"
     
     var color: UIColor {
         switch self {

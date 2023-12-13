@@ -7,19 +7,22 @@
 
 import Foundation
 
-enum ListSection {
-    case carsharing([ListItem])
-    case typeOfCar([ListItem])
-    case powerReserve([ListItem])
-    case rating([ListItem])
+enum ListSection: Hashable {
+    case carsharing
+    case typeOfCar
+    case powerReserve
+    case rating
     
     var items: [ListItem] {
         switch self {
-        case .carsharing(let items),
-                .typeOfCar(let items),
-                .powerReserve(let items),
-                .rating(let items):
-            return items
+        case .carsharing:
+            MockData.shared.carsharing
+        case .typeOfCar:
+            MockData.shared.typeOfCar
+        case .powerReserve:
+            MockData.shared.powerReserve
+        case .rating:
+            MockData.shared.rating
         }
     }
     
@@ -29,7 +32,6 @@ enum ListSection {
     
     var title: String {
         switch self {
-            
         case .carsharing:
             return "Каршеринг"
         case .typeOfCar:

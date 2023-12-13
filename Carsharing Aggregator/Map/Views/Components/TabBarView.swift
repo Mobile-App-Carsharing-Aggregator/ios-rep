@@ -25,7 +25,7 @@ final class TabBarView: UIView {
         stackView.layer.cornerRadius = 24
         stackView.distribution = .equalSpacing
         stackView.spacing = 8
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 20)
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
@@ -34,6 +34,10 @@ final class TabBarView: UIView {
         let button = UIButton()
         let customView = TabButtonView(with: UIImage.profile, text: "Профиль")
         button.addSubview(customView)
+        customView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        customView.isUserInteractionEnabled = false
         button.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -42,6 +46,10 @@ final class TabBarView: UIView {
         let button = UIButton()
         let customView = TabButtonView(with: UIImage.filters, text: "Фильтры")
         button.addSubview(customView)
+        customView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        customView.isUserInteractionEnabled = false
         button.addTarget(self, action: #selector(filtersButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -50,6 +58,10 @@ final class TabBarView: UIView {
         let button = UIButton()
         let customView = TabButtonView(with: UIImage.carSearch, text: "Поиск машины")
         button.addSubview(customView)
+        customView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        customView.isUserInteractionEnabled = false
         button.addTarget(self, action: #selector(carSearchButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -95,6 +107,18 @@ final class TabBarView: UIView {
     private func setupLayout() {
         borderView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        filtersButton.snp.makeConstraints { make in
+            make.width.height.equalTo(60)
+        }
+        
+        profileButton.snp.makeConstraints { make in
+            make.width.height.equalTo(60)
+        }
+        
+        carSearchButton.snp.makeConstraints { make in
+            make.width.height.equalTo(60)
         }
         
         actionsStackView.snp.makeConstraints { make in
