@@ -42,6 +42,7 @@
 		37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6F3F52B1688F8001F9D55 /* UserModel.swift */; };
 		37B6F3FA2B1689F5001F9D55 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B6F3F92B1689F5001F9D55 /* CarModel.swift */; };
 		5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */; };
+		6166DC5E2B299B9D003E57FB /* SelectedCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166DC5D2B299B9D003E57FB /* SelectedCarViewController.swift */; };
 		61E862322B28E4FE004A2E89 /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E862312B28E4FE004A2E89 /* UIColor+extensions.swift */; };
 		C40379252B262567008F22F8 /* SearchCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379242B262567008F22F8 /* SearchCarViewController.swift */; };
 		C40379272B262579008F22F8 /* SearchCarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379262B262579008F22F8 /* SearchCarViewModel.swift */; };
@@ -105,6 +106,7 @@
 		37A1A24E2B149B1B002C26DA /* AppCoordinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinators.swift; sourceTree = "<group>"; };
 		37B6F3F52B1688F8001F9D55 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		37B6F3F92B1689F5001F9D55 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
+		6166DC5D2B299B9D003E57FB /* SelectedCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCarViewController.swift; sourceTree = "<group>"; };
 		61E862312B28E4FE004A2E89 /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
 		8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carsharing_Aggregator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40379242B262567008F22F8 /* SearchCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCarViewController.swift; sourceTree = "<group>"; };
@@ -374,6 +376,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		6166DC5C2B299B7C003E57FB /* SelectedCarFlow */ = {
+			isa = PBXGroup;
+			children = (
+				6166DC5D2B299B9D003E57FB /* SelectedCarViewController.swift */,
+			);
+			path = SelectedCarFlow;
+			sourceTree = "<group>";
+		};
 		62E768AB367BD5B6FBF1FD35 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +573,7 @@
 				37A1A2492B149B1B002C26DA /* Application */,
 				C462D8F62B1633950060287C /* ProfileFlow */,
 				32453BFC2B14D6EF003E7AA8 /* Map+TabBar */,
+				6166DC5C2B299B7C003E57FB /* SelectedCarFlow */,
 				37B6F3F42B1688E9001F9D55 /* Models */,
 				E221FFCD2B14BC0F002A5268 /* Onboarding */,
 				C4C9B25B2B1378CF00399C79 /* Extensions */,
@@ -762,6 +773,7 @@
 				E2F06ACE2B273BD500E088DE /* NetwrokRequest.swift in Sources */,
 				32453C092B152BAF003E7AA8 /* UIView+extensions.swift in Sources */,
 				E22100002B18E26A002A5268 /* SecondOnboardingViewModel.swift in Sources */,
+				6166DC5E2B299B9D003E57FB /* SelectedCarViewController.swift in Sources */,
 				370ADE9B2B199B9C0090300E /* LoginModel.swift in Sources */,
 				370ADE952B199B740090300E /* LoginCoordinator.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
