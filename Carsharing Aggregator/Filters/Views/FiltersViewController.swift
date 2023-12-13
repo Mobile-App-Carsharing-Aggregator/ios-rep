@@ -175,8 +175,8 @@ extension FiltersViewController: UICollectionViewDataSource {
             cell.configure(
                 title: item.title,
                 textColor: UIColor.black,
-                borderColor: isSelected ? UIColor.background.green : UIColor.black)
-            cell.backgroundColor = isSelected ? UIColor.background.green : UIColor.background.white
+                borderColor: isSelected ? UIColor.carsharing.green : UIColor.carsharing.black)
+            cell.backgroundColor = isSelected ? UIColor.carsharing.green : UIColor.carsharing.white90
             return cell
             
         case .rating:
@@ -189,8 +189,8 @@ extension FiltersViewController: UICollectionViewDataSource {
             cell.configure(
                 title: item.title,
                 image: item.image,
-                borderColor: isSelected ? UIColor.background.green : UIColor.black,
-                background: isSelected ? UIColor.background.green : UIColor.background.white)
+                borderColor: isSelected ? UIColor.carsharing.green : UIColor.carsharing.black,
+                background: isSelected ? UIColor.carsharing.green : UIColor.carsharing.white90)
             return cell
         }
     }

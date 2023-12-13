@@ -25,7 +25,6 @@
 		328BD1312B249BBD00F3AB80 /* RatingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BD1302B249BBD00F3AB80 /* RatingCollectionViewCell.swift */; };
 		328BD1352B25BCBB00F3AB80 /* MapButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BD1342B25BCBB00F3AB80 /* MapButtonView.swift */; };
 		328BD1372B25EF4500F3AB80 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BD1362B25EF4500F3AB80 /* TabButtonView.swift */; };
-		328BD13F2B26F39E00F3AB80 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BD13E2B26F39E00F3AB80 /* UIColor+Extensions.swift */; };
 		370ADE822B199A7B0090300E /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE812B199A7B0090300E /* AuthCoordinator.swift */; };
 		370ADE882B199AD20090300E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE872B199AD20090300E /* RegistrationViewController.swift */; };
 		370ADE8A2B199AE50090300E /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE892B199AE50090300E /* RegistrationViewModel.swift */; };
@@ -103,7 +102,6 @@
 		328BD1302B249BBD00F3AB80 /* RatingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCollectionViewCell.swift; sourceTree = "<group>"; };
 		328BD1342B25BCBB00F3AB80 /* MapButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButtonView.swift; sourceTree = "<group>"; };
 		328BD1362B25EF4500F3AB80 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
-		328BD13E2B26F39E00F3AB80 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		370ADE812B199A7B0090300E /* AuthCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		370ADE872B199AD20090300E /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		370ADE892B199AE50090300E /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
@@ -558,7 +556,6 @@
 				37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */,
 				370ADEB12B199CE60090300E /* UITextField+Ext.swift */,
 				32453C082B152BAF003E7AA8 /* UIView+extensions.swift */,
-				328BD13E2B26F39E00F3AB80 /* UIColor+Extensions.swift */,
 				C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */,
 			);
 			path = Extensions;
@@ -857,7 +854,6 @@
 				E221FFDC2B14C254002A5268 /* FirstOnboardingViewModel.swift in Sources */,
 				370ADE822B199A7B0090300E /* AuthCoordinator.swift in Sources */,
 				32857E8D2B1F41A8003AE9AC /* GeometryProvider.swift in Sources */,
-				328BD13F2B26F39E00F3AB80 /* UIColor+Extensions.swift in Sources */,
 				3273FCDE2B1E621100C3C137 /* MapViewModel.swift in Sources */,
 				32453C022B14D764003E7AA8 /* BaseMapView.swift in Sources */,
 				370ADEAA2B199C660090300E /* DocumentsViewController.swift in Sources */,

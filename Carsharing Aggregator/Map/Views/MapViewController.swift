@@ -327,7 +327,7 @@ extension MapViewController: YMKClusterListener, YMKClusterTapListener {
             
             UIGraphicsBeginImageContext(iconSize)
             let ctx = UIGraphicsGetCurrentContext()!
-            ctx.setFillColor(UIColor.carsharing.cluster.cgColor)
+            ctx.setFillColor(UIColor.carsharing.blue.cgColor)
             ctx.fillEllipse(in: CGRect(
                 origin: .zero,
                 size: CGSize(
@@ -410,7 +410,7 @@ extension MapViewController: UICollectionViewDataSource {
             textColor: isSelected ? UIColor.white : company.color,
             borderColor: company.color
         )
-        cell.backgroundColor = isSelected ? company.color : UIColor.background.white
+        cell.backgroundColor = isSelected ? company.color : UIColor.carsharing.white90
         
         return cell
     }
