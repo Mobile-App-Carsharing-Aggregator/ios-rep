@@ -65,7 +65,6 @@ final class TransitionToCarSharingButton: UIView {
         layer.borderColor = (UIColor.carsharing.black).cgColor
         
         [labelsStack, logo].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
         }
         

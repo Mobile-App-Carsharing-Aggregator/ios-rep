@@ -55,7 +55,6 @@ final class CarCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor(red: 0.682, green: 0.682, blue: 0.698, alpha: 1).cgColor
         
         [imageView, nameLabel].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
         

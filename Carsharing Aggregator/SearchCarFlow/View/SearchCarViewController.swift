@@ -141,7 +141,6 @@ final class SearchCarViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         [carsCollection, passengerCarFilterButton, truckCarFilterButton, searchButton].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
         

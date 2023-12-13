@@ -93,7 +93,6 @@ final class PrepareBookingCarViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         [carImage, vStack, carTypeLabel, carRatingView].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
         
