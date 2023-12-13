@@ -124,9 +124,9 @@ final class MapViewController: UIViewController {
                 let geometry = YMKGeometry(polyline: YMKPolyline(points: coordinates))
                 let position = map.cameraPosition(with: geometry, azimuth: 0, tilt: 0, focus: focus)
                 map.move(
-                  with: position,
-                  animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0),
-                  cameraCallback: nil)
+                    with: position,
+                    animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0),
+                    cameraCallback: nil)
             }
             addClustering(with: carsByService)
         }
@@ -140,9 +140,9 @@ final class MapViewController: UIViewController {
             let coordinates = carsInCompany.map { YMKPoint(latitude: Double($0.coordinates.latitude), longitude: Double($0.coordinates.longitude)) }
             collection.addPlacemarks(with: coordinates, image: company.iconImage, style: YMKIconStyle())
             collection.clusterPlacemarks(withClusterRadius: GeometryProvider.clusterRadius, minZoom: GeometryProvider.clusterMinZoom)
-            if let mapObjectTapListener {
-                collection.addTapListener(with: mapObjectTapListener)
-            }
+        }
+        if let mapObjectTapListener {
+            collection.addTapListener(with: mapObjectTapListener)
         }
     }
     
@@ -161,7 +161,7 @@ final class MapViewController: UIViewController {
         let mapKit = YMKMapKit.sharedInstance()
         
         mapView.mapWindow.map.isRotateGesturesEnabled = false
-            
+        
         if userLocationLayer != nil {
             guard let currentPosition = locationManager.location else { return }
             let point = YMKPoint(latitude: currentPosition.coordinate.latitude, longitude: currentPosition.coordinate.longitude)
@@ -178,7 +178,7 @@ final class MapViewController: UIViewController {
             
             userLocationLayer.setObjectListenerWith(self)
             mapView.mapWindow.map.move(with:
-                YMKCameraPosition(target: YMKPoint(latitude: 0, longitude: 0), zoom: 15, azimuth: 0, tilt: 0))
+                                        YMKCameraPosition(target: YMKPoint(latitude: 0, longitude: 0), zoom: 15, azimuth: 0, tilt: 0))
         }
     }
     
@@ -223,7 +223,7 @@ extension MapViewController: TabViewDelegate {
     }
     
     func locationButtonTapped() {
-      
+        
     }
 }
 
@@ -306,58 +306,58 @@ extension MapViewController: YMKMapObjectTapListener {
 // MARK: - Extension YMKClusterListener, YMKClusterTapListener
 
 extension MapViewController: YMKClusterListener, YMKClusterTapListener {
-        func onClusterAdded(with cluster: YMKCluster) {
-            cluster.appearance.setIconWith(clusterImage(cluster.size))
-            cluster.addClusterTapListener(with: self)
-        }
-        
-        func onClusterTap(with cluster: YMKCluster) -> Bool {
-            print("Tapped cluster with \(cluster.size) items")
-            // We return true to notify map that the tap was handled and shouldn't be
-            // propagated further.
-            return true
-        }
-        
-        func clusterImage(_ clusterSize: UInt) -> UIImage {
-            let scale = UIScreen.main.scale
-            let text = "\(clusterSize as NSNumber)"
-            let font = UIFont.systemFont(ofSize: fontSize * scale)
-            let size = text.size(withAttributes: [NSAttributedString.Key.font: font])
-            let textRadius = sqrt(size.height * size.height + size.width * size.width) / 2
-            let internalRadius = textRadius + marginSize * scale
-            let externalRadius = internalRadius + strokeSize * scale
-            let iconSize = CGSize(width: externalRadius * 2, height: externalRadius * 2)
-            
-            UIGraphicsBeginImageContext(iconSize)
-            let ctx = UIGraphicsGetCurrentContext()!
-            ctx.setFillColor(UIColor.carsharing.blue.cgColor)
-            ctx.fillEllipse(in: CGRect(
-                origin: .zero,
-                size: CGSize(
-                    width: 2 * externalRadius,
-                    height: 2 * externalRadius)))
-        
-            ctx.setFillColor(UIColor.white.cgColor)
-            ctx.fillEllipse(in: CGRect(
-                origin: CGPoint(x: externalRadius - internalRadius, y: externalRadius - internalRadius),
-                size: CGSize(
-                    width: 2 * internalRadius,
-                    height: 2 * internalRadius)))
-            
-            (text as NSString).draw(
-                in: CGRect(
-                    origin: CGPoint(x: externalRadius - size.width / 2, y: externalRadius - size.height / 2),
-                    size: size),
-                withAttributes: [
-                    NSAttributedString.Key.font: font,
-                    NSAttributedString.Key.foregroundColor: UIColor.black])
-            let image = UIGraphicsGetImageFromCurrentImageContext()!
-            image.withTintColor(UIColor.black)
-            return image
-        }
+    func onClusterAdded(with cluster: YMKCluster) {
+        cluster.appearance.setIconWith(clusterImage(cluster.size))
+        cluster.addClusterTapListener(with: self)
     }
+    
+    func onClusterTap(with cluster: YMKCluster) -> Bool {
+        print("Tapped cluster with \(cluster.size) items")
+        // We return true to notify map that the tap was handled and shouldn't be
+        // propagated further.
+        return true
+    }
+    
+    func clusterImage(_ clusterSize: UInt) -> UIImage {
+        let scale = UIScreen.main.scale
+        let text = "\(clusterSize as NSNumber)"
+        let font = UIFont.systemFont(ofSize: fontSize * scale)
+        let size = text.size(withAttributes: [NSAttributedString.Key.font: font])
+        let textRadius = sqrt(size.height * size.height + size.width * size.width) / 2
+        let internalRadius = textRadius + marginSize * scale
+        let externalRadius = internalRadius + strokeSize * scale
+        let iconSize = CGSize(width: externalRadius * 2, height: externalRadius * 2)
+        
+        UIGraphicsBeginImageContext(iconSize)
+        let ctx = UIGraphicsGetCurrentContext()!
+        ctx.setFillColor(UIColor.carsharing.blue.cgColor)
+        ctx.fillEllipse(in: CGRect(
+            origin: .zero,
+            size: CGSize(
+                width: 2 * externalRadius,
+                height: 2 * externalRadius)))
+        
+        ctx.setFillColor(UIColor.white.cgColor)
+        ctx.fillEllipse(in: CGRect(
+            origin: CGPoint(x: externalRadius - internalRadius, y: externalRadius - internalRadius),
+            size: CGSize(
+                width: 2 * internalRadius,
+                height: 2 * internalRadius)))
+        
+        (text as NSString).draw(
+            in: CGRect(
+                origin: CGPoint(x: externalRadius - size.width / 2, y: externalRadius - size.height / 2),
+                size: size),
+            withAttributes: [
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.foregroundColor: UIColor.black])
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        image.withTintColor(UIColor.black)
+        return image
+    }
+}
 
- // MARK: - Extension YMKUserLocationObjectListener
+// MARK: - Extension YMKUserLocationObjectListener
 
 extension MapViewController: YMKUserLocationObjectListener {
     func onObjectAdded(with view: YMKUserLocationView) {
@@ -378,7 +378,7 @@ extension MapViewController: YMKUserLocationObjectListener {
     }
     
     func onObjectRemoved(with view: YMKUserLocationView) {
-       
+        
     }
     
     func onObjectUpdated(with view: YMKUserLocationView, event: YMKObjectEvent) {
