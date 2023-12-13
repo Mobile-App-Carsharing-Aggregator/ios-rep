@@ -34,7 +34,6 @@ final class PrepareBookingCarViewController: UIViewController {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 16
-        
         return stack
     }()
     
@@ -42,10 +41,10 @@ final class PrepareBookingCarViewController: UIViewController {
         let label = UILabel()
         label.backgroundColor = .carsharing.greyLight
         label.textColor = .carsharing.black
+        label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        view.layer.masksToBounds = true
-        view.layer.cornerRadius = 12
-        
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 12
         return label
     }()
     
@@ -74,7 +73,6 @@ final class PrepareBookingCarViewController: UIViewController {
         yandex.configure(with: "ЯндексДрайв", companyLogo: .drive!)
         let deli = TransitionToCarSharingButton()
         deli.configure(with: "ДелиМобиль", companyLogo: .deli!)
-        
         let city = TransitionToCarSharingButton()
         city.configure(with: "СитиМобиль", companyLogo: .city!)
         
@@ -127,6 +125,7 @@ final class PrepareBookingCarViewController: UIViewController {
         carTypeLabel.snp.makeConstraints { make in
             make.top.equalTo(carImage.snp.bottom).offset(12)
             make.leading.equalTo(view).offset(21)
+            make.size.equalTo(CGSize(width: 74, height: 24))
         }
         
         carRatingView.snp.makeConstraints { make in

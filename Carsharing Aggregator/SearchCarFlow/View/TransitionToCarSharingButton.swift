@@ -38,7 +38,6 @@ final class TransitionToCarSharingButton: UIView {
         return image
     }()
     
-    
     // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,16 +48,11 @@ final class TransitionToCarSharingButton: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Properties
+    // MARK: - Properties
     
     // MARK: - Actions
     
-    @objc
-    private func didTapButton() {
-
-    }
-    
-    //MARK: - Methods
+    // MARK: - Methods
     func configure(with company: String, companyLogo: UIImage) {
         priceLabel.text = company + " " + "от 7 ₽/мин"
         logo.image = companyLogo
@@ -69,7 +63,6 @@ final class TransitionToCarSharingButton: UIView {
         layer.cornerRadius = 24
         layer.borderWidth = 2
         layer.borderColor = (UIColor.carsharing.black).cgColor
-        frame.size.height = 52
         
         [labelsStack, logo].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -82,6 +75,10 @@ final class TransitionToCarSharingButton: UIView {
     }
     
     private func setConstraints() {
+        self.snp.makeConstraints { make in
+            make.height.equalTo(52)
+        }
+        
         logo.snp.makeConstraints { make in
             make.leading.equalTo(snp.leading).offset(16)
             make.centerY.equalTo(snp.centerY)
@@ -90,6 +87,7 @@ final class TransitionToCarSharingButton: UIView {
         
         labelsStack.snp.makeConstraints { make in
             make.centerY.equalTo(logo.snp.centerY)
+            make.leading.equalTo(logo.snp.trailing)
             make.trailing.equalTo(snp.trailing).offset(-16)
         }
     }
