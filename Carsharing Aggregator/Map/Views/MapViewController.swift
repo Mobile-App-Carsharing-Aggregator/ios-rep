@@ -87,6 +87,9 @@ final class MapViewController: UIViewController {
     // MARK: - Private methods
     
     private func initMap() {
+        let locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
+        
         map.move(
             with: YMKCameraPosition(
                 target: viewModel.userPoint(),
