@@ -12,7 +12,7 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
     // MARK: - Properties
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
-    var parent: TabBarCoordinator?
+    var parent: MapCoordinator?
     var childCoordinators: [Coordinator] = []
     
     // MARK: - LifeCycle

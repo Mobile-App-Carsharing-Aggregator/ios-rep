@@ -155,7 +155,6 @@ final class DocumentsViewController: UIViewController {
     @objc private func photoWithDocumentsButtonTapped() {
             print("Button tapped")
         }
-    
 }
 
 extension DocumentsViewController {

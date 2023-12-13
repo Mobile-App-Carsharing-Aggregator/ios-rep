@@ -5,7 +5,7 @@
 //  Created by Greg on 29.11.2023.
 //
 
-import Foundation
+import UIKit
 
 struct Car: Codable {
     let id: UUID
@@ -27,8 +27,50 @@ struct Coordinates: Codable {
     let longitude: Float
 }
 
-struct CarsharingCompany: Codable {
-    let name: String
+enum CarsharingCompany: String, Codable, CaseIterable {
+    case yandexDrive = "Яндекс.Драйв"
+    case cityDrive = "СитиДрайв"
+    case delimobil = "Делимобиль"
+    case rentmee = "Rentmee"
+    
+    var color: UIColor {
+        switch self {
+        case .yandexDrive:
+            return UIColor.carsharing.lightBlue
+        case .cityDrive:
+            return UIColor.carsharing.purple
+        case .delimobil:
+            return UIColor.carsharing.lightGreen
+        case .rentmee:
+            return UIColor.carsharing.mediumGreen
+        }
+    }
+    
+    var iconImage: UIImage {
+        switch self {
+        case .yandexDrive:
+            UIImage.ellipsLightBlue
+        case .cityDrive:
+            UIImage.ellipsPurple
+        case .delimobil:
+            UIImage.ellipsLightGreen
+        case .rentmee:
+            UIImage.ellipsMediumGreen
+        }
+    }
+    
+    var name: String {
+        switch self {
+        case .yandexDrive:
+            "Яндекс.Драйв"
+        case .cityDrive:
+            "СитиДрайв"
+        case .delimobil:
+            "Делимобиль"
+        case .rentmee:
+            "Rentmee"
+        }
+    }
 }
 
 enum EngineType: Codable {
