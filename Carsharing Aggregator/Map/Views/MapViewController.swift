@@ -215,7 +215,7 @@ extension MapViewController: TabViewDelegate {
     }
     
     func carSearchButtonTapped() {
-        
+        viewModel.openSearchCar(on: self)
     }
     
     func orderButtonTapped() {

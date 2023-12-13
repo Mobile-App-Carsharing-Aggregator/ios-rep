@@ -19,7 +19,7 @@ final class CarCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
-        label.textColor = .black
+        label.textColor = .carsharing.black
         return label
     }()
     
@@ -52,10 +52,9 @@ final class CarCell: UICollectionViewCell {
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 12
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor(red: 0.682, green: 0.682, blue: 0.698, alpha: 1).cgColor
+        contentView.layer.borderColor = UIColor.carsharing.greyMedium.cgColor
         
         [imageView, nameLabel].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
         

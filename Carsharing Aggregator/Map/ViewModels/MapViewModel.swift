@@ -60,6 +60,10 @@ class MapViewModel {
         coordinator?.openFilters(on: vc)
     }
     
+    func openSearchCar(on vc: UIViewController) {
+        coordinator?.openSearchCar(on: vc)
+    }
+    
     func coordinatorDidFinish() {
         coordinator?.coordinatorDidFinish()
     }
