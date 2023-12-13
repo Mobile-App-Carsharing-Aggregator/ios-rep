@@ -11,7 +11,7 @@ final class SearchCarViewController: UIViewController {
     
     // MARK: - UI
     private lazy var backButton = UIBarButtonItem(
-        image: UIImage(systemName: "chevron.backward"),
+        image: UIImage(systemName: "chevron.backward")?.withTintColor(.carsharing.greyDark),
         style: .plain,
         target: self,
         action: #selector(didTapBackButton)
@@ -45,7 +45,7 @@ final class SearchCarViewController: UIViewController {
         let view = UIButton(type: .system)
         view.backgroundColor = .white
         view.setTitle("Легковые", for: .normal)
-        view.tintColor = .black
+        view.tintColor = .carsharing.black
         view.titleLabel?.textAlignment = .center
         view.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         view.layer.masksToBounds = true

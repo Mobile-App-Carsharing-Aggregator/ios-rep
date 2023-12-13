@@ -11,14 +11,14 @@ import SnapKit
 final class PrepareBookingCarViewController: UIViewController {
     // MARK: - UI
     private lazy var backButton = UIBarButtonItem(
-        image: UIImage(systemName: "chevron.backward"),
+        image: UIImage(systemName: "chevron.backward")?.withTintColor(.carsharing.greyDark),
         style: .plain,
         target: self,
         action: #selector(didTapBackButton)
     )
     
     private lazy var closeButton = UIBarButtonItem(
-        image: .closeLightGrey,
+        image: UIImage(systemName: "xmark")?.withTintColor(.carsharing.greyDark),
         style: .plain,
         target: self,
         action: #selector(didTapCloseButton)
@@ -74,7 +74,7 @@ final class PrepareBookingCarViewController: UIViewController {
         let deli = TransitionToCarSharingButton()
         deli.configure(with: "ДелиМобиль", companyLogo: .deli!)
         let city = TransitionToCarSharingButton()
-        city.configure(with: "СитиМобиль", companyLogo: .city!)
+        city.configure(with: "СитиМобил", companyLogo: .city!)
         
         vStack.addArrangedSubview(yandex)
         vStack.addArrangedSubview(deli)
@@ -96,7 +96,7 @@ final class PrepareBookingCarViewController: UIViewController {
             view.addSubview($0)
         }
         
-        carImage.image = UIImage(systemName: "car.front.waves.up.fill")
+        carImage.image = UIImage(systemName: "car.side.lock.open.fill")
         carTypeLabel.text = {
             switch car?.type {
             case .coupe: return "Купе"
