@@ -39,7 +39,9 @@ extension UIImage {
     static let tabCarSearch = UIImage(named: "carSearch")
     static let tabFilters = UIImage(named: "filters")
     static let tabOrder = UIImage(named: "order")
-    static let tabLocation = UIImage(named: "compas")
+    static let locationButton = UIImage(named: "compas")
+    static let plusButton = UIImage(named: "plus")
+    static let minusButton = UIImage(named: "minus")
     
     // MARK: - Images
     static let onboardingBackgroundImage = UIImage(named: "onboarding background image")
