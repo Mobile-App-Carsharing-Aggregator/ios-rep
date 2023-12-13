@@ -8,7 +8,6 @@
 import UIKit
 
 final class SearchCarViewController: UIViewController {
-    
     // MARK: - UI
     private lazy var backButton = UIBarButtonItem(
         image: UIImage(systemName: "chevron.backward")?.withTintColor(.carsharing.greyDark),
@@ -122,10 +121,12 @@ final class SearchCarViewController: UIViewController {
     func didSelect(car: Car) {
         let vc = PrepareBookingCarViewController()
         vc.car = car
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .pageSheet
-        navVC.preferredContentSize = CGSize(width: 400, height: 600)
-        present(navVC, animated: true)
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            sheet.largestUndimmedDetentIdentifier = .medium
+        }
+        present(vc, animated: true)
     }
     
     // MARK: - Layout Methods

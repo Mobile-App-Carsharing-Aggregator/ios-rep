@@ -10,19 +10,33 @@ import SnapKit
 
 final class PrepareBookingCarViewController: UIViewController {
     // MARK: - UI
-    private lazy var backButton = UIBarButtonItem(
-        image: UIImage(systemName: "chevron.backward")?.withTintColor(.carsharing.greyDark),
-        style: .plain,
-        target: self,
-        action: #selector(didTapBackButton)
-    )
+    private lazy var titleVC: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.textColor = .carsharing.black
+        label.textAlignment = .center
+        return label
+    }()
     
-    private lazy var closeButton = UIBarButtonItem(
-        image: UIImage(systemName: "xmark")?.withTintColor(.carsharing.greyDark),
-        style: .plain,
-        target: self,
-        action: #selector(didTapCloseButton)
-    )
+    private lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.tintColor = .carsharing.greyDark
+        button.addTarget(self,
+                         action: #selector(didTapBackButton),
+                         for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = UIColor.black
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.addTarget(self,
+                         action: #selector(didTapCloseButton),
+                         for: .touchUpInside)
+        return button
+    }()
     
     private lazy var carImage: UIImageView = {
         let view = UIImageView()
@@ -88,6 +102,7 @@ final class PrepareBookingCarViewController: UIViewController {
     private func configureCarInfo() {
         carImage.image = UIImage(systemName: "car.side.lock.open.fill")
         guard let car = car else { return }
+        titleVC.text = car.name + " " + car.model
         carRatingLabel.text = String(car.rating) + " " + "stars"
         carTypeLabel.text = {
             switch car.type {
@@ -101,28 +116,36 @@ final class PrepareBookingCarViewController: UIViewController {
         }()
     }
     
-    private func setupNavBar() {
-        navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = closeButton
-        navigationController?.navigationBar.tintColor = .carsharing.black
-        navigationController?.navigationBar.backgroundColor = .clear
-        guard let car = car else { return }
-        title = car.name + " " + car.model
-    }
-    
     private func setupUI() {
         view.backgroundColor = .white
-        [carImage, vStack, carTypeLabel, carRatingLabel].forEach {
+        [carImage, vStack, carTypeLabel, carRatingLabel,titleVC, backButton, closeButton].forEach {
             view.addSubview($0)
         }
-        
         configureCarInfo()
         configureStack()
-        setupNavBar()
         setupConstraints()
     }
     
     private func setupConstraints() {
+        titleVC.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(view).offset(26)
+            make.height.equalTo(22)
+            make.width.lessThanOrEqualTo(290)
+        }
+        
+        closeButton.snp.makeConstraints { make in
+            make.centerY.equalTo(titleVC.snp.centerY)
+            make.height.width.equalTo(24)
+            make.trailing.equalTo(view).offset(-30)
+        }
+        
+        backButton.snp.makeConstraints { make in
+            make.centerY.equalTo(titleVC.snp.centerY)
+            make.height.width.equalTo(24)
+            make.leading.equalTo(view).offset(30)
+        }
+        
         carImage.snp.makeConstraints { make in
             make.top.equalTo(view).offset(58)
             make.centerX.equalTo(view.snp.centerX)
