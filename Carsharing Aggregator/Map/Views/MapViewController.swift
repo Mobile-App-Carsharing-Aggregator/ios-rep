@@ -299,6 +299,8 @@ extension MapViewController {
 extension MapViewController: YMKMapObjectTapListener {
     func onMapObjectTap(with mapObject: YMKMapObject, point: YMKPoint) -> Bool {
         print("Tapped point \((point.latitude, point.longitude))")
+        viewModel.openCar(on: self)
+        
         return true
     }
 }
