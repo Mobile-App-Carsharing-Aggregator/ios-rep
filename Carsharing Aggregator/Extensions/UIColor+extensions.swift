@@ -23,6 +23,7 @@ struct CarsharingColors {
     let greyLight = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
     let white40 = #colorLiteral(red: 0.9960784314, green: 0.9960784314, blue: 0.9960784314, alpha: 0.4)
     let white90 = #colorLiteral(red: 0.9960784314, green: 0.9960784314, blue: 0.9960784314, alpha: 0.9)
+    let white = #colorLiteral(red: 0.9960784314, green: 0.9960784314, blue: 0.9960784314, alpha: 1)
     let lightBlue = #colorLiteral(red: 0, green: 0.3411764706, blue: 1, alpha: 1)
     let lightBlue80 = #colorLiteral(red: 0, green: 0.3411764706, blue: 1, alpha: 0.8)
     let purple = #colorLiteral(red: 0.4980392157, green: 0.1803921569, blue: 0.6941176471, alpha: 1)

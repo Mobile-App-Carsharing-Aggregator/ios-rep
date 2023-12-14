@@ -15,7 +15,7 @@ class MapViewModel {
     let sections: [ListSection] = [.carsharing]
     var indexPathToUpdate: IndexPath?
     
-    private var selectedFilters: [ListSection : [ListItem]] = [:] {
+    private var selectedFilters: [ListSection: [ListItem]] = [:] {
         didSet {
             if let indexPathToUpdate {
                 onRefreshAction?(indexPathToUpdate)

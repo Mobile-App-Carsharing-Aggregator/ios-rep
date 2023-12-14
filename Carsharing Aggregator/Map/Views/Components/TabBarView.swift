@@ -21,8 +21,8 @@ final class TabBarView: UIView {
     private lazy var actionsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.backgroundColor = UIColor.white.withAlphaComponent(1)
-        stackView.layer.cornerRadius = 24
+        stackView.backgroundColor = UIColor.carsharing.white90
+        stackView.layer.cornerRadius = 30
         stackView.distribution = .equalSpacing
         stackView.spacing = 8
         stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -79,10 +79,10 @@ final class TabBarView: UIView {
         self.setupLayout()
         self.configureTabBarStackView()
         
-        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowColor = UIColor.carsharing.black.cgColor
         self.layer.shadowOffset = CGSize.zero
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowRadius = 2.0
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowRadius = 3.0
     }
     
     required init?(coder: NSCoder) {
