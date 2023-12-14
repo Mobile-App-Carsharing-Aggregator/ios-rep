@@ -30,14 +30,14 @@ final class MapViewController: UIViewController {
     // MARK: - UI
     
     private var tabView = TabBarView()
-    private lazy var compasView = MapButtonView(with: UIImage.compas, radius: 24) { [weak self] in
+    private lazy var compasView = MapButtonView(with: UIImage.locationButton ?? UIImage(), radius: 24) { [weak self] in
         self?.locButtonTapped()
     }
-    private lazy var plusButton = MapButtonView(with: UIImage.plus, radius: 12) { [weak self] in
+    private lazy var plusButton = MapButtonView(with: UIImage.plusButton ?? UIImage(), radius: 12) { [weak self] in
         self?.plusButtonTapped()
     }
     
-    private lazy var minusButton = MapButtonView(with: UIImage.minus, radius: 12) { [weak self] in
+    private lazy var minusButton = MapButtonView(with: UIImage.minusButton ?? UIImage(), radius: 12) { [weak self] in
         self?.minusButtonTapped()
     }
     
@@ -116,16 +116,16 @@ final class MapViewController: UIViewController {
             let companies = CarsharingCompany.allCases
             for company in companies {
                 let carsInCompany = cars.filter { $0.company == company }
-                carsByService[company] = carsInCompany
+                self.carsByService[company] = carsInCompany
                 let coordinates = carsInCompany.map { YMKPoint(latitude: Double($0.coordinates.latitude), longitude: Double($0.coordinates.longitude)) }
                 let geometry = YMKGeometry(polyline: YMKPolyline(points: coordinates))
-                let position = map.cameraPosition(with: geometry, azimuth: 0, tilt: 0, focus: focus)
-                map.move(
+                let position = self.map.cameraPosition(with: geometry, azimuth: 0, tilt: 0, focus: focus)
+                self.map.move(
                     with: position,
                     animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0),
                     cameraCallback: nil)
             }
-            addClustering(with: carsByService)
+            self.addClustering(with: self.carsByService)
         }
     }
     
