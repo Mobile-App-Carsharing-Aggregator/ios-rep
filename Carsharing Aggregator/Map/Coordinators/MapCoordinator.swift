@@ -25,6 +25,7 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
         let viewModel = MapViewModel()
         let mapVC = MapViewController(viewModel: viewModel)
         viewModel.coordinator = self
+        mapVC.modalPresentationStyle = .overFullScreen
         navigationController.setNavigationBarHidden(false, animated: false)
         navigationController.pushViewController(mapVC, animated: true)
     }
