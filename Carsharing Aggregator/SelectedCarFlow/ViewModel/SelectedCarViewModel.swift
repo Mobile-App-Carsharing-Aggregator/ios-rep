@@ -9,4 +9,12 @@ import Foundation
 
 final class SelectedCarViewModel {
     
+    // MARK: - Properties
+    weak var coordinator: SelectedCarCoordinator?
+    private (set) var selectedCar: Car
+    
+    // MARK: - LifeCycle
+    init(selectedCar: Car) {
+        self.selectedCar = selectedCar
+    }
 }
