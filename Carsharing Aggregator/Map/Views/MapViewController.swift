@@ -23,6 +23,7 @@ final class MapViewController: UIViewController {
     private var carsByService: [CarsharingCompany: [Car]] = [:]
     private var viewModel: MapViewModel
     
+    
     private let fontSize: CGFloat = 16
     private let marginSize: CGFloat = 5
     private let strokeSize: CGFloat = 7
