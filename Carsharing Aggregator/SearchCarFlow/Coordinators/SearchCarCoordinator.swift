@@ -26,11 +26,8 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
         let vm = SearchCarViewModel()
         vm.coordinator = self
         vc.viewModel = vm
-        navigationController.customPushViewController(
-            viewController: vc,
-            direction: .fromBottom,
-            transitionType: .push
-        )
+        vc.modalPresentationStyle = .pageSheet
+        viewControllerRef?.present(vc, animated: true)
     }
     
     func coordinatorDidFinish() {

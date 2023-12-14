@@ -9,21 +9,33 @@ import UIKit
 
 final class SearchCarViewController: UIViewController {
     // MARK: - UI
-    private lazy var backButton = UIBarButtonItem(
-        image: UIImage(systemName: "chevron.backward")?.withTintColor(.carsharing.greyDark),
-        style: .plain,
-        target: self,
-        action: #selector(didTapBackButton)
-    )
+    private lazy var titleVC: UILabel = {
+        let label = UILabel()
+        label.text = "Машины"
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.textColor = .carsharing.black
+        label.textAlignment = .center
+        return label
+    }()
     
-    private lazy var resetFiltersButton: UIBarButtonItem = {
-        let view = UIBarButtonItem()
-        view.title = "Сбросить"
-        view.tintColor = .carsharing.blue
-        view.style = .plain
-        view.target = self
-        view.action = #selector(didTapResetFiltersButton)
-        return view
+    private lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.tintColor = .carsharing.greyDark
+        button.addTarget(self,
+                         action: #selector(didTapBackButton),
+                         for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var resetFiltersButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .clear
+        button.setTitle("Сбросить", for: .normal)
+        button.tintColor = .carsharing.blue
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        button.addTarget(self, action: #selector(didTapResetFiltersButton), for: .touchUpInside)
+        return button
     }()
     
     private lazy var carsCollection: UICollectionView = {
@@ -130,29 +142,37 @@ final class SearchCarViewController: UIViewController {
     }
     
     // MARK: - Layout Methods
-    private func setupNavBar() {
-        title = "Машины"
-        navigationItem.rightBarButtonItem = resetFiltersButton
-        navigationItem.leftBarButtonItem = backButton
-        navigationController?.navigationBar.tintColor = .carsharing.black
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.prefersLargeTitles = false
-    }
-    
     private func setupUI() {
         view.backgroundColor = .white
-        [carsCollection, passengerCarFilterButton, truckCarFilterButton, searchButton].forEach {
+        [backButton, titleVC, resetFiltersButton, carsCollection, passengerCarFilterButton, truckCarFilterButton, searchButton].forEach {
             view.addSubview($0)
         }
-        
-        setupNavBar()
         setupConstraints()
     }
     
     private func setupConstraints() {
+        titleVC.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(view).offset(26)
+            make.height.equalTo(22)
+            make.width.lessThanOrEqualTo(290)
+        }
+        
+        resetFiltersButton.snp.makeConstraints { make in
+            make.centerY.equalTo(titleVC.snp.centerY)
+            make.height.equalTo(24)
+            make.trailing.equalTo(view).offset(-30)
+        }
+        
+        backButton.snp.makeConstraints { make in
+            make.centerY.equalTo(titleVC.snp.centerY)
+            make.height.width.equalTo(24)
+            make.leading.equalTo(view).offset(30)
+        }
+        
         passengerCarFilterButton.snp.makeConstraints { make in
             make.leading.equalTo(view).offset(21)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(24)
+            make.top.equalTo(backButton.snp.bottom).offset(50)
             make.size.equalTo(CGSize(width: 104, height: 40))
         }
         
@@ -164,6 +184,7 @@ final class SearchCarViewController: UIViewController {
         
         searchButton.snp.makeConstraints { make in
             make.trailing.equalTo(view).offset(-21)
+            make.width.height.equalTo(24)
             make.centerY.equalTo(passengerCarFilterButton.snp.centerY)
         }
         
