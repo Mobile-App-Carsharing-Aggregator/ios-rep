@@ -17,14 +17,14 @@ final class MapButtonView: UIView {
     
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.white.withAlphaComponent(0.85)
+        view.backgroundColor = UIColor.carsharing.white90
         view.layer.cornerRadius = radiusButton
         return view
     }()
     
     private lazy var mapButton: UIButton = {
         let button = UIButton()
-        button.tintColor = .black
+        button.tintColor = UIColor.carsharing.black
         button.setImage(imageButton, for: .normal)
         button.addTarget(self, action: #selector(mapButtonTapped), for: .touchUpInside)
         return button
@@ -47,10 +47,10 @@ final class MapButtonView: UIView {
         self.addSubviews()
         self.setupLayout()
         
-        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowColor = UIColor.carsharing.black.cgColor
         self.layer.shadowOffset = CGSize.zero
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowRadius = 2.0
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowRadius = 3.0
     }
     
     required init?(coder: NSCoder) {
