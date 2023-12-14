@@ -43,4 +43,12 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
         filtersCoordinator.viewControllerRef = vc
         filtersCoordinator.start()
     }
+    
+    func openSearchCar(on vc: UIViewController) {
+        let searchCarCoordinator = SearchCarCoordinator(navigationController: navigationController)
+        searchCarCoordinator.parent = self
+        addChild(searchCarCoordinator)
+        searchCarCoordinator.viewControllerRef = vc
+        searchCarCoordinator.start()
+    }
 }

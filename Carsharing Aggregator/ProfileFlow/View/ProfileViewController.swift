@@ -53,7 +53,6 @@ final class ProfileViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         [profileNameLabel, profileItemButton, tableView].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
         

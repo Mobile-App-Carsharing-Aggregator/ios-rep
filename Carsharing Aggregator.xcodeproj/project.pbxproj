@@ -63,6 +63,8 @@
 		C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F72B1633B70060287C /* ProfileViewController.swift */; };
 		C462D8FA2B1633CB0060287C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F92B1633CB0060287C /* ProfileViewModel.swift */; };
 		C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8FB2B1634580060287C /* ProfileCoordinator.swift */; };
+		C4A3F8562B28E72000B62BB3 /* PrepareBookingCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3F8552B28E72000B62BB3 /* PrepareBookingCarViewController.swift */; };
+		C4A3F8592B29131400B62BB3 /* TransitionToCarSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3F8582B29131400B62BB3 /* TransitionToCarSharingButton.swift */; };
 		C4C9B25D2B1378FB00399C79 /* UIImage+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */; };
 		E22100002B18E26A002A5268 /* SecondOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFFF2B18E26A002A5268 /* SecondOnboardingViewModel.swift */; };
 		E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */; };
@@ -138,6 +140,8 @@
 		C462D8F72B1633B70060287C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C462D8F92B1633CB0060287C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C462D8FB2B1634580060287C /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		C4A3F8552B28E72000B62BB3 /* PrepareBookingCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareBookingCarViewController.swift; sourceTree = "<group>"; };
+		C4A3F8582B29131400B62BB3 /* TransitionToCarSharingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionToCarSharingButton.swift; sourceTree = "<group>"; };
 		C4C9B25C2B1378FB00399C79 /* UIImage+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extensions.swift"; sourceTree = "<group>"; };
 		D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.release.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.release.xcconfig"; sourceTree = "<group>"; };
 		E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
@@ -494,6 +498,8 @@
 			children = (
 				C40379242B262567008F22F8 /* SearchCarViewController.swift */,
 				C403792A2B262B47008F22F8 /* CarCell.swift */,
+				C4A3F8552B28E72000B62BB3 /* PrepareBookingCarViewController.swift */,
+				C4A3F8582B29131400B62BB3 /* TransitionToCarSharingButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -755,7 +761,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		32453C052B15299A003E7AA8 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -767,7 +773,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
@@ -821,6 +827,7 @@
 				370ADEA02B199BDF0090300E /* VerifyNumberView.swift in Sources */,
 				370ADEAE2B199C7A0090300E /* DocumentCoordinator.swift in Sources */,
 				E2F06AD02B273CF600E088DE /* NetworkClient.swift in Sources */,
+				C4A3F8592B29131400B62BB3 /* TransitionToCarSharingButton.swift in Sources */,
 				37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */,
 				37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */,
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
@@ -875,6 +882,7 @@
 				C403792F2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift in Sources */,
 				C403792B2B262B47008F22F8 /* CarCell.swift in Sources */,
 				C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */,
+				C4A3F8562B28E72000B62BB3 /* PrepareBookingCarViewController.swift in Sources */,
 				370ADEA22B199BE80090300E /* VerifyTextField.swift in Sources */,
 				37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */,
 				C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */,

@@ -11,7 +11,7 @@ final class SearchCarViewController: UIViewController {
     
     // MARK: - UI
     private lazy var backButton = UIBarButtonItem(
-        image: UIImage(systemName: "chevron.backward"),
+        image: UIImage(systemName: "chevron.backward")?.withTintColor(.carsharing.greyDark),
         style: .plain,
         target: self,
         action: #selector(didTapBackButton)
@@ -20,7 +20,7 @@ final class SearchCarViewController: UIViewController {
     private lazy var resetFiltersButton: UIBarButtonItem = {
         let view = UIBarButtonItem()
         view.title = "Сбросить"
-        // TO DO: add title color
+        view.tintColor = .carsharing.blue
         view.style = .plain
         view.target = self
         view.action = #selector(didTapResetFiltersButton)
@@ -45,7 +45,7 @@ final class SearchCarViewController: UIViewController {
         let view = UIButton(type: .system)
         view.backgroundColor = .white
         view.setTitle("Легковые", for: .normal)
-        view.tintColor = .black
+        view.tintColor = .carsharing.black
         view.titleLabel?.textAlignment = .center
         view.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         view.layer.masksToBounds = true
@@ -73,6 +73,7 @@ final class SearchCarViewController: UIViewController {
         let view = UIButton()
         view.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         view.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
+        view.tintColor = .carsharing.blue
         return view
     }()
     
@@ -118,20 +119,28 @@ final class SearchCarViewController: UIViewController {
         }
     }
     
+    func didSelect(car: Car) {
+        let vc = PrepareBookingCarViewController()
+        vc.car = car
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .pageSheet
+        navVC.preferredContentSize = CGSize(width: 400, height: 600)
+        present(navVC, animated: true)
+    }
+    
     // MARK: - Layout Methods
     private func setupNavBar() {
         title = "Машины"
         navigationItem.rightBarButtonItem = resetFiltersButton
         navigationItem.leftBarButtonItem = backButton
-        navigationController?.navigationBar.tintColor = .black
-        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = .carsharing.black
+        navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func setupUI() {
         view.backgroundColor = .white
         [carsCollection, passengerCarFilterButton, truckCarFilterButton, searchButton].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
         
@@ -189,7 +198,7 @@ final class SearchCarViewController: UIViewController {
     @objc
     private func didTapBackButton() {
         viewModel?.cleanUp()
-        // TO DO - Need change
+//    TODO: - Need change
         navigationController?.popViewController(animated: true)
     }
 }
@@ -213,9 +222,9 @@ extension SearchCarViewController: UICollectionViewDataSource {
 extension SearchCarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: CarCell = collectionView.cellForItem(at: indexPath) as! CarCell
-        let carModel = cell.carModel
-        
-        // TO DO
+        guard let car = cell.carModel else { return }
+        // TODO: - do it via coordinator
+        didSelect(car: car)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath

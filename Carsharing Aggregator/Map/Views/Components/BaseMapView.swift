@@ -24,7 +24,7 @@ class BaseMapView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         #warning("press api here: ")
-        YMKMapKit.setApiKey("press api here: ")
+        YMKMapKit.setApiKey("8687675465687980")
         YMKMapKit.setLocale("ru_RU")
         YMKMapKit.sharedInstance().onStart()
         setup()
