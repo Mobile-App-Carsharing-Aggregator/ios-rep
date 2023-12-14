@@ -206,8 +206,7 @@ extension MapViewController {
     
     private func setupLayout() {
         mapView.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.top.bottom.equalToSuperview()
         }
         tabView.snp.makeConstraints { make in
             make.height.equalTo(60)
