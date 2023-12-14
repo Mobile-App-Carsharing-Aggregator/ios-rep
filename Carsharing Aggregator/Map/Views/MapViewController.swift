@@ -18,10 +18,12 @@ final class MapViewController: UIViewController {
     private lazy var map: YMKMap = mapView.mapWindow.map
     private var clusterListener: (YMKClusterListener & YMKClusterTapListener)?
     private var mapObjectTapListener: YMKMapObjectTapListener?
-    private var userLocationLayer: YMKUserLocationLayer?
     private var locationManager = CLLocationManager()
     private var carsByService: [CarsharingCompany: [Car]] = [:]
     private var viewModel: MapViewModel
+    private var currentZoom: Float = 9
+    private var cameraPosition: YMKCameraPosition?
+    private var userLocationLayer: YMKUserLocationLayer?
     
     private let fontSize: CGFloat = 16
     private let marginSize: CGFloat = 5
@@ -80,6 +82,8 @@ final class MapViewController: UIViewController {
         viewModel.onRefreshAction = { [weak self] indexPath in
             self?.carsharingCollectionView.reloadItems(at: [indexPath])
         }
+//        
+//        userLocationLayer = YMKMapKit.sharedInstance().createUserLocationLayer(with: mapView.mapWindow)
     }
     
     // MARK: - Private methods
@@ -91,7 +95,7 @@ final class MapViewController: UIViewController {
         map.move(
             with: YMKCameraPosition(
                 target: viewModel.userPoint(),
-                zoom: 9,
+                zoom: currentZoom,
                 azimuth: 0,
                 tilt: 0
             ),
@@ -144,15 +148,50 @@ final class MapViewController: UIViewController {
     }
     
     private func locButtonTapped() {
-       
-    }
+        let scale = UIScreen.main.scale
+        let mapKit = YMKMapKit.sharedInstance()
+        
+        if userLocationLayer != nil {
+            guard let currentPosition = self.locationManager.location else { return }
+                        let point = YMKPoint(latitude: currentPosition.coordinate.latitude, longitude: currentPosition.coordinate.longitude)
+                        mapView.mapWindow.map.move(
+                            with: YMKCameraPosition(target: point, zoom: 15, azimuth: 0, tilt: 0))
+        } else {
+            let userLocationLayer = mapKit.createUserLocationLayer(with: mapView.mapWindow)
+                       self.userLocationLayer = userLocationLayer
+                       userLocationLayer.setVisibleWithOn(true)
+                       userLocationLayer.isHeadingEnabled = true
+                       userLocationLayer.setAnchorWithAnchorNormal(
+                           CGPoint(x: 0.5 * mapView.frame.size.width * scale, y: 0.5 * mapView.frame.size.height * scale),
+                           anchorCourse: CGPoint(x: 0.5 * mapView.frame.size.width * scale, y: 0.83 * mapView.frame.size.height * scale))
+                       
+                       userLocationLayer.setObjectListenerWith(self)
+                       mapView.mapWindow.map.move(with:
+                                                   YMKCameraPosition(target: YMKPoint(latitude: 0, longitude: 0), zoom: 15, azimuth: 0, tilt: 0))
+                   }
+               }
+
+    
     
     private func plusButtonTapped() {
-        
+        changeZoom(by: 1.0)
     }
     
     private func minusButtonTapped() {
-        
+        changeZoom(by: -1.0)
+
+    }
+    
+    private func changeZoom(by amount: Float) {
+        map.move(
+            with: YMKCameraPosition(
+                target: map.cameraPosition.target,
+                zoom: map.cameraPosition.zoom + amount,
+                azimuth: map.cameraPosition.azimuth,
+                tilt: map.cameraPosition.tilt
+            ),
+            animation: YMKAnimation(type: .smooth, duration: 1.0)
+        )
     }
 }
 
@@ -169,14 +208,6 @@ extension MapViewController: TabViewDelegate {
     
     func carSearchButtonTapped() {
         viewModel.openSearchCar(on: self)
-    }
-    
-    func orderButtonTapped() {
-        
-    }
-    
-    func locationButtonTapped() {
-        
     }
 }
 
@@ -245,6 +276,38 @@ extension MapViewController {
             return section
         }
     }
+}
+
+// MARK: - Extension YMKUserLocationObjectListener
+
+extension MapViewController: YMKUserLocationObjectListener {
+    func onObjectAdded(with view: YMKUserLocationView) {
+        guard let image = UIImage(named:"userPoint") else { return }
+        view.arrow.setIconWith(image)
+        let pinPlacemark = view.pin.useCompositeIcon()
+        
+        pinPlacemark.setIconWithName("userPoint",
+            image: UIImage(named:"userPoint")!,
+            style:YMKIconStyle(
+                anchor: CGPoint(x: 0, y: 0) as NSValue,
+                rotationType:YMKRotationType.rotate.rawValue as NSNumber,
+                zIndex: 0,
+                flat: true,
+                visible: true,
+                scale: 1,
+                tappableArea: nil))
+        view.accuracyCircle.fillColor = .clear
+    }
+    
+    func onObjectRemoved(with view: YMKUserLocationView) {
+        
+    }
+    
+    func onObjectUpdated(with view: YMKUserLocationView, event: YMKObjectEvent) {
+        
+    }
+    
+    
 }
 
 // MARK: - Extension YMKMapObjectTapListener

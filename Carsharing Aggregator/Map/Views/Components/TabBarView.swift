@@ -122,7 +122,7 @@ final class TabBarView: UIView {
         }
         
         actionsStackView.snp.makeConstraints { make in
-            make.leading.top.bottom.trailing.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     
