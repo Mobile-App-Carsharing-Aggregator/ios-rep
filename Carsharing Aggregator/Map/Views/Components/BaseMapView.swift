@@ -5,6 +5,11 @@
 //  Created by Viktoria Lobanova on 27.11.2023.
 //
 
+fileprivate struct ApiKey {
+    #warning("press api here:")
+    static let apiKey = "instead of this text insert the key"
+}
+
 import UIKit
 import YandexMapsMobile
 
@@ -23,8 +28,7 @@ class BaseMapView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        #warning("press api here: ")
-        YMKMapKit.setApiKey("8687675465687980")
+        YMKMapKit.setApiKey("\(ApiKey.apiKey)")
         YMKMapKit.setLocale("ru_RU")
         YMKMapKit.sharedInstance().onStart()
         setup()

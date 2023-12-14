@@ -30,7 +30,7 @@ final class OnboardingCoordinator: ChildCoordinator {
 
     func start() {
         let viewModel = FirstOnboardingViewModel(coordinator: self)
-        var viewController = FirstOnboardingViewController(viewModel: viewModel)
+        let viewController = FirstOnboardingViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
 }
@@ -38,7 +38,7 @@ final class OnboardingCoordinator: ChildCoordinator {
 extension OnboardingCoordinator: OnboardingCoordinatorProtocol {
     func showSecondView() {
         let viewModel = SecondOnboardingViewModel(coordinator: self)
-        var viewController = SecondOnboardingViewController(viewModel: viewModel)
+        let viewController = SecondOnboardingViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
     

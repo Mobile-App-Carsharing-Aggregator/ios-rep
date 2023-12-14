@@ -52,8 +52,8 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
         searchCarCoordinator.start()
     }
     
-    func openCar(on vc: UIViewController) {
-        let selectedCarCoordinator = SelectedCarCoordinator(navigationController: navigationController)
+    func openCar(on vc: UIViewController, with car: Car) {
+        let selectedCarCoordinator = SelectedCarCoordinator(navigationController: navigationController, selectedCar: car)
         selectedCarCoordinator.parent = self
         addChild(selectedCarCoordinator)
         selectedCarCoordinator.viewControllerRef = vc
