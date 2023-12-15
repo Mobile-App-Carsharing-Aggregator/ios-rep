@@ -4,7 +4,6 @@
 //
 //  Created by Viktoria Lobanova on 27.11.2023.
 //
-
 import UIKit
 import SnapKit
 
@@ -122,7 +121,7 @@ final class TabBarView: UIView {
         }
         
         actionsStackView.snp.makeConstraints { make in
-            make.leading.top.bottom.trailing.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     

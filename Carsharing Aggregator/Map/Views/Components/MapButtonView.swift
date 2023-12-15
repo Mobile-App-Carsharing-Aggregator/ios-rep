@@ -10,7 +10,6 @@ import SnapKit
 
 final class MapButtonView: UIView {
     
-    private let buttonWidth = 48
     private let imageButton: UIImage
     private let radiusButton: Double
     private let action: () -> Void
@@ -73,12 +72,11 @@ final class MapButtonView: UIView {
         }
         
         containerView.snp.makeConstraints { make in
-            make.trailing.top.bottom.equalToSuperview()
-            make.width.height.equalTo(buttonWidth)
+            make.edges.equalToSuperview()
         }
         
         mapButton.snp.makeConstraints { make in
-            make.centerX.centerY.equalTo(containerView)
+            make.edges.equalToSuperview()
         }
     }
 }

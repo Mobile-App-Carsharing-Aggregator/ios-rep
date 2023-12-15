@@ -45,7 +45,7 @@ class MapViewModel {
     }
     
     func userPoint() -> YMKPoint {
-        GeometryProvider.userPoint
+        GeometryProvider.startPoint
     }
     
     func carsLocations(completion: @escaping ([Car]) -> Void) {
