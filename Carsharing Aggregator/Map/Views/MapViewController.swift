@@ -106,12 +106,12 @@ final class MapViewController: UIViewController {
     }
     
     private func moveMap() {
-        let offset: Float = 100
+        let offset: Float = 200
         let focus = YMKScreenRect(
             topLeft: YMKScreenPoint(x: offset, y: offset),
             bottomRight: YMKScreenPoint(
                 x: Float(mapView.mapWindow.width()) - offset,
-                y: Float(mapView.mapWindow.height()) - offset * 3
+                y: Float(mapView.mapWindow.height()) - offset * 2
             )
         )
         
