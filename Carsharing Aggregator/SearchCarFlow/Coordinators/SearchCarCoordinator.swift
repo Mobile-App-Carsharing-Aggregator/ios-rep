@@ -26,11 +26,19 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
         let vm = SearchCarViewModel()
         vm.coordinator = self
         vc.viewModel = vm
-        navigationController.customPushViewController(
-            viewController: vc,
-            direction: .fromBottom,
-            transitionType: .push
-        )
+        vc.modalPresentationStyle = .pageSheet
+        if let sheet = vc.sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                sheet.detents = [.custom(resolver: { context in
+                    return 700 
+                })]
+            } else {
+                
+            }
+            sheet.prefersGrabberVisible = true
+            sheet.largestUndimmedDetentIdentifier = .medium
+        }
+        viewControllerRef?.present(vc, animated: true)
     }
     
     func coordinatorDidFinish() {
