@@ -21,13 +21,11 @@ final class FiltersCoordinator: ChildCoordinator {
     
     // MARK: - Methods
     func start() {
-        //selectedFilters -> init
         let viewModel = FiltersViewModel()
         let filtersVC = FiltersViewController(viewModel: viewModel)
         viewModel.coordinator = self
         filtersVC.modalPresentationStyle = .pageSheet
         viewControllerRef?.present(filtersVC, animated: true)
-        
     }
     
     func coordinatorDidFinish() {

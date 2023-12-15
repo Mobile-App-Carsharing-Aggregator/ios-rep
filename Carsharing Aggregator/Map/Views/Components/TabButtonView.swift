@@ -22,7 +22,7 @@ final class TabButtonView: UIView {
         let title = UILabel()
         title.text = textLabel
         title.font = .systemFont(ofSize: 10, weight: .semibold)
-        title.textColor = .black
+        title.textColor = UIColor.carsharing.black
         title.textAlignment = .center
         return title
     }()
@@ -50,7 +50,7 @@ final class TabButtonView: UIView {
         imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.width.height.equalTo(24)
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(14)
         }
         titleButton.snp.makeConstraints { make in
             make.centerX.equalTo(imageView.snp.centerX)

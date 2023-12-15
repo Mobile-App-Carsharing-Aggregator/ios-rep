@@ -25,6 +25,7 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
         let viewModel = MapViewModel()
         let mapVC = MapViewController(viewModel: viewModel)
         viewModel.coordinator = self
+        mapVC.modalPresentationStyle = .overFullScreen
         navigationController.setNavigationBarHidden(false, animated: false)
         navigationController.pushViewController(mapVC, animated: true)
     }
@@ -50,5 +51,13 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
         addChild(searchCarCoordinator)
         searchCarCoordinator.viewControllerRef = vc
         searchCarCoordinator.start()
+    }
+    
+    func openCar(on vc: UIViewController, with car: Car) {
+        let selectedCarCoordinator = SelectedCarCoordinator(navigationController: navigationController, selectedCar: car)
+        selectedCarCoordinator.parent = self
+        addChild(selectedCarCoordinator)
+        selectedCarCoordinator.viewControllerRef = vc
+        selectedCarCoordinator.start()
     }
 }

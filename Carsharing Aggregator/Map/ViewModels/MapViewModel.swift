@@ -15,7 +15,7 @@ class MapViewModel {
     let sections: [ListSection] = [.carsharing]
     var indexPathToUpdate: IndexPath?
     
-    private var selectedFilters: [ListSection : [ListItem]] = [:] {
+    private var selectedFilters: [ListSection: [ListItem]] = [:] {
         didSet {
             if let indexPathToUpdate {
                 onRefreshAction?(indexPathToUpdate)
@@ -45,7 +45,7 @@ class MapViewModel {
     }
     
     func userPoint() -> YMKPoint {
-        GeometryProvider.userPoint
+        GeometryProvider.startPoint
     }
     
     func carsLocations(completion: @escaping ([Car]) -> Void) {
@@ -62,6 +62,10 @@ class MapViewModel {
     
     func openSearchCar(on vc: UIViewController) {
         coordinator?.openSearchCar(on: vc)
+    }
+    
+    func openCar(on vc: UIViewController, with car: Car) {
+        coordinator?.openCar(on: vc, with: car)
     }
     
     func coordinatorDidFinish() {

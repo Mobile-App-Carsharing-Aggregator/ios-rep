@@ -14,31 +14,32 @@ final class MapViewController: UIViewController {
     
     // MARK: - Properties
     
-    private lazy var map: YMKMap = mapView.mapWindow.map
     private var mapView: YMKMapView = BaseMapView().mapView
+    private lazy var map: YMKMap = mapView.mapWindow.map
     private var clusterListener: (YMKClusterListener & YMKClusterTapListener)?
     private var mapObjectTapListener: YMKMapObjectTapListener?
-    private var userLocation: YMKUserLocationObjectListener?
-    private var userLocationLayer: YMKUserLocationLayer?
-    private var cars: [Car] = []
+    private var locationManager = CLLocationManager()
     private var carsByService: [CarsharingCompany: [Car]] = [:]
+    private var viewModel: MapViewModel
+    private var currentZoom: Float = 9
+    private var cameraPosition: YMKCameraPosition?
+    private var userLocationLayer: YMKUserLocationLayer?
     
-    private let fontSize: CGFloat = 15
+    private let fontSize: CGFloat = 16
     private let marginSize: CGFloat = 5
-    private let strokeSize: CGFloat = 5
+    private let strokeSize: CGFloat = 7
     
     // MARK: - UI
     
-    private var viewModel: MapViewModel
     private var tabView = TabBarView()
-    private lazy var compasView = MapButtonView(with: UIImage.compas, radius: 24) { [weak self] in
+    private lazy var compasView = MapButtonView(with: UIImage.locationButton ?? UIImage(), radius: 24) { [weak self] in
         self?.locButtonTapped()
     }
-    private lazy var plusButton = MapButtonView(with: UIImage.plus, radius: 12) { [weak self] in
+    private lazy var plusButton = MapButtonView(with: UIImage.plusButton ?? UIImage(), radius: 12) { [weak self] in
         self?.plusButtonTapped()
     }
     
-    private lazy var minusButton = MapButtonView(with: UIImage.minus, radius: 12) { [weak self] in
+    private lazy var minusButton = MapButtonView(with: UIImage.minusButton ?? UIImage(), radius: 12) { [weak self] in
         self?.minusButtonTapped()
     }
     
@@ -66,22 +67,23 @@ final class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.requestWhenInUseAuthorization()
+        
         addSubviews()
         setupLayout()
         
         tabView.delegate = self
         mapObjectTapListener = self
         clusterListener = self
-        userLocation = self
         carsharingCollectionView.delegate = self
         carsharingCollectionView.dataSource = self
         
         initMap()
-        addUser(map)
-        //loadCars()
         viewModel.onRefreshAction = { [weak self] indexPath in
             self?.carsharingCollectionView.reloadItems(at: [indexPath])
         }
+//        
+//        userLocationLayer = YMKMapKit.sharedInstance().createUserLocationLayer(with: mapView.mapWindow)
     }
     
     // MARK: - Private methods
@@ -93,7 +95,7 @@ final class MapViewController: UIViewController {
         map.move(
             with: YMKCameraPosition(
                 target: viewModel.userPoint(),
-                zoom: 9,
+                zoom: currentZoom,
                 azimuth: 0,
                 tilt: 0
             ),
@@ -104,31 +106,30 @@ final class MapViewController: UIViewController {
     }
     
     private func moveMap() {
-        let offset: Float = 100
+        let offset: Float = 200
         let focus = YMKScreenRect(
             topLeft: YMKScreenPoint(x: offset, y: offset),
             bottomRight: YMKScreenPoint(
                 x: Float(mapView.mapWindow.width()) - offset,
-                y: Float(mapView.mapWindow.height()) - offset * 3
+                y: Float(mapView.mapWindow.height()) - offset * 2
             )
         )
         
         self.viewModel.carsLocations { [weak self] cars in
             guard let self = self else { return }
-            self.cars = cars
             let companies = CarsharingCompany.allCases
             for company in companies {
                 let carsInCompany = cars.filter { $0.company == company }
-                carsByService[company] = carsInCompany
+                self.carsByService[company] = carsInCompany
                 let coordinates = carsInCompany.map { YMKPoint(latitude: Double($0.coordinates.latitude), longitude: Double($0.coordinates.longitude)) }
                 let geometry = YMKGeometry(polyline: YMKPolyline(points: coordinates))
-                let position = map.cameraPosition(with: geometry, azimuth: 0, tilt: 0, focus: focus)
-                map.move(
+                let position = self.map.cameraPosition(with: geometry, azimuth: 0, tilt: 0, focus: focus)
+                self.map.move(
                     with: position,
                     animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0),
                     cameraCallback: nil)
             }
-            addClustering(with: carsByService)
+            self.addClustering(with: self.carsByService)
         }
     }
     
@@ -137,8 +138,19 @@ final class MapViewController: UIViewController {
         let collection = map.mapObjects.addClusterizedPlacemarkCollection(with: clusterListener)
         for company in CarsharingCompany.allCases {
             guard let carsInCompany = carsByService[company] else { continue }
-            let coordinates = carsInCompany.map { YMKPoint(latitude: Double($0.coordinates.latitude), longitude: Double($0.coordinates.longitude)) }
-            collection.addPlacemarks(with: coordinates, image: company.iconImage, style: YMKIconStyle())
+                
+            for car in carsInCompany {
+                let coordinates = YMKPoint(
+                    latitude: Double(car.coordinates.latitude),
+                    longitude: Double(car.coordinates.longitude)
+                )
+                    
+                let placemark = collection.addPlacemark()
+                placemark.geometry = coordinates
+                placemark.setIconWith(company.iconImage, style: YMKIconStyle())
+                placemark.userData = car.id
+            }
+                
             collection.clusterPlacemarks(withClusterRadius: GeometryProvider.clusterRadius, minZoom: GeometryProvider.clusterMinZoom)
         }
         if let mapObjectTapListener {
@@ -146,60 +158,49 @@ final class MapViewController: UIViewController {
         }
     }
     
-    private func addUser(_ map: YMKMap) {
-        guard let image = UIImage.user else { return }
-        let placemark = map.mapObjects.addPlacemark()
-        placemark.geometry = GeometryProvider.userPoint
-        placemark.setIconWith(image)
-    }
-    
-    private func locTest(){
-        let locationManager = CLLocationManager()
-        locationManager.requestWhenInUseAuthorization()
-        
+    private func locButtonTapped() {
         let scale = UIScreen.main.scale
         let mapKit = YMKMapKit.sharedInstance()
         
-        mapView.mapWindow.map.isRotateGesturesEnabled = false
-        
         if userLocationLayer != nil {
-            guard let currentPosition = locationManager.location else { return }
-            let point = YMKPoint(latitude: currentPosition.coordinate.latitude, longitude: currentPosition.coordinate.longitude)
-            mapView.mapWindow.map.move(
-                with: YMKCameraPosition(target: point, zoom: 15, azimuth: 0, tilt: 0))
+            guard let currentPosition = self.locationManager.location else { return }
+                        let point = YMKPoint(latitude: currentPosition.coordinate.latitude, longitude: currentPosition.coordinate.longitude)
+                        mapView.mapWindow.map.move(
+                            with: YMKCameraPosition(target: point, zoom: 15, azimuth: 0, tilt: 0))
         } else {
             let userLocationLayer = mapKit.createUserLocationLayer(with: mapView.mapWindow)
-            self.userLocationLayer = userLocationLayer
-            userLocationLayer.setVisibleWithOn(true)
-            userLocationLayer.isHeadingEnabled = true
-            userLocationLayer.setAnchorWithAnchorNormal(
-                CGPoint(x: 0.5 * mapView.frame.size.width * scale, y: 0.5 * mapView.frame.size.height * scale),
-                anchorCourse: CGPoint(x: 0.5 * mapView.frame.size.width * scale, y: 0.83 * mapView.frame.size.height * scale))
-            
-            userLocationLayer.setObjectListenerWith(self)
-            mapView.mapWindow.map.move(with:
-                                        YMKCameraPosition(target: YMKPoint(latitude: 0, longitude: 0), zoom: 15, azimuth: 0, tilt: 0))
-        }
-    }
-    
-    private func locButtonTapped() {
-        map.move(
-            with: YMKCameraPosition(
-                target: viewModel.userPoint(),
-                zoom: 15,
-                azimuth: 0,
-                tilt: 0
-            ),
-            animation: YMKAnimation(type: YMKAnimationType.linear, duration: 0),
-            cameraCallback: nil)
-    }
-    
+                       self.userLocationLayer = userLocationLayer
+                       userLocationLayer.setVisibleWithOn(true)
+                       userLocationLayer.isHeadingEnabled = true
+                       userLocationLayer.setAnchorWithAnchorNormal(
+                           CGPoint(x: 0.5 * mapView.frame.size.width * scale, y: 0.5 * mapView.frame.size.height * scale),
+                           anchorCourse: CGPoint(x: 0.5 * mapView.frame.size.width * scale, y: 0.83 * mapView.frame.size.height * scale))
+                       
+                       userLocationLayer.setObjectListenerWith(self)
+                       mapView.mapWindow.map.move(with:
+                                                   YMKCameraPosition(target: YMKPoint(latitude: 0, longitude: 0), zoom: 15, azimuth: 0, tilt: 0))
+                   }
+               }
+
     private func plusButtonTapped() {
-        
+        changeZoom(by: 1.0)
     }
     
     private func minusButtonTapped() {
-        
+        changeZoom(by: -1.0)
+
+    }
+    
+    private func changeZoom(by amount: Float) {
+        map.move(
+            with: YMKCameraPosition(
+                target: map.cameraPosition.target,
+                zoom: map.cameraPosition.zoom + amount,
+                azimuth: map.cameraPosition.azimuth,
+                tilt: map.cameraPosition.tilt
+            ),
+            animation: YMKAnimation(type: .smooth, duration: 1.0)
+        )
     }
 }
 
@@ -217,14 +218,6 @@ extension MapViewController: TabViewDelegate {
     func carSearchButtonTapped() {
         viewModel.openSearchCar(on: self)
     }
-    
-    func orderButtonTapped() {
-        
-    }
-    
-    func locationButtonTapped() {
-        
-    }
 }
 
 // MARK: - Extension Layout
@@ -241,8 +234,7 @@ extension MapViewController {
     
     private func setupLayout() {
         mapView.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.top.bottom.equalToSuperview()
         }
         tabView.snp.makeConstraints { make in
             make.height.equalTo(60)
@@ -294,12 +286,65 @@ extension MapViewController {
     }
 }
 
+// MARK: - Extension YMKUserLocationObjectListener
+
+extension MapViewController: YMKUserLocationObjectListener {
+    func onObjectAdded(with view: YMKUserLocationView) {
+        guard let image = UIImage(named:"userPoint") else { return }
+        view.arrow.setIconWith(image)
+        let pinPlacemark = view.pin.useCompositeIcon()
+        
+        pinPlacemark.setIconWithName("userPoint",
+            image: UIImage(named:"userPoint")!,
+            style:YMKIconStyle(
+                anchor: CGPoint(x: 0, y: 0) as NSValue,
+                rotationType:YMKRotationType.rotate.rawValue as NSNumber,
+                zIndex: 0,
+                flat: true,
+                visible: true,
+                scale: 1,
+                tappableArea: nil))
+        view.accuracyCircle.fillColor = .clear
+    }
+    
+    func onObjectRemoved(with view: YMKUserLocationView) {
+        
+    }
+    
+    func onObjectUpdated(with view: YMKUserLocationView, event: YMKObjectEvent) {
+        
+    }
+}
+
 // MARK: - Extension YMKMapObjectTapListener
 
 extension MapViewController: YMKMapObjectTapListener {
     func onMapObjectTap(with mapObject: YMKMapObject, point: YMKPoint) -> Bool {
-        print("Tapped point \((point.latitude, point.longitude))")
+        guard let placemark = mapObject as? YMKPlacemarkMapObject else { return false }
+        focusOnPlacemark(placemark)
+        var selectedCar: Car
+        
+        for company in CarsharingCompany.allCases {
+            guard let carsInCompany = carsByService[company] else { continue }
+            for car in carsInCompany where car.id == placemark.userData as? UUID {
+                selectedCar = car
+                viewModel.openCar(on: self, with: selectedCar)
+            }
+        }
         return true
+    }
+        
+    func focusOnPlacemark(_ placemark: YMKPlacemarkMapObject) {
+        let place = YMKPoint(
+            latitude: (placemark.geometry.latitude - 0.0025),
+            longitude: placemark.geometry.longitude
+        )
+            
+        mapView.mapWindow.map.move(
+            with: YMKCameraPosition(target: place, zoom: 16, azimuth: 0, tilt: 0),
+            animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0.4),
+            cameraCallback: nil
+        )
     }
 }
 
@@ -307,7 +352,12 @@ extension MapViewController: YMKMapObjectTapListener {
 
 extension MapViewController: YMKClusterListener, YMKClusterTapListener {
     func onClusterAdded(with cluster: YMKCluster) {
-        cluster.appearance.setIconWith(clusterImage(cluster.size))
+        cluster.appearance.setIconWith(
+            clusterImage(cluster.size).withShadow(
+                blur: 3,
+                offset: CGSize(width: 1, height: 3),
+                color: UIColor.carsharing.blue.withAlphaComponent(0.2),
+                size: CGSize(width: 48, height: 48)))
         cluster.addClusterTapListener(with: self)
     }
     
@@ -337,7 +387,7 @@ extension MapViewController: YMKClusterListener, YMKClusterTapListener {
                 width: 2 * externalRadius,
                 height: 2 * externalRadius)))
         
-        ctx.setFillColor(UIColor.white.cgColor)
+        ctx.setFillColor(UIColor.carsharing.white.cgColor)
         ctx.fillEllipse(in: CGRect(
             origin: CGPoint(x: externalRadius - internalRadius, y: externalRadius - internalRadius),
             size: CGSize(
@@ -350,39 +400,9 @@ extension MapViewController: YMKClusterListener, YMKClusterTapListener {
                 size: size),
             withAttributes: [
                 NSAttributedString.Key.font: font,
-                NSAttributedString.Key.foregroundColor: UIColor.black])
-        let image = UIGraphicsGetImageFromCurrentImageContext()!
-        image.withTintColor(UIColor.black)
-        return image
-    }
-}
-
-// MARK: - Extension YMKUserLocationObjectListener
-
-extension MapViewController: YMKUserLocationObjectListener {
-    func onObjectAdded(with view: YMKUserLocationView) {
-        let pinPlacemark = view.pin.useCompositeIcon()
-        guard let pinGradient = UIImage(named: "pinGradient") else { return }
-        pinPlacemark.setIconWithName(
-            "pin",
-            image: pinGradient,
-            style: YMKIconStyle(
-                anchor: CGPoint(x: 0.5, y: 0.5) as NSValue,
-                rotationType: YMKRotationType.rotate.rawValue as NSNumber,
-                zIndex: 1,
-                flat: true,
-                visible: true,
-                scale: 1,
-                tappableArea: nil))
-        view.accuracyCircle.fillColor = UIColor.clear
-    }
-    
-    func onObjectRemoved(with view: YMKUserLocationView) {
-        
-    }
-    
-    func onObjectUpdated(with view: YMKUserLocationView, event: YMKObjectEvent) {
-        
+                NSAttributedString.Key.foregroundColor: UIColor.carsharing.black])
+        guard let imageCluster = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
+        return imageCluster
     }
 }
 
@@ -410,7 +430,7 @@ extension MapViewController: UICollectionViewDataSource {
         }
         cell.configure(
             title: company.name,
-            textColor: isSelected ? UIColor.white : company.color,
+            textColor: isSelected ? UIColor.carsharing.white : company.color,
             borderColor: company.color
         )
         cell.backgroundColor = isSelected ? company.color : UIColor.carsharing.white90
