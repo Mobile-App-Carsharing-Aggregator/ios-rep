@@ -32,7 +32,10 @@ extension UIImage {
     static let locationMark = UIImage(named: "locationmark")
     static let swithLight = UIImage(named: "light")
     static let starFeedback = UIImage(named: "starbig")
-    static let user = UIImage(named: "userPoint")
+    static let pointLightBlue = UIImage(named: "ellipsLightBlue")
+    static let pointPurple = UIImage(named: "ellipsPurple")
+    static let pointLightGreen = UIImage(named: "ellipsLightGreen")
+    static let pointMediumGreen = UIImage(named: "ellipsMediumGreen")
 
     // MARK: - TabBar icons
     static let tabProfile = UIImage(named: "profile")

@@ -7,7 +7,7 @@
 
 fileprivate struct ApiKey {
     #warning("press api here:")
-    static let apiKey = "instead of this text insert the key"
+    static let apiKey = "c5c953cf-8196-4d75-8b27-43526ebf9d25"
 }
 
 import UIKit

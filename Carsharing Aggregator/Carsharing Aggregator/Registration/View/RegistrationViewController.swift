@@ -22,7 +22,10 @@ final class RegistrationViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         var paragraphtyle = NSMutableParagraphStyle()
         paragraphtyle.lineHeightMultiple = 1.15
-        label.attributedText = NSMutableAttributedString(string: "Имя", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphtyle])
+        label.attributedText = NSMutableAttributedString(
+            string: "Имя",
+            attributes: [NSAttributedString.Key.kern: -0.41,
+                         NSAttributedString.Key.paragraphStyle: paragraphtyle])
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

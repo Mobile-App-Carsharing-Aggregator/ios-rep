@@ -32,7 +32,7 @@ final class TabBarView: UIView {
     
     private lazy var profileButton: UIButton = {
         let button = UIButton()
-        let customView = TabButtonView(with: UIImage.profile, text: "Профиль")
+        let customView = TabButtonView(with: UIImage.tabProfile ?? UIImage(), text: "Профиль")
         button.addSubview(customView)
         customView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -44,7 +44,7 @@ final class TabBarView: UIView {
     
     private lazy var filtersButton: UIButton = {
         let button = UIButton()
-        let customView = TabButtonView(with: UIImage.filters, text: "Фильтры")
+        let customView = TabButtonView(with: UIImage.tabFilters ?? UIImage(), text: "Фильтры")
         button.addSubview(customView)
         customView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -56,7 +56,7 @@ final class TabBarView: UIView {
     
     private lazy var carSearchButton: UIButton = {
         let button = UIButton()
-        let customView = TabButtonView(with: UIImage.carSearch, text: "Поиск машины")
+        let customView = TabButtonView(with: UIImage.tabCarSearch ?? UIImage(), text: "Поиск машины")
         button.addSubview(customView)
         customView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

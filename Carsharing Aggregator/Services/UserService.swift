@@ -38,6 +38,5 @@ final class DefaultUserService: UserServiceProtocol {
                 completion(.failure(error as? NetworkError ?? .urlSessionError))
             }
         }
-        
     }
 }
