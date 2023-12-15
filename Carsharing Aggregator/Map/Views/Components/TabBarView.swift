@@ -4,7 +4,6 @@
 //
 //  Created by Viktoria Lobanova on 27.11.2023.
 //
-
 import UIKit
 import SnapKit
 
