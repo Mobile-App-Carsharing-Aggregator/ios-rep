@@ -1,7 +1,5 @@
 import UIKit
 
-
-
 final class DocumentsViewController: UIViewController {
     var viewModel: DocumentsViewModel
     
@@ -20,7 +18,10 @@ final class DocumentsViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         var paragraphtyle = NSMutableParagraphStyle()
         paragraphtyle.lineHeightMultiple = 1.15
-        label.attributedText = NSMutableAttributedString(string: "Паспорт", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphtyle])
+        label.attributedText = NSMutableAttributedString(
+            string: "Паспорт",
+            attributes: [NSAttributedString.Key.kern: -0.41,
+            NSAttributedString.Key.paragraphStyle: paragraphtyle])
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -31,7 +32,10 @@ final class DocumentsViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         var paragraphtyle = NSMutableParagraphStyle()
         paragraphtyle.lineHeightMultiple = 1.15
-        label.attributedText = NSMutableAttributedString(string: "Водительское удоствериние", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphtyle])
+        label.attributedText = NSMutableAttributedString(
+            string: "Водительское удоствериние",
+            attributes: [NSAttributedString.Key.kern: -0.41,
+            NSAttributedString.Key.paragraphStyle: paragraphtyle])
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -87,7 +91,6 @@ final class DocumentsViewController: UIViewController {
         return label
     }()
 
-    
     private lazy var licenseButtonArrow: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage.circleArrows, for: .normal)
@@ -125,7 +128,7 @@ final class DocumentsViewController: UIViewController {
                          action: #selector(didTappedSendDocumentsButton),
                          for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        //button.isHidden = true
+        // button.isHidden = true
         return button
     }()
     
@@ -136,23 +139,23 @@ final class DocumentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
+    
     @objc private func didTappedSendDocumentsButton() {
-            print("Button tapped")
-        }
+        print("Button tapped")
+    }
     
     @objc private func passportButtonTapped() {
-            print("Button tapped")
-        }
+        print("Button tapped")
+    }
     
     @objc private func licenseButtonTapped() {
-            print("Button tapped")
-        }
+        print("Button tapped")
+    }
     @objc private func photoWithDocumentsButtonTapped() {
-            print("Button tapped")
-        }
-    
+        print("Button tapped")
+    }
 }
 
 extension DocumentsViewController {

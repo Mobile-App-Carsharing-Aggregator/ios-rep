@@ -41,7 +41,7 @@ extension RootCoordinator: OnboardingCoordinatorDelegate {
     }
     
     func startTabBarFlow() {
-        let tabBarCoordinator = TabBarCoordinator( navigationController: navigationController)
+        let tabBarCoordinator = MapCoordinator( navigationController: navigationController)
         tabBarCoordinator.parent = self
         addChild(tabBarCoordinator)
         navigationController.viewControllers = []

@@ -11,7 +11,6 @@ final class RegistrationCoordinator: ChildCoordinator, Coordinator {
         self.navigationController = navigationController
     }
     
-    
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
     }

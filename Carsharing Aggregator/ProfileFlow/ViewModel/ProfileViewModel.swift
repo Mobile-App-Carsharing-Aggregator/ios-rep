@@ -24,5 +24,4 @@ struct ProfileViewModel: ProfileViewModelProtocol {
                                  paymentCards: [],
                                  orders: []
     )
-
 }

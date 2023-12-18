@@ -1,6 +1,5 @@
 import UIKit
 
-
 class DocumentCoordinator: Coordinator, ChildCoordinator {
     weak var parent: AuthCoordinator?
     var viewControllerRef: UIViewController?
@@ -21,7 +20,4 @@ class DocumentCoordinator: Coordinator, ChildCoordinator {
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
     }
-    
-    
-    
 }

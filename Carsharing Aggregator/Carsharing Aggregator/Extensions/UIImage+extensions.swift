@@ -40,4 +40,3 @@ extension UIImage {
     static let tabLocation = UIImage(named: "compas")
 
 }
-

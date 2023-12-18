@@ -12,7 +12,7 @@ final class ProfileCoordinator: ChildCoordinator {
     // MARK: - Properties
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
-    var parent: TabBarCoordinator?
+    var parent: MapCoordinator?
     
     // MARK: - LifeCycle
     init( navigationController: UINavigationController) {
@@ -38,7 +38,5 @@ final class ProfileCoordinator: ChildCoordinator {
     }
     
     func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
-        
     }
-    
 }

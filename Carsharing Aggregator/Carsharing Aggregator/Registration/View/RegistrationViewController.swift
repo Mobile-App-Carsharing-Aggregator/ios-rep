@@ -22,14 +22,17 @@ final class RegistrationViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         var paragraphtyle = NSMutableParagraphStyle()
         paragraphtyle.lineHeightMultiple = 1.15
-        label.attributedText = NSMutableAttributedString(string: "Имя", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphtyle])
+        label.attributedText = NSMutableAttributedString(
+            string: "Имя",
+            attributes: [NSAttributedString.Key.kern: -0.41,
+                         NSAttributedString.Key.paragraphStyle: paragraphtyle])
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
-        //textField.placeholder = "Введите Имя"
+        // textField.placeholder = "Введите Имя"
         textField.textColor = .black
         let paddingView = UIView(frame: CGRect(x: 0,
                                                y: 0,
@@ -57,14 +60,17 @@ final class RegistrationViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         var paragraphtyle = NSMutableParagraphStyle()
         paragraphtyle.lineHeightMultiple = 1.15
-        label.attributedText = NSMutableAttributedString(string: "Фамилия", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphtyle])
+        label.attributedText = NSMutableAttributedString(
+            string: "Фамилия",
+            attributes: [NSAttributedString.Key.kern: -0.41,
+            NSAttributedString.Key.paragraphStyle: paragraphtyle])
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var surnameTextField: UITextField = {
         let textField = UITextField()
-        //textField.placeholder = "Введите Фамилию"
+        // textField.placeholder = "Введите Фамилию"
         textField.textColor = .black
         let paddingView = UIView(frame: CGRect(x: 0,
                                                y: 0,
@@ -92,14 +98,17 @@ final class RegistrationViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         var paragraphtyle = NSMutableParagraphStyle()
         paragraphtyle.lineHeightMultiple = 1.15
-        label.attributedText = NSMutableAttributedString(string: "E-mail", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphtyle])
+        label.attributedText = NSMutableAttributedString(
+            string: "E-mail",
+            attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphtyle]
+        )
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var emailTextField: UITextField = {
         let textField = UITextField()
-        //textField.placeholder = "Введите E-mail"
+        // textField.placeholder = "Введите E-mail"
         textField.textColor = .black
         let paddingView = UIView(frame: CGRect(x: 0,
                                                y: 0,
@@ -118,9 +127,8 @@ final class RegistrationViewController: UIViewController {
     }()
     
     @objc private func emailTextFieldDidChanged(_ textField: UITextField) {
-        // TODO: make logic in viemodel?
+        // TODO: todo make logic in viemodel?
     }
-    
     
     private lazy var buttonTermsOfBooking: UIButton = {
         let button = UIButton()
@@ -137,7 +145,6 @@ final class RegistrationViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     
     @objc private func didTappedTermsOfBooking() { print("DID TAPPED") }
     
@@ -168,7 +175,7 @@ final class RegistrationViewController: UIViewController {
                          action: #selector(didTappedContinueButton),
                          for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        //button.isHidden = true
+        // button.isHidden = true
         return button
     }()
     
@@ -180,9 +187,7 @@ final class RegistrationViewController: UIViewController {
         super.viewDidLoad()
         setupView()
     }
-    
 }
-
 
 extension RegistrationViewController {
     

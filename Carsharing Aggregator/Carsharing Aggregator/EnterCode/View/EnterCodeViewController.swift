@@ -15,6 +15,4 @@ extension EnterCodeViewController: DisposoableViewController {
     func cleanUp() {
         <#code#>
     }
-    
-    
 }
