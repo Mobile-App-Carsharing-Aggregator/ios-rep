@@ -37,7 +37,7 @@ final class LoginViewController: UIViewController {
                          action: #selector(didTappedSendCodeButton),
                          for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        //button.isHidden = true
+        // button.isHidden = true
         return button
     }()
     
@@ -48,7 +48,7 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {

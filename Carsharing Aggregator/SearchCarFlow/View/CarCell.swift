@@ -36,10 +36,6 @@ final class CarCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
     // MARK: - Methods
     func configure(with model: Car) {
         carModel = model

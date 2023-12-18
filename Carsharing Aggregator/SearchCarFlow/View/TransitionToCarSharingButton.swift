@@ -9,7 +9,7 @@ import SnapKit
 
 final class TransitionToCarSharingButton: UIView {
     
-    //MARK: - Layout properties
+    // MARK: - Layout properties
     private var bookingLabel: UILabel = {
         let label = UILabel()
         label.text = "Забронировать"

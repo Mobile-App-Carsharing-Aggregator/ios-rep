@@ -111,7 +111,7 @@ final class SearchCarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.startObserve()
+        viewModel?.viewWillAppear()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -125,7 +125,7 @@ final class SearchCarViewController: UIViewController {
     // MARK: - Methods
     private func bind() {
         guard let viewModel = viewModel else { return }
-        viewModel.$listOfCars.bind { [weak self] _ in
+        viewModel.$cars.bind { [weak self] _ in
             self?.carsCollection.reloadData()
         }
     }
@@ -220,20 +220,20 @@ final class SearchCarViewController: UIViewController {
     @objc
     private func didTapBackButton() {
         viewModel?.cleanUp()
-//    TODO: - Need change
-        navigationController?.popViewController(animated: true)
+    //    TODO: - Need change
+        dismiss(animated: true)
     }
 }
 
     // MARK: - UICollectionViewDataSource
 extension SearchCarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel?.listOfCars.count ?? 0
+        viewModel?.cars.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CarCell = collectionView.dequeueReusableCell(withReuseIdentifier: CarCell.reuseIdentifier, for: indexPath) as! CarCell
-        guard let model = viewModel?.listOfCars[indexPath.row] else { return UICollectionViewCell() }
+        guard let model = viewModel?.cars[indexPath.row] else { return UICollectionViewCell() }
         cell.configure(with: model)
         
         return cell
@@ -245,7 +245,7 @@ extension SearchCarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: CarCell = collectionView.cellForItem(at: indexPath) as! CarCell
         guard let car = cell.carModel else { return }
-        // TODO: - do it via coordinator
+        // TODO: - do it via coordinator (todo)
         didSelect(car: car)
     }
     

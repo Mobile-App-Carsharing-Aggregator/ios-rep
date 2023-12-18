@@ -84,7 +84,6 @@ final class PrepareBookingCarViewController: UIViewController {
     
     // MARK: - Methods
     
-    
     // MARK: - Layout Methods
     private func configureStack() {
         let yandex = TransitionToCarSharingButton()
@@ -118,7 +117,7 @@ final class PrepareBookingCarViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
-        [carImage, vStack, carTypeLabel, carRatingLabel,titleVC, backButton, closeButton].forEach {
+        [carImage, vStack, carTypeLabel, carRatingLabel, titleVC, backButton, closeButton].forEach {
             view.addSubview($0)
         }
         configureCarInfo()
@@ -182,4 +181,3 @@ final class PrepareBookingCarViewController: UIViewController {
         
     }
 }
-

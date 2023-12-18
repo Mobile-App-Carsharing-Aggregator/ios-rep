@@ -8,22 +8,22 @@
 import UIKit
 
 protocol SearchCarViewModelProtocol {
-    var listOfCars: [Car] { get }
-    func startObserve()
+    var cars: [Car] { get }
+    func viewWillAppear()
 }
 
 final class SearchCarViewModel: SearchCarViewModelProtocol {
     
     // MARK: - Observables
     @Observable
-    private (set) var listOfCars: [Car] = []
+    private (set) var cars: [Car] = []
     
     // MARK: - Properties
     weak var coordinator: SearchCarCoordinator?
     private let carsService = CarsService.shared
     
     // MARK: - Methods
-    func startObserve() {
+    func viewWillAppear() {
         getCars()
     }
     
@@ -32,6 +32,6 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
     }
     
     private func getCars() {
-        listOfCars = carsService.getMockCars()
+        cars = carsService.getMockCars()
     }
 }

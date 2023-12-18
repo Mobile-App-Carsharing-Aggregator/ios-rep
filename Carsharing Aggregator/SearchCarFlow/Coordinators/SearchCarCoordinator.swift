@@ -30,10 +30,10 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
         if let sheet = vc.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { context in
-                    return 700 
+                    return  745
                 })]
             } else {
-                
+                /* need customize for iOS <16 */
             }
             sheet.prefersGrabberVisible = true
             sheet.largestUndimmedDetentIdentifier = .medium

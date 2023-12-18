@@ -128,7 +128,7 @@ final class DocumentsViewController: UIViewController {
                          action: #selector(didTappedSendDocumentsButton),
                          for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        //button.isHidden = true
+        // button.isHidden = true
         return button
     }()
     
@@ -139,22 +139,23 @@ final class DocumentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
+    
     @objc private func didTappedSendDocumentsButton() {
-            print("Button tapped")
-        }
+        print("Button tapped")
+    }
     
     @objc private func passportButtonTapped() {
-            print("Button tapped")
-        }
+        print("Button tapped")
+    }
     
     @objc private func licenseButtonTapped() {
-            print("Button tapped")
-        }
+        print("Button tapped")
+    }
     @objc private func photoWithDocumentsButtonTapped() {
-            print("Button tapped")
-        }
+        print("Button tapped")
+    }
 }
 
 extension DocumentsViewController {

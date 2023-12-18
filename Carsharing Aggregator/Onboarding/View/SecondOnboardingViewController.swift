@@ -64,7 +64,7 @@ final class SecondOnboardingViewController: UIViewController {
     init(viewModel: SecondOnboardingViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        //registerTest(user: userForReg)
+        // registerTest(user: userForReg)
     }
     
     required init?(coder: NSCoder) {
@@ -125,7 +125,7 @@ final class SecondOnboardingViewController: UIViewController {
     }
 }
 
-//extension SecondOnboardingViewController {
+// extension SecondOnboardingViewController {
 //    private func registerTest(user: UserRegistration) {
 //        DefaultUserService.shared.createUser(with: userForReg) { [weak self] result in
 //            DispatchQueue.main.async {
@@ -138,4 +138,4 @@ final class SecondOnboardingViewController: UIViewController {
 //            }
 //        }
 //    }
-//}
+// }
