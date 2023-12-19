@@ -105,7 +105,6 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var addressLabel: UILabel = {
         let addressLabel = UILabel()
-        addressLabel.text = "Железнодорожный проезд, с5"
         addressLabel.font = .systemFont(ofSize: 14)
         addressLabel.textColor = .carsharing.black
         return addressLabel
@@ -113,7 +112,6 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var cityLabel: UILabel = {
         let cityLabel = UILabel()
-        cityLabel.text = "Москва, Россия"
         cityLabel.font = .systemFont(ofSize: 12)
         cityLabel.textColor = .carsharing.greyDark
         return cityLabel
@@ -145,7 +143,7 @@ final class SelectedCarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bind()
         setupUI()
         setupConstraints()
     }
@@ -161,6 +159,19 @@ final class SelectedCarViewController: UIViewController {
     }
     
     // MARK: - Methods
+    private func bind() {
+        viewModel.$city.bind() { [weak self] city in
+            self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
+            self?.cityLabel.text = city
+        }
+        
+        viewModel.$street.bind() { [weak self] street in
+            self?.addressStackView.addArrangedSubview(self?.addressLabel ?? UILabel())
+            self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
+            self?.addressLabel.text = street
+        }
+    }
+    
     private func setupUI() {
         view.backgroundColor = .white
         
@@ -176,10 +187,6 @@ final class SelectedCarViewController: UIViewController {
         
         [carsheringNameLabel, priceLabel].forEach {
             carsheringStackView.addArrangedSubview($0)
-        }
-        
-        [addressLabel, cityLabel].forEach {
-            addressStackView.addArrangedSubview($0)
         }
     }
     
