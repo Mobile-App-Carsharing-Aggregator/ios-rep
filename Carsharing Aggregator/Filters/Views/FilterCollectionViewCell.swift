@@ -43,8 +43,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
     
     private func setupLayout() {
         label.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.leading.trailing.equalToSuperview().inset(16)
             make.centerY.equalToSuperview()
         }
     }

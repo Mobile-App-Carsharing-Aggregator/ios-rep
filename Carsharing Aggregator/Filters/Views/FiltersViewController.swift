@@ -36,7 +36,7 @@ class FiltersViewController: UIViewController {
     
     private lazy var buttonClose: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor.black
+        button.tintColor = UIColor.carsharing.black
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.addTarget(self,
                          action: #selector(closeFilters),
@@ -56,6 +56,17 @@ class FiltersViewController: UIViewController {
                                 withReuseIdentifier: FiltersSupplementaryView.identifier)
         collectionView.collectionViewLayout = createLayout()
         return collectionView
+    }()
+    
+    private lazy var numberOfCarsButton: UIButton = {
+        let bookButton = UIButton()
+        bookButton.backgroundColor = UIColor.carsharing.black
+        bookButton.setTitle("НАЙТИ", for: .normal)
+        bookButton.setTitleColor(UIColor.carsharing.white, for: .normal)
+        bookButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        bookButton.layer.cornerRadius = 26
+        bookButton.addTarget(self, action: #selector(numberOfCarsButtonTapped), for: .touchUpInside)
+        return bookButton
     }()
     
     // MARK: - LifeCycle
@@ -86,6 +97,10 @@ class FiltersViewController: UIViewController {
     @objc private func closeFilters() {
         viewModel.coordinator?.coordinatorDidFinish()
     }
+    
+    @objc private func numberOfCarsButtonTapped() {
+        
+    }
 }
 
 // MARK: - Create Layout
@@ -95,6 +110,7 @@ extension FiltersViewController {
         view.addSubview(buttonClose)
         view.addSubview(buttonBackward)
         view.addSubview(collectionView)
+        view.addSubview(numberOfCarsButton)
     }
     
     private func setupLayout() {
@@ -121,6 +137,12 @@ extension FiltersViewController {
             make.centerY.equalTo(titleVC.snp.centerY)
             make.height.width.equalTo(40)
             make.leading.equalToSuperview().offset(10)
+        }
+        
+        numberOfCarsButton.snp.makeConstraints { make in
+            make.height.equalTo(52)
+            make.bottom.equalToSuperview().inset(68)
+            make.leading.trailing.equalToSuperview().inset(21)
         }
     }
     
