@@ -8,11 +8,16 @@
 import UIKit
 import SnapKit
 
+protocol FiltersViewControllerDelegate: AnyObject {
+    func createSelectedFilters(filters: [String])
+}
+
 class FiltersViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: FiltersViewModel
     private let sections = MockData.shared.pageData
+    var filters: [String] = []
     
     // MARK: - UI
     

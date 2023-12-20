@@ -36,7 +36,7 @@ final class MapViewController: UIViewController {
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: collectionViewLayout)
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = .clear
         collectionView.register(SelectedFilterCollectionViewCell.self, forCellWithReuseIdentifier: SelectedFilterCollectionViewCell.identifare)
         collectionView.collectionViewLayout = createLayoutFilters()
         return collectionView
@@ -170,6 +170,7 @@ final class MapViewController: UIViewController {
     }
     
     private func locButtonTapped() {
+        locationManager.requestWhenInUseAuthorization()
         let scale = UIScreen.main.scale
         let mapKit = YMKMapKit.sharedInstance()
         
@@ -281,7 +282,7 @@ extension MapViewController {
         
         filtersCollectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(view.safeAreaInsets.top).inset(100)
+            make.top.greaterThanOrEqualTo(view.safeAreaInsets.top).offset(60)
             make.height.equalTo(24)
         }
     }

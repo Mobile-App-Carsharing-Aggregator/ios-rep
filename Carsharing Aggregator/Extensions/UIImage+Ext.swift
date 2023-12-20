@@ -36,6 +36,7 @@ extension UIImage {
     static let pointPurple = UIImage(named: "ellipsPurple")
     static let pointLightGreen = UIImage(named: "ellipsLightGreen")
     static let pointMediumGreen = UIImage(named: "ellipsMediumGreen")
+    static let closeXSmall = UIImage(named: "close_xsmall")
 
     // MARK: - TabBar icons
     static let tabProfile = UIImage(named: "profile")

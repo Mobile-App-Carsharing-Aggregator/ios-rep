@@ -21,6 +21,8 @@ class SelectedFilterCollectionViewCell: UICollectionViewCell {
     private let xmarkImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "xmark")
+        image.backgroundColor = .clear
+        image.isHidden = false
         image.tintColor = UIColor.carsharing.black
         return image
     }()
@@ -49,17 +51,15 @@ class SelectedFilterCollectionViewCell: UICollectionViewCell {
     
     private func setupLayout() {
         label.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(16)
-            make.trailing.equalToSuperview().inset(26)
+            make.leading.equalToSuperview().inset(12)
+            make.trailing.equalTo(xmarkImage.snp.leading).offset(-4)
             make.centerY.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(4)
         }
         
         xmarkImage.snp.makeConstraints { make in
-            make.height.width.equalTo(10)
+           // make.height.width.equalTo(12)
             make.centerY.equalTo(label.snp.centerY)
             make.trailing.equalToSuperview().inset(12)
-            make.top.bottom.equalToSuperview().inset(7)
         }
     }
 }
