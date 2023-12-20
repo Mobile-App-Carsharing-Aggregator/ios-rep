@@ -97,16 +97,19 @@ final class SelectedCarViewController: UIViewController {
     private lazy var addressStackView: UIStackView = {
         let addressStackView = UIStackView()
         addressStackView.axis = .vertical
-        addressStackView.alignment = .fill
+        addressStackView.alignment = .top
         addressStackView.spacing = 0
-        addressStackView.distribution = .fillEqually
+        addressStackView.distribution = .fill
         return addressStackView
     }()
     
     private lazy var addressLabel: UILabel = {
         let addressLabel = UILabel()
         addressLabel.font = .systemFont(ofSize: 14)
+        addressLabel.adjustsFontSizeToFitWidth = true
+        addressLabel.minimumScaleFactor = 0.5
         addressLabel.textColor = .carsharing.black
+        addressLabel.numberOfLines = 0
         return addressLabel
     }()
     
@@ -222,6 +225,7 @@ final class SelectedCarViewController: UIViewController {
         
         addressStackView.snp.makeConstraints { make in
             make.leading.equalTo(carsheringStackView.snp.leading)
+            make.trailing.equalToSuperview().inset(21)
             make.centerY.equalTo(locationImage.snp.centerY)
             make.height.equalTo(40)
         }

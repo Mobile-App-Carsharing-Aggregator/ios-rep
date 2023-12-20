@@ -20,48 +20,37 @@ final class SelectedCarViewModel {
     // MARK: - Properties
     weak var coordinator: SelectedCarCoordinator?
     private (set) var selectedCar: Car
-    private let searchManager = YMKSearch.sharedInstance().createSearchManager(with: .combined)
-    private var searchSession: YMKSearchSession?
+    private let addressService: AddressService
     
     // MARK: - LifeCycle
-    init(selectedCar: Car) {
+    init(selectedCar: Car, addressService: AddressService = AddressService()) {
         self.selectedCar = selectedCar
-        searchAddress()
+        self.addressService = addressService
+        addressService.searchAddress(coordinates: selectedCar.coordinates, handler: handleSearchSessionResponse)
     }
     
     // MARK: - Methods
-    func searchAddress() {
-        let coordinates = YMKPoint(
-            latitude: Double(selectedCar.coordinates.latitude),
-            longitude: Double(selectedCar.coordinates.longitude)
-        )
-        
-        let searchOptions: YMKSearchOptions = {
-            let options = YMKSearchOptions()
-            options.searchTypes = .geo
-            return options
-        }()
-        
-        searchSession = searchManager.submit(with: coordinates, zoom: 14, searchOptions: searchOptions, responseHandler: handleSearchSessionResponse)
-    }
-    
     private func handleSearchSessionResponse(response: YMKSearchResponse?, error: Error?) {
         if let error {
-            street = "Адрес не найден"
+            city = "Адрес не найден"
             return
         }
 
         guard let response else { return }
         let geoObjects = response.collection.children.compactMap { $0.obj }
-        let object = geoObjects.first?.metadataContainer.getItemOf(YMKSearchToponymObjectMetadata.self) as? YMKSearchToponymObjectMetadata
+        let object = geoObjects.first?.metadataContainer.getItemOf(
+            YMKSearchToponymObjectMetadata.self) as? YMKSearchToponymObjectMetadata
         guard let address = object?.address.formattedAddress else { return }
         
-        let arr = address.components(separatedBy: ", ")
-        city = "\(arr[1]), \(arr[0])"
-        if arr.count == 4 {
-            street = "\(arr[2]), \(arr[3])"
-        } else if arr.count == 3 {
-            street = (arr[2])
+        let addressArray = address.components(separatedBy: ", ")
+        city = "\(addressArray[1]), \(addressArray[0])"
+        
+        if addressArray.count > 2 {
+            street = addressArray[2]
+            let streetArray = addressArray.dropFirst(3)
+            for item in streetArray {
+                street.append(", \(item)")
+            }
         }
     }
 }
