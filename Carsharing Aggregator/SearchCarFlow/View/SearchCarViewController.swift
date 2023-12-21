@@ -80,14 +80,6 @@ final class SearchCarViewController: UIViewController {
         return view
     }()
     
-    private lazy var searchButton: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        view.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
-        view.tintColor = .carsharing.blue
-        return view
-    }()
-    
     // MARK: - Properties
     var viewModel: SearchCarViewModel?
     private let collectionParams = UICollectionView.CollectionParams(
@@ -144,7 +136,7 @@ final class SearchCarViewController: UIViewController {
     // MARK: - Layout Methods
     private func setupUI() {
         view.backgroundColor = .white
-        [backButton, titleVC, resetFiltersButton, carsCollection, passengerCarFilterButton, truckCarFilterButton, searchButton].forEach {
+        [backButton, titleVC, resetFiltersButton, carsCollection, passengerCarFilterButton, truckCarFilterButton].forEach {
             view.addSubview($0)
         }
         setupConstraints()
@@ -180,12 +172,6 @@ final class SearchCarViewController: UIViewController {
             make.leading.equalTo(passengerCarFilterButton.snp.trailing).offset(12)
             make.centerY.equalTo(passengerCarFilterButton.snp.centerY)
             make.size.equalTo(CGSize(width: 104, height: 40))
-        }
-        
-        searchButton.snp.makeConstraints { make in
-            make.trailing.equalTo(view).offset(-21)
-            make.width.height.equalTo(24)
-            make.centerY.equalTo(passengerCarFilterButton.snp.centerY)
         }
         
         carsCollection.snp.makeConstraints { make in
