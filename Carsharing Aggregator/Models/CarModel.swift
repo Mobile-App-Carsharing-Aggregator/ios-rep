@@ -7,7 +7,13 @@
 
 import UIKit
 
+struct GetCarsResponse: Codable {
+    let count: Int
+    let results: [Cars]
+}
+
 struct Car: Codable {
+    let image: String
     let id: UUID
     var isAvailable: Bool
     var company: CarsharingCompany
@@ -86,4 +92,16 @@ enum CarType: Codable {
     case coupe
     case universal
     case other
+}
+
+
+struct Cars: Codable {
+    let id: Int
+    let coordinates: Coordinates
+    let isAvailable: Bool
+    let company, brand, model, typeCar: String
+    let stateNumber, typeEngine: String
+    let childSeat: Bool
+    let powerReserve: Int
+    let rating: String
 }
