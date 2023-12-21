@@ -320,6 +320,7 @@ extension MapViewController: YMKUserLocationObjectListener {
 
 extension MapViewController: YMKMapObjectTapListener {
     func onMapObjectTap(with mapObject: YMKMapObject, point: YMKPoint) -> Bool {
+        dismiss(animated: true)
         guard let placemark = mapObject as? YMKPlacemarkMapObject else { return false }
         focusOnPlacemark(placemark)
         var selectedCar: Car

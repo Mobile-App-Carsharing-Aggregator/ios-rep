@@ -97,23 +97,24 @@ final class SelectedCarViewController: UIViewController {
     private lazy var addressStackView: UIStackView = {
         let addressStackView = UIStackView()
         addressStackView.axis = .vertical
-        addressStackView.alignment = .fill
+        addressStackView.alignment = .top
         addressStackView.spacing = 0
-        addressStackView.distribution = .fillEqually
+        addressStackView.distribution = .fill
         return addressStackView
     }()
     
     private lazy var addressLabel: UILabel = {
         let addressLabel = UILabel()
-        addressLabel.text = "Железнодорожный проезд, с5"
         addressLabel.font = .systemFont(ofSize: 14)
+        addressLabel.adjustsFontSizeToFitWidth = true
+        addressLabel.minimumScaleFactor = 0.5
         addressLabel.textColor = .carsharing.black
+        addressLabel.numberOfLines = 0
         return addressLabel
     }()
     
     private lazy var cityLabel: UILabel = {
         let cityLabel = UILabel()
-        cityLabel.text = "Москва, Россия"
         cityLabel.font = .systemFont(ofSize: 12)
         cityLabel.textColor = .carsharing.greyDark
         return cityLabel
@@ -145,7 +146,7 @@ final class SelectedCarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bind()
         setupUI()
         setupConstraints()
     }
@@ -161,6 +162,23 @@ final class SelectedCarViewController: UIViewController {
     }
     
     // MARK: - Methods
+    private func bind() {
+        viewModel.$city.bind() { [weak self] city in
+            self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
+            self?.cityLabel.text = city
+        }
+        
+        viewModel.$street.bind() { [weak self] street in
+            self?.addressStackView.addArrangedSubview(self?.addressLabel ?? UILabel())
+            self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
+            self?.addressLabel.text = street
+        }
+        
+        viewModel.$time.bind() { [weak self] _ in
+            self?.collectionView.reloadData()
+        }
+    }
+    
     private func setupUI() {
         view.backgroundColor = .white
         
@@ -176,10 +194,6 @@ final class SelectedCarViewController: UIViewController {
         
         [carsheringNameLabel, priceLabel].forEach {
             carsheringStackView.addArrangedSubview($0)
-        }
-        
-        [addressLabel, cityLabel].forEach {
-            addressStackView.addArrangedSubview($0)
         }
     }
     
@@ -215,6 +229,7 @@ final class SelectedCarViewController: UIViewController {
         
         addressStackView.snp.makeConstraints { make in
             make.leading.equalTo(carsheringStackView.snp.leading)
+            make.trailing.equalToSuperview().inset(21)
             make.centerY.equalTo(locationImage.snp.centerY)
             make.height.equalTo(40)
         }
@@ -243,7 +258,7 @@ final class SelectedCarViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension SelectedCarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -291,6 +306,12 @@ extension SelectedCarViewController: UICollectionViewDataSource {
                 selectedCarRatingCell.configure(title: "1")
             }
             return selectedCarRatingCell
+        } else if indexPath.row == 3 {
+            guard let selectedCarCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: SelectedCarCell.reuseIdentifier,
+                for: indexPath) as? SelectedCarCell else { return UICollectionViewCell() }
+            selectedCarCell.configure(title: "~\(viewModel.time)")
+            return selectedCarCell
         }
         return UICollectionViewCell()
     }
