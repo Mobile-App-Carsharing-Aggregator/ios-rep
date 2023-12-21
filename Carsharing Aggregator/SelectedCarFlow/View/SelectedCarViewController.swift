@@ -13,7 +13,7 @@ final class SelectedCarViewController: UIViewController {
     // MARK: - Layout properties
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = viewModel.selectedCar.name + " " + viewModel.selectedCar.model
+        nameLabel.text = viewModel.selectedCar.brand + " " + viewModel.selectedCar.model
         nameLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         return nameLabel
     }()

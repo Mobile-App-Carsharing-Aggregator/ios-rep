@@ -101,7 +101,7 @@ final class PrepareBookingCarViewController: UIViewController {
     private func configureCarInfo() {
         carImage.image = UIImage(systemName: "car.side.lock.open.fill")
         guard let car = car else { return }
-        titleVC.text = car.name + " " + car.model
+        titleVC.text = car.brand + " " + car.model
         carRatingLabel.text = String(car.rating) + " " + "stars"
         carTypeLabel.text = {
             switch car.type {

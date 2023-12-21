@@ -17,7 +17,7 @@ struct Car: Codable {
     let id: UUID
     var isAvailable: Bool
     var company: CarsharingCompany
-    let name: String
+    let brand: String
     let model: String
     let engineValue: Double
     let engineType: EngineType

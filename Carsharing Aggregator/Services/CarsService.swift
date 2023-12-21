@@ -71,7 +71,7 @@ extension CarsService {
                 image: "", id: UUID(),
                 isAvailable: index % 2 == 0,
                 company: carsharingCompany.randomElement()!,
-                name: "Машина \(index + 1)",
+                brand: "Машина \(index + 1)",
                 model: "Модель \(index + 1)",
                 engineValue: [1.5, 2.0, 2.5, 3.5].randomElement()!,
                 engineType: engineTypes.randomElement()!,
