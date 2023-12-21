@@ -173,6 +173,10 @@ final class SelectedCarViewController: UIViewController {
             self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
             self?.addressLabel.text = street
         }
+        
+        viewModel.$time.bind() { [weak self] _ in
+            self?.collectionView.reloadData()
+        }
     }
     
     private func setupUI() {
@@ -254,7 +258,7 @@ final class SelectedCarViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension SelectedCarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -302,6 +306,12 @@ extension SelectedCarViewController: UICollectionViewDataSource {
                 selectedCarRatingCell.configure(title: "1")
             }
             return selectedCarRatingCell
+        } else if indexPath.row == 3 {
+            guard let selectedCarCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: SelectedCarCell.reuseIdentifier,
+                for: indexPath) as? SelectedCarCell else { return UICollectionViewCell() }
+            selectedCarCell.configure(title: "~\(viewModel.time)")
+            return selectedCarCell
         }
         return UICollectionViewCell()
     }

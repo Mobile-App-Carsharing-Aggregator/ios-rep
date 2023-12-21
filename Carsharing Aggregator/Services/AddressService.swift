@@ -15,8 +15,8 @@ final class AddressService {
     private var searchSession: YMKSearchSession?
     
     // MARK: - Methods
-    func searchAddress(coordinates: Coordinates, handler: @escaping YMKSearchSessionResponseHandler) {
-        let coordinates = YMKPoint(
+    func searchAddress(coordinates: Coordinates, completion: @escaping (String, String) -> Void) {
+        let searchCoordinates = YMKPoint(
             latitude: Double(coordinates.latitude),
             longitude: Double(coordinates.longitude)
         )
@@ -27,6 +27,38 @@ final class AddressService {
             return options
         }()
         
-        searchSession = searchManager.submit(with: coordinates, zoom: 14, searchOptions: searchOptions, responseHandler: handler)
+        let searchHandler = { (response: YMKSearchResponse?, error: Error?) -> Void in
+            if let error {
+                print(error)
+                completion("Адрес не найден", "")
+            }
+
+            guard let response else { return }
+            let geoObjects = response.collection.children.compactMap { $0.obj }
+            let object = geoObjects.first?.metadataContainer.getItemOf(
+                YMKSearchToponymObjectMetadata.self) as? YMKSearchToponymObjectMetadata
+            guard let address = object?.address.formattedAddress else { return }
+            
+            let addressArray = address.components(separatedBy: ", ")
+            let city = "\(addressArray[1]), \(addressArray[0])"
+            var street = ""
+            
+            if addressArray.count > 2 {
+                street = addressArray[2]
+                let streetArray = addressArray.dropFirst(3)
+                for item in streetArray {
+                    street.append(", \(item)")
+                }
+            }
+            
+            completion(city, street)
+        }
+        
+        searchSession = searchManager.submit(
+            with: searchCoordinates,
+            zoom: 14,
+            searchOptions: searchOptions,
+            responseHandler: searchHandler
+        )
     }
 }

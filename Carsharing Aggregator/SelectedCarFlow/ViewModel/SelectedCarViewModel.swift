@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import YandexMapsMobile
 
 final class SelectedCarViewModel {
     
@@ -17,40 +16,39 @@ final class SelectedCarViewModel {
     @Observable
     private(set) var street = ""
     
+    @Observable
+    private(set) var time = ""
+    
     // MARK: - Properties
     weak var coordinator: SelectedCarCoordinator?
     private (set) var selectedCar: Car
     private let addressService: AddressService
+    private let routeService: RouteService
     
     // MARK: - LifeCycle
-    init(selectedCar: Car, addressService: AddressService = AddressService()) {
+    init(
+        selectedCar: Car,
+        addressService: AddressService = AddressService(),
+        routeService: RouteService = RouteService()
+    ) {
         self.selectedCar = selectedCar
         self.addressService = addressService
-        addressService.searchAddress(coordinates: selectedCar.coordinates, handler: handleSearchSessionResponse)
+        self.routeService = routeService
+        calculateTime()
+        searchAddress()
     }
     
     // MARK: - Methods
-    private func handleSearchSessionResponse(response: YMKSearchResponse?, error: Error?) {
-        if let error {
-            city = "Адрес не найден"
-            return
+    private func calculateTime() {
+        routeService.calculateTime(carCoordinates: selectedCar.coordinates) { [weak self] routeTime in
+            self?.time = routeTime
         }
-
-        guard let response else { return }
-        let geoObjects = response.collection.children.compactMap { $0.obj }
-        let object = geoObjects.first?.metadataContainer.getItemOf(
-            YMKSearchToponymObjectMetadata.self) as? YMKSearchToponymObjectMetadata
-        guard let address = object?.address.formattedAddress else { return }
-        
-        let addressArray = address.components(separatedBy: ", ")
-        city = "\(addressArray[1]), \(addressArray[0])"
-        
-        if addressArray.count > 2 {
-            street = addressArray[2]
-            let streetArray = addressArray.dropFirst(3)
-            for item in streetArray {
-                street.append(", \(item)")
-            }
+    }
+    
+    private func searchAddress() {
+        addressService.searchAddress(coordinates: selectedCar.coordinates) { [weak self] cityAddress, streetAddress in
+            self?.city = cityAddress
+            self?.street = streetAddress
         }
     }
 }

@@ -59,6 +59,7 @@
 		6166DC5E2B299B9D003E57FB /* SelectedCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166DC5D2B299B9D003E57FB /* SelectedCarViewController.swift */; };
 		6166DC632B29FA96003E57FB /* SelectedCarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166DC622B29FA96003E57FB /* SelectedCarViewModel.swift */; };
 		6166DC652B29FAF4003E57FB /* SelectedCarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166DC642B29FAF4003E57FB /* SelectedCarCoordinator.swift */; };
+		616BDE452B33807A000DEE66 /* RouteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616BDE442B33807A000DEE66 /* RouteService.swift */; };
 		61BF07B32B3329C8004E375E /* AddressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF07B22B3329C8004E375E /* AddressService.swift */; };
 		C40379252B262567008F22F8 /* SearchCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379242B262567008F22F8 /* SearchCarViewController.swift */; };
 		C40379272B262579008F22F8 /* SearchCarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379262B262579008F22F8 /* SearchCarViewModel.swift */; };
@@ -141,6 +142,7 @@
 		6166DC5D2B299B9D003E57FB /* SelectedCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCarViewController.swift; sourceTree = "<group>"; };
 		6166DC622B29FA96003E57FB /* SelectedCarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCarViewModel.swift; sourceTree = "<group>"; };
 		6166DC642B29FAF4003E57FB /* SelectedCarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCarCoordinator.swift; sourceTree = "<group>"; };
+		616BDE442B33807A000DEE66 /* RouteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteService.swift; sourceTree = "<group>"; };
 		61BF07B22B3329C8004E375E /* AddressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressService.swift; sourceTree = "<group>"; };
 		8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carsharing_Aggregator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40379242B262567008F22F8 /* SearchCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCarViewController.swift; sourceTree = "<group>"; };
@@ -715,6 +717,7 @@
 				E2F06ACA2B25DCB700E088DE /* CarsService.swift */,
 				E2F06AD32B274B4700E088DE /* UserService.swift */,
 				61BF07B22B3329C8004E375E /* AddressService.swift */,
+				616BDE442B33807A000DEE66 /* RouteService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -901,6 +904,7 @@
 				37A1A24F2B149B1B002C26DA /* AppCoordinators.swift in Sources */,
 				C462D8FA2B1633CB0060287C /* ProfileViewModel.swift in Sources */,
 				E2F06ACE2B273BD500E088DE /* NetwrokRequest.swift in Sources */,
+				616BDE452B33807A000DEE66 /* RouteService.swift in Sources */,
 				32453C092B152BAF003E7AA8 /* UIView+Ext.swift in Sources */,
 				E22100002B18E26A002A5268 /* SecondOnboardingViewModel.swift in Sources */,
 				6166DC5E2B299B9D003E57FB /* SelectedCarViewController.swift in Sources */,
