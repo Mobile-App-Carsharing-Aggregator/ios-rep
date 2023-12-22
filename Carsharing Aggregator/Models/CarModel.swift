@@ -34,62 +34,49 @@ struct Coordinates: Codable {
 }
 
 enum CarsharingCompany: String, Codable, CaseIterable {
-    case yandexDrive = "YandexDrive"
-    case cityDrive = "СитиДрайв"
-    case delimobil = "Делимобиль"
-    case rentmee = "Rentmee"
+    case YandexDrive = "YandexDrive"
+    case CityDrive = "СитиДрайв"
+    case Delimobil = "Делимобиль"
+    case Rentmee = "Rentmee"
     
     var color: UIColor {
         switch self {
-        case .yandexDrive:
+        case .YandexDrive:
             return UIColor.carsharing.lightBlue
-        case .cityDrive:
+        case .CityDrive:
             return UIColor.carsharing.purple
-        case .delimobil:
+        case .Delimobil:
             return UIColor.carsharing.lightGreen
-        case .rentmee:
+        case .Rentmee:
             return UIColor.carsharing.mediumGreen
         }
     }
     
     var iconImage: UIImage {
         switch self {
-        case .yandexDrive:
+        case .YandexDrive:
             UIImage.pointLightBlue ?? UIImage()
-        case .cityDrive:
+        case .CityDrive:
             UIImage.pointPurple ?? UIImage()
-        case .delimobil:
+        case .Delimobil:
             UIImage.pointLightGreen ?? UIImage()
-        case .rentmee:
+        case .Rentmee:
             UIImage.pointMediumGreen ?? UIImage()
         }
     }
     
     var name: String {
         switch self {
-        case .yandexDrive:
+        case .YandexDrive:
             "Яндекс.Драйв"
-        case .cityDrive:
+        case .CityDrive:
             "СитиДрайв"
-        case .delimobil:
+        case .Delimobil:
             "Делимобиль"
-        case .rentmee:
+        case .Rentmee:
             "Rentmee"
         }
     }
-    
-//    init?(rawValue: String) {
-//        switch rawValue {
-//        case "CityDrive":
-//            self = .cityDrive
-//        case "YandexDrive":
-//            self = .yandexDrive
-//        case "BelkaCar":
-//            self = .delimobil
-//        default:
-//            self = .rentmee
-//        }
-//    }
 }
 
 enum EngineType: Codable {
@@ -106,7 +93,6 @@ enum CarType: Codable {
     case universal
     case other
 }
-
 
 struct Cars: Codable {
     let id: Int

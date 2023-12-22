@@ -117,17 +117,20 @@ final class MapViewController: UIViewController {
         
         self.viewModel.carsLocations { [weak self] cars in
             guard let self = self else { return }
-            let companies = ["YandexDrive"]
+            let companies = CarsharingCompany.allCases
             for company in companies {
-                let carsInCompany = cars.filter { $0.company == company }
-                self.carsByService[CarsharingCompany(rawValue: company)!] = carsInCompany
-                let coordinates = carsInCompany.map { YMKPoint(latitude: Double($0.coordinates.latitude), longitude: Double($0.coordinates.longitude)) }
-                let geometry = YMKGeometry(polyline: YMKPolyline(points: coordinates))
-                let position = self.map.cameraPosition(with: geometry, azimuth: 0, tilt: 0, focus: focus)
-                self.map.move(
-                    with: position,
-                    animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0),
-                    cameraCallback: nil)
+                let carsInCompany = cars.filter { $0.company == company.rawValue }
+                if carsInCompany.isEmpty == false {
+                    self.carsByService[company] = carsInCompany
+                    let coordinates = carsInCompany.map { YMKPoint(latitude: Double($0.coordinates.latitude), longitude: Double($0.coordinates.longitude)) }
+                    
+                    let geometry = YMKGeometry(polyline: YMKPolyline(points: coordinates))
+                    let position = self.map.cameraPosition(with: geometry, azimuth: 0, tilt: 0, focus: focus)
+                    self.map.move(
+                        with: position,
+                        animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0),
+                        cameraCallback: nil)
+                }
             }
             self.addClustering(with: self.carsByService)
         }
