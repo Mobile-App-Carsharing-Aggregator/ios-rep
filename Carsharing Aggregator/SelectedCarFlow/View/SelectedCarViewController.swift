@@ -50,16 +50,16 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var logoImage: UIImageView = {
         let logoImage = UIImageView()
-        switch viewModel.selectedCar.company {
-        case .yandexDrive:
-            logoImage.image = .drive
-        case .cityDrive:
-            logoImage.image = .city
-        case .delimobil:
-            logoImage.image = .deli
-        default:
-            logoImage.image = .drive
-        }
+//        switch viewModel.selectedCar.company {
+//        case .yandexDrive:
+//            logoImage.image = .drive
+//        case .cityDrive:
+//            logoImage.image = .city
+//        case .delimobil:
+//            logoImage.image = .deli
+//        default:
+//            logoImage.image = .drive
+//        }
         return logoImage
     }()
     
@@ -80,7 +80,7 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var carsheringNameLabel: UILabel = {
         let carsheringNameLabel = UILabel()
-        carsheringNameLabel.text = viewModel.selectedCar.company.rawValue
+        carsheringNameLabel.text = viewModel.selectedCar.company
         carsheringNameLabel.font = .systemFont(ofSize: 16)
         carsheringNameLabel.textColor = .carsharing.black
         return carsheringNameLabel

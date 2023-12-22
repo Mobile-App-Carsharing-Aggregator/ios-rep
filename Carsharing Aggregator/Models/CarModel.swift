@@ -16,7 +16,7 @@ struct Car: Codable {
     let image: String
     let id: Int
     var isAvailable: Bool
-    var company: CarsharingCompany
+    var company: String
     let brand: String
     let model: String
     let engineValue: Double
@@ -34,7 +34,7 @@ struct Coordinates: Codable {
 }
 
 enum CarsharingCompany: String, Codable, CaseIterable {
-    case yandexDrive = "Яндекс.Драйв"
+    case yandexDrive = "YandexDrive"
     case cityDrive = "СитиДрайв"
     case delimobil = "Делимобиль"
     case rentmee = "Rentmee"
