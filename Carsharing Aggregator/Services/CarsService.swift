@@ -65,7 +65,7 @@ extension CarsService {
         let carsharingCompany: [CarsharingCompany] = CarsharingCompany.allCases
 //        let carsharingCompany: ["YandexDrive"]
         let engineTypes: [String] = ["diesel", "electro", "benzine"]
-        let carTypes: [CarType] = [.sedan, .hatchback, .minivan, .coupe, .universal, .other]
+        let carTypes: [String] = ["sedan", "hatchback", "minivan", "coupe", "universal", "other"]
         
         for (index, location) in carsLocations.enumerated() {
             let car = Car(
@@ -76,7 +76,7 @@ extension CarsService {
                 model: "Модель \(index + 1)",
                 engineValue: [1.5, 2.0, 2.5, 3.5].randomElement()!,
                 typeEngine: engineTypes.randomElement()!,
-                type: carTypes.randomElement()!,
+                typeCar: carTypes.randomElement()!,
                 rating: Double(arc4random_uniform(5) + 1),
                 coordinates: Coordinates(latitude: Float(location.latitude), longitude: Float(location.longitude)),
                 coefficient: Double(arc4random_uniform(100)) / 100.0,

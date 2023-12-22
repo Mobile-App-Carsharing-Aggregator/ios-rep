@@ -266,18 +266,9 @@ extension SelectedCarViewController: UICollectionViewDataSource {
             guard let selectedCarCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarCell else { return UICollectionViewCell() }
-            switch viewModel.selectedCar.type {
-            case .sedan:
-                selectedCarCell.configure(title: "Седан")
-            case .hatchback:
-                selectedCarCell.configure(title: "Хэтчбек")
-            case .minivan:
-                selectedCarCell.configure(title: "Минивен")
-            case .coupe:
-                selectedCarCell.configure(title: "Купе")
-            case .universal:
-                selectedCarCell.configure(title: "Универсал")
-            case .other:
+            switch viewModel.selectedCar.typeCar {
+                //TODO: - Сделать свитч по типам авто!
+            default:
                 selectedCarCell.configure(title: "Другое")
             }
             return selectedCarCell
