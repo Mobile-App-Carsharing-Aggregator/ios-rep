@@ -327,7 +327,7 @@ extension MapViewController: YMKMapObjectTapListener {
         
         for company in CarsharingCompany.allCases {
             guard let carsInCompany = carsByService[company] else { continue }
-            for car in carsInCompany where car.id == placemark.userData as? UUID {
+            for car in carsInCompany where car.id == placemark.userData as? Int {
                 selectedCar = car
                 viewModel.openCar(on: self, with: selectedCar)
             }

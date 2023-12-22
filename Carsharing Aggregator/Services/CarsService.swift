@@ -68,7 +68,7 @@ extension CarsService {
         
         for (index, location) in carsLocations.enumerated() {
             let car = Car(
-                image: "", id: UUID(),
+                image: "", id: Array(0...30).randomElement()!,
                 isAvailable: index % 2 == 0,
                 company: carsharingCompany.randomElement()!,
                 brand: "Машина \(index + 1)",

@@ -14,7 +14,7 @@ struct GetCarsResponse: Codable {
 
 struct Car: Codable {
     let image: String
-    let id: UUID
+    let id: Int
     var isAvailable: Bool
     var company: CarsharingCompany
     let brand: String
@@ -77,6 +77,19 @@ enum CarsharingCompany: String, Codable, CaseIterable {
             "Rentmee"
         }
     }
+    
+//    init?(rawValue: String) {
+//        switch rawValue {
+//        case "CityDrive":
+//            self = .cityDrive
+//        case "YandexDrive":
+//            self = .yandexDrive
+//        case "BelkaCar":
+//            self = .delimobil
+//        default:
+//            self = .rentmee
+//        }
+//    }
 }
 
 enum EngineType: Codable {
