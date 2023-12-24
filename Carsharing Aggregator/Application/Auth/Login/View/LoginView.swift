@@ -108,7 +108,7 @@ class LoginView: UIView {
     
     private func observeEmailField() {
         Publishers.CombineLatest3(viewModel.$email, viewModel.isEmailEmptyPublisher, viewModel.isEmailValidPublisher)
-            .sink { [weak self] (email, isEmpty, isValid) in
+            .sink { [weak self] (_, isEmpty, isValid) in
                 guard let self = self else { return }
                 if isEmpty {
                     self.updateConstraintsForEmptyTextField(self.passwordTextField, relativeTo: self.emailTextField, isEmpty: isEmpty)
