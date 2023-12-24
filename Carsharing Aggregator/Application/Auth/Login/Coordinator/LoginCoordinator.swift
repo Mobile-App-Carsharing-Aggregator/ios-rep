@@ -20,15 +20,15 @@ class LoginCoordinator: ChildCoordinator, Coordinator {
     }
     
     func start() {
-        let loginViewModel = LoginViewModel()
-        let loginVC = LoginViewController(loginViewModel: loginViewModel)
+        let loginViewModel = EnterViewModel()
+        let loginVC = EnterViewController()
         loginViewModel.coordinator = self
         navigationController.setAttributesForCarsharingTitle(loginVC: loginVC)
         navigationController.pushViewController(loginVC, animated: true)
     }
     
-    func openRegisterCoordinator() {
-        parent?.openRegisterCoordinator()
-    }
+//    func openRegisterCoordinator() {
+//        parent?.openRegisterCoordinator()
+//    }
     
 }

@@ -16,13 +16,13 @@ enum ListSection: Hashable {
     var items: [ListItem] {
         switch self {
         case .carsharing:
-            MockData.shared.carsharing
+            return MockData.shared.carsharing
         case .typeOfCar:
-            MockData.shared.typeOfCar
+            return MockData.shared.typeOfCar
         case .powerReserve:
-            MockData.shared.powerReserve
+            return MockData.shared.powerReserve
         case .rating:
-            MockData.shared.rating
+            return MockData.shared.rating
         }
     }
     

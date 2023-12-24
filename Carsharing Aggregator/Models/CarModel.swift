@@ -49,26 +49,26 @@ enum CarsharingCompany: String, Codable, CaseIterable {
     var iconImage: UIImage {
         switch self {
         case .yandexDrive:
-            UIImage.pointLightBlue ?? UIImage()
+           return UIImage.pointLightBlue ?? UIImage()
         case .cityDrive:
-            UIImage.pointPurple ?? UIImage()
+           return UIImage.pointPurple ?? UIImage()
         case .delimobil:
-            UIImage.pointLightGreen ?? UIImage()
+           return UIImage.pointLightGreen ?? UIImage()
         case .rentmee:
-            UIImage.pointMediumGreen ?? UIImage()
+           return UIImage.pointMediumGreen ?? UIImage()
         }
     }
     
     var name: String {
         switch self {
         case .yandexDrive:
-            "Яндекс.Драйв"
+            return "Яндекс.Драйв"
         case .cityDrive:
-            "СитиДрайв"
+            return "СитиДрайв"
         case .delimobil:
-            "Делимобиль"
+            return "Делимобиль"
         case .rentmee:
-            "Rentmee"
+            return "Rentmee"
         }
     }
 }
