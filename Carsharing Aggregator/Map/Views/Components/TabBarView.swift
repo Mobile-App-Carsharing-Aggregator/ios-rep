@@ -15,8 +15,14 @@ protocol TabViewDelegate: AnyObject {
 
 final class TabBarView: UIView {
     
+    // MARK: - Properties
+    
     weak var delegate: TabViewDelegate?
-   
+    private let imageFilter: UIImage
+    private let titleFilter: String
+    
+    // MARK: - UI
+    
     private lazy var actionsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -43,7 +49,7 @@ final class TabBarView: UIView {
     
     private lazy var filtersButton: UIButton = {
         let button = UIButton()
-        let customView = TabButtonView(with: UIImage.tabFilters ?? UIImage(), text: "Фильтры")
+        let customView = TabButtonView(with: imageFilter, text: titleFilter)
         button.addSubview(customView)
         customView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -72,7 +78,12 @@ final class TabBarView: UIView {
         return view
     }()
     
-    init() {
+    // MARK: - LifeCycle
+    
+    init(with imageFilter: UIImage, titleFilter: String) {
+        self.imageFilter = imageFilter
+        self.titleFilter = titleFilter
+        
         super.init(frame: .zero)
         self.addSubviews()
         self.setupLayout()
@@ -88,6 +99,8 @@ final class TabBarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
  
+    // MARK: - Private methods
+    
     private func addSubviews() {
         addSubview(borderView)
         borderView.addSubview(actionsStackView)

@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum ListSection: Hashable {
-    case carsharing
+enum ListSection: Int, Hashable {
+    case carsharing = 0
     case typeOfCar
     case powerReserve
     case rating

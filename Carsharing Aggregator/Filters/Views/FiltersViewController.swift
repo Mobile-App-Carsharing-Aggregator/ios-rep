@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol FiltersViewControllerDelegate: AnyObject {
-    func createSelectedFilters(filters: [String])
+    func updateSelectedFilters(selectedFilters: [ListSection: [ListItem]])
 }
 
 class FiltersViewController: UIViewController {
@@ -17,7 +17,7 @@ class FiltersViewController: UIViewController {
     // MARK: - Properties
     var viewModel: FiltersViewModel
     private let sections = MockData.shared.pageData
-    var filters: [String] = []
+    public var delegate: FiltersViewControllerDelegate?
     
     // MARK: - UI
     
@@ -39,12 +39,13 @@ class FiltersViewController: UIViewController {
         return button
     }()
     
-    private lazy var buttonClose: UIButton = {
+    private lazy var buttonClearFilters: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor.carsharing.black
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.setTitleColor(UIColor.carsharing.blue, for: .normal)
+        button.setTitle("Сбросить", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
         button.addTarget(self,
-                         action: #selector(closeFilters),
+                         action: #selector(clearFilters),
                          for: .touchUpInside)
         return button
     }()
@@ -104,7 +105,14 @@ class FiltersViewController: UIViewController {
     }
     
     @objc private func numberOfCarsButtonTapped() {
-        
+        delegate?.updateSelectedFilters(selectedFilters: viewModel.selectedFilters)
+        viewModel.coordinator?.coordinatorDidFinish()
+    }
+    
+    @objc private func clearFilters() {
+        delegate?.updateSelectedFilters(selectedFilters: [:])
+        viewModel.selectedFilters = [:]
+        collectionView.reloadData()
     }
 }
 
@@ -112,7 +120,7 @@ class FiltersViewController: UIViewController {
 extension FiltersViewController {
     private func addSubviews() {
         view.addSubview(titleVC)
-        view.addSubview(buttonClose)
+        view.addSubview(buttonClearFilters)
         view.addSubview(buttonBackward)
         view.addSubview(collectionView)
         view.addSubview(numberOfCarsButton)
@@ -132,9 +140,10 @@ extension FiltersViewController {
             make.width.equalTo(63)
         }
         
-        buttonClose.snp.makeConstraints { make in
+        buttonClearFilters.snp.makeConstraints { make in
             make.centerY.equalTo(titleVC.snp.centerY)
-            make.height.width.equalTo(40)
+            make.height.equalTo(40)
+            make.width.equalTo(80)
             make.trailing.equalToSuperview().offset(-10)
         }
         
@@ -215,7 +224,7 @@ extension FiltersViewController: UICollectionViewDataSource {
             }
             cell.configure(
                 title: item.title,
-                image: item.image,
+                image: item.image ?? UIImage(),
                 borderColor: isSelected ? UIColor.carsharing.green : UIColor.carsharing.black,
                 background: isSelected ? UIColor.carsharing.green : UIColor.carsharing.white90)
             return cell
@@ -250,6 +259,5 @@ extension FiltersViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
     }
 }

@@ -36,9 +36,10 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
         addChild(profileCoordinator)
         profileCoordinator.start()
     }
-    
-    func openFilters(on vc: UIViewController) {
-        let filtersCoordinator = FiltersCoordinator(navigationController: navigationController)
+    // передавать селектед фильтрес
+   // нужен делегат для возврата
+    func openFilters(on vc: UIViewController, selectedFilters: [ListSection: [ListItem]], viewModel: MapViewModel) {
+        let filtersCoordinator = FiltersCoordinator(navigationController: navigationController, selectedFilters: selectedFilters, mapModel: viewModel)
         filtersCoordinator.parent = self
         addChild(filtersCoordinator)
         filtersCoordinator.viewControllerRef = vc

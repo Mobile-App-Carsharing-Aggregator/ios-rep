@@ -11,37 +11,47 @@ import YandexMapsMobile
 class MapViewModel {
     weak var coordinator: MapCoordinator?
     
-    var onRefreshAction: ((IndexPath) -> Void)?
-    let sections: [ListSection] = [.carsharing]
-    var indexPathToUpdate: IndexPath?
+    var onRefreshAction: (([IndexPath]) -> Void)?
     
-    private var selectedCarsharing: [ListSection: [ListItem]] = [:] {
+    let sections: [ListSection] = [.carsharing]
+    let allSections: [ListSection] = [.carsharing,
+                                      .typeOfCar,
+                                      .powerReserve,
+                                      .rating]
+    var indexPathsToUpdate: [IndexPath]?
+    
+    var selectedFilters: [ListSection: [ListItem]] = [:] {
         didSet {
-            if let indexPathToUpdate {
-                onRefreshAction?(indexPathToUpdate)
-            }
-            indexPathToUpdate = nil
+            onRefreshAction?(indexPathsToUpdate ?? [])
+            indexPathsToUpdate = []
         }
     }
     
     func filters(for section: ListSection) -> [ListItem] {
-        selectedCarsharing[section] ?? []
+        return selectedFilters[section] ?? []
     }
     
     func change(_ item: ListItem, in section: ListSection) {
         let sectionIndex = sections.firstIndex(of: section) ?? 0
         let itemIndex = sections[sectionIndex].items.firstIndex(of: item) ?? 0
-        indexPathToUpdate = IndexPath(item: itemIndex, section: sectionIndex)
-        if let index = selectedCarsharing[section]?.firstIndex(of: item) {
-            selectedCarsharing[section]?.remove(at: index)
+        indexPathsToUpdate = [IndexPath(item: itemIndex, section: sectionIndex)]
+        if let index = selectedFilters[section]?.firstIndex(of: item) {
+            selectedFilters[section]?.remove(at: index)
         } else {
-            if let filters = selectedCarsharing[section],
+            if let filters = selectedFilters[section],
                !filters.isEmpty {
-                selectedCarsharing[section]?.append(item)
+                selectedFilters[section]?.append(item)
             } else {
-                selectedCarsharing[section] = [item]
+                selectedFilters[section] = [item]
             }
         }
+    }
+    
+    func deleteSelectedFilter(item: ListItem) -> [ListSection: [ListItem]] {
+       if let key = selectedFilters.key(from: [item]) {
+           selectedFilters.removeValue(forKey: key)
+        }
+        return selectedFilters
     }
     
     func userPoint() -> YMKPoint {
@@ -56,8 +66,8 @@ class MapViewModel {
         coordinator?.openProfile()
     }
     
-    func openFilters(on vc: UIViewController) {
-        coordinator?.openFilters(on: vc)
+    func openFilters(on vc: UIViewController, selectedFilters: [ListSection: [ListItem]]) {
+        coordinator?.openFilters(on: vc, selectedFilters: selectedFilters, viewModel: self)
     }
     
     func openSearchCar(on vc: UIViewController) {
@@ -72,7 +82,32 @@ class MapViewModel {
         coordinator?.coordinatorDidFinish()
     }
     
-    func getFilters() -> [String] {
-        ["Седан", "Хэтчбек", "50 км", "4", "sflsjfslfldjshfb"]
+    func getFilters() -> [ListItem] {
+        var filters: [ListSection: [ListItem]]
+        filters = selectedFilters
+        filters.removeValue(forKey: .carsharing)
+        return filters.flatMap { $0.value }
+    }
+}
+
+extension MapViewModel: FiltersViewControllerDelegate {
+    func updateSelectedFilters(selectedFilters: [ListSection: [ListItem]]) {
+        var indexPathes = [IndexPath]()
+        allSections.forEach { section in
+            section.items.forEach { item in
+                if let oldFilter = self.selectedFilters[section]?.contains(item),
+                   let newFilter = selectedFilters[section]?.contains(item), newFilter != oldFilter {
+                    indexPathes.append(IndexPath(item: item.id, section: section.rawValue))
+                }
+            }
+        }
+        self.indexPathsToUpdate = indexPathes
+        self.selectedFilters = selectedFilters
+    }
+}
+
+extension Dictionary where Value: Equatable {
+    func key(from value: Value) -> Key? {
+        return self.first(where: { $0.value == value })?.key
     }
 }
