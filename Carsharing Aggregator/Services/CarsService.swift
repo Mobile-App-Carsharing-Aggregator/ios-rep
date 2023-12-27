@@ -27,17 +27,18 @@ final class CarsService: CarsServiceProtocol {
     private init() {}
     
     func getCars(completion: @escaping ([Car]) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-            guard let cars = self?.getMockCars() else { return }
-            completion(cars)
-        }
-        getCarsFromNetwork { result in
-            switch result {
-            case .success(let carsResponse):
-                print("carsResponse: \(carsResponse.results)")
-            case .failure(let error):
-                print("error \(error)")
-            
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+//            guard let cars = self?.getMockCars() else { return }
+//            completion(cars)
+//        }
+        DispatchQueue.main.async { [weak self] in
+            self?.getCarsFromNetwork { result in
+                switch result {
+                case .success(let carsResponse):
+                    completion(carsResponse.results)
+                case .failure(let error):
+                    print("error \(error)")
+                }
             }
         }
     }
@@ -74,13 +75,12 @@ extension CarsService {
                 company: carsharingCompany[0],
                 brand: "Машина \(index + 1)",
                 model: "Модель \(index + 1)",
-                engineValue: [1.5, 2.0, 2.5, 3.5].randomElement()!,
                 typeEngine: engineTypes.randomElement()!,
                 typeCar: carTypes.randomElement()!,
-                rating: Double(arc4random_uniform(5) + 1),
+                rating: 5.0,
                 coordinates: Coordinates(latitude: Float(location.latitude), longitude: Float(location.longitude)),
-                coefficient: Double(arc4random_uniform(100)) / 100.0,
-                childSeat: index % 3 == 0
+                childSeat: index % 3 == 0, 
+                stateNumber: "AA001AA75"
             )
             cars.append(car)
         }

@@ -65,7 +65,7 @@ final class SecondOnboardingViewController: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         // registerTest(user: userForReg)
-        getCars()
+        //getCars()
     }
     
     required init?(coder: NSCoder) {
@@ -140,16 +140,16 @@ final class SecondOnboardingViewController: UIViewController {
 //        }
 //    }
      
-     private func getCars() {
-         CarsService.shared.getCarsFromNetwork { [weak self] result in
-             DispatchQueue.main.async {
-                 switch result {
-                 case .success(let response):
-                     print("cars response: \(response.results)")
-                 case .failure(let error):
-                     print("Ошибка запроса: \(error)")
-                 }
-             }
-         }
-     }
+//     private func getCars() {
+//         CarsService.shared.getCarsFromNetwork { [weak self] result in
+//             DispatchQueue.main.async {
+//                 switch result {
+//                 case .success(let response):
+//                     print("cars response: \(response.results)")
+//                 case .failure(let error):
+//                     print("Ошибка запроса: \(error)")
+//                 }
+//             }
+//         }
+//     }
  }

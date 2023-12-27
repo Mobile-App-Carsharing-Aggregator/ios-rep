@@ -282,20 +282,20 @@ extension SelectedCarViewController: UICollectionViewDataSource {
             guard let selectedCarRatingCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarRatingCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarRatingCell else { return UICollectionViewCell() }
-            switch viewModel.selectedCar.rating {
-            case 1.0:
-                selectedCarRatingCell.configure(title: "1")
-            case 2.0:
-                selectedCarRatingCell.configure(title: "2")
-            case 3.0:
-                selectedCarRatingCell.configure(title: "3")
-            case 4.0:
-                selectedCarRatingCell.configure(title: "4")
-            case 5.0:
-                selectedCarRatingCell.configure(title: "5")
-            default:
-                selectedCarRatingCell.configure(title: "1")
-            }
+//            switch viewModel.selectedCar.rating {
+//            case 1.0:
+//                selectedCarRatingCell.configure(title: "1")
+//            case 2.0:
+//                selectedCarRatingCell.configure(title: "2")
+//            case 3.0:
+//                selectedCarRatingCell.configure(title: "3")
+//            case 4.0:
+//                selectedCarRatingCell.configure(title: "4")
+//            case 5.0:
+//                selectedCarRatingCell.configure(title: "5")
+//            default:
+//                selectedCarRatingCell.configure(title: "1")
+//            }
             return selectedCarRatingCell
         } else if indexPath.row == 3 {
             guard let selectedCarCell = collectionView.dequeueReusableCell(
