@@ -12,10 +12,10 @@ struct MockData {
     static let shared = MockData()
     
     let carsharing: [ListItem] = {
-        [.init(title: "Яндекс.Драйв", image: ""),
-         .init(title: "СитиДрайв", image: ""),
-         .init(title: "Делимобиль", image: ""),
-         .init(title: "Rentmee", image: "")]
+        [.init(title: "YandexDrive", image: ""),
+         .init(title: "CityDrive", image: ""),
+         .init(title: "Delimobil", image: ""),
+         .init(title: "BelkaCar", image: "")]
     }()
     
     let typeOfCar: [ListItem] = {

@@ -13,7 +13,7 @@ final class SelectedCarViewController: UIViewController {
     // MARK: - Layout properties
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = viewModel.selectedCar.name + " " + viewModel.selectedCar.model
+        nameLabel.text = viewModel.selectedCar.brand + " " + viewModel.selectedCar.model
         nameLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         return nameLabel
     }()
@@ -50,16 +50,16 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var logoImage: UIImageView = {
         let logoImage = UIImageView()
-        switch viewModel.selectedCar.company {
-        case .yandexDrive:
-            logoImage.image = .drive
-        case .cityDrive:
-            logoImage.image = .city
-        case .delimobil:
-            logoImage.image = .deli
-        default:
-            logoImage.image = .drive
-        }
+//        switch viewModel.selectedCar.company {
+//        case .yandexDrive:
+//            logoImage.image = .drive
+//        case .cityDrive:
+//            logoImage.image = .city
+//        case .delimobil:
+//            logoImage.image = .deli
+//        default:
+//            logoImage.image = .drive
+//        }
         return logoImage
     }()
     
@@ -80,7 +80,7 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var carsheringNameLabel: UILabel = {
         let carsheringNameLabel = UILabel()
-        carsheringNameLabel.text = viewModel.selectedCar.company.rawValue
+        carsheringNameLabel.text = viewModel.selectedCar.company
         carsheringNameLabel.font = .systemFont(ofSize: 16)
         carsheringNameLabel.textColor = .carsharing.black
         return carsheringNameLabel
@@ -266,18 +266,9 @@ extension SelectedCarViewController: UICollectionViewDataSource {
             guard let selectedCarCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarCell else { return UICollectionViewCell() }
-            switch viewModel.selectedCar.type {
-            case .sedan:
-                selectedCarCell.configure(title: "Седан")
-            case .hatchback:
-                selectedCarCell.configure(title: "Хэтчбек")
-            case .minivan:
-                selectedCarCell.configure(title: "Минивен")
-            case .coupe:
-                selectedCarCell.configure(title: "Купе")
-            case .universal:
-                selectedCarCell.configure(title: "Универсал")
-            case .other:
+            switch viewModel.selectedCar.typeCar {
+                //TODO: - Сделать свитч по типам авто!
+            default:
                 selectedCarCell.configure(title: "Другое")
             }
             return selectedCarCell
@@ -291,20 +282,20 @@ extension SelectedCarViewController: UICollectionViewDataSource {
             guard let selectedCarRatingCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarRatingCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarRatingCell else { return UICollectionViewCell() }
-            switch viewModel.selectedCar.rating {
-            case 1.0:
-                selectedCarRatingCell.configure(title: "1")
-            case 2.0:
-                selectedCarRatingCell.configure(title: "2")
-            case 3.0:
-                selectedCarRatingCell.configure(title: "3")
-            case 4.0:
-                selectedCarRatingCell.configure(title: "4")
-            case 5.0:
-                selectedCarRatingCell.configure(title: "5")
-            default:
-                selectedCarRatingCell.configure(title: "1")
-            }
+//            switch viewModel.selectedCar.rating {
+//            case 1.0:
+//                selectedCarRatingCell.configure(title: "1")
+//            case 2.0:
+//                selectedCarRatingCell.configure(title: "2")
+//            case 3.0:
+//                selectedCarRatingCell.configure(title: "3")
+//            case 4.0:
+//                selectedCarRatingCell.configure(title: "4")
+//            case 5.0:
+//                selectedCarRatingCell.configure(title: "5")
+//            default:
+//                selectedCarRatingCell.configure(title: "1")
+//            }
             return selectedCarRatingCell
         } else if indexPath.row == 3 {
             guard let selectedCarCell = collectionView.dequeueReusableCell(
