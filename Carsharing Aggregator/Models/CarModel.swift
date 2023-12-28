@@ -89,6 +89,19 @@ enum CarsharingCompany: String, Codable, CaseIterable {
             "Rentmee"
         }
     }
+    
+    var price: Int {
+        switch self {
+        case .YandexDrive:
+            8
+        case .CityDrive:
+            7
+        case .Delimobil:
+            7
+        case .BelkaCar:
+            8
+        }
+    }
 }
 
 enum EngineType: String, Codable {

@@ -86,7 +86,7 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var priceLabel: UILabel = {
         let priceLabel = UILabel()
-        priceLabel.text = "от 8 ₽/мин"
+        priceLabel.text = "от \(viewModel.selectedCar.company.price) ₽/мин"
         priceLabel.font = .systemFont(ofSize: 14)
         priceLabel.textColor = .carsharing.greyDark
         return priceLabel
