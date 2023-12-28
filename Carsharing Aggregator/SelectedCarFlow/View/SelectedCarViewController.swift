@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class SelectedCarViewController: UIViewController {
     
@@ -29,7 +30,13 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var carImage: UIImageView = {
         let carImage = UIImageView()
-        carImage.image = UIImage.car1
+        guard let url = URL(string: viewModel.selectedCar.image ?? "") else { return UIImageView() }
+        let cache = ImageCache.default
+        cache.diskStorage.config.expiration = .days(1)
+        carImage.kf.indicatorType = .activity
+        carImage.kf.setImage(with: url,
+                             placeholder: nil,
+                             options: [.cacheSerializer(FormatIndicatedCacheSerializer.png)])
         return carImage
     }()
     
@@ -50,16 +57,7 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var logoImage: UIImageView = {
         let logoImage = UIImageView()
-//        switch viewModel.selectedCar.company {
-//        case .yandexDrive:
-//            logoImage.image = .drive
-//        case .cityDrive:
-//            logoImage.image = .city
-//        case .delimobil:
-//            logoImage.image = .deli
-//        default:
-//            logoImage.image = .drive
-//        }
+        logoImage.image = viewModel.selectedCar.company.bigIcon
         return logoImage
     }()
     
@@ -80,7 +78,7 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var carsheringNameLabel: UILabel = {
         let carsheringNameLabel = UILabel()
-        carsheringNameLabel.text = viewModel.selectedCar.company
+        carsheringNameLabel.text = viewModel.selectedCar.company.name
         carsheringNameLabel.font = .systemFont(ofSize: 16)
         carsheringNameLabel.textColor = .carsharing.black
         return carsheringNameLabel
@@ -266,11 +264,7 @@ extension SelectedCarViewController: UICollectionViewDataSource {
             guard let selectedCarCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarCell else { return UICollectionViewCell() }
-            switch viewModel.selectedCar.typeCar {
-                //TODO: - Сделать свитч по типам авто!
-            default:
-                selectedCarCell.configure(title: "Другое")
-            }
+            selectedCarCell.configure(title: viewModel.selectedCar.typeCar.name)
             return selectedCarCell
         } else if indexPath.row == 1 {
             guard let selectedCarCell = collectionView.dequeueReusableCell(
@@ -282,20 +276,7 @@ extension SelectedCarViewController: UICollectionViewDataSource {
             guard let selectedCarRatingCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarRatingCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarRatingCell else { return UICollectionViewCell() }
-//            switch viewModel.selectedCar.rating {
-//            case 1.0:
-//                selectedCarRatingCell.configure(title: "1")
-//            case 2.0:
-//                selectedCarRatingCell.configure(title: "2")
-//            case 3.0:
-//                selectedCarRatingCell.configure(title: "3")
-//            case 4.0:
-//                selectedCarRatingCell.configure(title: "4")
-//            case 5.0:
-//                selectedCarRatingCell.configure(title: "5")
-//            default:
-//                selectedCarRatingCell.configure(title: "1")
-//            }
+            selectedCarRatingCell.configure(title: "\(Int(viewModel.selectedCar.rating))")
             return selectedCarRatingCell
         } else if indexPath.row == 3 {
             guard let selectedCarCell = collectionView.dequeueReusableCell(

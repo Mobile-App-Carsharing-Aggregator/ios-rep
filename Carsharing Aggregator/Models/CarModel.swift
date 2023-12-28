@@ -16,11 +16,11 @@ struct Car: Codable {
     let image: String?
     let id: Int
     var isAvailable: Bool
-    var company: String
+    var company: CarsharingCompany
     let brand: String
     let model: String
-    let typeEngine: String
-    let typeCar: String
+    let typeEngine: EngineType
+    let typeCar: CarType
     var rating: Double
     var coordinates: Coordinates
     let childSeat: Bool
@@ -33,10 +33,10 @@ struct Coordinates: Codable {
 }
 
 enum CarsharingCompany: String, Codable, CaseIterable {
-    case YandexDrive = "YandexDrive"
-    case CityDrive = "CityDrive"
-    case Delimobil = "Delimobil"
-    case BelkaCar = "BelkaCar"
+    case YandexDrive
+    case CityDrive
+    case Delimobil
+    case BelkaCar
     
     var color: UIColor {
         switch self {
@@ -64,6 +64,19 @@ enum CarsharingCompany: String, Codable, CaseIterable {
         }
     }
     
+    var bigIcon: UIImage {
+        switch self {
+        case .YandexDrive:
+            UIImage.drive ?? UIImage()
+        case .CityDrive:
+            UIImage.city ?? UIImage()
+        case .Delimobil:
+            UIImage.deli ?? UIImage()
+        case .BelkaCar:
+            UIImage.drive ?? UIImage()
+        }
+    }
+    
     var name: String {
         switch self {
         case .YandexDrive:
@@ -78,19 +91,36 @@ enum CarsharingCompany: String, Codable, CaseIterable {
     }
 }
 
-enum EngineType: Codable {
+enum EngineType: String, Codable {
     case diesel
     case electro
     case benzine
 }
 
-enum CarType: Codable {
+enum CarType: String, Codable {
     case sedan
     case hatchback
     case minivan
     case coupe
     case universal
     case other
+    
+    var name: String {
+        switch self {
+        case .sedan:
+            "Седан"
+        case .hatchback:
+            "Хэтчбек"
+        case .minivan:
+            "Минивен"
+        case .coupe:
+            "Купе"
+        case .universal:
+            "Универсал"
+        case .other:
+            "Другое"
+        }
+    }
 }
 
 struct Cars: Codable {
