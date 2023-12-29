@@ -45,22 +45,22 @@ enum CarsharingCompany: String, Codable, CaseIterable {
         case .CityDrive:
             return UIColor.carsharing.purple
         case .Delimobil:
-            return UIColor.carsharing.lightGreen
+            return UIColor.carsharing.darkGreen
         case .BelkaCar:
-            return UIColor.carsharing.mediumGreen
+            return UIColor.carsharing.navi
         }
     }
     
     var iconImage: UIImage {
         switch self {
         case .YandexDrive:
-            UIImage.pointLightBlue ?? UIImage()
+            UIImage.pointYandex ?? UIImage()
         case .CityDrive:
-            UIImage.pointPurple ?? UIImage()
+            UIImage.pointCitydrive ?? UIImage()
         case .Delimobil:
-            UIImage.pointLightGreen ?? UIImage()
+            UIImage.pointDelimobil ?? UIImage()
         case .BelkaCar:
-            UIImage.pointMediumGreen ?? UIImage()
+            UIImage.pointBelka ?? UIImage()
         }
     }
     
@@ -73,7 +73,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
         case .Delimobil:
             UIImage.deli ?? UIImage()
         case .BelkaCar:
-            UIImage.drive ?? UIImage()
+            UIImage.belka ?? UIImage()
         }
     }
     
@@ -86,7 +86,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
         case .Delimobil:
             "Делимобиль"
         case .BelkaCar:
-            "Rentmee"
+            "БелкаКар"
         }
     }
     

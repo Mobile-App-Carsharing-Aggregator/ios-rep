@@ -32,10 +32,11 @@ extension UIImage {
     static let locationMark = UIImage(named: "locationmark")
     static let swithLight = UIImage(named: "light")
     static let starFeedback = UIImage(named: "starbig")
-    static let pointLightBlue = UIImage(named: "ellipsLightBlue")
-    static let pointPurple = UIImage(named: "ellipsPurple")
-    static let pointLightGreen = UIImage(named: "ellipsLightGreen")
-    static let pointMediumGreen = UIImage(named: "ellipsMediumGreen")
+    static let pointYandex = UIImage(named: "ellipsYandex")
+    static let pointCitydrive = UIImage(named: "ellipsCitydrive")
+    static let pointDelimobil = UIImage(named: "ellipsDelimobil")
+    static let pointBelka = UIImage(named: "ellipsBelka")
+    static let walking = UIImage(named: "walkingMan")
 
     // MARK: - TabBar icons
     static let tabProfile = UIImage(named: "profile")
@@ -55,6 +56,7 @@ extension UIImage {
     static let city = UIImage(named: "cityCarsharing")
     static let deli = UIImage(named: "deliCarsharing")
     static let drive = UIImage(named: "driveCarsharing")
+    static let belka = UIImage(named: "belkaCarsharing")
 
     // MARK: - Actions
     

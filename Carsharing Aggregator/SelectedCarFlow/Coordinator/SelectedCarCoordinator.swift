@@ -29,9 +29,17 @@ final class SelectedCarCoordinator: ChildCoordinator {
         let navVC = UINavigationController(rootViewController: viewController)
         
         if let sheet = navVC.sheetPresentationController {
-            sheet.detents = [.medium()]
+            if #available(iOS 16.0, *) {
+                sheet.detents = [.custom(resolver: { context in
+                    return  527
+                })]
+            } else {
+                // TODO: - customize for iOS <16
+                sheet.detents = [.medium()]
+            }
+            
             sheet.prefersGrabberVisible = true
-            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.largestUndimmedDetentIdentifier = .large
         }
   
         viewControllerRef?.present(navVC, animated: true)
