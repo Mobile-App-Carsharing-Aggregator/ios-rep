@@ -56,6 +56,9 @@ final class TransitionToCarSharingButton: UIView {
     func configure(with company: String, companyLogo: UIImage) {
         priceLabel.text = company + " " + "от 7 ₽/мин"
         logo.image = companyLogo
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                         action: #selector(didTapLink))
+                                  )
     }
     
     private func setupView() {
@@ -90,5 +93,10 @@ final class TransitionToCarSharingButton: UIView {
             make.trailing.equalTo(snp.trailing).offset(-16)
         }
     }
+    
+    @objc
+        private func didTapLink(sender: UIGestureRecognizer) {
+            
+        }
     
 }

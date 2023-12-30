@@ -40,7 +40,7 @@ final class CarCell: UICollectionViewCell {
     func configure(with model: Car) {
         carModel = model
         imageView.image = UIImage(systemName: "car.front.waves.up.fill")
-        nameLabel.text = model.name + " " + model.model
+        nameLabel.text = model.brand + " " + model.model
     }
     
     // MARK: - Layout methods

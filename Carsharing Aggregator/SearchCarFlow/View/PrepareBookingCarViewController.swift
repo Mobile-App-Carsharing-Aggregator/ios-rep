@@ -62,6 +62,17 @@ final class PrepareBookingCarViewController: UIViewController {
         return label
     }()
     
+    private lazy var carRatingLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .carsharing.greyLight
+        label.textColor = .carsharing.black
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 12
+        return label
+    }()
+    
     // MARK: - Properties
     var car: Car?
     
@@ -90,22 +101,14 @@ final class PrepareBookingCarViewController: UIViewController {
     private func configureCarInfo() {
         carImage.image = UIImage(systemName: "car.side.lock.open.fill")
         guard let car = car else { return }
-        titleVC.text = car.name + " " + car.model
-        carTypeLabel.text = {
-            switch car.type {
-            case .coupe: return "Купе"
-            case .hatchback: return "Хэтчбек"
-            case .minivan: return "Минивен"
-            case .sedan: return "Седан"
-            case .universal: return "Универсал"
-            case .other: return "Другое"
-            }
-        }()
+        titleVC.text = car.brand + " " + car.model
+        carRatingLabel.text = String(car.rating) + " " + "stars"
+        carTypeLabel.text = car.typeCar.name
     }
     
     private func setupUI() {
         view.backgroundColor = .white
-        [carImage, vStack, carTypeLabel, titleVC, backButton, closeButton].forEach {
+        [carImage, vStack, carTypeLabel, carRatingLabel, titleVC, backButton, closeButton].forEach {
             view.addSubview($0)
         }
         configureCarInfo()
@@ -142,6 +145,12 @@ final class PrepareBookingCarViewController: UIViewController {
         carTypeLabel.snp.makeConstraints { make in
             make.top.equalTo(carImage.snp.bottom).offset(12)
             make.leading.equalTo(view).offset(21)
+            make.size.equalTo(CGSize(width: 74, height: 24))
+        }
+        
+        carRatingLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(carTypeLabel.snp.centerY)
+            make.leading.equalTo(carTypeLabel.snp.trailing).offset(8)
             make.size.equalTo(CGSize(width: 74, height: 24))
         }
         

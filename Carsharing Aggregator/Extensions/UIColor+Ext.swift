@@ -13,7 +13,6 @@ extension UIColor {
 
 struct CarsharingColors {
     let green = #colorLiteral(red: 0.3215686275, green: 0.8509803922, blue: 0.4823529412, alpha: 1)
-    let green80 = #colorLiteral(red: 0.3215686275, green: 0.8509803922, blue: 0.4823529412, alpha: 0.8)
     let blue = #colorLiteral(red: 0.3254901961, green: 0.3568627451, blue: 0.8549019608, alpha: 1)
     let red = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
     let orange = #colorLiteral(red: 1, green: 0.5843137255, blue: 0, alpha: 1)
@@ -24,12 +23,10 @@ struct CarsharingColors {
     let white40 = #colorLiteral(red: 0.9960784314, green: 0.9960784314, blue: 0.9960784314, alpha: 0.4)
     let white90 = #colorLiteral(red: 0.9960784314, green: 0.9960784314, blue: 0.9960784314, alpha: 0.9)
     let white = #colorLiteral(red: 0.9960784314, green: 0.9960784314, blue: 0.9960784314, alpha: 1)
-    let lightBlue = #colorLiteral(red: 0, green: 0.3411764706, blue: 1, alpha: 1)
-    let lightBlue80 = #colorLiteral(red: 0, green: 0.3411764706, blue: 1, alpha: 0.8)
-    let purple = #colorLiteral(red: 0.4980392157, green: 0.1803921569, blue: 0.6941176471, alpha: 1)
-    let purple80 = #colorLiteral(red: 0.3725490196, green: 0, blue: 0.6470588235, alpha: 0.8)
-    let lightGreen = #colorLiteral(red: 0.2352941176, green: 0.7568627451, blue: 0.662745098, alpha: 1)
-    let lightGreen80 = #colorLiteral(red: 0.2352941176, green: 0.7568627451, blue: 0.662745098, alpha: 0.8)
-    let mediumGreen = #colorLiteral(red: 0.2078431373, green: 0.6784313725, blue: 0.0431372549, alpha: 1)
-    let mediumGreen80 = #colorLiteral(red: 0.2078431373, green: 0.6784313725, blue: 0.0431372549, alpha: 0.8)
+    let darkBlue = #colorLiteral(red: 0, green: 0.07450980392, blue: 1, alpha: 1)
+    let purple = #colorLiteral(red: 0.4274509804, green: 0.1098039216, blue: 0.7803921569, alpha: 1)
+    let darkGreen = #colorLiteral(red: 0, green: 0.3803921569, blue: 0.4039215686, alpha: 1)
+    let navi = #colorLiteral(red: 0.01176470588, green: 0.231372549, blue: 0.662745098, alpha: 1)
+    let lightBlue = #colorLiteral(red: 0, green: 0.4823529412, blue: 0.9960784314, alpha: 1)
+    let grey = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
 }
