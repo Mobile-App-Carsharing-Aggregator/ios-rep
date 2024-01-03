@@ -18,6 +18,9 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
     @Observable
     private (set) var cars: [Car] = []
     
+    @Observable
+    private (set) var isLoading: Bool = false
+    
     // MARK: - Properties
     weak var coordinator: SearchCarCoordinator?
     private let carsService = CarsService.shared
@@ -32,6 +35,13 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
     }
     
     private func getCars() {
-        cars = carsService.getMockCars()
+        isLoading = true
+        carsService.getCars { [weak self] cars in
+            DispatchQueue.main.async {
+                guard let self else { return }
+                self.cars = cars
+                self.isLoading = false
+            }
+        }
     }
 }
