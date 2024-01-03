@@ -28,13 +28,13 @@ final class SearchCarViewController: UIViewController {
         return button
     }()
     
-    private lazy var resetFiltersButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .clear
-        button.setTitle("Сбросить", for: .normal)
-        button.tintColor = .carsharing.blue
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        button.addTarget(self, action: #selector(didTapResetFiltersButton), for: .touchUpInside)
+    private lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .carsharing.black
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.addTarget(self,
+                         action: #selector(didTapCloseButton),
+                         for: .touchUpInside)
         return button
     }()
     
@@ -49,34 +49,6 @@ final class SearchCarViewController: UIViewController {
         )
         view.backgroundColor = .clear
         view.allowsMultipleSelection = false
-        return view
-    }()
-    
-    private lazy var passengerCarFilterButton: UIButton = {
-        let view = UIButton(type: .system)
-        view.backgroundColor = .white
-        view.setTitle("Легковые", for: .normal)
-        view.tintColor = .carsharing.black
-        view.titleLabel?.textAlignment = .center
-        view.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        view.layer.masksToBounds = true
-        view.layer.cornerRadius = 20
-        view.layer.borderWidth = 2
-        view.addTarget(self, action: #selector(didTapTruckCarFilterButton), for: .touchUpInside)
-        return view
-    }()
-    
-    private lazy var truckCarFilterButton: UIButton = {
-        let view = UIButton(type: .system)
-        view.backgroundColor = .white
-        view.setTitle("Грузовые", for: .normal)
-        view.tintColor = .black
-        view.titleLabel?.textAlignment = .center
-        view.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        view.layer.masksToBounds = true
-        view.layer.cornerRadius = 20
-        view.layer.borderWidth = 2
-        view.addTarget(self, action: #selector(didTapTruckCarFilterButton), for: .touchUpInside)
         return view
     }()
     
@@ -136,7 +108,7 @@ final class SearchCarViewController: UIViewController {
     // MARK: - Layout Methods
     private func setupUI() {
         view.backgroundColor = .white
-        [backButton, titleVC, resetFiltersButton, carsCollection, passengerCarFilterButton, truckCarFilterButton].forEach {
+        [backButton, titleVC, closeButton, carsCollection].forEach {
             view.addSubview($0)
         }
         setupConstraints()
@@ -150,7 +122,7 @@ final class SearchCarViewController: UIViewController {
             make.width.lessThanOrEqualTo(290)
         }
         
-        resetFiltersButton.snp.makeConstraints { make in
+        closeButton.snp.makeConstraints { make in
             make.centerY.equalTo(titleVC.snp.centerY)
             make.height.equalTo(24)
             make.trailing.equalTo(view).offset(-30)
@@ -162,20 +134,8 @@ final class SearchCarViewController: UIViewController {
             make.leading.equalTo(view).offset(30)
         }
         
-        passengerCarFilterButton.snp.makeConstraints { make in
-            make.leading.equalTo(view).offset(21)
-            make.top.equalTo(backButton.snp.bottom).offset(50)
-            make.size.equalTo(CGSize(width: 104, height: 40))
-        }
-        
-        truckCarFilterButton.snp.makeConstraints { make in
-            make.leading.equalTo(passengerCarFilterButton.snp.trailing).offset(12)
-            make.centerY.equalTo(passengerCarFilterButton.snp.centerY)
-            make.size.equalTo(CGSize(width: 104, height: 40))
-        }
-        
         carsCollection.snp.makeConstraints { make in
-            make.top.equalTo(passengerCarFilterButton.snp.bottom).offset(24)
+            make.top.equalTo(closeButton.snp.bottom).offset(21)
             make.leading.equalTo(view)
             make.trailing.equalTo(view)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
@@ -184,22 +144,7 @@ final class SearchCarViewController: UIViewController {
     
     // MARK: - Actions
     @objc
-    private func didTapPassengerCarFilterButton() {
-        
-    }
-    
-    @objc
-    private func didTapTruckCarFilterButton() {
-        
-    }
-    
-    @objc
-    private func didTapSearchButton() {
-        
-    }
-    
-    @objc
-    private func didTapResetFiltersButton() {
+    private func didTapCloseButton() {
         
     }
     

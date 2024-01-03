@@ -30,7 +30,7 @@ final class PrepareBookingCarViewController: UIViewController {
     
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor.black
+        button.tintColor = .carsharing.greyDark
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.addTarget(self,
                          action: #selector(didTapCloseButton),
@@ -139,7 +139,7 @@ final class PrepareBookingCarViewController: UIViewController {
         vStack.snp.makeConstraints { make in
             make.leading.equalTo(view.snp.leading).offset(16)
             make.trailing.equalTo(view.snp.trailing).offset(-16)
-            make.top.equalTo(carTypeLabel.snp.bottom).offset(40)
+            make.top.equalTo(carTypeLabel.snp.bottom).offset(20)
         }
     }
     
