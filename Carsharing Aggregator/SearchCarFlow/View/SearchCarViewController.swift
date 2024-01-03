@@ -89,7 +89,7 @@ final class SearchCarViewController: UIViewController {
     // MARK: - Methods
     private func bind() {
         guard let viewModel = viewModel else { return }
-        viewModel.$cars.bind { [weak self] _ in
+        viewModel.$carModels.bind { [weak self] _ in
             self?.carsCollection.reloadData()
         }
     }
@@ -159,12 +159,12 @@ final class SearchCarViewController: UIViewController {
     // MARK: - UICollectionViewDataSource
 extension SearchCarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel?.cars.count ?? 0
+        viewModel?.carModels.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CarCell = collectionView.dequeueReusableCell(withReuseIdentifier: CarCell.reuseIdentifier, for: indexPath) as! CarCell
-        guard let model = viewModel?.cars[indexPath.row] else { return UICollectionViewCell() }
+        guard let model = viewModel?.carModels[indexPath.row] else { return UICollectionViewCell() }
         cell.configure(with: model)
         
         return cell
@@ -177,7 +177,7 @@ extension SearchCarViewController: UICollectionViewDelegateFlowLayout {
         let cell: CarCell = collectionView.cellForItem(at: indexPath) as! CarCell
         guard let car = cell.carModel else { return }
         // TODO: - do it via coordinator (todo)
-        didSelect(car: car)
+//        didSelect(car: car)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath

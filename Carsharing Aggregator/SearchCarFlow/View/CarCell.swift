@@ -24,7 +24,7 @@ final class CarCell: UICollectionViewCell {
     }()
     
     // MARK: - Properties
-    var carModel: Car?
+    var carModel: CarModel?
     
     // MARK: - LifeCycle
     override init(frame: CGRect) {
@@ -37,9 +37,13 @@ final class CarCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    func configure(with model: Car) {
+    func configure(with model: CarModel) {
         carModel = model
-        imageView.image = UIImage(systemName: "car.front.waves.up.fill")
+        guard
+            let image = model.image,
+            let urlImage = URL(string: image)
+        else { return }
+        imageView.kf.setImage(with: urlImage)
         nameLabel.text = model.brand + " " + model.model
     }
     

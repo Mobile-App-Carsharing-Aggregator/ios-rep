@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SearchCarViewModelProtocol {
-    var cars: [Car] { get }
+    var carModels: [CarModel] { get }
     func viewWillAppear()
 }
 
@@ -16,7 +16,7 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
     
     // MARK: - Observables
     @Observable
-    private (set) var cars: [Car] = []
+    private (set) var carModels: [CarModel] = []
     
     @Observable
     private (set) var isLoading: Bool = false
@@ -39,9 +39,24 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
         carsService.getCars { [weak self] cars in
             DispatchQueue.main.async {
                 guard let self else { return }
-                self.cars = cars
+                self.carModels = self.getUniqCarModel(cars: cars)
                 self.isLoading = false
             }
+            
         }
     }
+    
+    private func getUniqCarModel(cars: [Car]) -> [CarModel] {
+        var models: [CarModel] = []
+        
+        return models
+    }
+}
+
+struct CarModel {
+    var image: String?
+    let brand: String
+    let model: String
+    let typeCar: CarType
+    var compaies: [CarsharingCompany]
 }
