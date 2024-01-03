@@ -42,15 +42,32 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
                 self.carModels = self.getUniqCarModel(cars: cars)
                 self.isLoading = false
             }
-            
         }
     }
     
     private func getUniqCarModel(cars: [Car]) -> [CarModel] {
-        var models: [CarModel] = []
+        var carModelsDictionary: [String: CarModel] = [:]
         
-        return models
+        for car in cars {
+            let modelKey = "\(car.brand) \(car.model)"
+            if let existingCarModel = carModelsDictionary[modelKey] {
+                // Если модель машины уже существует в словаре, добавляем текущий автомобиль в ее массив cars
+                carModelsDictionary[modelKey]?.cars.append(car)
+            } else {
+                // Если модели машины еще нет в словаре, создаем новую модель и добавляем текущий автомобиль в ее массив cars
+                let newCarModel = CarModel(
+                    image: car.image,
+                    brand: car.brand,
+                    model: car.model,
+                    typeCar: car.typeCar,
+                    cars: [car]
+                )
+                carModelsDictionary[modelKey] = newCarModel
+            }
+        }
+        return Array(carModelsDictionary.values)
     }
+
 }
 
 struct CarModel {
@@ -58,5 +75,5 @@ struct CarModel {
     let brand: String
     let model: String
     let typeCar: CarType
-    var compaies: [CarsharingCompany]
+    var cars: [Car]
 }

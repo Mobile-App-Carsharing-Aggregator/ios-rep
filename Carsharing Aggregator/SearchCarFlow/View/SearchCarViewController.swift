@@ -18,16 +18,6 @@ final class SearchCarViewController: UIViewController {
         return label
     }()
     
-    private lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        button.tintColor = .carsharing.greyDark
-        button.addTarget(self,
-                         action: #selector(didTapBackButton),
-                         for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var closeButton: UIButton = {
         let button = UIButton()
         button.tintColor = .carsharing.black
@@ -94,9 +84,9 @@ final class SearchCarViewController: UIViewController {
         }
     }
     
-    func didSelect(car: Car) {
+    func didSelect(car: CarModel) {
         let vc = CarModelViewController()
-        vc.car = car
+        vc.carModel = car
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
@@ -108,7 +98,7 @@ final class SearchCarViewController: UIViewController {
     // MARK: - Layout Methods
     private func setupUI() {
         view.backgroundColor = .white
-        [backButton, titleVC, closeButton, carsCollection].forEach {
+        [titleVC, closeButton, carsCollection].forEach {
             view.addSubview($0)
         }
         setupConstraints()
@@ -128,12 +118,6 @@ final class SearchCarViewController: UIViewController {
             make.trailing.equalTo(view).offset(-30)
         }
         
-        backButton.snp.makeConstraints { make in
-            make.centerY.equalTo(titleVC.snp.centerY)
-            make.height.width.equalTo(24)
-            make.leading.equalTo(view).offset(30)
-        }
-        
         carsCollection.snp.makeConstraints { make in
             make.top.equalTo(closeButton.snp.bottom).offset(21)
             make.leading.equalTo(view)
@@ -145,14 +129,7 @@ final class SearchCarViewController: UIViewController {
     // MARK: - Actions
     @objc
     private func didTapCloseButton() {
-        
-    }
-    
-    @objc
-    private func didTapBackButton() {
-        viewModel?.cleanUp()
-    //    TODO: - Need change
-        dismiss(animated: true)
+        viewModel?.coordinator?.coordinatorDidFinish()
     }
 }
 
@@ -175,9 +152,9 @@ extension SearchCarViewController: UICollectionViewDataSource {
 extension SearchCarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: CarCell = collectionView.cellForItem(at: indexPath) as! CarCell
-        guard let car = cell.carModel else { return }
+        guard let carModel = cell.carModel else { return }
         // TODO: - do it via coordinator (todo)
-//        didSelect(car: car)
+        didSelect(car: carModel)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath

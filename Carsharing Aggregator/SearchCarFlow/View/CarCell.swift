@@ -44,7 +44,7 @@ final class CarCell: UICollectionViewCell {
             let urlImage = URL(string: image)
         else { return }
         imageView.kf.setImage(with: urlImage)
-        nameLabel.text = model.brand + " " + model.model
+        nameLabel.text = "\(model.brand) \(model.model)"
     }
     
     // MARK: - Layout methods
