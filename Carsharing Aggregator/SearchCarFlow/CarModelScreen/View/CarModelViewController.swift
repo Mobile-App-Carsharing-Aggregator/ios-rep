@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class PrepareBookingCarViewController: UIViewController {
+final class CarModelViewController: UIViewController {
     // MARK: - UI
     private lazy var titleVC: UILabel = {
         let label = UILabel()

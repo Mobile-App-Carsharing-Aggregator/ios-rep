@@ -95,7 +95,7 @@ final class SearchCarViewController: UIViewController {
     }
     
     func didSelect(car: Car) {
-        let vc = PrepareBookingCarViewController()
+        let vc = CarModelViewController()
         vc.car = car
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium()]
