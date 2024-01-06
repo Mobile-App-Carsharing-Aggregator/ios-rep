@@ -103,7 +103,7 @@ final class PrepareBookingCarViewController: UIViewController {
         guard let car = car else { return }
         titleVC.text = car.brand + " " + car.model
         carRatingLabel.text = String(car.rating) + " " + "stars"
-        carTypeLabel.text = car.typeCar
+        carTypeLabel.text = car.typeCar.name
     }
     
     private func setupUI() {

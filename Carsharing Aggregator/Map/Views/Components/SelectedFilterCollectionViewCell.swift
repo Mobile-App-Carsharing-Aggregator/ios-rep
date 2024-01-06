@@ -40,7 +40,7 @@ class SelectedFilterCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 12
-        backgroundColor = .carsharing.green80
+        backgroundColor = .carsharing.green
         addSubview()
     }
     

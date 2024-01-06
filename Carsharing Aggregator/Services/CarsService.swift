@@ -63,16 +63,15 @@ extension CarsService {
     
     func getMockCars() -> [Car] {
         var cars: [Car] = []
-//        let carsharingCompany: [CarsharingCompany] = CarsharingCompany.allCases
-        let carsharingCompany = ["YandexDrive"]
-        let engineTypes: [String] = ["diesel", "electro", "benzine"]
-        let carTypes: [String] = ["sedan", "hatchback", "minivan", "coupe", "universal", "other"]
+        let carsharingCompany: [CarsharingCompany] = CarsharingCompany.allCases
+        let engineTypes: [EngineType] = [.diesel, .electro, .benzine]
+        let carTypes: [CarType] = [.sedan, .hatchback, .minivan, .coupe, .universal, .other]
         
         for (index, location) in carsLocations.enumerated() {
             let car = Car(
                 image: "", id: Array(0...30).randomElement()!,
                 isAvailable: index % 2 == 0,
-                company: carsharingCompany[0],
+                company: carsharingCompany.randomElement()!,
                 brand: "Машина \(index + 1)",
                 model: "Модель \(index + 1)",
                 typeEngine: engineTypes.randomElement()!,

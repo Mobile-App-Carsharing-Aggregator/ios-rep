@@ -134,7 +134,7 @@ final class MapViewController: UIViewController {
                 guard let self = self else { return }
                 let companies = CarsharingCompany.allCases
                 for company in companies {
-                    let carsInCompany = cars.filter { $0.company == company.rawValue }
+                    let carsInCompany = cars.filter { $0.company == company }
                     if carsInCompany.isEmpty == false {
                         self.carsByService[company] = carsInCompany
                         let coordinates = carsInCompany.map { YMKPoint(latitude: Double($0.coordinates.latitude), longitude: Double($0.coordinates.longitude)) }
