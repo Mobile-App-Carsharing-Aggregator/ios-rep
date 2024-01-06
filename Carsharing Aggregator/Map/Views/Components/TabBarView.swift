@@ -18,9 +18,7 @@ final class TabBarView: UIView {
     // MARK: - Properties
     
     weak var delegate: TabViewDelegate?
-    private let imageFilter: UIImage
-    private let titleFilter: String
-    
+  
     // MARK: - UI
     
     private lazy var actionsStackView: UIStackView = {
@@ -49,7 +47,7 @@ final class TabBarView: UIView {
     
     private lazy var filtersButton: UIButton = {
         let button = UIButton()
-        let customView = TabButtonView(with: imageFilter, text: titleFilter)
+        let customView = TabButtonView(with: UIImage.tabFilters ?? UIImage(), text: "Фильтры")
         button.addSubview(customView)
         customView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -80,11 +78,9 @@ final class TabBarView: UIView {
     
     // MARK: - LifeCycle
     
-    init(with imageFilter: UIImage, titleFilter: String) {
-        self.imageFilter = imageFilter
-        self.titleFilter = titleFilter
-        
+    init() {
         super.init(frame: .zero)
+        
         self.addSubviews()
         self.setupLayout()
         self.configureTabBarStackView()

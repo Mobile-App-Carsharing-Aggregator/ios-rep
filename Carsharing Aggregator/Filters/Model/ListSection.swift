@@ -11,6 +11,7 @@ enum ListSection: Int, Hashable {
     case carsharing = 0
     case typeOfCar
     case powerReserve
+    case different
     case rating
     
     var items: [ListItem] {
@@ -21,6 +22,8 @@ enum ListSection: Int, Hashable {
             MockData.shared.typeOfCar
         case .powerReserve:
             MockData.shared.powerReserve
+        case .different:
+            MockData.shared.different
         case .rating:
             MockData.shared.rating
         }
@@ -38,6 +41,8 @@ enum ListSection: Int, Hashable {
             return "Тип автомобиля"
         case .powerReserve:
             return "Запас хода"
+        case.different:
+            return "Разное"
         case .rating:
             return "Рейтинг"
         }

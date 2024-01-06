@@ -201,7 +201,7 @@ extension FiltersViewController: UICollectionViewDataSource {
         let item = section.items[indexPath.row]
         let isSelected = viewModel.filters(for: section).contains(item)
         switch sections[indexPath.section] {
-        case .carsharing, .typeOfCar, .powerReserve:
+        case .carsharing, .typeOfCar, .powerReserve, .different:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: FilterCollectionViewCell.identifare,
                 for: indexPath) as? FilterCollectionViewCell

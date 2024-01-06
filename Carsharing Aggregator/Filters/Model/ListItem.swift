@@ -11,4 +11,5 @@ struct ListItem: Hashable {
     let id: Int
     let title: String
     let image: UIImage?
+    let name: String?
 }

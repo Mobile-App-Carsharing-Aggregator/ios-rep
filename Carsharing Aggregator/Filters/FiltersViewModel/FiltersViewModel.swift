@@ -14,6 +14,7 @@ class FiltersViewModel {
     let sections: [ListSection] = [.carsharing,
                                    .typeOfCar,
                                    .powerReserve,
+                                   .different,
                                    .rating]
     var indexPathToUpdate: IndexPath?
     

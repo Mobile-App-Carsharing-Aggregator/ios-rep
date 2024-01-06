@@ -44,7 +44,7 @@ final class MapViewController: UIViewController {
         return collectionView
     }()
     
-    private var tabView = TabBarView(with: UIImage.tabFilters ?? UIImage(), titleFilter: "titleFilter")
+    private var tabView = TabBarView()
     private lazy var compasView = MapButtonView(with: UIImage.locationButton ?? UIImage(), radius: 24) { [weak self] in
         self?.locButtonTapped()
     }
@@ -130,20 +130,25 @@ final class MapViewController: UIViewController {
         )
         
         self.viewModel.carsLocations { [weak self] cars in
-            guard let self = self else { return }
-            let companies = CarsharingCompany.allCases
-            for company in companies {
-                let carsInCompany = cars.filter { $0.company == company }
-                self.carsByService[company] = carsInCompany
-                let coordinates = carsInCompany.map { YMKPoint(latitude: Double($0.coordinates.latitude), longitude: Double($0.coordinates.longitude)) }
-                let geometry = YMKGeometry(polyline: YMKPolyline(points: coordinates))
-                let position = self.map.cameraPosition(with: geometry, azimuth: 0, tilt: 0, focus: focus)
-                self.map.move(
-                    with: position,
-                    animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0),
-                    cameraCallback: nil)
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                let companies = CarsharingCompany.allCases
+                for company in companies {
+                    let carsInCompany = cars.filter { $0.company == company.rawValue }
+                    if carsInCompany.isEmpty == false {
+                        self.carsByService[company] = carsInCompany
+                        let coordinates = carsInCompany.map { YMKPoint(latitude: Double($0.coordinates.latitude), longitude: Double($0.coordinates.longitude)) }
+                        
+                        let geometry = YMKGeometry(polyline: YMKPolyline(points: coordinates))
+                        let position = self.map.cameraPosition(with: geometry, azimuth: 0, tilt: 0, focus: focus)
+                        self.map.move(
+                            with: position,
+                            animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0),
+                            cameraCallback: nil)
+                    }
+                }
+                self.addClustering(with: self.carsByService)
             }
-            self.addClustering(with: self.carsByService)
         }
     }
     
@@ -364,7 +369,7 @@ extension MapViewController: YMKMapObjectTapListener {
         
         for company in CarsharingCompany.allCases {
             guard let carsInCompany = carsByService[company] else { continue }
-            for car in carsInCompany where car.id == placemark.userData as? UUID {
+            for car in carsInCompany where car.id == placemark.userData as? Int {
                 selectedCar = car
                 viewModel.openCar(on: self, with: selectedCar)
             }
@@ -451,9 +456,11 @@ extension MapViewController: UICollectionViewDataSource {
         let cell = filtersCollectionView.dequeueReusableCell(
             withReuseIdentifier: SelectedFilterCollectionViewCell.identifare,
             for: indexPath) as! SelectedFilterCollectionViewCell
-        if collectionView == filtersCollectionView && !viewModel.getFilters().isEmpty {
-            cell.configure(title: viewModel.getFilters()[indexPath.item].title,
-                           star: viewModel.getFilters()[indexPath.item].image ?? nil)
+        if collectionView == filtersCollectionView && !viewModel.getFilters().isEmpty
+        {
+            let item = viewModel.getFilters()[indexPath.item].0
+            cell.configure(title: item.title,
+                           star: item.image ?? nil)
         }
         if collectionView == carsharingCollectionView {
             let cell2 = carsharingCollectionView.dequeueReusableCell(
@@ -463,7 +470,7 @@ extension MapViewController: UICollectionViewDataSource {
             let section = viewModel.sections[indexPath.section]
             let item = section.items[indexPath.row]
             let isSelected = viewModel.filters(for: section).contains(item)
-            guard let company = CarsharingCompany(rawValue: item.title) else {
+            guard let company = CarsharingCompany(rawValue: item.name ?? "") else {
                 return UICollectionViewCell()
             }
             cell2.configure(
@@ -500,7 +507,6 @@ extension MapViewController: UICollectionViewDelegate {
         } else {
             let item = viewModel.getFilters()[indexPath.row]
             viewModel.deleteSelectedFilter(item: item)
-            filtersCollectionView.reloadData()
         }
     }
     

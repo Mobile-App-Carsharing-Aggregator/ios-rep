@@ -29,6 +29,7 @@ struct DefaultNetworkClient: NetworkClient {
         self.session = session
         self.decoder = decoder
         self.encoder = encoder
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
     func send(request: NetworkRequest, onResponse: @escaping (Result<Data, Error>) -> Void) -> NetworkTask? {

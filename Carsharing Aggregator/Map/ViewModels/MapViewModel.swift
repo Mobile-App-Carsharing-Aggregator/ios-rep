@@ -47,11 +47,26 @@ class MapViewModel {
         }
     }
     
-    func deleteSelectedFilter(item: ListItem) -> [ListSection: [ListItem]] {
-       if let key = selectedFilters.key(from: [item]) {
-           selectedFilters.removeValue(forKey: key)
+    func getFilters() -> [(ListItem, ListSection)] {
+        var filters: [ListSection: [ListItem]]
+        filters = selectedFilters
+        filters.removeValue(forKey: .carsharing)
+        
+        var filterTuples = [(ListItem, ListSection)]()
+        for key in filters.keys {
+            filterTuples.append(contentsOf: filters[key]?.compactMap { ($0, key) } ?? [])
         }
-        return selectedFilters
+        
+        return filterTuples
+    }
+    
+    func deleteSelectedFilter(item: (ListItem, ListSection)) {
+        
+        var sectionFilters = selectedFilters[item.1]
+        sectionFilters?.removeAll(where: { filter in
+            filter == item.0
+        })
+        selectedFilters[item.1] = sectionFilters
     }
     
     func userPoint() -> YMKPoint {
@@ -80,13 +95,6 @@ class MapViewModel {
     
     func coordinatorDidFinish() {
         coordinator?.coordinatorDidFinish()
-    }
-    
-    func getFilters() -> [ListItem] {
-        var filters: [ListSection: [ListItem]]
-        filters = selectedFilters
-        filters.removeValue(forKey: .carsharing)
-        return filters.flatMap { $0.value }
     }
 }
 
