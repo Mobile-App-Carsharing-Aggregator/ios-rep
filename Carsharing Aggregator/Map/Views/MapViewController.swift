@@ -29,7 +29,6 @@ final class MapViewController: UIViewController {
     private let marginSize: CGFloat = 5
     private let strokeSize: CGFloat = 7
     private var imageFilter = UIImage.tabFilters ?? UIImage()
-    private var titleFilter = "Фильтры"
     
     // MARK: - UI
     

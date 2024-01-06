@@ -50,6 +50,12 @@ class FiltersViewController: UIViewController {
         return button
     }()
     
+    private lazy var backgroundView: UIView = {
+        let background = UIView()
+        background.backgroundColor = .carsharing.white
+        return background
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewLayout()
         let collectionView = UICollectionView(
@@ -123,28 +129,34 @@ extension FiltersViewController {
         view.addSubview(buttonClearFilters)
         view.addSubview(buttonBackward)
         view.addSubview(collectionView)
-        view.addSubview(numberOfCarsButton)
+        view.addSubview(backgroundView)
+        backgroundView.addSubview(numberOfCarsButton)
     }
     
     private func setupLayout() {
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(titleVC.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().offset(-20)
+            make.top.equalTo(titleVC.snp.bottom).offset(22)
+            make.bottom.equalTo(backgroundView.snp.top)
         }
         
         titleVC.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(26)
+            make.top.equalToSuperview().offset(30)
             make.height.equalTo(22)
             make.width.equalTo(63)
+        }
+        
+        backgroundView.snp.makeConstraints { make in
+            make.trailing.leading.bottom.equalToSuperview()
+            make.height.equalTo(148)
         }
         
         buttonClearFilters.snp.makeConstraints { make in
             make.centerY.equalTo(titleVC.snp.centerY)
             make.height.equalTo(40)
-            make.width.equalTo(80)
-            make.trailing.equalToSuperview().offset(-10)
+            make.width.equalTo(78)
+            make.trailing.equalToSuperview().inset(21)
         }
         
         buttonBackward.snp.makeConstraints { make in
