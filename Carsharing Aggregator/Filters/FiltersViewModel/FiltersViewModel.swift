@@ -14,10 +14,11 @@ class FiltersViewModel {
     let sections: [ListSection] = [.carsharing,
                                    .typeOfCar,
                                    .powerReserve,
+                                   .different,
                                    .rating]
     var indexPathToUpdate: IndexPath?
     
-    private var selectedFilters: [ListSection: [ListItem]] = [:] {
+    var selectedFilters: [ListSection: [ListItem]] = [:] {
         didSet {
             if let indexPathToUpdate {
                 onRefreshAction?(indexPathToUpdate)

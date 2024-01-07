@@ -8,11 +8,16 @@
 import UIKit
 import SnapKit
 
+protocol FiltersViewControllerDelegate: AnyObject {
+    func updateSelectedFilters(selectedFilters: [ListSection: [ListItem]])
+}
+
 class FiltersViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: FiltersViewModel
     private let sections = MockData.shared.pageData
+    public var delegate: FiltersViewControllerDelegate?
     
     // MARK: - UI
     
@@ -34,14 +39,21 @@ class FiltersViewController: UIViewController {
         return button
     }()
     
-    private lazy var buttonClose: UIButton = {
+    private lazy var buttonClearFilters: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor.black
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.setTitleColor(UIColor.carsharing.blue, for: .normal)
+        button.setTitle("Сбросить", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
         button.addTarget(self,
-                         action: #selector(closeFilters),
+                         action: #selector(clearFilters),
                          for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var backgroundView: UIView = {
+        let background = UIView()
+        background.backgroundColor = .carsharing.white
+        return background
     }()
     
     private lazy var collectionView: UICollectionView = {
@@ -56,6 +68,17 @@ class FiltersViewController: UIViewController {
                                 withReuseIdentifier: FiltersSupplementaryView.identifier)
         collectionView.collectionViewLayout = createLayout()
         return collectionView
+    }()
+    
+    private lazy var numberOfCarsButton: UIButton = {
+        let bookButton = UIButton()
+        bookButton.backgroundColor = UIColor.carsharing.black
+        bookButton.setTitle("НАЙТИ", for: .normal)
+        bookButton.setTitleColor(UIColor.carsharing.white, for: .normal)
+        bookButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        bookButton.layer.cornerRadius = 26
+        bookButton.addTarget(self, action: #selector(numberOfCarsButtonTapped), for: .touchUpInside)
+        return bookButton
     }()
     
     // MARK: - LifeCycle
@@ -86,41 +109,66 @@ class FiltersViewController: UIViewController {
     @objc private func closeFilters() {
         viewModel.coordinator?.coordinatorDidFinish()
     }
+    
+    @objc private func numberOfCarsButtonTapped() {
+        delegate?.updateSelectedFilters(selectedFilters: viewModel.selectedFilters)
+        viewModel.coordinator?.coordinatorDidFinish()
+    }
+    
+    @objc private func clearFilters() {
+        delegate?.updateSelectedFilters(selectedFilters: [:])
+        viewModel.selectedFilters = [:]
+        collectionView.reloadData()
+    }
 }
 
 // MARK: - Create Layout
 extension FiltersViewController {
     private func addSubviews() {
         view.addSubview(titleVC)
-        view.addSubview(buttonClose)
+        view.addSubview(buttonClearFilters)
         view.addSubview(buttonBackward)
         view.addSubview(collectionView)
+        view.addSubview(backgroundView)
+        backgroundView.addSubview(numberOfCarsButton)
     }
     
     private func setupLayout() {
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(titleVC.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().offset(-20)
+            make.top.equalTo(titleVC.snp.bottom).offset(22)
+            make.bottom.equalTo(backgroundView.snp.top)
         }
         
         titleVC.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(26)
+            make.top.equalToSuperview().offset(30)
             make.height.equalTo(22)
             make.width.equalTo(63)
         }
         
-        buttonClose.snp.makeConstraints { make in
+        backgroundView.snp.makeConstraints { make in
+            make.trailing.leading.bottom.equalToSuperview()
+            make.height.equalTo(148)
+        }
+        
+        buttonClearFilters.snp.makeConstraints { make in
             make.centerY.equalTo(titleVC.snp.centerY)
-            make.height.width.equalTo(40)
-            make.trailing.equalToSuperview().offset(-10)
+            make.height.equalTo(40)
+            make.width.equalTo(78)
+            make.trailing.equalToSuperview().inset(21)
         }
         
         buttonBackward.snp.makeConstraints { make in
             make.centerY.equalTo(titleVC.snp.centerY)
             make.height.width.equalTo(40)
             make.leading.equalToSuperview().offset(10)
+        }
+        
+        numberOfCarsButton.snp.makeConstraints { make in
+            make.height.equalTo(52)
+            make.bottom.equalToSuperview().inset(68)
+            make.leading.trailing.equalToSuperview().inset(21)
         }
     }
     
@@ -165,7 +213,7 @@ extension FiltersViewController: UICollectionViewDataSource {
         let item = section.items[indexPath.row]
         let isSelected = viewModel.filters(for: section).contains(item)
         switch sections[indexPath.section] {
-        case .carsharing, .typeOfCar, .powerReserve:
+        case .carsharing, .typeOfCar, .powerReserve, .different:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: FilterCollectionViewCell.identifare,
                 for: indexPath) as? FilterCollectionViewCell
@@ -188,7 +236,7 @@ extension FiltersViewController: UICollectionViewDataSource {
             }
             cell.configure(
                 title: item.title,
-                image: item.image,
+                image: item.image ?? UIImage(),
                 borderColor: isSelected ? UIColor.carsharing.green : UIColor.carsharing.black,
                 background: isSelected ? UIColor.carsharing.green : UIColor.carsharing.white90)
             return cell
@@ -223,6 +271,5 @@ extension FiltersViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
     }
 }

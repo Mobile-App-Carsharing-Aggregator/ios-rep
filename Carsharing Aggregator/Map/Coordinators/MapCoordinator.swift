@@ -26,7 +26,7 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
         let mapVC = MapViewController(viewModel: viewModel)
         viewModel.coordinator = self
         mapVC.modalPresentationStyle = .overFullScreen
-        navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(mapVC, animated: true)
     }
     
@@ -36,9 +36,10 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
         addChild(profileCoordinator)
         profileCoordinator.start()
     }
-    
-    func openFilters(on vc: UIViewController) {
-        let filtersCoordinator = FiltersCoordinator(navigationController: navigationController)
+    // передавать селектед фильтрес
+   // нужен делегат для возврата
+    func openFilters(on vc: UIViewController, selectedFilters: [ListSection: [ListItem]], viewModel: MapViewModel) {
+        let filtersCoordinator = FiltersCoordinator(navigationController: navigationController, selectedFilters: selectedFilters, mapModel: viewModel)
         filtersCoordinator.parent = self
         addChild(filtersCoordinator)
         filtersCoordinator.viewControllerRef = vc

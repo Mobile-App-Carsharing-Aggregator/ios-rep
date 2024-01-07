@@ -28,8 +28,20 @@ final class MapViewController: UIViewController {
     private let fontSize: CGFloat = 16
     private let marginSize: CGFloat = 5
     private let strokeSize: CGFloat = 7
+    private var imageFilter = UIImage.tabFilters ?? UIImage()
     
     // MARK: - UI
+    
+    private lazy var filtersCollectionView: UICollectionView = {
+        let collectionViewLayout = UICollectionViewLayout()
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: collectionViewLayout)
+        collectionView.backgroundColor = .clear
+        collectionView.register(SelectedFilterCollectionViewCell.self, forCellWithReuseIdentifier: SelectedFilterCollectionViewCell.identifare)
+        collectionView.collectionViewLayout = createLayoutFilters()
+        return collectionView
+    }()
     
     private var tabView = TabBarView()
     private lazy var compasView = MapButtonView(with: UIImage.locationButton ?? UIImage(), radius: 24) { [weak self] in
@@ -50,7 +62,7 @@ final class MapViewController: UIViewController {
             collectionViewLayout: collectionViewLayout)
         collectionView.backgroundColor = .none
         collectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: FilterCollectionViewCell.identifare)
-        collectionView.collectionViewLayout = createLayout()
+        collectionView.collectionViewLayout = createLayoutCarsharing()
         return collectionView
     }()
     
@@ -77,13 +89,14 @@ final class MapViewController: UIViewController {
         clusterListener = self
         carsharingCollectionView.delegate = self
         carsharingCollectionView.dataSource = self
+        filtersCollectionView.delegate = self
+        filtersCollectionView.dataSource = self
         
         initMap()
-        viewModel.onRefreshAction = { [weak self] indexPath in
-            self?.carsharingCollectionView.reloadItems(at: [indexPath])
+        viewModel.onRefreshAction = { [weak self] indexPaths in
+            self?.carsharingCollectionView.reloadItems(at: indexPaths)
+            self?.filtersCollectionView.reloadData()
         }
-//        
-//        userLocationLayer = YMKMapKit.sharedInstance().createUserLocationLayer(with: mapView.mapWindow)
     }
     
     // MARK: - Private methods
@@ -164,6 +177,7 @@ final class MapViewController: UIViewController {
     }
     
     private func locButtonTapped() {
+        locationManager.requestWhenInUseAuthorization()
         let scale = UIScreen.main.scale
         let mapKit = YMKMapKit.sharedInstance()
         
@@ -217,7 +231,7 @@ extension MapViewController: TabViewDelegate {
     }
     
     func filtersButtonTapped() {
-        viewModel.openFilters(on: self)
+        viewModel.openFilters(on: self, selectedFilters: viewModel.selectedFilters)
     }
     
     func carSearchButtonTapped() {
@@ -230,6 +244,7 @@ extension MapViewController: TabViewDelegate {
 extension MapViewController {
     private func addSubviews() {
         view.addSubview(mapView)
+        mapView.addSubview(filtersCollectionView)
         mapView.addSubview(tabView)
         mapView.addSubview(compasView)
         mapView.addSubview(minusButton)
@@ -267,14 +282,35 @@ extension MapViewController {
         }
         
         carsharingCollectionView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(tabView.snp.top).offset(-16)
-            make.trailing.equalToSuperview()
             make.height.equalTo(40)
+        }
+        
+        filtersCollectionView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.greaterThanOrEqualTo(view.safeAreaInsets.top).offset(60)
+            make.height.equalTo(24)
         }
     }
     
-    private func createLayout() -> UICollectionViewLayout {
+    private func createLayoutFilters() -> UICollectionViewLayout {
+        UICollectionViewCompositionalLayout { _, _ in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(40), heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(40), heightDimension: .absolute(24))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            group.interItemSpacing = .fixed(8)
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .continuous
+            section.interGroupSpacing = 8
+            section.contentInsets = .init(top: 0, leading: 21, bottom: 0, trailing: 21)
+            return section
+        }
+    }
+    
+    private func createLayoutCarsharing() -> UICollectionViewLayout {
         UICollectionViewCompositionalLayout { _, _ in
             let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(80), heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -415,33 +451,47 @@ extension MapViewController: YMKClusterListener, YMKClusterTapListener {
 // MARK: Extension UICollectionViewDataSource
 
 extension MapViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.sections[section].items.count
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = filtersCollectionView.dequeueReusableCell(
+            withReuseIdentifier: SelectedFilterCollectionViewCell.identifare,
+            for: indexPath) as! SelectedFilterCollectionViewCell
+        if collectionView == filtersCollectionView && !viewModel.getFilters().isEmpty
+        {
+            let item = viewModel.getFilters()[indexPath.item].0
+            cell.configure(title: item.title,
+                           star: item.image ?? nil)
+        }
+        if collectionView == carsharingCollectionView {
+            let cell2 = carsharingCollectionView.dequeueReusableCell(
+                withReuseIdentifier: FilterCollectionViewCell.identifare,
+                for: indexPath) as! FilterCollectionViewCell
+            
+            let section = viewModel.sections[indexPath.section]
+            let item = section.items[indexPath.row]
+            let isSelected = viewModel.filters(for: section).contains(item)
+            guard let company = CarsharingCompany(rawValue: item.name ?? "") else {
+                return UICollectionViewCell()
+            }
+            cell2.configure(
+                title: company.name,
+                textColor: isSelected ? UIColor.carsharing.white : company.color,
+                borderColor: company.color
+            )
+            cell2.backgroundColor = isSelected ? company.color : UIColor.carsharing.white90
+            return cell2
+        }
+        return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: FilterCollectionViewCell.identifare,
-            for: indexPath) as? FilterCollectionViewCell
-        else {
-            return UICollectionViewCell()
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == filtersCollectionView {
+            return viewModel.getFilters().count
         }
-        
-        let section = viewModel.sections[indexPath.section]
-        let item = section.items[indexPath.row]
-        let isSelected = viewModel.filters(for: section).contains(item)
-        guard let company = CarsharingCompany(rawValue: item.title) else {
-            return UICollectionViewCell()
-        }
-        cell.configure(
-            title: company.name,
-            textColor: isSelected ? UIColor.carsharing.white : company.color,
-            borderColor: company.color
-        )
-        cell.backgroundColor = isSelected ? company.color : UIColor.carsharing.white90
-        
-        return cell
+            return viewModel.sections[section].items.count
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
     }
 }
 
@@ -449,9 +499,14 @@ extension MapViewController: UICollectionViewDataSource {
 
 extension MapViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let section = viewModel.sections[indexPath.section]
-        let item = viewModel.sections[indexPath.section].items[indexPath.row]
-        viewModel.change(item, in: section)
+        if collectionView == carsharingCollectionView {
+            let section = viewModel.sections[indexPath.section]
+            let item = viewModel.sections[indexPath.section].items[indexPath.row]
+            viewModel.change(item, in: section)
+        } else {
+            let item = viewModel.getFilters()[indexPath.row]
+            viewModel.deleteSelectedFilter(item: item)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

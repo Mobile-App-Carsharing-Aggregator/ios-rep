@@ -86,7 +86,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
         case .Delimobil:
             "Делимобиль"
         case .BelkaCar:
-            "БелкаКар"
+            "BelkaCar"
         }
     }
     

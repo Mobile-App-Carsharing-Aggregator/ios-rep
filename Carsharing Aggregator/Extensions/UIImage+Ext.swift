@@ -42,10 +42,12 @@ extension UIImage {
     static let tabProfile = UIImage(named: "profile")
     static let tabCarSearch = UIImage(named: "carSearch")
     static let tabFilters = UIImage(named: "filters")
+    static let tabFilterChosen = UIImage(named: "filter_chosen")
     static let tabOrder = UIImage(named: "order")
     static let locationButton = UIImage(named: "compas")
     static let plusButton = UIImage(named: "plus")
     static let minusButton = UIImage(named: "minus")
+    static let closeXsmall = UIImage(named: "closeSmall")
     
     // MARK: - Images
     static let onboardingBackgroundImage = UIImage(named: "onboarding background image")
