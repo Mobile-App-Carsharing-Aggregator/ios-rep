@@ -39,4 +39,17 @@ final class DefaultUserService: UserServiceProtocol {
             }
         }
     }
+    
+    func userLogin(with dto: UserLogin, completion: @escaping (Result<LoginResponse, NetworkError>) -> Void) {
+        let loginRequest = UserRegistrationRequest(dto: dto)
+        
+        networkClient.send(request: loginRequest, type: LoginResponse.self) { result in
+            switch result {
+            case .success(let user):
+                completion(.success(user))
+            case .failure(let error):
+                completion(.failure(error as? NetworkError ?? .urlSessionError))
+            }
+        }
+    }
 }

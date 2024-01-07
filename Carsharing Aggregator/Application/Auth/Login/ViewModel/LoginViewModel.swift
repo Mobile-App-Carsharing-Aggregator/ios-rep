@@ -1,9 +1,7 @@
 import Foundation
 import Combine
 
-
 protocol LoginViewModelProtocol: AnyObject {
-   //func openRegister()
     func coordinatorDidFinish()
 }
 

@@ -44,6 +44,8 @@
 		37842A432B36D78700FA7150 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37842A422B36D78700FA7150 /* EnterViewController.swift */; };
 		37842A452B36D7A300FA7150 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37842A442B36D7A300FA7150 /* UIButton+Ext.swift */; };
 		37842A472B36D8CA00FA7150 /* EnterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37842A462B36D8CA00FA7150 /* EnterViewModel.swift */; };
+		378E058B2B4AE857002B0F0C /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 378E058A2B4AE857002B0F0C /* ProgressHUD */; };
+		378E058D2B4AE86D002B0F0C /* ProgressHUD+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E058C2B4AE86D002B0F0C /* ProgressHUD+Ext.swift */; };
 		37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */; };
 		37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */; };
 		37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */; };
@@ -125,6 +127,7 @@
 		37842A422B36D78700FA7150 /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
 		37842A442B36D7A300FA7150 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		37842A462B36D8CA00FA7150 /* EnterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewModel.swift; sourceTree = "<group>"; };
+		378E058C2B4AE86D002B0F0C /* ProgressHUD+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProgressHUD+Ext.swift"; sourceTree = "<group>"; };
 		37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationCotroller+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
@@ -178,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				378E058B2B4AE857002B0F0C /* ProgressHUD in Frameworks */,
 				370ADEBB2B199F900090300E /* Kingfisher in Frameworks */,
 				5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */,
 				370ADEB52B199F7F0090300E /* SnapKit in Frameworks */,
@@ -559,6 +563,7 @@
 				C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */,
 				37842A402B36D23100FA7150 /* UILabel+Ext.swift */,
 				37842A442B36D7A300FA7150 /* UIButton+Ext.swift */,
+				378E058C2B4AE86D002B0F0C /* ProgressHUD+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -699,6 +704,7 @@
 				370ADEB42B199F7F0090300E /* SnapKit */,
 				370ADEB72B199F870090300E /* SwiftKeychainWrapper */,
 				370ADEBA2B199F900090300E /* Kingfisher */,
+				378E058A2B4AE857002B0F0C /* ProgressHUD */,
 			);
 			productName = "Carsharing Aggregator";
 			productReference = E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */;
@@ -732,6 +738,7 @@
 				370ADEB32B199F7F0090300E /* XCRemoteSwiftPackageReference "SnapKit" */,
 				370ADEB62B199F870090300E /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				370ADEB92B199F900090300E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				378E05892B4AE857002B0F0C /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			productRefGroup = E2B5D6422B048EF800801719 /* Products */;
 			projectDirPath = "";
@@ -834,6 +841,7 @@
 				370ADE8F2B199B200090300E /* RegistrationModel.swift in Sources */,
 				37842A452B36D7A300FA7150 /* UIButton+Ext.swift in Sources */,
 				328BD0FA2B2334A600F3AB80 /* FilterCollectionViewCell.swift in Sources */,
+				378E058D2B4AE86D002B0F0C /* ProgressHUD+Ext.swift in Sources */,
 				E2F06AD62B274B7A00E088DE /* UserRegistration.swift in Sources */,
 				328BD12F2B2492D800F3AB80 /* MockData.swift in Sources */,
 				E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */,
@@ -1150,6 +1158,14 @@
 				kind = branch;
 			};
 		};
+		378E05892B4AE857002B0F0C /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
 		E2B5D66B2B04E87800801719 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint";
@@ -1175,6 +1191,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 370ADEB92B199F900090300E /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		378E058A2B4AE857002B0F0C /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 378E05892B4AE857002B0F0C /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
 		};
 		E2B5D6702B04E89C00801719 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;

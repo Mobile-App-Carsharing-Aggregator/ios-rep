@@ -23,7 +23,7 @@ class RegistrationViewModel: ObservableObject {
     
     var isValidNamePublisher: AnyPublisher<Bool, Never> {
         $name
-            .map { $0.isValid(validType: .name)}
+            .map { $0.isValid(validType: .name) }
             .eraseToAnyPublisher()
     }
     
@@ -35,7 +35,7 @@ class RegistrationViewModel: ObservableObject {
     
     var isValidSurnamePublisher: AnyPublisher<Bool, Never> {
         $surname
-            .map { $0.isValid(validType: .surname)}
+            .map { $0.isValid(validType: .surname) }
             .eraseToAnyPublisher()
     }
     
@@ -47,7 +47,7 @@ class RegistrationViewModel: ObservableObject {
     
     var isValidEmailPublisher: AnyPublisher<Bool, Never> {
         $email
-            .map { $0.isValid(validType: .email)}
+            .map { $0.isValid(validType: .email) }
             .eraseToAnyPublisher()
     }
     
@@ -75,24 +75,29 @@ class RegistrationViewModel: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    var areFieldsEmpty: AnyPublisher<Bool, Never> {
-        let firstCombined = Publishers.CombineLatest3(
-            isNameEmptyPublisher,
-            isSurnameEmptyPublisher,
-            isEmailEmptyPublisher
-        )
-            .map { $0.0 && $0.1 && $0.2 }
-        
-        let secondCombined = Publishers.CombineLatest(
-            isPasswordEmptyPublisher,
-            isConfrimPasswordEmptyPublisher
-        )
-            .map { $0.0 && $0.1 }
-        return Publishers.CombineLatest(firstCombined, secondCombined)
-            .map { $0.0 && $0.1 }
-            .eraseToAnyPublisher()
-    }
-    
+    var areFieldsNotEmpty: AnyPublisher<Bool, Never> {
+            let firstCombined = Publishers.CombineLatest3(
+                isNameEmptyPublisher,
+                isSurnameEmptyPublisher,
+                isEmailEmptyPublisher
+            )
+            .map {
+                return !$0.0 && !$0.1 && !$0.2
+            }
+            
+            let secondCombined = Publishers.CombineLatest(
+                isPasswordEmptyPublisher,
+                isConfrimPasswordEmptyPublisher
+            )
+            .map {
+                return !$0.0 && !$0.1
+            }
+            
+            return Publishers.CombineLatest(firstCombined, secondCombined)
+                .map { $0.0 && $0.1 }
+                .eraseToAnyPublisher()
+        }
+
     var areFieldsValid: AnyPublisher<Bool, Never> {
         let firstCombined = Publishers.CombineLatest3(
             isValidNamePublisher,
@@ -105,7 +110,8 @@ class RegistrationViewModel: ObservableObject {
             isValidPasswordPublisher,
             isValidConfirmPasswordPublisher
             )
-            .map { $0.0 && $0.1 }
+            .map {
+                return $0.0 && $0.1 }
         
         return Publishers.CombineLatest(firstCombined, secondCombined)
             .map { $0.0 && $0.1 }
@@ -113,17 +119,9 @@ class RegistrationViewModel: ObservableObject {
     }
     
     var isSubmitEnabled: AnyPublisher<Bool, Never> {
-        Publishers.CombineLatest(areFieldsValid, areFieldsEmpty)
-            .map { $0.0 && $0.1}
+        Publishers.CombineLatest(areFieldsValid, areFieldsNotEmpty)
+            .map { $0.0 && $0.1 }
             .eraseToAnyPublisher()
     }
 
-//
-//    func openDocumentsCoordinator() {
-//        coordinator?.openDocumentsCoordinator()
-//    }
-//
-//    func coordinatorDidFinish() {
-//        coordinator?.coordinatorDidFinish()
-//    }
 }

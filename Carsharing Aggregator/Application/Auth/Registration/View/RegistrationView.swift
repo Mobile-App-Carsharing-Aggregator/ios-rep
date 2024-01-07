@@ -21,6 +21,7 @@ class RegistrationView: UIView {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.isScrollEnabled = true
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         return scrollView
     }()
@@ -57,49 +58,36 @@ class RegistrationView: UIView {
     }
     // MARK: - Targets and functions
     private func addStartTarget() {
-        nameTextField.addTarget(self, action: #selector(startNameField(_:)), for: .editingDidBegin)
-        surnameTextField.addTarget(self, action: #selector(startSurnameField(_:)), for: .editingDidBegin)
-        emailTextField.addTarget(self, action: #selector(startEmailField(_:)), for: .editingDidBegin)
-        passwordTextField.addTarget(self, action: #selector(startPasswordField(_:)), for: .editingDidBegin)
-        confirmPasswordTextField.addTarget(self, action: #selector(startConfirmField(_:)), for: .editingDidBegin)
+        nameTextField.addTarget(self, action: #selector(textFieldDidStart(_:)), for: .editingDidBegin)
+        surnameTextField.addTarget(self, action: #selector(textFieldDidStart(_:)), for: .editingDidBegin)
+        emailTextField.addTarget(self, action: #selector(textFieldDidStart(_:)), for: .editingDidBegin)
+        passwordTextField.addTarget(self, action: #selector(textFieldDidStart(_:)), for: .editingDidBegin)
+        confirmPasswordTextField.addTarget(self, action: #selector(textFieldDidStart(_:)), for: .editingDidBegin)
     }
     
     private func addEndingTargets() {
-        nameTextField.addTarget(self, action: #selector(nameTextFieldDidEnd(_:)), for: .editingDidEnd)
-        surnameTextField.addTarget(self, action: #selector(surnameTextFieldDidEnd(_:)), for: .editingDidEnd)
-        emailTextField.addTarget(self, action: #selector(emailTextFieldDidEnd(_:)), for: .editingDidEnd)
-        passwordTextField.addTarget(self, action: #selector(passwordTextFieldDidEnd(_:)), for: .editingDidEnd)
-        confirmPasswordTextField.addTarget(self, action: #selector(confirmTextFieldDidEnd(_:)), for: .editingDidEnd)
+        nameTextField.addTarget(self, action: #selector(textFIeldDidEnd(_:)), for: .editingDidEnd)
+        surnameTextField.addTarget(self, action: #selector(textFIeldDidEnd(_:)), for: .editingDidEnd)
+        emailTextField.addTarget(self, action: #selector(textFIeldDidEnd(_:)), for: .editingDidEnd)
+        passwordTextField.addTarget(self, action: #selector(textFIeldDidEnd(_:)), for: .editingDidEnd)
+        confirmPasswordTextField.addTarget(self, action: #selector(textFIeldDidEnd(_:)), for: .editingDidEnd)
+    }
+    private func didStartTyping(in textField: UITextField, with sublLabel: UILabel) {
+        textField.placeholder = ""
+        textField.layer.borderWidth = 2
+        sublLabel.enterSublabelAnimation()
     }
     
-    @objc private func startNameField(_ textField: UITextField) {
-        nameTextField.placeholder = ""
-        nameTextField.layer.borderWidth = 2
-        nameSublabel.enterSublabelAnimation()
-    }
-    
-    @objc private func startSurnameField(_ textField: UITextField) {
-        surnameTextField.placeholder = ""
-        surnameTextField.layer.borderWidth = 2
-        surnameSublabel.enterSublabelAnimation()
-    }
-    
-    @objc private func startEmailField(_ textField: UITextField) {
-        emailTextField.placeholder = ""
-        emailTextField.layer.borderWidth = 2
-        emailSublabel.enterSublabelAnimation()
-    }
-    
-    @objc private func startPasswordField(_ textField: UITextField) {
-        passwordTextField.placeholder = ""
-        passwordTextField.layer.borderWidth = 2
-        passwordSublabel.enterSublabelAnimation()
-    }
-    
-    @objc private func startConfirmField(_ textField: UITextField) {
-        confirmPasswordTextField.placeholder = ""
-        confirmPasswordTextField.layer.borderWidth = 2
-        confirmSublabel.enterSublabelAnimation()
+    @objc private func textFieldDidStart(_ textField: UITextField) {
+        switch textField {
+        case nameTextField: didStartTyping(in: nameTextField, with: nameSublabel)
+        case surnameTextField: didStartTyping(in: surnameTextField, with: surnameSublabel)
+        case emailTextField: didStartTyping(in: emailTextField, with: emailSublabel)
+        case passwordTextField: didStartTyping(in: passwordTextField, with: passwordSublabel)
+        case confirmPasswordTextField: didStartTyping(in: confirmPasswordTextField, with: confirmSublabel)
+        default:
+            break
+        }
     }
     
     @objc private func labelTapped() {
@@ -112,41 +100,51 @@ class RegistrationView: UIView {
     @objc private func yandexLogoButtonDidTapped() {
         print("YANDEX TAPPED")
     }
+    
+    @objc private func textFIeldDidEnd(_ textField: UITextField) {
+        switch textField {
+        case nameTextField: viewModel.name = textField.text ?? ""
+            textFieldDidEnd(nameTextField, and: nameSublabel)
+            observeField(for: viewModel.$name,
+                         isEmptyPublisher: viewModel.isNameEmptyPublisher,
+                         isValidPublisher: viewModel.isValidNamePublisher,
+                         textField: surnameTextField,
+                         previousTextField: nameTextField,
+                         emptyWarningLabel: emptyNameFieldWarning, validWarningLabel: incorrectNameWarning)
+        case surnameTextField: viewModel.surname = textField.text ?? ""
+            textFieldDidEnd(surnameTextField, and: surnameSublabel)
+            observeField(for: viewModel.$surname,
+                         isEmptyPublisher: viewModel.isSurnameEmptyPublisher,
+                         isValidPublisher: viewModel.isValidSurnamePublisher,
+                         textField: emailTextField, previousTextField: surnameTextField,
+                         emptyWarningLabel: emptySurnameFieldWarning, validWarningLabel: incorrectSurnameWarning)
+        case emailTextField: viewModel.email = textField.text ?? ""
+            textFieldDidEnd(emailTextField, and: emailSublabel)
+            observeField(for: viewModel.$email,
+                         isEmptyPublisher: viewModel.isEmailEmptyPublisher,
+                         isValidPublisher: viewModel.isValidEmailPublisher,
+                         textField: passwordTextField, previousTextField: emailTextField,
+                         emptyWarningLabel: emptyEmailFieldWarning, validWarningLabel: emailWarninigLabel)
+        case passwordTextField: viewModel.password = textField.text ?? ""
+            textFieldDidEnd(passwordTextField, and: passwordSublabel)
+            observeField(for: viewModel.$password,
+                         isEmptyPublisher: viewModel.isPasswordEmptyPublisher, 
+                         isValidPublisher: viewModel.isValidPasswordPublisher,
+                         textField: confirmPasswordTextField, previousTextField: passwordTextField, 
+                         emptyWarningLabel: emptyPasswordFieldWarning, validWarningLabel: passwordWarningLabel)
+        case confirmPasswordTextField: viewModel.confirmPassword = textField.text ?? ""
+            textFieldDidEnd(confirmPasswordTextField, and: confirmSublabel)
+            observeConfirmField()
+        default:
+            break
+        }
+    }
+    
+    private func textFieldDidEnd(_ textField: UITextField, and sublabel: UILabel) {
+            sublabel.isHidden = true
+            textField.layer.borderWidth = 1
+        }
 
-    @objc private func nameTextFieldDidEnd(_ textField: UITextField) {
-        viewModel.name = textField.text ?? ""
-        nameSublabel.isHidden = true
-        textField.layer.borderWidth = 1
-        observeNameField()
-    }
-    @objc private func surnameTextFieldDidEnd(_ textField: UITextField) {
-        viewModel.surname = textField.text ?? ""
-        surnameSublabel.isHidden = true
-        textField.layer.borderWidth = 1
-        observeSurnameField()
-    }
-    
-    @objc private func emailTextFieldDidEnd(_ textField: UITextField) {
-        viewModel.email = textField.text ?? ""
-        emailSublabel.isHidden = true
-        textField.layer.borderWidth = 1
-        observeEmailField()
-    }
-    
-    @objc private func passwordTextFieldDidEnd(_ textField: UITextField) {
-        viewModel.password = textField.text ?? ""
-        passwordSublabel.isHidden = true
-        textField.layer.borderWidth = 1
-        observePasswordField()
-    }
-    
-    @objc private func confirmTextFieldDidEnd(_ textField: UITextField) {
-        viewModel.confirmPassword = textField.text ?? ""
-        confirmSublabel.isHidden = true
-        textField.layer.borderWidth = 1
-        observeConfirmField()
-    }
-    
     func setupDelegate() {
         nameTextField.delegate = self
         surnameTextField.delegate = self
@@ -154,16 +152,46 @@ class RegistrationView: UIView {
         confirmPasswordTextField.delegate = self
         emailTextField.delegate = self
     }
-
-   private func updateConstraintsForEmptyTextField(_ textField: UITextField, relativeTo previousTextField: UITextField?, isEmpty: Bool) {
+    private func textFieldIsValid(isValid: Bool, for previousTextField: UIView) {
+        if !isValid {
+            previousTextField.layer.borderColor = UIColor.red.cgColor
+        } else {
+            previousTextField.layer.borderColor = UIColor.black.cgColor
+        }
+    }
+    
+    private func updateConstraintsForTextField(_ textField: UITextField,
+                                               relativeTo previousTextField: UITextField?,
+                                               isEmpty: Bool, isValid: Bool,
+                                               offsetEmpty: CGFloat, offsetValid: CGFloat) {
         let previousTextField = previousTextField ?? scrollView
-        let offset = isEmpty ? 33 : 16
+        let offset = isEmpty ? offsetEmpty : offsetValid
+            textFieldIsValid(isValid: isValid, for: previousTextField)
+      
         textField.snp.remakeConstraints { make in
             make.top.equalTo(previousTextField.snp.bottom).offset(offset)
             make.centerX.equalTo(scrollView.snp.centerX)
             make.height.equalTo(nameTextField.snp.height)
             make.width.equalTo(nameTextField.snp.width)
+        }
+    }
     
+    private func updateConstraintsForLabel(_ label: UILabel, relativeTo previousTextField: UITextField, isEmpty: Bool, offset: CGFloat) {
+        label.snp.remakeConstraints { make in
+            make.top.equalTo(previousTextField.snp.bottom).offset(offset)
+            make.leading.equalTo(previousTextField.snp.leading)
+        }
+    }
+   
+    private func updateConstraintsForEmptyTextField(_ textField: UITextField, relativeTo previousTextField: UITextField?, isEmpty: Bool) {
+        let previousTextField = previousTextField ?? scrollView
+        let offset = isEmpty ? 33 : 16
+        previousTextField.layer.borderColor = isEmpty ? UIColor.red.cgColor : UIColor.black.cgColor
+        textField.snp.remakeConstraints { make in
+            make.top.equalTo(previousTextField.snp.bottom).offset(offset)
+            make.centerX.equalTo(scrollView.snp.centerX)
+            make.height.equalTo(nameTextField.snp.height)
+            make.width.equalTo(nameTextField.snp.width)
         }
        termsOfService.snp.remakeConstraints { make in
            make.top.equalTo(confirmPasswordTextField.snp.bottom).offset(offset)
@@ -172,6 +200,7 @@ class RegistrationView: UIView {
     }
     private func updateForEmptyConfirmTextField(_ label: UILabel, relativeTo previousTextField: UITextField, isEmpty: Bool) {
         let offset = 33
+        confirmPasswordTextField.layer.borderColor = isEmpty ? UIColor.red.cgColor : UIColor.black.cgColor
         label.snp.remakeConstraints { make in
             make.top.equalTo(previousTextField.snp.bottom).offset(offset)
             make.leading.equalTo(previousTextField.snp.leading)
@@ -182,12 +211,7 @@ class RegistrationView: UIView {
         let previousTextField = previousTextField ?? scrollView
         let offset = isValid ? 16 : 53
         let termsOffset = isValid ? 16 : 53
-        
-        if !isValid {
-            previousTextField.layer.borderColor = UIColor.red.cgColor
-        } else {
-            previousTextField.layer.borderColor = UIColor.black.cgColor
-        }
+        textFieldIsValid(isValid: isValid, for: previousTextField)
         textField.snp.remakeConstraints { make in
             make.top.equalTo(previousTextField.snp.bottom).offset(offset)
             make.centerX.equalTo(scrollView.snp.centerX)
@@ -202,125 +226,66 @@ class RegistrationView: UIView {
     
     private func updateForValidConfirmTextField(_ label: UILabel, relativeTo previousTextField: UITextField, isValid: Bool) {
         let offset = isValid ? 12 : 40
+        textFieldIsValid(isValid: isValid, for: previousTextField)
         label.snp.remakeConstraints { make in
             make.top.equalTo(previousTextField.snp.bottom).offset(offset)
             make.leading.equalTo(previousTextField.snp.leading)
         }
     }
+    private func observeField(for publisher: Published<String>.Publisher,
+                              isEmptyPublisher: AnyPublisher<Bool, Never>,
+                              isValidPublisher: AnyPublisher<Bool, Never>,
+                              textField: UITextField,
+                              previousTextField: UIView,
+                              emptyWarningLabel: UILabel,
+                              validWarningLabel: UILabel) {
+        Publishers.CombineLatest3(publisher, isEmptyPublisher, isValidPublisher)
+            .sink { [weak self] (_, isEmpty, isValid) in
+                guard let self = self else { return }
+                if isEmpty {
+                    self.updateConstraintsForEmptyTextField(textField, relativeTo: previousTextField as? UITextField, isEmpty: isEmpty)
+                    emptyWarningLabel.isHidden = !isEmpty
+                    validWarningLabel.isHidden = isEmpty
+                } else {
+                    self.updateConstraintsForValidTextField(textField, relativeTo: previousTextField as? UITextField, isValid: isValid)
+                    validWarningLabel.isHidden = isValid
+                    emptyWarningLabel.isHidden = !isEmpty
+                }
+            }
+            .store(in: &cancellables)
+    }
 
-    private func observeNameField() {
-        Publishers.CombineLatest3(viewModel.$name,
-                                  viewModel.isNameEmptyPublisher,
-                                  viewModel.isValidNamePublisher)
-        .sink { [weak self] (_, isEmpty, isValid) in
-            guard let self = self else { return }
-            if isEmpty {
-                self.updateConstraintsForEmptyTextField(self.surnameTextField, relativeTo: self.nameTextField, isEmpty: isEmpty)
-                self.emptyNameFieldWarning.isHidden = !isEmpty
-                self.incorrectNameWarning.isHidden = isEmpty
-            } else {
-                self.updateConstraintsForValidTextField(self.surnameTextField,
-                                                        relativeTo: self.nameTextField,
-                                                        isValid: isValid)
-                self.incorrectNameWarning.isHidden = isValid
-                self.emptyNameFieldWarning.isHidden = !isEmpty
-            }
-        }
-        .store(in: &cancellables)
-    }
-   
-    private func observeSurnameField() {
-        Publishers.CombineLatest3(viewModel.$surname,
-                                  viewModel.isSurnameEmptyPublisher,
-                                  viewModel.isValidSurnamePublisher)
-        .sink { [weak self] (_, isEmpty, isValid) in
-            guard let self = self else { return }
-            if isEmpty {
-                self.updateConstraintsForEmptyTextField(self.emailTextField,
-                                                        relativeTo: self.surnameTextField,
-                                                        isEmpty: isEmpty)
-                self.emptySurnameFieldWarning.isHidden = !isEmpty
-                self.incorrectSurnameWarning.isHidden = isEmpty
-            } else {
-                self.updateConstraintsForValidTextField(self.emailTextField, relativeTo: self.surnameTextField, isValid: isValid)
-                self.incorrectSurnameWarning.isHidden = isValid
-                self.emptySurnameFieldWarning.isHidden = !isEmpty
-            }
-        }
-        .store(in: &cancellables)
-    }
-    
-    private func observeEmailField() {
-        Publishers.CombineLatest3(viewModel.$email,
-                                  viewModel.isEmailEmptyPublisher,
-                                  viewModel.isValidEmailPublisher)
-        .sink { [weak self] (_, isEmpty, isValid) in
-            guard let self = self else { return }
-            if isEmpty {
-                self.updateConstraintsForEmptyTextField(self.passwordTextField, relativeTo: self.emailTextField, isEmpty: isEmpty)
-                self.emptyEmailFieldWarning.isHidden = !isEmpty
-                self.emailWarninigLabel.isHidden = isEmpty
-            } else {
-                self.updateConstraintsForValidTextField(self.passwordTextField, relativeTo: self.emailTextField, isValid: isValid)
-                self.emptyEmailFieldWarning.isHidden = !isEmpty
-                self.emailWarninigLabel.isHidden = isValid
-            }
-        }
-        .store(in: &cancellables)
-    }
-    
-    private func observePasswordField() {
-        Publishers.CombineLatest3(viewModel.$password,
-                                  viewModel.isPasswordEmptyPublisher,
-                                  viewModel.isValidPasswordPublisher)
-        .sink { [weak self] (_, isEmpty, isValid) in
-            guard let self = self else { return }
-            if !isValid {
-                self.passwordTextField.layer.borderColor = UIColor.red.cgColor
-            } else {
-                self.passwordTextField.layer.borderColor = UIColor.black.cgColor
-            }
-            if isEmpty {
-                self.updateConstraintsForEmptyTextField(self.confirmPasswordTextField, relativeTo: self.passwordTextField, isEmpty: isEmpty)
-                self.emptyPasswordFieldWarning.isHidden = !isEmpty
-                self.passwordWarningLabel.isHidden = isEmpty
-            } else {
-                self.updateConstraintsForEmptyTextField(self.confirmPasswordTextField, relativeTo: self.passwordTextField, isEmpty: !isValid)
-                self.emptyPasswordFieldWarning.isHidden = !isEmpty
-                self.passwordWarningLabel.isHidden = isValid
-            }
-        }
-        .store(in: &cancellables)
-    }
-    
     private func observeConfirmField() {
         Publishers.CombineLatest3(viewModel.$confirmPassword,
                                   viewModel.isConfrimPasswordEmptyPublisher,
                                   viewModel.isValidConfirmPasswordPublisher)
         .sink { [weak self] (_, isEmpty, isValid) in
             guard let self = self else { return }
-            if !isValid {
-                self.confirmPasswordTextField.layer.borderColor = UIColor.red.cgColor
-            } else {
-                self.confirmPasswordTextField.layer.borderColor = UIColor.black.cgColor
-            }
+            self.textFieldIsValid(isValid: isValid, for: self.confirmPasswordTextField)
             if isEmpty {
                 self.updateForEmptyConfirmTextField(self.termsOfService, relativeTo: self.confirmPasswordTextField, isEmpty: isEmpty)
                 self.emptyConfirmFieldWarning.isHidden = !isEmpty
                 self.confirmWarningLabel.isHidden = isEmpty
             } else {
-                self.updateForEmptyConfirmTextField(self.termsOfService, relativeTo: self.confirmPasswordTextField, isEmpty: isValid)
+                self.updateForValidConfirmTextField(self.termsOfService, relativeTo: self.confirmPasswordTextField, isValid: isValid)
                 self.emptyConfirmFieldWarning.isHidden = !isEmpty
                 self.confirmWarningLabel.isHidden = isValid
             }
         }
         .store(in: &cancellables)
     }
+    
+//    func setupBinding() {
+//        viewModel.isSubmitEnabled
+//            .
+//    }
+    
 }
 
 extension RegistrationView {
     private func addSubviews() {
         addSubview(scrollView)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scrollView.addSubview(nameTextField)
         scrollView.addSubview(nameSublabel)
         scrollView.addSubview(emptyNameFieldWarning)
@@ -512,6 +477,9 @@ extension RegistrationView: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

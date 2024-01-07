@@ -16,7 +16,8 @@ class LoginView: UIView {
         textContentType: .password)
     
     private let viewModel = LoginViewModel()
-    
+    private let emailSublabel = UILabel(for: "  Example@mail.ru  ")
+    private let passwordSublabel = UILabel(for: "  Пароль  ")
     private let orLabel = UILabel().createOrLabel(string: "или")
     private let userAgreemant = UILabel().createOrLabel(string: "Нажимая кнопку “Создать аккаунт” вы\nсоглашаетесь с ")
     
@@ -80,6 +81,11 @@ class LoginView: UIView {
     private func updateConstraintsForEmptyTextField(_ textField: UITextField, relativeTo previousTextField: UITextField?, isEmpty: Bool) {
         let previousTextField = previousTextField ?? UITextField()
         let offset = isEmpty ? 33 : 16
+        if isEmpty {
+            previousTextField.layer.borderColor = UIColor.red.cgColor
+        } else {
+            previousTextField.layer.borderColor = UIColor.black.cgColor
+        }
         textField.snp.remakeConstraints { make in
             make.top.equalTo(previousTextField.snp.bottom).offset(offset)
             make.centerX.equalTo(snp.centerX)
@@ -106,6 +112,18 @@ class LoginView: UIView {
         }
     }
     
+    private func updateConstraintsForLabel(_ view: UIView, relativeTo previousTextField: UITextField, isEmpty: Bool, offset: CGFloat) {
+        if isEmpty {
+            previousTextField.layer.borderColor = UIColor.red.cgColor
+        } else {
+            previousTextField.layer.borderColor = UIColor.black.cgColor
+        }
+        view.snp.remakeConstraints { make in
+            make.top.equalTo(previousTextField.snp.bottom).offset(offset)
+            make.leading.equalTo(previousTextField.snp.leading)
+        }
+    }
+    
     private func observeEmailField() {
         Publishers.CombineLatest3(viewModel.$email, viewModel.isEmailEmptyPublisher, viewModel.isEmailValidPublisher)
             .sink { [weak self] (_, isEmpty, isValid) in
@@ -122,13 +140,39 @@ class LoginView: UIView {
             }
             .store(in: &cancellables)
     }
+    
+    private func observePasswordField() {
+        Publishers.CombineLatest3(viewModel.$password, viewModel.isPasswordEmptyPublisher, viewModel.isPasswordValidPublisher)
+            .sink { [weak self] (_, isEmpty, isValid) in
+                guard let self = self else { return }
+                if isEmpty {
+                    self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: 33)
+                    self.emptyPasswordFieldWarning.isHidden = !isEmpty
+                    self.passwordWarningLabel.isHidden = isEmpty
+                } else {
+                    self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: 33)
+                    self.emptyPasswordFieldWarning.isHidden = !isValid
+                    self.passwordWarningLabel.isHidden = isValid
+                }
+            }
+            .store(in: &cancellables)
+    }
 }
 
 extension LoginView {
     
+    private func addTargets() {
+        emailTextField.addTarget(self, action: #selector(textFieldDidEnd(_:)), for: .editingDidEnd)
+        passwordTextField.addTarget(self, action: #selector(textFieldDidEnd(_:)), for: .editingDidEnd)
+        emailTextField.addTarget(self, action: #selector(textFIeldDidStart(_:)), for: .editingDidBegin)
+        passwordTextField.addTarget(self, action: #selector(textFIeldDidStart(_:)), for: .editingDidBegin)
+    }
+    
     private func addSubviews() {
         addSubview(passwordTextField)
         addSubview(emailTextField)
+        addSubview(emailSublabel)
+        addSubview(passwordSublabel)
         addSubview(emptyEmailFieldWarning)
         addSubview(emptyPasswordFieldWarning)
         addSubview(emailWarninigLabel)
@@ -139,20 +183,50 @@ extension LoginView {
         addSubview(passwordWarningLabel)
         setConstraints()
         emailTextField.delegate = self
-        emailTextField.addTarget(self, action: #selector(didEmailValid), for: .editingDidEnd)
+        addTargets()
     }
     
-    @objc private func didEmailValid(_ textField: UITextField) {
-        viewModel.email = textField.text ?? ""
-        observeEmailField()
+    private func didStartTyping(in textField: UITextField, with sublLabel: UILabel) {
+        textField.placeholder = ""
+        textField.layer.borderWidth = 2
+        sublLabel.enterSublabelAnimation()
+    }
+    private func textFieldDidEnd(_ textField: UITextField, and sublabel: UILabel) {
+            sublabel.isHidden = true
+            textField.layer.borderWidth = 1
+        }
+    
+    @objc private func textFIeldDidStart(_ textField: UITextField) {
+        switch textField {
+        case emailTextField: didStartTyping(in: emailTextField, with: emailSublabel)
+        case passwordTextField: didStartTyping(in: passwordTextField, with: passwordSublabel)
+        default: break
+        }
+    }
+    
+    @objc private func textFieldDidEnd(_ textField: UITextField) {
+        switch textField {
+        case emailTextField: viewModel.email = textField.text ?? ""
+            observeEmailField()
+            textFieldDidEnd(emailTextField, and: emailSublabel)
+        case passwordTextField: viewModel.password = textField.text ?? ""
+            observePasswordField()
+            textFieldDidEnd(passwordTextField, and: passwordSublabel)
+        default:
+            break
+        }
     }
     
     private func setConstraints() {
         emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(snp.top)
+            make.top.equalTo(snp.top).offset(20)
             make.centerX.equalTo(snp.centerX)
             make.width.equalTo(348)
             make.height.equalTo(52)
+        }
+        emailSublabel.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField.snp.top).offset(-8)
+            make.leading.equalTo(emailTextField.snp.leading).offset(16)
         }
         
         emptyEmailFieldWarning.snp.makeConstraints { make in
@@ -173,7 +247,16 @@ extension LoginView {
             make.height.equalTo(emailTextField.snp.height)
             make.width.equalTo(emailTextField.snp.width)
         }
-        
+        passwordSublabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.top).offset(-8)
+            make.leading.equalTo(passwordTextField.snp.leading).offset(16)
+        }
+        emptyPasswordFieldWarning.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(8)
+            make.leading.equalTo(passwordTextField.snp.leading).offset(16)
+            make.trailing.equalTo(passwordTextField.snp.trailing)
+        }
+
         passwordWarningLabel.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.bottom).offset(8)
             make.leading.equalTo(emailWarninigLabel)

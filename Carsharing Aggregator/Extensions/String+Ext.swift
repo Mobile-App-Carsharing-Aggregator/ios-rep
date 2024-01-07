@@ -27,7 +27,6 @@ extension String {
         case .confirmPassword(let originalPassword):
             return self == originalPassword
         }
-        return NSPredicate(format: format,regex).evaluate(with: self)
+        return NSPredicate(format: format, regex).evaluate(with: self)
     }
 }
-

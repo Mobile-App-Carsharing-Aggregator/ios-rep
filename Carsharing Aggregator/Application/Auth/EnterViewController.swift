@@ -9,6 +9,16 @@ final class EnterViewController: UIViewController {
         }
     }
     
+    private let enterViewModel: EnterViewModel
+    init(enterViewModel: EnterViewModel) {
+        self.enterViewModel = enterViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private let customDividerView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -82,7 +92,7 @@ final class EnterViewController: UIViewController {
     }
     
     @objc private func didTapEnterButton() {
-        print("ENTER")
+        print("-----------------------------")
     }
     private func updateButtonColors() {
         loginButton.setTitleColor(EnterButtonState.login.color(for: currentButtonSelectionState), for: .normal)
