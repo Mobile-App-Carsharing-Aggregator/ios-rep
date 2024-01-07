@@ -59,6 +59,8 @@ extension UIImage {
     static let deli = UIImage(named: "deliCarsharing")
     static let drive = UIImage(named: "driveCarsharing")
     static let belka = UIImage(named: "belkaCarsharing")
+    static let vkLogo = UIImage(named: "vk")
+    static let yandexLogo = UIImage(named: "yandex")
 
     // MARK: - Actions
     

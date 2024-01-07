@@ -28,26 +28,25 @@
 		328BD1372B25EF4500F3AB80 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BD1362B25EF4500F3AB80 /* TabButtonView.swift */; };
 		32F44C0E2B299E1B00D11FD7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F44C0D2B299E1B00D11FD7 /* UIColor+Ext.swift */; };
 		370ADE822B199A7B0090300E /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE812B199A7B0090300E /* AuthCoordinator.swift */; };
-		370ADE882B199AD20090300E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE872B199AD20090300E /* RegistrationViewController.swift */; };
+		370ADE882B199AD20090300E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE872B199AD20090300E /* RegistrationView.swift */; };
 		370ADE8A2B199AE50090300E /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE892B199AE50090300E /* RegistrationViewModel.swift */; };
 		370ADE8C2B199AF20090300E /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE8B2B199AF20090300E /* RegistrationCoordinator.swift */; };
 		370ADE8F2B199B200090300E /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE8E2B199B200090300E /* RegistrationModel.swift */; };
 		370ADE952B199B740090300E /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE942B199B740090300E /* LoginCoordinator.swift */; };
-		370ADE972B199B810090300E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE962B199B810090300E /* LoginViewController.swift */; };
+		370ADE972B199B810090300E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE962B199B810090300E /* LoginView.swift */; };
 		370ADE992B199B8D0090300E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE982B199B8D0090300E /* LoginViewModel.swift */; };
 		370ADE9B2B199B9C0090300E /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE9A2B199B9C0090300E /* LoginModel.swift */; };
-		370ADE9E2B199BD30090300E /* VerifyCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE9D2B199BD30090300E /* VerifyCodeView.swift */; };
-		370ADEA02B199BDF0090300E /* VerifyNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE9F2B199BDF0090300E /* VerifyNumberView.swift */; };
-		370ADEA22B199BE80090300E /* VerifyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADEA12B199BE80090300E /* VerifyTextField.swift */; };
-		370ADEA82B199C490090300E /* DocumentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADEA72B199C490090300E /* DocumentsModel.swift */; };
-		370ADEAA2B199C660090300E /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADEA92B199C660090300E /* DocumentsViewController.swift */; };
-		370ADEAC2B199C6F0090300E /* DocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADEAB2B199C6F0090300E /* DocumentsViewModel.swift */; };
-		370ADEAE2B199C7A0090300E /* DocumentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADEAD2B199C7A0090300E /* DocumentCoordinator.swift */; };
 		370ADEB02B199CD80090300E /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADEAF2B199CD80090300E /* String+Ext.swift */; };
 		370ADEB22B199CE60090300E /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADEB12B199CE60090300E /* UITextField+Ext.swift */; };
 		370ADEB52B199F7F0090300E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 370ADEB42B199F7F0090300E /* SnapKit */; };
 		370ADEB82B199F870090300E /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 370ADEB72B199F870090300E /* SwiftKeychainWrapper */; };
 		370ADEBB2B199F900090300E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 370ADEBA2B199F900090300E /* Kingfisher */; };
+		37842A412B36D23100FA7150 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37842A402B36D23100FA7150 /* UILabel+Ext.swift */; };
+		37842A432B36D78700FA7150 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37842A422B36D78700FA7150 /* EnterViewController.swift */; };
+		37842A452B36D7A300FA7150 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37842A442B36D7A300FA7150 /* UIButton+Ext.swift */; };
+		37842A472B36D8CA00FA7150 /* EnterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37842A462B36D8CA00FA7150 /* EnterViewModel.swift */; };
+		378E058B2B4AE857002B0F0C /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 378E058A2B4AE857002B0F0C /* ProgressHUD */; };
+		378E058D2B4AE86D002B0F0C /* ProgressHUD+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E058C2B4AE86D002B0F0C /* ProgressHUD+Ext.swift */; };
 		37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */; };
 		37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */; };
 		37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */; };
@@ -116,23 +115,21 @@
 		328BD1362B25EF4500F3AB80 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
 		32F44C0D2B299E1B00D11FD7 /* UIColor+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		370ADE812B199A7B0090300E /* AuthCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
-		370ADE872B199AD20090300E /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		370ADE872B199AD20090300E /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		370ADE892B199AE50090300E /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		370ADE8B2B199AF20090300E /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
 		370ADE8E2B199B200090300E /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		370ADE942B199B740090300E /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		370ADE962B199B810090300E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		370ADE962B199B810090300E /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		370ADE982B199B8D0090300E /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		370ADE9A2B199B9C0090300E /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
-		370ADE9D2B199BD30090300E /* VerifyCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyCodeView.swift; sourceTree = "<group>"; };
-		370ADE9F2B199BDF0090300E /* VerifyNumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyNumberView.swift; sourceTree = "<group>"; };
-		370ADEA12B199BE80090300E /* VerifyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyTextField.swift; sourceTree = "<group>"; };
-		370ADEA72B199C490090300E /* DocumentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsModel.swift; sourceTree = "<group>"; };
-		370ADEA92B199C660090300E /* DocumentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
-		370ADEAB2B199C6F0090300E /* DocumentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsViewModel.swift; sourceTree = "<group>"; };
-		370ADEAD2B199C7A0090300E /* DocumentCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentCoordinator.swift; sourceTree = "<group>"; };
 		370ADEAF2B199CD80090300E /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		370ADEB12B199CE60090300E /* UITextField+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
+		37842A402B36D23100FA7150 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		37842A422B36D78700FA7150 /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
+		37842A442B36D7A300FA7150 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
+		37842A462B36D8CA00FA7150 /* EnterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewModel.swift; sourceTree = "<group>"; };
+		378E058C2B4AE86D002B0F0C /* ProgressHUD+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProgressHUD+Ext.swift"; sourceTree = "<group>"; };
 		37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationCotroller+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
@@ -186,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				378E058B2B4AE857002B0F0C /* ProgressHUD in Frameworks */,
 				370ADEBB2B199F900090300E /* Kingfisher in Frameworks */,
 				5707BA29305A54B9E83269DD /* Pods_Carsharing_Aggregator.framework in Frameworks */,
 				370ADEB52B199F7F0090300E /* SnapKit in Frameworks */,
@@ -304,7 +302,8 @@
 			isa = PBXGroup;
 			children = (
 				370ADE812B199A7B0090300E /* AuthCoordinator.swift */,
-				370ADE802B199A680090300E /* ConfirmDocuments */,
+				37842A462B36D8CA00FA7150 /* EnterViewModel.swift */,
+				37842A422B36D78700FA7150 /* EnterViewController.swift */,
 				370ADE7F2B199A5C0090300E /* Registration */,
 				370ADE7E2B199A530090300E /* Login */,
 			);
@@ -333,17 +332,6 @@
 			path = Registration;
 			sourceTree = "<group>";
 		};
-		370ADE802B199A680090300E /* ConfirmDocuments */ = {
-			isa = PBXGroup;
-			children = (
-				370ADEA62B199C310090300E /* Model */,
-				370ADEA52B199C2B0090300E /* View */,
-				370ADEA42B199C250090300E /* ViewModel */,
-				370ADEA32B199C160090300E /* Coordinator */,
-			);
-			path = ConfirmDocuments;
-			sourceTree = "<group>";
-		};
 		370ADE832B199A920090300E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,7 +343,7 @@
 		370ADE842B199A9C0090300E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				370ADE872B199AD20090300E /* RegistrationViewController.swift */,
+				370ADE872B199AD20090300E /* RegistrationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,8 +375,7 @@
 		370ADE912B199B4F0090300E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				370ADE962B199B810090300E /* LoginViewController.swift */,
-				370ADE9C2B199BC70090300E /* Subviews */,
+				370ADE962B199B810090300E /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -407,48 +394,6 @@
 				370ADE942B199B740090300E /* LoginCoordinator.swift */,
 			);
 			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		370ADE9C2B199BC70090300E /* Subviews */ = {
-			isa = PBXGroup;
-			children = (
-				370ADE9F2B199BDF0090300E /* VerifyNumberView.swift */,
-				370ADEA12B199BE80090300E /* VerifyTextField.swift */,
-				370ADE9D2B199BD30090300E /* VerifyCodeView.swift */,
-			);
-			path = Subviews;
-			sourceTree = "<group>";
-		};
-		370ADEA32B199C160090300E /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				370ADEAD2B199C7A0090300E /* DocumentCoordinator.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		370ADEA42B199C250090300E /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				370ADEAB2B199C6F0090300E /* DocumentsViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		370ADEA52B199C2B0090300E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				370ADEA92B199C660090300E /* DocumentsViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		370ADEA62B199C310090300E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				370ADEA72B199C490090300E /* DocumentsModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		37A1A2492B149B1B002C26DA /* Application */ = {
@@ -619,6 +564,9 @@
 				370ADEB12B199CE60090300E /* UITextField+Ext.swift */,
 				32453C082B152BAF003E7AA8 /* UIView+Ext.swift */,
 				C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */,
+				37842A402B36D23100FA7150 /* UILabel+Ext.swift */,
+				37842A442B36D7A300FA7150 /* UIButton+Ext.swift */,
+				378E058C2B4AE86D002B0F0C /* ProgressHUD+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -759,6 +707,7 @@
 				370ADEB42B199F7F0090300E /* SnapKit */,
 				370ADEB72B199F870090300E /* SwiftKeychainWrapper */,
 				370ADEBA2B199F900090300E /* Kingfisher */,
+				378E058A2B4AE857002B0F0C /* ProgressHUD */,
 			);
 			productName = "Carsharing Aggregator";
 			productReference = E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */;
@@ -792,6 +741,7 @@
 				370ADEB32B199F7F0090300E /* XCRemoteSwiftPackageReference "SnapKit" */,
 				370ADEB62B199F870090300E /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				370ADEB92B199F900090300E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				378E05892B4AE857002B0F0C /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			productRefGroup = E2B5D6422B048EF800801719 /* Products */;
 			projectDirPath = "";
@@ -880,23 +830,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				328BD1352B25BCBB00F3AB80 /* MapButtonView.swift in Sources */,
-				370ADEA02B199BDF0090300E /* VerifyNumberView.swift in Sources */,
-				370ADEAE2B199C7A0090300E /* DocumentCoordinator.swift in Sources */,
 				E2F06AD02B273CF600E088DE /* NetworkClient.swift in Sources */,
 				C4A3F8592B29131400B62BB3 /* TransitionToCarSharingButton.swift in Sources */,
 				37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */,
 				37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */,
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
 				C40379292B262590008F22F8 /* SearchCarCoordinator.swift in Sources */,
-				370ADEAC2B199C6F0090300E /* DocumentsViewModel.swift in Sources */,
 				370ADE8A2B199AE50090300E /* RegistrationViewModel.swift in Sources */,
 				E2F06ACB2B25DCB700E088DE /* CarsService.swift in Sources */,
 				E221FFD72B14BEAB002A5268 /* FirstOnboardingViewController.swift in Sources */,
 				C40379252B262567008F22F8 /* SearchCarViewController.swift in Sources */,
+				37842A412B36D23100FA7150 /* UILabel+Ext.swift in Sources */,
 				370ADE8F2B199B200090300E /* RegistrationModel.swift in Sources */,
+				37842A452B36D7A300FA7150 /* UIButton+Ext.swift in Sources */,
 				328BD0FA2B2334A600F3AB80 /* FilterCollectionViewCell.swift in Sources */,
+				378E058D2B4AE86D002B0F0C /* ProgressHUD+Ext.swift in Sources */,
 				E2F06AD62B274B7A00E088DE /* UserRegistration.swift in Sources */,
-				370ADE9E2B199BD30090300E /* VerifyCodeView.swift in Sources */,
 				328BD12F2B2492D800F3AB80 /* MockData.swift in Sources */,
 				E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */,
 				37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */,
@@ -928,15 +877,14 @@
 				32857E8D2B1F41A8003AE9AC /* GeometryProvider.swift in Sources */,
 				3273FCDE2B1E621100C3C137 /* MapViewModel.swift in Sources */,
 				32453C022B14D764003E7AA8 /* BaseMapView.swift in Sources */,
-				370ADEAA2B199C660090300E /* DocumentsViewController.swift in Sources */,
-				370ADE972B199B810090300E /* LoginViewController.swift in Sources */,
-				370ADE882B199AD20090300E /* RegistrationViewController.swift in Sources */,
+				370ADE972B199B810090300E /* LoginView.swift in Sources */,
+				370ADE882B199AD20090300E /* RegistrationView.swift in Sources */,
 				6166DC632B29FA96003E57FB /* SelectedCarViewModel.swift in Sources */,
 				328BD1022B2335C900F3AB80 /* FiltersViewModel.swift in Sources */,
 				328BD12D2B2490D000F3AB80 /* ListItem.swift in Sources */,
 				E2F06AD42B274B4700E088DE /* UserService.swift in Sources */,
-				370ADEA82B199C490090300E /* DocumentsModel.swift in Sources */,
 				C40379272B262579008F22F8 /* SearchCarViewModel.swift in Sources */,
+				37842A432B36D78700FA7150 /* EnterViewController.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
 				E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */,
 				61BF07B32B3329C8004E375E /* AddressService.swift in Sources */,
@@ -946,11 +894,11 @@
 				C403792B2B262B47008F22F8 /* CarCell.swift in Sources */,
 				C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */,
 				C4A3F8562B28E72000B62BB3 /* PrepareBookingCarViewController.swift in Sources */,
-				370ADEA22B199BE80090300E /* VerifyTextField.swift in Sources */,
 				37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */,
 				C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */,
 				C40379322B270F7D008F22F8 /* Observable.swift in Sources */,
 				611F12812B2B8ABC009D27CC /* SelectedCarCell.swift in Sources */,
+				37842A472B36D8CA00FA7150 /* EnterViewModel.swift in Sources */,
 				C4C9B25D2B1378FB00399C79 /* UIImage+Ext.swift in Sources */,
 				328BD1072B23472D00F3AB80 /* FiltersSupplementaryView.swift in Sources */,
 				32453C072B152AAA003E7AA8 /* TabBarView.swift in Sources */,
@@ -1214,6 +1162,14 @@
 				kind = branch;
 			};
 		};
+		378E05892B4AE857002B0F0C /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
 		E2B5D66B2B04E87800801719 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint";
@@ -1239,6 +1195,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 370ADEB92B199F900090300E /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		378E058A2B4AE857002B0F0C /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 378E05892B4AE857002B0F0C /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
 		};
 		E2B5D6702B04E89C00801719 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
