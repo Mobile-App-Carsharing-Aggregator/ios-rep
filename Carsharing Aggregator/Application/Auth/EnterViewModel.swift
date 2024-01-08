@@ -6,9 +6,12 @@ class EnterViewModel {
     var loginViewModel: LoginViewModel?
     private var userService = DefaultUserService.shared
     var registrationViewModel: RegistrationViewModel?
+    
     init(coordinator: LoginCoordinator) {
         self.coordinator = coordinator
+        self.registrationViewModel = RegistrationViewModel()
     }
+    
     private var cancellables: Set<AnyCancellable> = []
     
     func isSubmitRegistrationEnabled() {

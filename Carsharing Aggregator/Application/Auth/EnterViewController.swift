@@ -3,6 +3,8 @@ import SnapKit
 
 final class EnterViewController: UIViewController {
     
+    private let registrationViewModel = RegistrationViewModel()
+    
     var currentButtonState: EnterButtonState = .login {
         didSet {
             updateButtonColors()
@@ -10,6 +12,7 @@ final class EnterViewController: UIViewController {
     }
     
     private let enterViewModel: EnterViewModel
+    
     init(enterViewModel: EnterViewModel) {
         self.enterViewModel = enterViewModel
         super.init(nibName: nil, bundle: nil)
@@ -72,6 +75,7 @@ final class EnterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        registrationView.registrationViewModel = registrationViewModel
     }
     
     @objc private func didTapRegistrationButton() {
@@ -92,7 +96,14 @@ final class EnterViewController: UIViewController {
     }
     
     @objc private func didTapEnterButton() {
-        print("-----------------------------")
+        switch currentButtonState {
+            case .login:
+            print("login pressed")
+            enterViewModel.isSubmitLoginEnabled()
+            case .registration:
+            print("registration pressed")
+            enterViewModel.isSubmitRegistrationEnabled()
+            }
     }
     private func updateButtonColors() {
         loginButton.setTitleColor(EnterButtonState.login.color(for: currentButtonSelectionState), for: .normal)
