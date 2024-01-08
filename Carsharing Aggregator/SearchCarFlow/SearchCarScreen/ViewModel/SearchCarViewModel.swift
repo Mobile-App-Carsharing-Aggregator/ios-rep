@@ -69,11 +69,3 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
     }
 
 }
-
-struct CarModel {
-    var image: String?
-    let brand: String
-    let model: String
-    let typeCar: CarType
-    var cars: [Car]
-}

@@ -157,3 +157,11 @@ struct Cars: Codable {
     var coordinates: Coordinates
     let childSeat: Bool
 }
+
+struct CarModel {
+    var image: String?
+    let brand: String
+    let model: String
+    let typeCar: CarType
+    var cars: [Car]
+}
