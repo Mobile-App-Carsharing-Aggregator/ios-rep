@@ -46,7 +46,6 @@
 		37842A452B36D7A300FA7150 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37842A442B36D7A300FA7150 /* UIButton+Ext.swift */; };
 		37842A472B36D8CA00FA7150 /* EnterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37842A462B36D8CA00FA7150 /* EnterViewModel.swift */; };
 		378E058B2B4AE857002B0F0C /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 378E058A2B4AE857002B0F0C /* ProgressHUD */; };
-		378E058D2B4AE86D002B0F0C /* ProgressHUD+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E058C2B4AE86D002B0F0C /* ProgressHUD+Ext.swift */; };
 		37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */; };
 		37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */; };
 		37A1A2432B149A0D002C26DA /* Coordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */; };
@@ -129,7 +128,6 @@
 		37842A422B36D78700FA7150 /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
 		37842A442B36D7A300FA7150 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		37842A462B36D8CA00FA7150 /* EnterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewModel.swift; sourceTree = "<group>"; };
-		378E058C2B4AE86D002B0F0C /* ProgressHUD+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProgressHUD+Ext.swift"; sourceTree = "<group>"; };
 		37A1A23E2B149A02002C26DA /* UINavigationCotroller+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationCotroller+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2402B149A08002C26DA /* ParentCoordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ParentCoordinator+Ext.swift"; sourceTree = "<group>"; };
 		37A1A2422B149A0D002C26DA /* Coordinator+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Ext.swift"; sourceTree = "<group>"; };
@@ -566,7 +564,6 @@
 				C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */,
 				37842A402B36D23100FA7150 /* UILabel+Ext.swift */,
 				37842A442B36D7A300FA7150 /* UIButton+Ext.swift */,
-				378E058C2B4AE86D002B0F0C /* ProgressHUD+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -844,7 +841,6 @@
 				370ADE8F2B199B200090300E /* RegistrationModel.swift in Sources */,
 				37842A452B36D7A300FA7150 /* UIButton+Ext.swift in Sources */,
 				328BD0FA2B2334A600F3AB80 /* FilterCollectionViewCell.swift in Sources */,
-				378E058D2B4AE86D002B0F0C /* ProgressHUD+Ext.swift in Sources */,
 				E2F06AD62B274B7A00E088DE /* UserRegistration.swift in Sources */,
 				328BD12F2B2492D800F3AB80 /* MockData.swift in Sources */,
 				E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */,
