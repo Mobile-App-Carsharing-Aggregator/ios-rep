@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class CarModelViewController: UIViewController {
     // MARK: - UI
@@ -63,7 +64,7 @@ final class CarModelViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    var car: Car?
+    var carModel: CarModel?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -88,10 +89,14 @@ final class CarModelViewController: UIViewController {
     }
     
     private func configureCarInfo() {
-        carImage.image = UIImage(systemName: "car.side.lock.open.fill")
-        guard let car = car else { return }
-        titleVC.text = car.brand + " " + car.model
-        carTypeLabel.text = car.typeCar.name
+        guard let carModel = carModel else { return }
+        guard
+            let image = carModel.image,
+            let urlImage = URL(string: image)
+        else { return }
+        carImage.kf.setImage(with: urlImage)
+        titleVC.text = "\(carModel.brand) \(carModel.model)"
+        carTypeLabel.text = carModel.typeCar.name
     }
     
     private func setupUI() {
