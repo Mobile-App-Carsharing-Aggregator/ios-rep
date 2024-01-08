@@ -76,6 +76,7 @@ final class EnterViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         registrationView.registrationViewModel = registrationViewModel
+        enterViewModel.registrationViewModel = registrationViewModel
     }
     
     @objc private func didTapRegistrationButton() {

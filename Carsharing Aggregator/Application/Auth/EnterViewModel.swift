@@ -5,11 +5,10 @@ class EnterViewModel {
     var coordinator: LoginCoordinator
     var loginViewModel: LoginViewModel?
     private var userService = DefaultUserService.shared
-    var registrationViewModel: RegistrationViewModel?
+    var registrationViewModel: RegistrationViewModel!
     
     init(coordinator: LoginCoordinator) {
         self.coordinator = coordinator
-        self.registrationViewModel = RegistrationViewModel()
     }
     
     private var cancellables: Set<AnyCancellable> = []
