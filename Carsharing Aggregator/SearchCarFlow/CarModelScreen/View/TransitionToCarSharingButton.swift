@@ -51,6 +51,10 @@ final class TransitionToCarSharingButton: UIView {
     // MARK: - Properties
     
     // MARK: - Actions
+    @objc
+    private func didTapLink(sender: UIGestureRecognizer) {
+        
+    }
     
     // MARK: - Methods
     func configure(with company: String, companyLogo: UIImage) {
@@ -93,10 +97,4 @@ final class TransitionToCarSharingButton: UIView {
             make.trailing.equalTo(snp.trailing).offset(-16)
         }
     }
-    
-    @objc
-        private func didTapLink(sender: UIGestureRecognizer) {
-            
-        }
-    
 }

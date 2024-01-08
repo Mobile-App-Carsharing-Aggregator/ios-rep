@@ -52,15 +52,11 @@ final class CarModelViewController: UIViewController {
         return stack
     }()
     
-    private lazy var carTypeLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .carsharing.greyLight
-        label.textColor = .carsharing.black
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 12
-        return label
+    private lazy var carTypeView: CarTypeView = {
+        let view = CarTypeView()
+        view.configure(title: carModel?.typeCar.name ?? "")
+        
+        return view
     }()
     
     // MARK: - Properties
@@ -96,12 +92,12 @@ final class CarModelViewController: UIViewController {
         else { return }
         carImage.kf.setImage(with: urlImage)
         titleVC.text = "\(carModel.brand) \(carModel.model)"
-        carTypeLabel.text = carModel.typeCar.name
+    
     }
     
     private func setupUI() {
         view.backgroundColor = .white
-        [carImage, vStack, carTypeLabel, titleVC, backButton, closeButton].forEach {
+        [carImage, vStack, carTypeView, titleVC, backButton, closeButton].forEach {
             view.addSubview($0)
         }
         configureCarInfo()
@@ -135,16 +131,16 @@ final class CarModelViewController: UIViewController {
             make.size.equalTo(CGSize(width: 200, height: 125))
         }
         
-        carTypeLabel.snp.makeConstraints { make in
+        carTypeView.snp.makeConstraints { make in
             make.top.equalTo(carImage.snp.bottom).offset(12)
+            make.height.equalTo(24)
             make.leading.equalTo(view).offset(21)
-            make.size.equalTo(CGSize(width: 74, height: 24))
         }
         
         vStack.snp.makeConstraints { make in
             make.leading.equalTo(view.snp.leading).offset(16)
             make.trailing.equalTo(view.snp.trailing).offset(-16)
-            make.top.equalTo(carTypeLabel.snp.bottom).offset(20)
+            make.top.equalTo(carTypeView.snp.bottom).offset(20)
         }
     }
     
