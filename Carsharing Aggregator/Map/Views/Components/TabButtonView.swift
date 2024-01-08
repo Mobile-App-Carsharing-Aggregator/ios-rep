@@ -10,8 +10,12 @@ import SnapKit
 
 final class TabButtonView: UIView {
     
+    // MARK: - Properties
+    
     private let imageButton: UIImage
     private let textLabel: String
+    
+    // MARK: - UI
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: imageButton)

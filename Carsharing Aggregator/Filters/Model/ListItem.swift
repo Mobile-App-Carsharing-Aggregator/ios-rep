@@ -5,9 +5,11 @@
 //  Created by Viktoria Lobanova on 09.12.2023.
 //
 
-import Foundation
+import UIKit
 
 struct ListItem: Hashable {
+    let id: Int
     let title: String
-    let image: String
+    let image: UIImage?
+    let name: String?
 }

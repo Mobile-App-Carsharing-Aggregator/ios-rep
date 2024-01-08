@@ -36,9 +36,9 @@ class RatingCollectionViewCell: UICollectionViewCell {
         fatalError()
     }
     
-    func configure(title: String, image: String, borderColor: UIColor, background: UIColor) {
+    func configure(title: String, image: UIImage, borderColor: UIColor, background: UIColor) {
         label.text = title
-        star.image = UIImage(named: image)
+        star.image = image
         layer.borderColor = borderColor.cgColor
         backgroundColor = background
     }
