@@ -164,4 +164,5 @@ struct CarModel {
     let model: String
     let typeCar: CarType
     var cars: [Car]
+    var companies: [CarsharingCompany]
 }
