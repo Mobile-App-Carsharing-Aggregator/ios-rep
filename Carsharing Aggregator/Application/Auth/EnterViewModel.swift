@@ -2,11 +2,11 @@ import Foundation
 import Combine
 
 class EnterViewModel {
-    var coordinator: AuthCoordinator
+    var coordinator: LoginCoordinator
     var loginViewModel: LoginViewModel?
     private var userService = DefaultUserService.shared
     var registrationViewModel: RegistrationViewModel?
-    init(coordinator: AuthCoordinator) {
+    init(coordinator: LoginCoordinator) {
         self.coordinator = coordinator
     }
     private var cancellables: Set<AnyCancellable> = []
@@ -29,7 +29,7 @@ class EnterViewModel {
                                 UIProgressHUD.show()
                                 switch result {
                                 case .success(let success):
-                                    coordinator.finishAuthAndStartTabBarFlow()
+                                    coordinator.startTabBarFlow()
                                     UIProgressHUD.dismiss()
                                     
                                 case .failure(let failure):
@@ -56,7 +56,7 @@ class EnterViewModel {
                                 UIProgressHUD.show()
                                 switch result {
                                 case .success(let success):
-                                    self?.coordinator.finishAuthAndStartTabBarFlow()
+                                    self?.coordinator.startTabBarFlow()
                                     UIProgressHUD.dismiss()
                                 case .failure(let failure):
                                     UIProgressHUD.failed()
