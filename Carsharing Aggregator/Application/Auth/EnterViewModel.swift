@@ -3,7 +3,7 @@ import Combine
 
 class EnterViewModel {
     var coordinator: LoginCoordinator
-    var loginViewModel: LoginViewModel?
+    var loginViewModel: LoginViewModel!
     private var userService = DefaultUserService.shared
     var registrationViewModel: RegistrationViewModel!
     

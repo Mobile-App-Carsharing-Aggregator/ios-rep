@@ -5,10 +5,12 @@ import Combine
 final class EnterViewController: UIViewController {
     
     private let registrationViewModel = RegistrationViewModel()
+    private let loginViewModel = LoginViewModel()
     
     var currentButtonState: EnterButtonState = .login {
         didSet {
             updateButtonColors()
+            print(currentButtonState)
             switch currentButtonState {
             case .login:
                 setupLoginButtonBinding()
@@ -58,6 +60,7 @@ final class EnterViewController: UIViewController {
         registrationViewModel.isSubmitEnabled
             .receive(on: RunLoop.main)
             .sink {[weak self] isEnabled in
+                print("Registration isSubmitEnabled: \(isEnabled)")
                 self?.enterButton.isEnabled = isEnabled
                 self?.enterButton.backgroundColor = isEnabled ? .carsharing.black : .gray
             }
@@ -65,9 +68,10 @@ final class EnterViewController: UIViewController {
     }
     
     private func setupLoginButtonBinding() {
-        registrationViewModel.isSubmitEnabled
+        loginViewModel.isSubmitEnabled
             .receive(on: RunLoop.main)
             .sink {[weak self] isEnabled in
+                print("Login isSubmitEnabled: \(isEnabled)")
                 self?.enterButton.isEnabled = isEnabled
                 self?.enterButton.backgroundColor = isEnabled ? .carsharing.black : .gray
             }
@@ -106,8 +110,12 @@ final class EnterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        
         registrationView.registrationViewModel = registrationViewModel
+        loginView.configure(with: loginViewModel)
+        
         enterViewModel.registrationViewModel = registrationViewModel
+        enterViewModel.loginViewModel = loginViewModel
         
         switch currentButtonState {
         case .login:
