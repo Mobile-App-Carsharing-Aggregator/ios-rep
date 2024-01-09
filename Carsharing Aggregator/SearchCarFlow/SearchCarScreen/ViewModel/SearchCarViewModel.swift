@@ -71,7 +71,13 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
                 carModelsDictionary[modelKey] = newCarModel
             }
         }
-        return Array(carModelsDictionary.values)
+        let carModels = Array(carModelsDictionary.values).sorted {
+            if $0.brand == $1.brand {
+                return $0.model < $1.model
+            }
+            return $0.brand < $1.brand
+        }
+        return carModels
     }
 
 }
