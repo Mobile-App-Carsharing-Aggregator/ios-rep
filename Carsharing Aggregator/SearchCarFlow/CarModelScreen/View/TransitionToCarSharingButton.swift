@@ -49,11 +49,15 @@ final class TransitionToCarSharingButton: UIView {
     }
     
     // MARK: - Properties
+    var appStoreID: String = ""
     
     // MARK: - Actions
     @objc
     private func didTapLink(sender: UIGestureRecognizer) {
-        
+        let appStoreURL = URL(string: "https://apps.apple.com/app/id\(appStoreID)")!
+        if UIApplication.shared.canOpenURL(appStoreURL) {
+            UIApplication.shared.open(appStoreURL)
+        }
     }
     
     // MARK: - Methods
