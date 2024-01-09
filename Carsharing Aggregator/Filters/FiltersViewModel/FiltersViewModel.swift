@@ -46,4 +46,45 @@ class FiltersViewModel {
             }
         }
     }
+    
+    func filtersString() -> String {
+        var string = ""
+        
+        for section in selectedFilters where section.value.isEmpty == false {
+            let filters = section.value
+            switch section.key {
+            case .carsharing:
+                if string != "" { string.append("&") }
+                string.append("company=")
+                let stringToAdd = filters.compactMap { $0.name }.joined(separator: ",")
+                string.append(stringToAdd)
+            case .typeOfCar:
+                if string != "" { string.append("&") }
+                string.append("type_car=")
+                let stringToAdd = filters.compactMap { $0.name }.joined(separator: ",")
+                string.append(stringToAdd)
+            case .powerReserve:
+                if string != "" { string.append("&") }
+                string.append("power_reserve=")
+                string.append("\(filters.first?.name ?? "")")
+            case .different:
+                for filter in filters {
+                    switch filter.title {
+                    case "Детское кресло":
+                        if string != "" { string.append("&") }
+                        string.append(filter.name ?? "")
+                    default:
+                        continue
+                    }
+                }
+            case .rating:
+                if string != "" { string.append("&") }
+                string.append("rating=")
+                string.append("\(filters.first?.title ?? "")")
+            }
+        }
+        
+        if string != "" { string.insert("?", at: string.startIndex ) }
+        return string
+    }
 }

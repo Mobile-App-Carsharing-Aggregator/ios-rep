@@ -111,6 +111,8 @@ class FiltersViewController: UIViewController {
     }
     
     @objc private func numberOfCarsButtonTapped() {
+        let string = viewModel.filtersString()
+        print(string)
         delegate?.updateSelectedFilters(selectedFilters: viewModel.selectedFilters)
         viewModel.coordinator?.coordinatorDidFinish()
     }
