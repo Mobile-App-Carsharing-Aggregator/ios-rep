@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Combine
 
 final class EnterViewController: UIViewController {
     
@@ -8,8 +9,16 @@ final class EnterViewController: UIViewController {
     var currentButtonState: EnterButtonState = .login {
         didSet {
             updateButtonColors()
+            switch currentButtonState {
+            case .login:
+                setupLoginButtonBinding()
+            case .registration:
+                setupRegistrationButtonBinding()
+            }
         }
     }
+    
+    var cancellables: Set<AnyCancellable> = []
     
     private let enterViewModel: EnterViewModel
     
@@ -45,6 +54,26 @@ final class EnterViewController: UIViewController {
         return currentButtonState == .login ? .selected : .deselected
     }
     
+    private func setupRegistrationButtonBinding() {
+        registrationViewModel.isSubmitEnabled
+            .receive(on: RunLoop.main)
+            .sink {[weak self] isEnabled in
+                self?.enterButton.isEnabled = isEnabled
+                self?.enterButton.backgroundColor = isEnabled ? .carsharing.black : .gray
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func setupLoginButtonBinding() {
+        registrationViewModel.isSubmitEnabled
+            .receive(on: RunLoop.main)
+            .sink {[weak self] isEnabled in
+                self?.enterButton.isEnabled = isEnabled
+                self?.enterButton.backgroundColor = isEnabled ? .carsharing.black : .gray
+            }
+            .store(in: &cancellables)
+    }
+    
     private var loginView: LoginView = {
         let view = LoginView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -72,11 +101,20 @@ final class EnterViewController: UIViewController {
         return stackView
     }()
     
+// MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         registrationView.registrationViewModel = registrationViewModel
         enterViewModel.registrationViewModel = registrationViewModel
+        
+        switch currentButtonState {
+        case .login:
+            setupLoginButtonBinding()
+        case .registration:
+            setupRegistrationButtonBinding()
+        }
     }
     
     @objc private func didTapRegistrationButton() {
@@ -87,7 +125,7 @@ final class EnterViewController: UIViewController {
         registrationView.isHidden = false
         
     }
-
+    
     @objc private func didTapLoginButton() {
         if registrationView.isHidden == false {
             registrationView.isHidden = true
@@ -98,14 +136,15 @@ final class EnterViewController: UIViewController {
     
     @objc private func didTapEnterButton() {
         switch currentButtonState {
-            case .login:
+        case .login:
             print("login pressed")
             enterViewModel.isSubmitLoginEnabled()
-            case .registration:
+        case .registration:
             print("registration pressed")
             enterViewModel.isSubmitRegistrationEnabled()
-            }
+        }
     }
+    
     private func updateButtonColors() {
         loginButton.setTitleColor(EnterButtonState.login.color(for: currentButtonSelectionState), for: .normal)
         registrationButton.setTitleColor(EnterButtonState.registration.color(for: currentButtonSelectionState), for: .normal)
