@@ -33,10 +33,9 @@ class EnterViewModel {
                                 case .success(let success):
                                     coordinator.startTabBarFlow()
                                     UIProgressHUD.dismiss()
-                                    
                                 case .failure(let failure):
-                                    
                                     UIProgressHUD.failed()
+                                    UIProgressHUD.dismiss()
                                 }
                             }
                         }
@@ -62,6 +61,7 @@ class EnterViewModel {
                                     UIProgressHUD.dismiss()
                                 case .failure(let failure):
                                     UIProgressHUD.failed()
+                                    UIProgressHUD.dismiss()
                                 }
                             }
                         }
