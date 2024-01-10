@@ -9,23 +9,37 @@ import UIKit
 import SnapKit
 
 final class ProfileViewController: UIViewController {
-    
     // MARK: - UI
+    private lazy var titleVC: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.textColor = .carsharing.black
+        label.textAlignment = .center
+        label.text = "Профиль"
+        return label
+    }()
+    
+    private lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .carsharing.greyDark
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.addTarget(self,
+                         action: #selector(didTapCloseButton),
+                         for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var avatarImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "person.crop.circle.fill")
+        return image
+    }()
+    
     private lazy var profileNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Jon Snow"
         label.font = UIFont.systemFont(ofSize: 32, weight: .regular)
         return label
-    }()
-    
-    private lazy var profileItemButton: UIButton = {
-        let button = UIButton.systemButton(
-            with: .forward!,
-            target: self,
-            action: #selector(didTapProfileItemButton)
-        )
-        button.tintColor = .black
-        return button
     }()
     
     private lazy var tableView: UITableView = {
@@ -42,7 +56,6 @@ final class ProfileViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         setupConstraints()
         tableView.dataSource = self
@@ -52,21 +65,34 @@ final class ProfileViewController: UIViewController {
     // MARK: - Methods
     private func setupUI() {
         view.backgroundColor = .white
-        [profileNameLabel, profileItemButton, tableView].forEach {
+        [titleVC, closeButton, avatarImage, profileNameLabel, tableView].forEach {
             view.addSubview($0)
         }
-        
     }
     
     private func setupConstraints() {
-        profileNameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(view).offset(20)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+        titleVC.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(view).offset(26)
+            make.height.equalTo(22)
+            make.width.lessThanOrEqualTo(290)
         }
         
-        profileItemButton.snp.makeConstraints { make in
-            make.centerY.equalTo(profileNameLabel)
-            make.trailing.equalTo(view).offset(-12)
+        closeButton.snp.makeConstraints { make in
+            make.centerY.equalTo(titleVC.snp.centerY)
+            make.height.width.equalTo(24)
+            make.trailing.equalTo(view).offset(-30)
+        }
+        
+        avatarImage.snp.makeConstraints { make in
+            make.height.width.equalTo(36)
+            make.leading.equalTo(view).offset(21)
+            make.top.equalTo(titleVC.snp.bottom).offset(22)
+        }
+        
+        profileNameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(avatarImage.snp.trailing).offset(12)
+            make.centerY.equalTo(avatarImage.snp.centerY)
         }
         
         tableView.snp.makeConstraints { make in
@@ -79,8 +105,8 @@ final class ProfileViewController: UIViewController {
     
     // MARK: - Actions
     @objc
-    private func didTapProfileItemButton() {
-        
+    private func didTapCloseButton() {
+        dismiss(animated: true)
     }
 }
 
@@ -115,9 +141,6 @@ extension ProfileViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             cellText = "Бонусные баллы"
-            /* TO DO: - add bonuses presentation via viewModel
-             cell.accessoryView =
-             */
             
         case 1:
             switch indexPath.row {
