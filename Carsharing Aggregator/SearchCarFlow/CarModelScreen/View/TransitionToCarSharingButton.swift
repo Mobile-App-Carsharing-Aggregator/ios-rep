@@ -61,9 +61,9 @@ final class TransitionToCarSharingButton: UIView {
     }
     
     // MARK: - Methods
-    func configure(with company: String, companyLogo: UIImage) {
-        priceLabel.text = company + " " + "от 7 ₽/мин"
-        logo.image = companyLogo
+    func configure(with company: CarsharingCompany) {
+        priceLabel.text = "\(company.name) от \(company.price)₽/мин"
+        logo.image = company.bigIcon
         self.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                          action: #selector(didTapLink))
                                   )

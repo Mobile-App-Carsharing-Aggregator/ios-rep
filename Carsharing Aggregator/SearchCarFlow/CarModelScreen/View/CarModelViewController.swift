@@ -72,25 +72,31 @@ final class CarModelViewController: UIViewController {
     
     // MARK: - Layout Methods
     private func configureStack() {
-        let yandex = TransitionToCarSharingButton()
-        yandex.configure(with: "ЯндексДрайв", companyLogo: .drive!)
-        yandex.appStoreID = "1318875022"
+        guard let companies = carModel?.companies else { return }
+        for company in companies {
+            let view = TransitionToCarSharingButton()
+            view.configure(with: company)
+            vStack.addArrangedSubview(view)
+        }
+//        let yandex = TransitionToCarSharingButton()
+//        yandex.configure(with: "ЯндексДрайв", companyLogo: .drive!)
+//        yandex.appStoreID = "1318875022"
+//        
+//        let deli = TransitionToCarSharingButton()
+//        deli.configure(with: "ДелиМобиль", companyLogo: .deli!)
+//        deli.appStoreID = "1038254296"
+//        
+//        let city = TransitionToCarSharingButton()
+//        city.configure(with: "СитиМобил", companyLogo: .city!)
+//        city.appStoreID = "579220388"
+//        let belka = TransitionToCarSharingButton()
+//        belka.configure(with: "BelkaCar", companyLogo: .belka!)
+//        belka.appStoreID = "1113709902"
         
-        let deli = TransitionToCarSharingButton()
-        deli.configure(with: "ДелиМобиль", companyLogo: .deli!)
-        deli.appStoreID = "1038254296"
-        
-        let city = TransitionToCarSharingButton()
-        city.configure(with: "СитиМобил", companyLogo: .city!)
-        city.appStoreID = "579220388"
-        let belka = TransitionToCarSharingButton()
-        belka.configure(with: "BelkaCar", companyLogo: .belka!)
-        belka.appStoreID = "1113709902"
-        
-        vStack.addArrangedSubview(yandex)
-        vStack.addArrangedSubview(deli)
-        vStack.addArrangedSubview(city)
-        vStack.addArrangedSubview(belka)
+//        vStack.addArrangedSubview(yandex)
+//        vStack.addArrangedSubview(deli)
+//        vStack.addArrangedSubview(city)
+//        vStack.addArrangedSubview(belka)
     }
     
     private func configureCarInfo() {
