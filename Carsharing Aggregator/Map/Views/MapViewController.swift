@@ -96,6 +96,7 @@ final class MapViewController: UIViewController {
         viewModel.onRefreshAction = { [weak self] indexPaths in
             self?.carsharingCollectionView.reloadItems(at: indexPaths)
             self?.filtersCollectionView.reloadData()
+            self?.updateMapWithFilters()
         }
     }
     
@@ -146,6 +147,26 @@ final class MapViewController: UIViewController {
                             cameraCallback: nil)
                     }
                 }
+                self.addClustering(with: self.carsByService)
+            }
+        }
+    }
+    
+    private func updateMapWithFilters() {
+        carsByService = [:]
+        map.mapObjects.clear()
+        
+        self.viewModel.carsLocations { [weak self] cars in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                let companies = CarsharingCompany.allCases
+                for company in companies {
+                    let carsInCompany = cars.filter { $0.company == company }
+                    if carsInCompany.isEmpty == false {
+                        self.carsByService[company] = carsInCompany
+                    }
+                }
+                
                 self.addClustering(with: self.carsByService)
             }
         }

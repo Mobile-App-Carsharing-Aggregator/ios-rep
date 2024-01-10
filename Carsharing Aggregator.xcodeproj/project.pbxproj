@@ -61,6 +61,7 @@
 		6166DC652B29FAF4003E57FB /* SelectedCarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6166DC642B29FAF4003E57FB /* SelectedCarCoordinator.swift */; };
 		616BDE452B33807A000DEE66 /* RouteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616BDE442B33807A000DEE66 /* RouteService.swift */; };
 		61BF07B32B3329C8004E375E /* AddressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF07B22B3329C8004E375E /* AddressService.swift */; };
+		61FDC7572B4E897200E14EDA /* FiltersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FDC7562B4E897200E14EDA /* FiltersRequest.swift */; };
 		C40379252B262567008F22F8 /* SearchCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379242B262567008F22F8 /* SearchCarViewController.swift */; };
 		C40379272B262579008F22F8 /* SearchCarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379262B262579008F22F8 /* SearchCarViewModel.swift */; };
 		C40379292B262590008F22F8 /* SearchCarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379282B262590008F22F8 /* SearchCarCoordinator.swift */; };
@@ -144,6 +145,7 @@
 		6166DC642B29FAF4003E57FB /* SelectedCarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCarCoordinator.swift; sourceTree = "<group>"; };
 		616BDE442B33807A000DEE66 /* RouteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteService.swift; sourceTree = "<group>"; };
 		61BF07B22B3329C8004E375E /* AddressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressService.swift; sourceTree = "<group>"; };
+		61FDC7562B4E897200E14EDA /* FiltersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersRequest.swift; sourceTree = "<group>"; };
 		8011ECC10AB3FD263BD97C5F /* Pods_Carsharing_Aggregator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carsharing_Aggregator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40379242B262567008F22F8 /* SearchCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCarViewController.swift; sourceTree = "<group>"; };
 		C40379262B262579008F22F8 /* SearchCarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCarViewModel.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				32857E8C2B1F41A8003AE9AC /* GeometryProvider.swift */,
+				61FDC7562B4E897200E14EDA /* FiltersRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -935,6 +938,7 @@
 				32453C042B14D7AD003E7AA8 /* MapViewController.swift in Sources */,
 				328BD0FC2B2334C100F3AB80 /* FiltersViewController.swift in Sources */,
 				370ADEB02B199CD80090300E /* String+Ext.swift in Sources */,
+				61FDC7572B4E897200E14EDA /* FiltersRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
