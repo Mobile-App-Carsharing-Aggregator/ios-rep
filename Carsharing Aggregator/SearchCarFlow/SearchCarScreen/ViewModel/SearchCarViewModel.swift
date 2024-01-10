@@ -13,7 +13,6 @@ protocol SearchCarViewModelProtocol {
 }
 
 final class SearchCarViewModel: SearchCarViewModelProtocol {
-    
     // MARK: - Observables
     @Observable
     private (set) var carModels: [CarModel] = []
@@ -30,13 +29,9 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
         getCars()
     }
     
-    func cleanUp() {
-        
-    }
-    
     private func getCars() {
         isLoading = true
-        carsService.getCars { [weak self] cars in
+        carsService.getCars(with: "") { [weak self] cars in
             DispatchQueue.main.async {
                 guard let self else { return }
                 self.carModels = self.getUniqCarModel(cars: cars)
@@ -60,7 +55,7 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
                 carModelsDictionary[modelKey] = existingCarModel
             } else {
                 // Создаем новую модель машины и добавляем ее в словарь
-                var newCarModel = CarModel(
+                let newCarModel = CarModel(
                     image: car.image ?? cars.first?.image,
                     brand: car.brand,
                     model: car.model,
