@@ -30,10 +30,11 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
         navigationController.pushViewController(mapVC, animated: true)
     }
     
-    func openProfile() {
+    func openProfile(on vc: UIViewController) {
         let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
         profileCoordinator.parent = self
         addChild(profileCoordinator)
+        profileCoordinator.viewControllerRef = vc
         profileCoordinator.start()
     }
     // передавать селектед фильтрес

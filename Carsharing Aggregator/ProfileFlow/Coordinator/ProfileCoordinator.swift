@@ -21,16 +21,23 @@ final class ProfileCoordinator: ChildCoordinator {
     
     // MARK: - Methods
     func start() {
-        let profileVC = ProfileViewController()
-        viewControllerRef = profileVC
-        let profileVM = ProfileViewModel()
-        profileVC.viewModel = profileVM
-        profileVC.coordinator = self
-        navigationController.customPushViewController(
-            viewController: profileVC,
-            direction: .fromBottom,
-            transitionType: .push
-        )
+        let vc = ProfileViewController()
+        let vm = ProfileViewModel()
+        vc.viewModel = vm
+        vc.coordinator = self
+        vc.modalPresentationStyle = .pageSheet
+        if let sheet = vc.sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                sheet.detents = [.custom(resolver: { context in
+                    return  745
+                })]
+            } else {
+                /* need customize for iOS <16 */
+            }
+            sheet.prefersGrabberVisible = true
+            sheet.largestUndimmedDetentIdentifier = .medium
+        }
+        viewControllerRef?.present(vc, animated: true)
     }
     
     func coordinatorDidFinish() {

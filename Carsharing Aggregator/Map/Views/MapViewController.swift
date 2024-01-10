@@ -248,7 +248,7 @@ final class MapViewController: UIViewController {
 
 extension MapViewController: TabViewDelegate {
     func profileButtonTapped() {
-        viewModel.openProfile()
+        viewModel.openProfile(on: self)
     }
     
     func filtersButtonTapped() {
