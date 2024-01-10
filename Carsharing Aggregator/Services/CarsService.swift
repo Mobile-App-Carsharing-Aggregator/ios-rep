@@ -7,15 +7,21 @@
 
 private struct GetCarsRequest: NetworkRequest {
     var endpoint: URL? {
-        URL(string: "http://193.107.238.139/api/v1/cars/")
+        URL(string: "http://193.107.238.139/api/v1/cars/" + filters)
     }
     var httpMethod: HttpMethod { .get }
+    
+    var filters: String
+    
+    init(filters: String) {
+        self.filters = filters
+    }
 }
 
 import Foundation
 
 protocol CarsServiceProtocol {
-    func getCars(completion: @escaping ([Car]) -> Void)
+    func getCars(with filters: String, completion: @escaping ([Car]) -> Void)
 }
 
 final class CarsService: CarsServiceProtocol {
@@ -26,13 +32,13 @@ final class CarsService: CarsServiceProtocol {
     
     private init() {}
     
-    func getCars(completion: @escaping ([Car]) -> Void) {
+    func getCars(with filters: String, completion: @escaping ([Car]) -> Void) {
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
 //            guard let cars = self?.getMockCars() else { return }
 //            completion(cars)
 //        }
         DispatchQueue.main.async { [weak self] in
-            self?.getCarsFromNetwork { result in
+            self?.getCarsFromNetwork(with: filters) { result in
                 switch result {
                 case .success(let carsResponse):
                     completion(carsResponse.results)
@@ -43,8 +49,8 @@ final class CarsService: CarsServiceProtocol {
         }
     }
     
-    func getCarsFromNetwork(completion: @escaping (Result<GetCarsResponse, NetworkError>) -> Void) {
-        let getCarsRequest = GetCarsRequest()
+    func getCarsFromNetwork(with filters: String, completion: @escaping (Result<GetCarsResponse, NetworkError>) -> Void) {
+        let getCarsRequest = GetCarsRequest(filters: filters)
         
         networkClient.send(request: getCarsRequest, type: GetCarsResponse.self) { result in
             switch result {
@@ -75,10 +81,10 @@ extension CarsService {
                 brand: "Машина \(index + 1)",
                 model: "Модель \(index + 1)",
                 typeEngine: engineTypes.randomElement()!,
+                various: [],
                 typeCar: carTypes.randomElement()!,
                 rating: 5.0,
                 coordinates: Coordinates(latitude: Float(location.latitude), longitude: Float(location.longitude)),
-                childSeat: index % 3 == 0, 
                 stateNumber: "AA001AA75"
             )
             cars.append(car)

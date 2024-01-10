@@ -34,12 +34,12 @@ struct MockData {
     }()
     
     let different: [ListItem] = {
-        [.init(id: 0, title: "Детское кресло", image: nil, name: "child_seat=true"),
-         .init(id: 1, title: "Подогрев руля", image: nil, name: ""),
-         .init(id: 2, title: "Удаленный подогрев", image: nil, name: ""),
-         .init(id: 3, title: "Без оклейки", image: nil, name: ""),
-         .init(id: 4, title: "Лопата", image: nil, name: ""),
-         .init(id: 5, title: "Для большой компании", image: nil, name: "")]
+        [.init(id: 0, title: "Детское кресло", image: nil, name: Various.childSeat.rawValue),
+         .init(id: 1, title: "Подогрев руля", image: nil, name: Various.heatedSteeringWheel.rawValue),
+         .init(id: 2, title: "Удаленный подогрев", image: nil, name: Various.remoteHeating.rawValue),
+         .init(id: 3, title: "Без оклейки", image: nil, name: Various.withoutPasting.rawValue),
+         .init(id: 4, title: "Лопата", image: nil, name: Various.shovel.rawValue),
+         .init(id: 5, title: "Для большой компании", image: nil, name: Various.forBigCompany.rawValue)]
     }()
     
     let rating: [ListItem] = {
