@@ -111,6 +111,19 @@ enum CarsharingCompany: String, Codable, CaseIterable {
             8
         }
     }
+    
+    var appStoreID: String {
+        switch self {
+        case .YandexDrive:
+            "1318875022"
+        case .CityDrive:
+            "579220388"
+        case .Delimobil:
+            "1038254296"
+        case .BelkaCar:
+            "1113709902"
+        }
+    }
 }
 
 enum EngineType: String, Codable {

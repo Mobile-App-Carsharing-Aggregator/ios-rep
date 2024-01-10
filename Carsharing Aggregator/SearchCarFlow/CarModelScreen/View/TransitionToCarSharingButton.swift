@@ -64,6 +64,7 @@ final class TransitionToCarSharingButton: UIView {
     func configure(with company: CarsharingCompany) {
         priceLabel.text = "\(company.name) от \(company.price)₽/мин"
         logo.image = company.bigIcon
+        appStoreID = company.appStoreID
         self.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                          action: #selector(didTapLink))
                                   )
