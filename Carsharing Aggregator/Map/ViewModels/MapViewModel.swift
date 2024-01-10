@@ -73,7 +73,8 @@ class MapViewModel {
     }
     
     func carsLocations(completion: @escaping ([Car]) -> Void) {
-        CarsService.shared.getCars(completion: completion)
+        let filtersString = filtersString()
+        CarsService.shared.getCars(with: filtersString, completion: completion)
     }
     
     func openProfile() {
@@ -94,6 +95,31 @@ class MapViewModel {
     
     func coordinatorDidFinish() {
         coordinator?.coordinatorDidFinish()
+    }
+    
+    private func filtersString() -> String {
+        var string = FiltersRequest()
+        
+        for section in selectedFilters where section.value.isEmpty == false {
+            let filters = section.value
+            switch section.key {
+            case .carsharing:
+                let stringToAdd = filters.compactMap { $0.name }.joined(separator: ",")
+                string.company.append(stringToAdd)
+            case .typeOfCar:
+                let stringToAdd = filters.compactMap { $0.name }.joined(separator: ",")
+                string.typeOfCar.append(stringToAdd)
+            case .powerReserve:
+                string.powerReserve.append("\(filters.first?.name ?? "")")
+            case .different:
+                let stringToAdd = filters.compactMap { "various=" + ($0.name ?? "") }.joined(separator: "&")
+                string.various.append(stringToAdd)
+            case .rating:
+                string.rating.append("\(filters.first?.title ?? "")")
+            }
+        }
+        
+        return string.requestString
     }
 }
 

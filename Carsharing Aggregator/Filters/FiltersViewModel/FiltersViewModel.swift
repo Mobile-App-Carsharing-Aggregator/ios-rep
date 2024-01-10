@@ -25,6 +25,7 @@ class FiltersViewModel {
                 onRefreshAction?(indexPathToUpdate, shouldUpdateCars)
             }
             indexPathToUpdate = nil
+            shouldUpdateCars = false
         }
     }
     
@@ -58,5 +59,16 @@ class FiltersViewModel {
                 selectedFilters[section] = [item]
             }
         }
+        
+        if item.title == MockData.bigCompanyTitle {
+            removeSmallCars()
+        }
+    }
+    
+    func removeSmallCars() {
+        var cars = selectedFilters[.typeOfCar]
+        selectedFilters[.typeOfCar] = cars?.filter({ item in
+            !MockData.shared.smallCarsTitles.contains(item.title)
+        })
     }
 }

@@ -98,8 +98,13 @@ final class MapViewController: UIViewController {
         
         initMap()
         viewModel.onRefreshAction = { [weak self] indexPaths in
-            self?.carsharingCollectionView.reloadItems(at: indexPaths)
+            if indexPaths.count != 0 {
+                self?.carsharingCollectionView.reloadItems(at: indexPaths)
+            } else {
+                self?.carsharingCollectionView.reloadData()
+            }
             self?.filtersCollectionView.reloadData()
+            self?.updateMapWithFilters()
         }
     }
     
@@ -148,6 +153,25 @@ final class MapViewController: UIViewController {
                             with: position,
                             animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0),
                             cameraCallback: nil)
+                    }
+                }
+                self.addClustering(with: self.carsByService)
+            }
+        }
+    }
+    
+    private func updateMapWithFilters() {
+        carsByService = [:]
+        map.mapObjects.clear()
+        
+        self.viewModel.carsLocations { [weak self] cars in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                let companies = CarsharingCompany.allCases
+                for company in companies {
+                    let carsInCompany = cars.filter { $0.company == company }
+                    if carsInCompany.isEmpty == false {
+                        self.carsByService[company] = carsInCompany
                     }
                 }
                 self.addClustering(with: self.carsByService)
@@ -365,10 +389,8 @@ extension MapViewController: YMKUserLocationObjectListener {
     }
     
     func onObjectUpdated(with view: YMKUserLocationView, event: YMKObjectEvent) {
-       
-        }
+       }
     }
-
 
 // MARK: - Extension YMKMapObjectTapListener
 

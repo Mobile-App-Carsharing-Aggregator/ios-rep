@@ -20,10 +20,10 @@ struct Car: Codable {
     let brand: String
     let model: String
     let typeEngine: EngineType
+    let various: [Various]
     let typeCar: CarType
     var rating: Double
     var coordinates: Coordinates
-    let childSeat: Bool
     let stateNumber: String
 }
 
@@ -32,10 +32,19 @@ struct Coordinates: Codable {
     let longitude: Float
 }
 
+enum Various: String, Codable {
+    case childSeat = "child_seat"
+    case heatedSteeringWheel = "heated_steering_wheel"
+    case remoteHeating = "remote_heating"
+    case withoutPasting = "without_pasting"
+    case shovel = "shovel"
+    case forBigCompany = "for_big_company"
+}
+
 enum CarsharingCompany: String, Codable, CaseIterable {
     case YandexDrive
     case CityDrive
-    case Delimobil
+    case Delimobil = "DelyMobil"
     case BelkaCar
     
     var color: UIColor {
@@ -114,9 +123,9 @@ enum CarType: String, Codable {
     case sedan
     case hatchback
     case minivan
-    case coupe
-    case universal
-    case other
+    case coupe = "kupe"
+    case universal = "universak"
+    case other = "vnedorojnik"
     
     var name: String {
         switch self {

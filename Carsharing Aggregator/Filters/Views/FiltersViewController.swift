@@ -217,7 +217,7 @@ extension FiltersViewController: UICollectionViewDataSource {
         let item = section.items[indexPath.row]
         let isSelected = viewModel.filters(for: section).contains(item)
         let isSelectedBigCompany = viewModel.isSelectedBigCompany
-        let isEnabled = !(isSelectedBigCompany && MockData.shared.typeOfSmallCars.contains(item.id))
+        let isEnabled = !(isSelectedBigCompany && MockData.shared.smallCarsTitles.contains(item.title))
         switch sections[indexPath.section] {
         case .carsharing, .typeOfCar, .powerReserve, .different:
             guard let cell = collectionView.dequeueReusableCell(
