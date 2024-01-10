@@ -8,7 +8,6 @@ import UIKit
 import SnapKit
 
 final class TransitionToCarSharingButton: UIView {
-    
     // MARK: - Layout properties
     private var bookingLabel: UILabel = {
         let label = UILabel()
@@ -49,12 +48,13 @@ final class TransitionToCarSharingButton: UIView {
     }
     
     // MARK: - Properties
-    var appStoreID: String = ""
+    var carsharingCompany: CarsharingCompany?
     
     // MARK: - Actions
     @objc
     private func didTapLink(sender: UIGestureRecognizer) {
-        let appStoreURL = URL(string: "https://apps.apple.com/app/id\(appStoreID)")!
+        guard let company = carsharingCompany else { return }
+        let appStoreURL = URL(string: "https://apps.apple.com/app/id\(company.appStoreID)")!
         if UIApplication.shared.canOpenURL(appStoreURL) {
             UIApplication.shared.open(appStoreURL)
         }
@@ -62,9 +62,9 @@ final class TransitionToCarSharingButton: UIView {
     
     // MARK: - Methods
     func configure(with company: CarsharingCompany) {
+        carsharingCompany = company
         priceLabel.text = "\(company.name) от \(company.price)₽/мин"
         logo.image = company.bigIcon
-        appStoreID = company.appStoreID
         self.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                          action: #selector(didTapLink))
                                   )
