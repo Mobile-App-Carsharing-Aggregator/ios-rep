@@ -19,8 +19,6 @@ class LoginView: UIView {
     
     func configure(with viewModel: LoginViewModel) {
         self.loginViewModel = viewModel
-        observeEmailField()
-        observePasswordField()
     }
     
     private let emailSublabel = UILabel(for: "  Example@mail.ru  ")
@@ -161,7 +159,7 @@ class LoginView: UIView {
                     self.passwordWarningLabel.isHidden = isEmpty
                 } else {
                     self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: 33)
-                    self.emptyPasswordFieldWarning.isHidden = !isValid
+                    self.emptyPasswordFieldWarning.isHidden = !isEmpty
                     self.passwordWarningLabel.isHidden = isValid
                 }
             }
@@ -204,15 +202,20 @@ extension LoginView {
         textField.layer.borderWidth = 2
         sublLabel.enterSublabelAnimation()
     }
+    
     private func textFieldDidEnd(_ textField: UITextField, and sublabel: UILabel) {
             sublabel.isHidden = true
             textField.layer.borderWidth = 1
-        }
+    }
     
     @objc private func textFIeldDidStart(_ textField: UITextField) {
         switch textField {
-        case emailTextField: didStartTyping(in: emailTextField, with: emailSublabel)
-        case passwordTextField: didStartTyping(in: passwordTextField, with: passwordSublabel)
+        case emailTextField: 
+            didStartTyping(in: emailTextField, with: emailSublabel)
+            observeEmailField()
+        case passwordTextField: 
+            didStartTyping(in: passwordTextField, with: passwordSublabel)
+            observePasswordField()
         default: break
         }
     }
