@@ -7,6 +7,8 @@ class EnterViewModel {
     private var userService = DefaultUserService.shared
     var registrationViewModel: RegistrationViewModel!
     
+    var onError: ((String) -> Void)?
+    
     init(coordinator: LoginCoordinator) {
         self.coordinator = coordinator
     }
@@ -33,9 +35,14 @@ class EnterViewModel {
                                 case .success(let success):
                                     coordinator.startTabBarFlow()
                                     UIProgressHUD.dismiss()
-                                case .failure(let failure):
-                                    UIProgressHUD.failed()
+                                case .failure(let error):
                                     UIProgressHUD.dismiss()
+                                    if case NetworkError.customError(let errorMessage) = error {
+                                        self.onError?(errorMessage)
+                                    } else {
+                                        self.onError?(error.localizedDescription)
+                                    }
+                                
                                 }
                             }
                         }
@@ -54,14 +61,20 @@ class EnterViewModel {
                         let loginModel = UserLogin(email: loginViewModel.email, password: loginViewModel.password)
                         userService.userLogin(with: loginModel) { result in
                             DispatchQueue.main.async { [weak self] in
+                                guard let self = self else { return }
                                 UIProgressHUD.show()
                                 switch result {
                                 case .success(let success):
-                                    self?.coordinator.startTabBarFlow()
+                                    coordinator.startTabBarFlow()
                                     UIProgressHUD.dismiss()
-                                case .failure(let failure):
-                                    UIProgressHUD.failed()
+                                case .failure(let error):
                                     UIProgressHUD.dismiss()
+                                    if case NetworkError.customError(let errorMessage) = error {
+                                        self.onError?(errorMessage)
+                                    } else {
+                                        self.onError?(error.localizedDescription)
+                                    }
+                                
                                 }
                             }
                         }

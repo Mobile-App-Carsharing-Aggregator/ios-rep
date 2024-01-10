@@ -123,6 +123,10 @@ final class EnterViewController: UIViewController {
         case .registration:
             setupRegistrationButtonBinding()
         }
+        
+        enterViewModel.onError = { [weak self] errorMessage in
+            self?.showAlert(with: errorMessage)
+        }
     }
     
     @objc private func didTapRegistrationButton() {
@@ -162,6 +166,12 @@ final class EnterViewController: UIViewController {
     private func updateEnterButtonTitle() {
         enterButton.setTitle(currentButtonState.enterTitle, for: .normal)
         
+    }
+    
+    private func showAlert(with message: String) {
+        let alertController = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alertController, animated: true)
     }
     
     deinit {
