@@ -68,14 +68,6 @@ final class SearchCarViewController: UIViewController {
         viewModel?.viewWillAppear()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        if self.isMovingFromParent {
-            viewModel?.cleanUp()
-        }
-    }
-    
     // MARK: - Methods
     private func bind() {
         guard let viewModel = viewModel else { return }
@@ -88,13 +80,7 @@ final class SearchCarViewController: UIViewController {
         let vc = CarModelViewController()
         vc.carModel = car
         if let sheet = vc.sheetPresentationController {
-            if #available(iOS 16.0, *) {
-                sheet.detents = [.medium(), .custom(resolver: { context in
-                    return  745
-                })]
-            } else {
-                // Fallback on earlier versions
-            }
+            sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
             sheet.largestUndimmedDetentIdentifier = .medium
         }

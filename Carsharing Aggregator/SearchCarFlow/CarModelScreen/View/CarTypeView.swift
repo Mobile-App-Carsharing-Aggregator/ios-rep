@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class CarTypeView: UIView {
-    
     // MARK: - Layout properties
     private let label: UILabel = {
         let label = UILabel()
@@ -19,16 +18,11 @@ class CarTypeView: UIView {
         return label
     }()
     
-    private let icon: UIImageView = {
-        let star = UIImageView()
-        star.contentMode = .scaleAspectFit
-        star.image = UIImage.car
-        return star
-    }()
-    
     // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .carsharing.greyLight
+        layer.cornerRadius = 12
         setupView()
     }
     
@@ -42,23 +36,16 @@ class CarTypeView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .carsharing.greyLight
-        layer.cornerRadius = 12
-        [icon, label].forEach {
+        [label].forEach {
             addSubview($0)
         }
         setConstraints()
     }
     
     private func setConstraints() {
-        icon.snp.makeConstraints { make in
-            make.leading.equalTo(snp.leading).offset(12)
-            make.centerY.equalTo(snp.centerY)
-        }
-        
         label.snp.makeConstraints { make in
-            make.centerY.equalTo(icon.snp.centerY)
-            make.leading.equalTo(icon.snp.trailing).offset(4)
+            make.centerY.equalTo(snp.centerY)
+            make.leading.equalTo(snp.leading).offset(12)
             make.trailing.equalTo(snp.trailing).offset(-12)
         }
     }
