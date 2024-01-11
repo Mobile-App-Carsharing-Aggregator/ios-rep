@@ -354,6 +354,7 @@ extension MapViewController: YMKUserLocationObjectListener {
     func onObjectAdded(with view: YMKUserLocationView) {
         guard let image = UIImage(named: "userPoint") else { return }
         view.pin.setIconWith(image)
+        view.accuracyCircle.fillColor = .clear
     }
     
     func onObjectRemoved(with view: YMKUserLocationView) {
