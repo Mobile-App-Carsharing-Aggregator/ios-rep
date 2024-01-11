@@ -42,14 +42,5 @@ struct UserLogin: Encodable {
 }
 
 struct LoginResponse: Codable {
-    let id: Int
-    let email: String
-    let firstName: String
-    let lastName: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id, email
-        case firstName = "first_name"
-        case lastName = "last_name"
-    }
+    let authToken: String
 }

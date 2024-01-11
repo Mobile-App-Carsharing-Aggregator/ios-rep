@@ -77,8 +77,8 @@ final class DefaultUserService: UserServiceProtocol {
         
         networkClient.send(request: loginRequest, type: LoginResponse.self) { result in
             switch result {
-            case .success(let user):
-                completion(.success(user))
+            case .success(let token):
+                completion(.success(token))
             case .failure(let error):
                 if case let NetworkError.httpStatusCode(_, data) = error, let data = data {
                     if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {

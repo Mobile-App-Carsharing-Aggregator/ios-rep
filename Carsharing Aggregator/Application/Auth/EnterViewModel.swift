@@ -16,71 +16,95 @@ class EnterViewModel {
     private var cancellables: Set<AnyCancellable> = []
     
     func isSubmitRegistrationEnabled() {
-        if let registrationViewModel = registrationViewModel {
-            registrationViewModel.isSubmitEnabled
-                .sink { [weak self] isEnabled in
-                    guard let self = self else { return }
-                    if isEnabled {
-                        let registrationModel = UserRegistration(email: registrationViewModel.email,
-                                                                 firstName: registrationViewModel.name,
-                                                                 lastName: registrationViewModel.surname,
-                                                                 password: registrationViewModel.password,
-                                                                 confirmPassword: registrationViewModel.confirmPassword)
-                        print(registrationModel)
-                        userService.createUser(with: registrationModel) { result in
-                            DispatchQueue.main.async { [weak self] in
-                                guard let self = self else { return }
-                                UIProgressHUD.show()
-                                switch result {
-                                case .success(let success):
-                                    coordinator.startTabBarFlow()
-                                    UIProgressHUD.dismiss()
-                                case .failure(let error):
-                                    UIProgressHUD.dismiss()
-                                    if case NetworkError.customError(let errorMessage) = error {
-                                        self.onError?(errorMessage)
-                                    } else {
-                                        self.onError?(error.localizedDescription)
-                                    }
-                                
-                                }
-                            }
+        guard let registrationViewModel else { return }
+        let registrationModel = UserRegistration(email: registrationViewModel.email,
+                                                 firstName: registrationViewModel.name,
+                                                 lastName: registrationViewModel.surname,
+                                                 password: registrationViewModel.password,
+                                                 confirmPassword: registrationViewModel.confirmPassword)
+        print(registrationModel)
+        userService.createUser(with: registrationModel) { result in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                UIProgressHUD.show()
+                switch result {
+                case .success(let success):
+                    coordinator.startTabBarFlow()
+                    UIProgressHUD.dismiss()
+                case .failure(let error):
+                    UIProgressHUD.dismiss()
+                    if case NetworkError.customError(let errorMessage) = error {
+                        self.onError?(errorMessage)
+                    } else {
+                        switch error {
+                        case .customError(let errorMessage):
+                            self.onError?(errorMessage)
+
+                        case .httpStatusCode(let statusCode):
+                            let statusMessage = "Ошибка HTTP: \(statusCode)"
+                            self.onError?(statusMessage)
+
+                        case .urlSessionError:
+                            self.onError?("Ошибка сессии URL")
+
+                        case .urlRequestError(let error):
+                            self.onError?("Ошибка запроса: \(error.localizedDescription)")
+
+                        case .decode:
+                            self.onError?("Ошибка декодирования данных")
+
+                        default:
+                            self.onError?("Неизвестная ошибка")
                         }
                     }
+                    
                 }
-                .store(in: &cancellables)
+            }
         }
     }
     
     func isSubmitLoginEnabled() {
-        if let loginViewModel = loginViewModel {
-            loginViewModel.isSubmitEnabled
-                .sink { [weak self] isEnabled in
-                    guard let self = self else { return }
-                    if isEnabled {
-                        let loginModel = UserLogin(email: loginViewModel.email, password: loginViewModel.password)
-                        userService.userLogin(with: loginModel) { result in
-                            DispatchQueue.main.async { [weak self] in
-                                guard let self = self else { return }
-                                UIProgressHUD.show()
-                                switch result {
-                                case .success(let success):
-                                    coordinator.startTabBarFlow()
-                                    UIProgressHUD.dismiss()
-                                case .failure(let error):
-                                    UIProgressHUD.dismiss()
-                                    if case NetworkError.customError(let errorMessage) = error {
-                                        self.onError?(errorMessage)
-                                    } else {
-                                        self.onError?(error.localizedDescription)
-                                    }
-                                
-                                }
-                            }
+        guard let loginViewModel else { return }
+        let loginModel = UserLogin(email: loginViewModel.email, password: loginViewModel.password)
+        userService.userLogin(with: loginModel) { result in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                UIProgressHUD.show()
+                switch result {
+                case .success(let token):
+                    print("TOKEN: \(token)")
+                    coordinator.startTabBarFlow()
+                    UIProgressHUD.dismiss()
+                case .failure(let error):
+                    UIProgressHUD.dismiss()
+                    if case NetworkError.customError(let errorMessage) = error {
+                        self.onError?(errorMessage)
+                    } else {
+                        switch error {
+                        case .customError(let errorMessage):
+                            self.onError?(errorMessage)
+
+                        case .httpStatusCode(let statusCode):
+                            let statusMessage = "Ошибка HTTP: \(statusCode)"
+                            self.onError?(statusMessage)
+
+                        case .urlSessionError:
+                            self.onError?("Ошибка сессии URL")
+
+                        case .urlRequestError(let error):
+                            self.onError?("Ошибка запроса: \(error.localizedDescription)")
+
+                        case .decode:
+                            self.onError?("Ошибка декодирования данных")
+
+                        default:
+                            self.onError?("Неизвестная ошибка")
                         }
                     }
+                    
                 }
-                .store(in: &cancellables)
+            }
+            print("login tapped")
         }
     }
 }
