@@ -111,6 +111,19 @@ enum CarsharingCompany: String, Codable, CaseIterable {
             8
         }
     }
+    
+    var appStoreID: String {
+        switch self {
+        case .YandexDrive:
+            "1318875022"
+        case .CityDrive:
+            "579220388"
+        case .Delimobil:
+            "1038254296"
+        case .BelkaCar:
+            "1113709902"
+        }
+    }
 }
 
 enum EngineType: String, Codable {
@@ -165,4 +178,13 @@ struct Cars: Codable {
     var rating: String
     var coordinates: Coordinates
     let childSeat: Bool
+}
+
+struct CarModel {
+    var image: String?
+    let brand: String
+    let model: String
+    let typeCar: CarType
+    var cars: [Car]
+    var companies: [CarsharingCompany]
 }
