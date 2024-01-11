@@ -101,8 +101,11 @@ class FiltersViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        viewModel.onRefreshAction = { [weak self] indexPath in
+        viewModel.onRefreshAction = { [weak self] indexPath, shouldUpdateCarsSection in
             self?.collectionView.reloadItems(at: [indexPath])
+            if shouldUpdateCarsSection {
+                self?.collectionView.reloadSections(IndexSet(integer: 1))
+            }
         }
     }
     
@@ -198,6 +201,7 @@ extension FiltersViewController {
 }
 
 // MARK: Extension UICollectionViewDataSource
+
 extension FiltersViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -212,6 +216,8 @@ extension FiltersViewController: UICollectionViewDataSource {
         let section = viewModel.sections[indexPath.section]
         let item = section.items[indexPath.row]
         let isSelected = viewModel.filters(for: section).contains(item)
+        let isSelectedBigCompany = viewModel.isSelectedBigCompany
+        let isEnabled = !(isSelectedBigCompany && MockData.shared.smallCarsTitles.contains(item.title))
         switch sections[indexPath.section] {
         case .carsharing, .typeOfCar, .powerReserve, .different:
             guard let cell = collectionView.dequeueReusableCell(
@@ -220,11 +226,12 @@ extension FiltersViewController: UICollectionViewDataSource {
             else {
                 return UICollectionViewCell()
             }
+
             cell.configure(
                 title: item.title,
-                textColor: UIColor.black,
-                borderColor: isSelected ? UIColor.carsharing.green : UIColor.carsharing.black)
-            cell.backgroundColor = isSelected ? UIColor.carsharing.green : UIColor.carsharing.white90
+                isEnabled: isEnabled,
+                isSelected: isSelected)
+           
             return cell
             
         case .rating:
@@ -262,6 +269,8 @@ extension FiltersViewController: UICollectionViewDataSource {
         }
     }
 }
+
+// MARK: Extension UICollectionViewDelegate
 
 extension FiltersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -10,6 +10,7 @@ import UIKit
 
 struct MockData {
     static let shared = MockData()
+    static let bigCompanyTitle = "Для большой компании"
     
     let carsharing: [ListItem] = {
         [.init(id: 0, title: CarsharingCompany.YandexDrive.name, image: nil, name: CarsharingCompany.YandexDrive.rawValue),
@@ -39,7 +40,7 @@ struct MockData {
          .init(id: 2, title: "Удаленный подогрев", image: nil, name: Various.remoteHeating.rawValue),
          .init(id: 3, title: "Без оклейки", image: nil, name: Various.withoutPasting.rawValue),
          .init(id: 4, title: "Лопата", image: nil, name: Various.shovel.rawValue),
-         .init(id: 5, title: "Для большой компании", image: nil, name: Various.forBigCompany.rawValue)]
+         .init(id: 5, title: bigCompanyTitle, image: nil, name: Various.forBigCompany.rawValue)]
     }()
     
     let rating: [ListItem] = {
@@ -48,6 +49,10 @@ struct MockData {
          .init(id: 2, title: "3", image: UIImage.starRating, name: ""),
          .init(id: 3, title: "4", image: UIImage.starRating, name: ""),
          .init(id: 4, title: "5", image: UIImage.starRating, name: "")]
+    }()
+    
+    let smallCarsTitles: [String] = {
+        ["Седан", "Хэтчбек", "Универсал", "Купе"]
     }()
     
     var pageData: [ListSection] {
