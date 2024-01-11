@@ -7,8 +7,9 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
-final class PrepareBookingCarViewController: UIViewController {
+final class CarModelViewController: UIViewController {
     // MARK: - UI
     private lazy var titleVC: UILabel = {
         let label = UILabel()
@@ -30,7 +31,7 @@ final class PrepareBookingCarViewController: UIViewController {
     
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor.black
+        button.tintColor = .carsharing.greyDark
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.addTarget(self,
                          action: #selector(didTapCloseButton),
@@ -51,30 +52,15 @@ final class PrepareBookingCarViewController: UIViewController {
         return stack
     }()
     
-    private lazy var carTypeLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .carsharing.greyLight
-        label.textColor = .carsharing.black
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 12
-        return label
-    }()
-    
-    private lazy var carRatingLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .carsharing.greyLight
-        label.textColor = .carsharing.black
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 12
-        return label
+    private lazy var carTypeView: CarTypeView = {
+        let view = CarTypeView()
+        view.configure(title: carModel?.typeCar.name ?? "")
+        
+        return view
     }()
     
     // MARK: - Properties
-    var car: Car?
+    var carModel: CarModel?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -86,29 +72,27 @@ final class PrepareBookingCarViewController: UIViewController {
     
     // MARK: - Layout Methods
     private func configureStack() {
-        let yandex = TransitionToCarSharingButton()
-        yandex.configure(with: "ЯндексДрайв", companyLogo: .drive!)
-        let deli = TransitionToCarSharingButton()
-        deli.configure(with: "ДелиМобиль", companyLogo: .deli!)
-        let city = TransitionToCarSharingButton()
-        city.configure(with: "СитиМобил", companyLogo: .city!)
-        
-        vStack.addArrangedSubview(yandex)
-        vStack.addArrangedSubview(deli)
-        vStack.addArrangedSubview(city)
+        guard let companies = carModel?.companies else { return }
+        for company in companies {
+            let view = TransitionToCarSharingButton()
+            view.configure(with: company)
+            vStack.addArrangedSubview(view)
+        }
     }
     
     private func configureCarInfo() {
-        carImage.image = UIImage(systemName: "car.side.lock.open.fill")
-        guard let car = car else { return }
-        titleVC.text = car.brand + " " + car.model
-        carRatingLabel.text = String(car.rating) + " " + "stars"
-        carTypeLabel.text = car.typeCar.name
+        guard let carModel = carModel else { return }
+        guard
+            let image = carModel.image,
+            let urlImage = URL(string: image)
+        else { return }
+        carImage.kf.setImage(with: urlImage)
+        titleVC.text = "\(carModel.brand) \(carModel.model)"
     }
     
     private func setupUI() {
         view.backgroundColor = .white
-        [carImage, vStack, carTypeLabel, carRatingLabel, titleVC, backButton, closeButton].forEach {
+        [carImage, vStack, carTypeView, titleVC, backButton, closeButton].forEach {
             view.addSubview($0)
         }
         configureCarInfo()
@@ -142,22 +126,16 @@ final class PrepareBookingCarViewController: UIViewController {
             make.size.equalTo(CGSize(width: 200, height: 125))
         }
         
-        carTypeLabel.snp.makeConstraints { make in
+        carTypeView.snp.makeConstraints { make in
             make.top.equalTo(carImage.snp.bottom).offset(12)
+            make.height.equalTo(24)
             make.leading.equalTo(view).offset(21)
-            make.size.equalTo(CGSize(width: 74, height: 24))
-        }
-        
-        carRatingLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(carTypeLabel.snp.centerY)
-            make.leading.equalTo(carTypeLabel.snp.trailing).offset(8)
-            make.size.equalTo(CGSize(width: 74, height: 24))
         }
         
         vStack.snp.makeConstraints { make in
             make.leading.equalTo(view.snp.leading).offset(16)
             make.trailing.equalTo(view.snp.trailing).offset(-16)
-            make.top.equalTo(carTypeLabel.snp.bottom).offset(40)
+            make.top.equalTo(carTypeView.snp.bottom).offset(20)
         }
     }
     
