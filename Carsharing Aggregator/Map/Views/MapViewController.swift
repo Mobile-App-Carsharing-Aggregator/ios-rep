@@ -92,9 +92,17 @@ final class MapViewController: UIViewController {
         filtersCollectionView.delegate = self
         filtersCollectionView.dataSource = self
         
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
+        
         initMap()
         viewModel.onRefreshAction = { [weak self] indexPaths in
-            self?.carsharingCollectionView.reloadItems(at: indexPaths)
+            if indexPaths.count != 0 {
+                self?.carsharingCollectionView.reloadItems(at: indexPaths)
+            } else {
+                self?.carsharingCollectionView.reloadData()
+            }
             self?.filtersCollectionView.reloadData()
             self?.updateMapWithFilters()
         }
@@ -166,7 +174,6 @@ final class MapViewController: UIViewController {
                         self.carsByService[company] = carsInCompany
                     }
                 }
-                
                 self.addClustering(with: self.carsByService)
             }
         }
@@ -211,7 +218,7 @@ final class MapViewController: UIViewController {
             let userLocationLayer = mapKit.createUserLocationLayer(with: mapView.mapWindow)
                        self.userLocationLayer = userLocationLayer
                        userLocationLayer.setVisibleWithOn(true)
-                       userLocationLayer.isHeadingEnabled = true
+                       userLocationLayer.isHeadingEnabled = false
                        userLocationLayer.setAnchorWithAnchorNormal(
                            CGPoint(x: 0.5 * mapView.frame.size.width * scale, y: 0.5 * mapView.frame.size.height * scale),
                            anchorCourse: CGPoint(x: 0.5 * mapView.frame.size.width * scale, y: 0.83 * mapView.frame.size.height * scale))
@@ -348,24 +355,20 @@ extension MapViewController {
     }
 }
 
+// MARK: - Extension CLLocationManagerDelegate
+
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+       
+    }
+}
+
 // MARK: - Extension YMKUserLocationObjectListener
 
 extension MapViewController: YMKUserLocationObjectListener {
     func onObjectAdded(with view: YMKUserLocationView) {
         guard let image = UIImage(named: "userPoint") else { return }
-        view.arrow.setIconWith(image)
-        let pinPlacemark = view.pin.useCompositeIcon()
-        
-        pinPlacemark.setIconWithName("userPoint",
-            image: UIImage(named: "userPoint")!,
-            style: YMKIconStyle(
-                anchor: CGPoint(x: 0, y: 0) as NSValue,
-                rotationType: YMKRotationType.rotate.rawValue as NSNumber,
-                zIndex: 0,
-                flat: true,
-                visible: true,
-                scale: 1,
-                tappableArea: nil))
+        view.pin.setIconWith(image)
         view.accuracyCircle.fillColor = .clear
     }
     
@@ -374,9 +377,8 @@ extension MapViewController: YMKUserLocationObjectListener {
     }
     
     func onObjectUpdated(with view: YMKUserLocationView, event: YMKObjectEvent) {
-        
+       }
     }
-}
 
 // MARK: - Extension YMKMapObjectTapListener
 
@@ -496,7 +498,9 @@ extension MapViewController: UICollectionViewDataSource {
             cell2.configure(
                 title: company.name,
                 textColor: isSelected ? UIColor.carsharing.white : company.color,
-                borderColor: company.color
+                borderColor: company.color,
+                isEnabled: true,
+                isSelected: isSelected
             )
             cell2.backgroundColor = isSelected ? company.color : UIColor.carsharing.white90
             return cell2

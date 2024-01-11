@@ -72,7 +72,8 @@
 		C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F72B1633B70060287C /* ProfileViewController.swift */; };
 		C462D8FA2B1633CB0060287C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F92B1633CB0060287C /* ProfileViewModel.swift */; };
 		C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8FB2B1634580060287C /* ProfileCoordinator.swift */; };
-		C4A3F8562B28E72000B62BB3 /* PrepareBookingCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3F8552B28E72000B62BB3 /* PrepareBookingCarViewController.swift */; };
+		C494CD0A2B4C1F160007CCA9 /* CarTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494CD092B4C1F160007CCA9 /* CarTypeView.swift */; };
+		C4A3F8562B28E72000B62BB3 /* CarModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3F8552B28E72000B62BB3 /* CarModelViewController.swift */; };
 		C4A3F8592B29131400B62BB3 /* TransitionToCarSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3F8582B29131400B62BB3 /* TransitionToCarSharingButton.swift */; };
 		C4C9B25D2B1378FB00399C79 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9B25C2B1378FB00399C79 /* UIImage+Ext.swift */; };
 		E22100002B18E26A002A5268 /* SecondOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFFF2B18E26A002A5268 /* SecondOnboardingViewModel.swift */; };
@@ -157,7 +158,8 @@
 		C462D8F72B1633B70060287C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C462D8F92B1633CB0060287C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C462D8FB2B1634580060287C /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
-		C4A3F8552B28E72000B62BB3 /* PrepareBookingCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareBookingCarViewController.swift; sourceTree = "<group>"; };
+		C494CD092B4C1F160007CCA9 /* CarTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTypeView.swift; sourceTree = "<group>"; };
+		C4A3F8552B28E72000B62BB3 /* CarModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModelViewController.swift; sourceTree = "<group>"; };
 		C4A3F8582B29131400B62BB3 /* TransitionToCarSharingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionToCarSharingButton.swift; sourceTree = "<group>"; };
 		C4C9B25C2B1378FB00399C79 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.release.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.release.xcconfig"; sourceTree = "<group>"; };
@@ -482,8 +484,8 @@
 			isa = PBXGroup;
 			children = (
 				C40379232B262541008F22F8 /* Coordinators */,
-				C40379222B26250C008F22F8 /* View */,
-				C40379212B2624FB008F22F8 /* ViewModel */,
+				C494CD062B458E150007CCA9 /* SearchCarScreen */,
+				C494CD072B458F080007CCA9 /* CarModelScreen */,
 			);
 			path = SearchCarFlow;
 			sourceTree = "<group>";
@@ -501,10 +503,9 @@
 			children = (
 				C40379242B262567008F22F8 /* SearchCarViewController.swift */,
 				C403792A2B262B47008F22F8 /* CarCell.swift */,
-				C4A3F8552B28E72000B62BB3 /* PrepareBookingCarViewController.swift */,
-				C4A3F8582B29131400B62BB3 /* TransitionToCarSharingButton.swift */,
 			);
-			path = View;
+			name = View;
+			path = ../View;
 			sourceTree = "<group>";
 		};
 		C40379232B262541008F22F8 /* Coordinators */ = {
@@ -556,6 +557,33 @@
 				C462D8F92B1633CB0060287C /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C494CD062B458E150007CCA9 /* SearchCarScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C40379212B2624FB008F22F8 /* ViewModel */,
+				C40379222B26250C008F22F8 /* View */,
+			);
+			path = SearchCarScreen;
+			sourceTree = "<group>";
+		};
+		C494CD072B458F080007CCA9 /* CarModelScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C494CD082B458F210007CCA9 /* View */,
+			);
+			path = CarModelScreen;
+			sourceTree = "<group>";
+		};
+		C494CD082B458F210007CCA9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4A3F8552B28E72000B62BB3 /* CarModelViewController.swift */,
+				C4A3F8582B29131400B62BB3 /* TransitionToCarSharingButton.swift */,
+				C494CD092B4C1F160007CCA9 /* CarTypeView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C4C9B25B2B1378CF00399C79 /* Extensions */ = {
@@ -840,6 +868,7 @@
 				C4A3F8592B29131400B62BB3 /* TransitionToCarSharingButton.swift in Sources */,
 				37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */,
 				37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */,
+				C494CD0A2B4C1F160007CCA9 /* CarTypeView.swift in Sources */,
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
 				C40379292B262590008F22F8 /* SearchCarCoordinator.swift in Sources */,
 				370ADE8A2B199AE50090300E /* RegistrationViewModel.swift in Sources */,
@@ -900,7 +929,8 @@
 				C403792F2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift in Sources */,
 				C403792B2B262B47008F22F8 /* CarCell.swift in Sources */,
 				C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */,
-				C4A3F8562B28E72000B62BB3 /* PrepareBookingCarViewController.swift in Sources */,
+				C4A3F8562B28E72000B62BB3 /* CarModelViewController.swift in Sources */,
+				C4A3F8562B28E72000B62BB3 /* CarModelViewController.swift in Sources */,
 				37A1A2412B149A08002C26DA /* ParentCoordinator+Ext.swift in Sources */,
 				C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */,
 				C40379322B270F7D008F22F8 /* Observable.swift in Sources */,

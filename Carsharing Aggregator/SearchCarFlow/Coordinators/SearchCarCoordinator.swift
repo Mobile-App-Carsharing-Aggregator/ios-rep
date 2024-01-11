@@ -43,6 +43,7 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
     
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
+        viewControllerRef?.dismiss(animated: true)
     }
     
     func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {

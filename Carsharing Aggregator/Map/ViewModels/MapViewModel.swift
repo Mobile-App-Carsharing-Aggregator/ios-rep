@@ -61,7 +61,6 @@ class MapViewModel {
     }
     
     func deleteSelectedFilter(item: (ListItem, ListSection)) {
-        
         var sectionFilters = selectedFilters[item.1]
         sectionFilters?.removeAll(where: { filter in
             filter == item.0
