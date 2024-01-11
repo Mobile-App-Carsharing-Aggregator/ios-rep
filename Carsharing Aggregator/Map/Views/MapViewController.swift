@@ -549,10 +549,3 @@ extension MapViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     }
 }
-
-
-extension CGFloat {
-    func toRadians() -> CGFloat {
-        return self * CGFloat.pi / 180.0
-    }
-}
