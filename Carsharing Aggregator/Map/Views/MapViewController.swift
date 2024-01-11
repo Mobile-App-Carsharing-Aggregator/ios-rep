@@ -368,19 +368,7 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController: YMKUserLocationObjectListener {
     func onObjectAdded(with view: YMKUserLocationView) {
         guard let image = UIImage(named: "userPoint") else { return }
-       // view.arrow.setIconWith(image)
-        let pinPlacemark = view.pin.useCompositeIcon()
-        
-        pinPlacemark.setIconWithName("userPoint",
-            image: image,
-            style: YMKIconStyle(
-                anchor: CGPoint(x: 0, y: 0) as NSValue,
-                rotationType: YMKRotationType.rotate.rawValue as NSNumber,
-                zIndex: 0,
-                flat: false,
-                visible: true,
-                scale: 1,
-                tappableArea: nil))
+        view.pin.setIconWith(image)
         view.accuracyCircle.fillColor = .clear
     }
     
