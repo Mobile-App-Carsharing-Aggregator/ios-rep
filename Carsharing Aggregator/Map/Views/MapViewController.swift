@@ -24,7 +24,7 @@ final class MapViewController: UIViewController {
     private var currentZoom: Float = 9
     private var cameraPosition: YMKCameraPosition?
     private var userLocationLayer: YMKUserLocationLayer?
-    
+   
     private let fontSize: CGFloat = 16
     private let marginSize: CGFloat = 5
     private let strokeSize: CGFloat = 7
@@ -79,7 +79,9 @@ final class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
         
         addSubviews()
         setupLayout()
@@ -87,14 +89,11 @@ final class MapViewController: UIViewController {
         tabView.delegate = self
         mapObjectTapListener = self
         clusterListener = self
+        
         carsharingCollectionView.delegate = self
         carsharingCollectionView.dataSource = self
         filtersCollectionView.delegate = self
         filtersCollectionView.dataSource = self
-        
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
-        locationManager.startUpdatingHeading()
         
         initMap()
         viewModel.onRefreshAction = { [weak self] indexPaths in
@@ -111,14 +110,11 @@ final class MapViewController: UIViewController {
     // MARK: - Private methods
     
     private func initMap() {
-        let locationManager = CLLocationManager()
-        locationManager.requestWhenInUseAuthorization()
-        
         map.move(
             with: YMKCameraPosition(
                 target: viewModel.userPoint(),
                 zoom: currentZoom,
-                azimuth: 0,
+                azimuth: 50,
                 tilt: 0
             ),
             animation: YMKAnimation(type: YMKAnimationType.linear, duration: 0),
@@ -359,7 +355,7 @@ extension MapViewController {
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-       
+        
     }
 }
 
@@ -369,6 +365,14 @@ extension MapViewController: YMKUserLocationObjectListener {
     func onObjectAdded(with view: YMKUserLocationView) {
         guard let image = UIImage(named: "userPoint") else { return }
         view.pin.setIconWith(image)
+        view.pin.setIconStyleWith(YMKIconStyle(
+        anchor: CGPoint(x: 0.0, y: 0.0) as NSValue,
+        rotationType: YMKRotationType.rotate.rawValue as NSNumber,
+        zIndex: 0,
+        flat: false,
+        visible: true,
+        scale: 1.0,
+        tappableArea: nil))
         view.accuracyCircle.fillColor = .clear
     }
     
@@ -404,7 +408,6 @@ extension MapViewController: YMKMapObjectTapListener {
             latitude: (placemark.geometry.latitude - 0.0025),
             longitude: placemark.geometry.longitude
         )
-            
         mapView.mapWindow.map.move(
             with: YMKCameraPosition(target: place, zoom: 16, azimuth: 0, tilt: 0),
             animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0.4),
