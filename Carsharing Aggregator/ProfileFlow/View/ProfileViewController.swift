@@ -38,7 +38,7 @@ final class ProfileViewController: UIViewController {
     private lazy var profileNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Jon Snow"
-        label.font = UIFont.systemFont(ofSize: 32, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         return label
     }()
     
@@ -98,7 +98,7 @@ final class ProfileViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.top.equalTo(profileNameLabel.snp.bottom).offset(12)
+            make.top.equalTo(avatarImage.snp.bottom).offset(20)
             make.bottom.equalToSuperview()
         }
     }
