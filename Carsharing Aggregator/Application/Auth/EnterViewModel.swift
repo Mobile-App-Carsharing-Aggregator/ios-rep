@@ -28,9 +28,9 @@ class EnterViewModel {
                 guard let self = self else { return }
                 UIProgressHUD.show()
                 switch result {
-                case .success(let success):
-                    coordinator.startTabBarFlow()
-                    UIProgressHUD.dismiss()
+                case .success(_):
+                    let loginModel = UserLogin(email: registrationModel.email, password: registrationModel.password)
+                    self.login(loginModel: loginModel)
                 case .failure(let error):
                     UIProgressHUD.dismiss()
                     if case NetworkError.customError(let errorMessage) = error {
@@ -66,6 +66,12 @@ class EnterViewModel {
     func isSubmitLoginEnabled() {
         guard let loginViewModel else { return }
         let loginModel = UserLogin(email: loginViewModel.email, password: loginViewModel.password)
+        login(loginModel: loginModel)
+        print("login tapped")
+        
+    }
+    
+    private func login(loginModel: UserLogin) {
         userService.userLogin(with: loginModel) { result in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -84,20 +90,20 @@ class EnterViewModel {
                         switch error {
                         case .customError(let errorMessage):
                             self.onError?(errorMessage)
-
+                            
                         case .httpStatusCode(let statusCode):
                             let statusMessage = "Ошибка HTTP: \(statusCode)"
                             self.onError?(statusMessage)
-
+                            
                         case .urlSessionError:
                             self.onError?("Ошибка сессии URL")
-
+                            
                         case .urlRequestError(let error):
                             self.onError?("Ошибка запроса: \(error.localizedDescription)")
-
+                            
                         case .decode:
                             self.onError?("Ошибка декодирования данных")
-
+                            
                         default:
                             self.onError?("Неизвестная ошибка")
                         }
@@ -105,7 +111,7 @@ class EnterViewModel {
                     
                 }
             }
-            print("login tapped")
         }
     }
+
 }
