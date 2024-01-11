@@ -16,6 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
+        if let token = TokenStorage.shared.getToken() {
+            print("Сохранен токен: \(token)")
+        } else {
+            print("Сохраненного токена не обнаружено")
+        }
         let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(true, animated: false)
         let rootCoordinator = RootCoordinator(navigationController: navigationController)

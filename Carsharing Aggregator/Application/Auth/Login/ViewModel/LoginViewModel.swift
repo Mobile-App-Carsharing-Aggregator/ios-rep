@@ -39,7 +39,7 @@ class LoginViewModel: LoginViewModelProtocol {
             isEmailEmptyPublisher,
             isEmailEmptyPublisher
         )
-        .map { $0 && $1 }
+        .map { $0 || $1 }
         .eraseToAnyPublisher()
     }
     
@@ -57,7 +57,7 @@ class LoginViewModel: LoginViewModelProtocol {
             areFieldsEmptyPublisher,
             areFieldsValidPublisher
         )
-        .map { $0 && $1 }
+        .map { !$0 && $1 }
         .eraseToAnyPublisher()
     }
     

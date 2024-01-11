@@ -15,7 +15,12 @@ class LoginView: UIView {
         keyboardType: .password,
         textContentType: .password)
     
-    private let viewModel = LoginViewModel()
+    var loginViewModel: LoginViewModel!
+    
+    func configure(with viewModel: LoginViewModel) {
+        self.loginViewModel = viewModel
+    }
+    
     private let emailSublabel = UILabel(for: "  Example@mail.ru  ")
     private let passwordSublabel = UILabel(for: "  Пароль  ")
     private let orLabel = UILabel().createOrLabel(string: "или")
@@ -61,6 +66,9 @@ class LoginView: UIView {
     private let emailWarninigLabel = UILabel(string: "Проверьте почту")
     private let passwordWarningLabel = UILabel(string: "Неверный пароль, попробуйте еще раз")
     private var cancellables: Set<AnyCancellable> = []
+    
+// MARK: - Life Cycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
@@ -125,7 +133,7 @@ class LoginView: UIView {
     }
     
     private func observeEmailField() {
-        Publishers.CombineLatest3(viewModel.$email, viewModel.isEmailEmptyPublisher, viewModel.isEmailValidPublisher)
+        Publishers.CombineLatest3(loginViewModel.$email, loginViewModel.isEmailEmptyPublisher, loginViewModel.isEmailValidPublisher)
             .sink { [weak self] (_, isEmpty, isValid) in
                 guard let self = self else { return }
                 if isEmpty {
@@ -142,7 +150,7 @@ class LoginView: UIView {
     }
     
     private func observePasswordField() {
-        Publishers.CombineLatest3(viewModel.$password, viewModel.isPasswordEmptyPublisher, viewModel.isPasswordValidPublisher)
+        Publishers.CombineLatest3(loginViewModel.$password, loginViewModel.isPasswordEmptyPublisher, loginViewModel.isPasswordValidPublisher)
             .sink { [weak self] (_, isEmpty, isValid) in
                 guard let self = self else { return }
                 if isEmpty {
@@ -151,7 +159,7 @@ class LoginView: UIView {
                     self.passwordWarningLabel.isHidden = isEmpty
                 } else {
                     self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: 33)
-                    self.emptyPasswordFieldWarning.isHidden = !isValid
+                    self.emptyPasswordFieldWarning.isHidden = !isEmpty
                     self.passwordWarningLabel.isHidden = isValid
                 }
             }
@@ -162,6 +170,8 @@ class LoginView: UIView {
 extension LoginView {
     
     private func addTargets() {
+        emailTextField.addTarget(self, action: #selector(emailTextFieldDidChange(_:)), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(passwordTextFieldDidChange(_:)), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(textFieldDidEnd(_:)), for: .editingDidEnd)
         passwordTextField.addTarget(self, action: #selector(textFieldDidEnd(_:)), for: .editingDidEnd)
         emailTextField.addTarget(self, action: #selector(textFIeldDidStart(_:)), for: .editingDidBegin)
@@ -183,6 +193,7 @@ extension LoginView {
         addSubview(passwordWarningLabel)
         setConstraints()
         emailTextField.delegate = self
+        passwordTextField.delegate = self
         addTargets()
     }
     
@@ -191,31 +202,39 @@ extension LoginView {
         textField.layer.borderWidth = 2
         sublLabel.enterSublabelAnimation()
     }
+    
     private func textFieldDidEnd(_ textField: UITextField, and sublabel: UILabel) {
             sublabel.isHidden = true
             textField.layer.borderWidth = 1
-        }
+    }
     
     @objc private func textFIeldDidStart(_ textField: UITextField) {
         switch textField {
-        case emailTextField: didStartTyping(in: emailTextField, with: emailSublabel)
-        case passwordTextField: didStartTyping(in: passwordTextField, with: passwordSublabel)
+        case emailTextField: 
+            didStartTyping(in: emailTextField, with: emailSublabel)
+            observeEmailField()
+        case passwordTextField: 
+            didStartTyping(in: passwordTextField, with: passwordSublabel)
+            observePasswordField()
         default: break
         }
     }
     
     @objc private func textFieldDidEnd(_ textField: UITextField) {
         switch textField {
-        case emailTextField: viewModel.email = textField.text ?? ""
-            observeEmailField()
+        case emailTextField: loginViewModel.email = textField.text ?? ""
             textFieldDidEnd(emailTextField, and: emailSublabel)
-        case passwordTextField: viewModel.password = textField.text ?? ""
-            observePasswordField()
+        case passwordTextField: loginViewModel.password = textField.text ?? ""
             textFieldDidEnd(passwordTextField, and: passwordSublabel)
         default:
             break
         }
     }
+    
+    @objc private func passwordTextFieldDidEnd(_ textField: UITextField) {
+            loginViewModel.password = textField.text ?? ""
+            textFieldDidEnd(passwordTextField, and: passwordSublabel)
+        }
     
     private func setConstraints() {
         emailTextField.snp.makeConstraints { make in
