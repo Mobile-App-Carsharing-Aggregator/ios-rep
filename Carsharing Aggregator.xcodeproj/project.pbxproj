@@ -73,6 +73,7 @@
 		C4A3F8562B28E72000B62BB3 /* PrepareBookingCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3F8552B28E72000B62BB3 /* PrepareBookingCarViewController.swift */; };
 		C4A3F8592B29131400B62BB3 /* TransitionToCarSharingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A3F8582B29131400B62BB3 /* TransitionToCarSharingButton.swift */; };
 		C4C9B25D2B1378FB00399C79 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9B25C2B1378FB00399C79 /* UIImage+Ext.swift */; };
+		E208D7FF2B501E9700803CB9 /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208D7FE2B501E9700803CB9 /* TokenStorage.swift */; };
 		E22100002B18E26A002A5268 /* SecondOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFFF2B18E26A002A5268 /* SecondOnboardingViewModel.swift */; };
 		E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */; };
 		E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD42B14BD82002A5268 /* RootCoordinator.swift */; };
@@ -157,6 +158,7 @@
 		C4A3F8582B29131400B62BB3 /* TransitionToCarSharingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionToCarSharingButton.swift; sourceTree = "<group>"; };
 		C4C9B25C2B1378FB00399C79 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		D79BB145181DD45B389A2114 /* Pods-Carsharing Aggregator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carsharing Aggregator.release.xcconfig"; path = "Target Support Files/Pods-Carsharing Aggregator/Pods-Carsharing Aggregator.release.xcconfig"; sourceTree = "<group>"; };
+		E208D7FE2B501E9700803CB9 /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
 		E221FFD22B14BCEC002A5268 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		E221FFD42B14BD82002A5268 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		E221FFD62B14BEAB002A5268 /* FirstOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingViewController.swift; sourceTree = "<group>"; };
@@ -669,6 +671,7 @@
 				E2F06AD32B274B4700E088DE /* UserService.swift */,
 				61BF07B22B3329C8004E375E /* AddressService.swift */,
 				616BDE442B33807A000DEE66 /* RouteService.swift */,
+				E208D7FE2B501E9700803CB9 /* TokenStorage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 				6166DC652B29FAF4003E57FB /* SelectedCarCoordinator.swift in Sources */,
 				E221FFDC2B14C254002A5268 /* FirstOnboardingViewModel.swift in Sources */,
 				370ADE822B199A7B0090300E /* AuthCoordinator.swift in Sources */,
+				E208D7FF2B501E9700803CB9 /* TokenStorage.swift in Sources */,
 				32857E8D2B1F41A8003AE9AC /* GeometryProvider.swift in Sources */,
 				3273FCDE2B1E621100C3C137 /* MapViewModel.swift in Sources */,
 				32453C022B14D764003E7AA8 /* BaseMapView.swift in Sources */,

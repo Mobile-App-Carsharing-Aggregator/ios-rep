@@ -73,6 +73,7 @@ class EnterViewModel {
                 switch result {
                 case .success(let token):
                     print("TOKEN: \(token)")
+                    TokenStorage.shared.saveToken(token.authToken)
                     coordinator.startTabBarFlow()
                     UIProgressHUD.dismiss()
                 case .failure(let error):
