@@ -31,7 +31,7 @@ final class ProfileMenuCell: UITableViewCell {
         return button
     }()
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setView()
@@ -41,13 +41,13 @@ final class ProfileMenuCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     @objc
     private func didTapTransferButton() {
         
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     func configureCell(with item: ProfileMenuItem) {
         itemImage.image = item.image
         itemLabel.text = item.label
@@ -108,15 +108,15 @@ enum ProfileMenuItem: CaseIterable {
     var image: UIImage {
         switch self {
         case .MyMarks:
-            return .starRating ?? UIImage()
+            return .starItemMenu ?? UIImage()
         case .SearchHistory:
-            return .starRating ?? UIImage()
+            return .listItemMenu ?? UIImage()
         case .Settings:
-            return .starRating ?? UIImage()
+            return .settingsItemMenu ?? UIImage()
         case .Logout:
-            return .starRating ?? UIImage()
+            return .exitItemMenu ?? UIImage()
         case .DeleteAccount:
-            return .starRating ?? UIImage()
+            return .deleteItemMenu ?? UIImage()
         }
     }
     

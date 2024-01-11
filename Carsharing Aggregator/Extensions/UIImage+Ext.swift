@@ -61,7 +61,13 @@ extension UIImage {
     static let belka = UIImage(named: "belkaCarsharing")
     static let vkLogo = UIImage(named: "vk")
     static let yandexLogo = UIImage(named: "yandex")
-
+    
+    // MARK: - Menu
+    static let starItemMenu = UIImage(named: "starMenu")
+    static let listItemMenu = UIImage(named: "listMenu")
+    static let settingsItemMenu = UIImage(named: "settingsMenu")
+    static let exitItemMenu = UIImage(named: "exitMenu")
+    static let deleteItemMenu = UIImage(named: "deleteMenu")
     // MARK: - Actions
     
 func withShadow(blur: CGFloat, offset: CGSize, color: UIColor, size: CGSize) -> UIImage {
