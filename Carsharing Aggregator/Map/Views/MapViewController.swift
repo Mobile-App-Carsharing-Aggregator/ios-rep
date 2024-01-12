@@ -208,26 +208,24 @@ final class MapViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         let scale = UIScreen.main.scale
         let mapKit = YMKMapKit.sharedInstance()
+        guard let currentPosition = self.locationManager.location else { return }
+        let point = YMKPoint(
+            latitude: currentPosition.coordinate.latitude,
+            longitude: currentPosition.coordinate.longitude
+        )
         
         if userLocationLayer != nil {
-            guard let currentPosition = self.locationManager.location else { return }
-                        let point = YMKPoint(latitude: currentPosition.coordinate.latitude, longitude: currentPosition.coordinate.longitude)
-                        mapView.mapWindow.map.move(
-                            with: YMKCameraPosition(target: point, zoom: 15, azimuth: 0, tilt: 0))
+            map.move(with: YMKCameraPosition(target: point, zoom: 15, azimuth: 0, tilt: 0))
         } else {
             let userLocationLayer = mapKit.createUserLocationLayer(with: mapView.mapWindow)
-                       self.userLocationLayer = userLocationLayer
-                       userLocationLayer.setVisibleWithOn(true)
-                       userLocationLayer.isHeadingEnabled = false
-                       userLocationLayer.setAnchorWithAnchorNormal(
-                           CGPoint(x: 0.5 * mapView.frame.size.width * scale, y: 0.5 * mapView.frame.size.height * scale),
-                           anchorCourse: CGPoint(x: 0.5 * mapView.frame.size.width * scale, y: 0.83 * mapView.frame.size.height * scale))
-                       
-                       userLocationLayer.setObjectListenerWith(self)
-                       mapView.mapWindow.map.move(with:
-                                                   YMKCameraPosition(target: YMKPoint(latitude: 0, longitude: 0), zoom: 15, azimuth: 0, tilt: 0))
-                   }
-               }
+            self.userLocationLayer = userLocationLayer
+            userLocationLayer.setVisibleWithOn(true)
+            userLocationLayer.isHeadingEnabled = false
+            userLocationLayer.setObjectListenerWith(self)
+            
+            map.move(with: YMKCameraPosition(target: point, zoom: 15, azimuth: 0, tilt: 0))
+        }
+    }
 
     private func plusButtonTapped() {
         changeZoom(by: 1.0)
