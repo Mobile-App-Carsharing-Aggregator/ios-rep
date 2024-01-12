@@ -1,15 +1,29 @@
 import UIKit
 import SnapKit
+import Combine
 
 final class EnterViewController: UIViewController {
+    
+    private let registrationViewModel = RegistrationViewModel()
+    private let loginViewModel = LoginViewModel()
     
     var currentButtonState: EnterButtonState = .login {
         didSet {
             updateButtonColors()
+            print(currentButtonState)
+            switch currentButtonState {
+            case .login:
+                setupLoginButtonBinding()
+            case .registration:
+                setupRegistrationButtonBinding()
+            }
         }
     }
     
+    var cancellables: Set<AnyCancellable> = []
+    
     private let enterViewModel: EnterViewModel
+    
     init(enterViewModel: EnterViewModel) {
         self.enterViewModel = enterViewModel
         super.init(nibName: nil, bundle: nil)
@@ -42,6 +56,28 @@ final class EnterViewController: UIViewController {
         return currentButtonState == .login ? .selected : .deselected
     }
     
+    private func setupRegistrationButtonBinding() {
+        registrationViewModel.isSubmitEnabled
+            .receive(on: RunLoop.main)
+            .sink {[weak self] isEnabled in
+                print("Registration isSubmitEnabled: \(isEnabled)")
+                self?.enterButton.isEnabled = isEnabled
+                self?.enterButton.backgroundColor = isEnabled ? .carsharing.black : .gray
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func setupLoginButtonBinding() {
+        loginViewModel.isSubmitEnabled
+            .receive(on: RunLoop.main)
+            .sink {[weak self] isEnabled in
+                print("Login isSubmitEnabled: \(isEnabled)")
+                self?.enterButton.isEnabled = isEnabled
+                self?.enterButton.backgroundColor = isEnabled ? .carsharing.black : .gray
+            }
+            .store(in: &cancellables)
+    }
+    
     private var loginView: LoginView = {
         let view = LoginView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -69,9 +105,28 @@ final class EnterViewController: UIViewController {
         return stackView
     }()
     
+// MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        
+        registrationView.registrationViewModel = registrationViewModel
+        loginView.configure(with: loginViewModel)
+        
+        enterViewModel.registrationViewModel = registrationViewModel
+        enterViewModel.loginViewModel = loginViewModel
+        
+        switch currentButtonState {
+        case .login:
+            setupLoginButtonBinding()
+        case .registration:
+            setupRegistrationButtonBinding()
+        }
+        
+        enterViewModel.onError = { [weak self] errorMessage in
+            self?.showAlert(with: errorMessage)
+        }
     }
     
     @objc private func didTapRegistrationButton() {
@@ -82,7 +137,7 @@ final class EnterViewController: UIViewController {
         registrationView.isHidden = false
         
     }
-
+    
     @objc private func didTapLoginButton() {
         if registrationView.isHidden == false {
             registrationView.isHidden = true
@@ -92,8 +147,16 @@ final class EnterViewController: UIViewController {
     }
     
     @objc private func didTapEnterButton() {
-        print("-----------------------------")
+        switch currentButtonState {
+        case .login:
+            print("login pressed")
+            enterViewModel.isSubmitLoginEnabled()
+        case .registration:
+            print("registration pressed")
+            enterViewModel.isSubmitRegistrationEnabled()
+        }
     }
+    
     private func updateButtonColors() {
         loginButton.setTitleColor(EnterButtonState.login.color(for: currentButtonSelectionState), for: .normal)
         registrationButton.setTitleColor(EnterButtonState.registration.color(for: currentButtonSelectionState), for: .normal)
@@ -103,6 +166,12 @@ final class EnterViewController: UIViewController {
     private func updateEnterButtonTitle() {
         enterButton.setTitle(currentButtonState.enterTitle, for: .normal)
         
+    }
+    
+    private func showAlert(with message: String) {
+        let alertController = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alertController, animated: true)
     }
     
     deinit {
