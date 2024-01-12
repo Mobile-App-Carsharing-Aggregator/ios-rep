@@ -2,7 +2,7 @@
 
 # Ссылки
 
-Дизайн в Figma - [посмотреть]([https://tinyurl.com/image-feed-figma](https://www.figma.com/file/ubkBwKt1JpNrIhYzWHJdNv/Агрегатор-каршеринга?type=design&node-id=2159-19678&mode=design&t=TM5epAcWfBOYRtnw-0)https://www.figma.com/file/ubkBwKt1JpNrIhYzWHJdNv/Агрегатор-каршеринга?type=design&node-id=2159-19678&mode=design&t=TM5epAcWfBOYRtnw-0)
+Дизайн в Figma - [посмотреть]([https://tinyurl.com/image-feed-figma](https://www.figma.com/file/ubkBwKt1JpNrIhYzWHJdNv/Агрегатор-каршеринга?type=design&node-id=2159-19678&mode=design&t=TM5epAcWfBOYRtnw-0)https://www.figma.com/file/ubkBwKt1JpNrIhYzWHJdNv/Агрегатор-каршеринга?type=design&node-id=2159-19678&mode=design&t=TM5epAcWfBOYRtnw-0])
 
 # Изображения
 ![Изображение 1](carsharing1.png)  
