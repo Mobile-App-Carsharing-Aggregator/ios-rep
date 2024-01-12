@@ -34,7 +34,7 @@ final class ProfileMenuCell: UITableViewCell {
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setView()
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -57,7 +57,7 @@ final class ProfileMenuCell: UITableViewCell {
         }
     }
     
-    private func setView() {
+    private func setupView() {
         [itemImage, itemLabel, transferButton].forEach {
             contentView.addSubview($0)
         }
@@ -66,14 +66,14 @@ final class ProfileMenuCell: UITableViewCell {
     
     func setupConstraints() {
         itemImage.snp.makeConstraints { make in
-            make.leading.equalTo(contentView.snp.leading).offset(4)
-            make.top.equalTo(contentView.snp.top).offset(4)
-            make.bottom.equalTo(contentView.snp.bottom).offset(-4)
+            make.centerY.equalTo(itemLabel.snp.centerY)
+//            make.leading.equalTo(contentView.snp.leading)
+            make.centerX.equalTo(contentView.snp.leading).offset(12)
         }
         
         itemLabel.snp.makeConstraints { make in
-            make.leading.equalTo(itemImage.snp.trailing).offset(12)
-            make.centerY.equalTo(itemImage.snp.centerY)
+            make.centerY.equalTo(contentView.snp.centerY)
+            make.leading.equalTo(contentView.snp.leading).offset(36)
         }
         
         transferButton.snp.makeConstraints { make in
@@ -82,6 +82,8 @@ final class ProfileMenuCell: UITableViewCell {
         }
     }
 }
+
+extension ProfileMenuCell: Reusable {}
 
 enum ProfileMenuItem: CaseIterable {
     case MyMarks
