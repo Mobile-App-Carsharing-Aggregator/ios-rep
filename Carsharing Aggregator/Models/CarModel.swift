@@ -44,7 +44,7 @@ enum Various: String, Codable {
 enum CarsharingCompany: String, Codable, CaseIterable {
     case YandexDrive
     case CityDrive
-    case Delimobil = "DelyMobil"
+    case DeliMobil
     case BelkaCar
     
     var color: UIColor {
@@ -53,7 +53,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
             return UIColor.carsharing.lightBlue
         case .CityDrive:
             return UIColor.carsharing.purple
-        case .Delimobil:
+        case .DeliMobil:
             return UIColor.carsharing.darkGreen
         case .BelkaCar:
             return UIColor.carsharing.navi
@@ -66,7 +66,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
             UIImage.pointYandex ?? UIImage()
         case .CityDrive:
             UIImage.pointCitydrive ?? UIImage()
-        case .Delimobil:
+        case .DeliMobil:
             UIImage.pointDelimobil ?? UIImage()
         case .BelkaCar:
             UIImage.pointBelka ?? UIImage()
@@ -79,7 +79,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
             UIImage.drive ?? UIImage()
         case .CityDrive:
             UIImage.city ?? UIImage()
-        case .Delimobil:
+        case .DeliMobil:
             UIImage.deli ?? UIImage()
         case .BelkaCar:
             UIImage.belka ?? UIImage()
@@ -92,7 +92,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
             "Яндекс.Драйв"
         case .CityDrive:
             "СитиДрайв"
-        case .Delimobil:
+        case .DeliMobil:
             "Делимобиль"
         case .BelkaCar:
             "BelkaCar"
@@ -105,7 +105,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
             8
         case .CityDrive:
             7
-        case .Delimobil:
+        case .DeliMobil:
             7
         case .BelkaCar:
             8
@@ -118,7 +118,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
             "1318875022"
         case .CityDrive:
             "579220388"
-        case .Delimobil:
+        case .DeliMobil:
             "1038254296"
         case .BelkaCar:
             "1113709902"
@@ -136,9 +136,9 @@ enum CarType: String, Codable {
     case sedan
     case hatchback
     case minivan
-    case coupe = "kupe"
-    case universal = "universak"
-    case other = "vnedorojnik"
+    case coupe
+    case universal
+    case suv
     
     var name: String {
         switch self {
@@ -152,8 +152,8 @@ enum CarType: String, Codable {
             "Купе"
         case .universal:
             "Универсал"
-        case .other:
-            "Другое"
+        case .suv:
+            "Внедорожник"
         }
     }
 }

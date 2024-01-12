@@ -71,7 +71,7 @@ extension CarsService {
         var cars: [Car] = []
         let carsharingCompany: [CarsharingCompany] = CarsharingCompany.allCases
         let engineTypes: [EngineType] = [.diesel, .electro, .benzine]
-        let carTypes: [CarType] = [.sedan, .hatchback, .minivan, .coupe, .universal, .other]
+        let carTypes: [CarType] = [.sedan, .hatchback, .minivan, .coupe, .universal, .suv]
         
         for (index, location) in carsLocations.enumerated() {
             let car = Car(
