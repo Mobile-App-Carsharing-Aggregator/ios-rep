@@ -5,7 +5,8 @@
 Дизайн в Figma - [посмотреть](https://www.figma.com/file/ubkBwKt1JpNrIhYzWHJdNv/Агрегатор-каршеринга?type=design&node-id=730-9413&mode=design&t=TM5epAcWfBOYRtnw-0)
 
 # Изображения
-![carsharing1](https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/809a3896-e0e3-42f6-8e3b-bb968f66d005)
+<img width="260" alt="carsharing1" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/809a3896-e0e3-42f6-8e3b-bb968f66d005">  
+
 
 # Назначение и цели приложения
 
