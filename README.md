@@ -5,15 +5,8 @@
 Дизайн в Figma - [посмотреть](https://www.figma.com/file/ubkBwKt1JpNrIhYzWHJdNv/Агрегатор-каршеринга?type=design&node-id=730-9413&mode=design&t=TM5epAcWfBOYRtnw-0)
 
 # Изображения
-![Изображение 1](carsharing1.png)  
-![Изображение 2](carsharing2.png)  
-![Изображение 3](carsharing3.png)  
-![Изображение 4](carsharing4.png)
-![Изображение 5](carsharing5.png)  
-![Изображение 6](carsharing6.png)  
-![Изображение 7](carsharing7.png)  
-![Изображение 8](carsharing8.png) 
-![Изображение 9](carsharing9.png) 
+![carsharing1](https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/809a3896-e0e3-42f6-8e3b-bb968f66d005)
+
 # Назначение и цели приложения
 
 "Find and GO" - агрегатор каршеринга, приложение предназначено для поиска автомобиля и дальнейшего бронирования при переходе в соответсвующее приложение каршеринга.
