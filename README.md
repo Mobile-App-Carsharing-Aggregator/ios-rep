@@ -7,13 +7,13 @@
 # Изображения
 <img width="260" alt="carsharing1" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/809a3896-e0e3-42f6-8e3b-bb968f66d005">  
 <img width="260" alt="carsharing2" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/ffa83a4a-91d6-4ae5-929e-276f48dfe50e">
-<img width="260" alt="carsharing3" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/blob/main/carsharing3.png">
-<img width="260" alt="carsharing4" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/blob/main/carsharing4.png">
-<img width="260" alt="carsharing5" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/blob/main/carsharing5.png">
-<img width="260" alt="carsharing6" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/blob/main/carsharing6.png">
-<img width="260" alt="carsharing7" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/blob/main/carsharing7.png">
-<img width="260" alt="carsharing8" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/blob/main/carsharing8.png">
-<img width="260" alt="carsharing9" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/blob/main/carsharing9.png">
+<img width="260" alt="carsharing3" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/b035c2be-a86e-42e7-97a4-d9614fe1df8f">
+<img width="260" alt="carsharing4" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/c1cdfbf4-b1a8-44a9-8c1e-1bc1e1c7d646">
+<img width="260" alt="carsharing5" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/b055919e-5dfc-4ae1-aaec-10fcbc695582">
+<img width="260" alt="carsharing6" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/6e2a73ad-9718-4c8a-9d9c-ef435f96ddcd">
+<img width="260" alt="carsharing7" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/1353f0ff-ef31-4f61-b885-5f55247baf5f">
+<img width="260" alt="carsharing8" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/653f7613-cbd9-4347-8cf8-52dfa467f2f9">
+<img width="260" alt="carsharing9" src="https://github.com/Mobile-App-Carsharing-Aggregator/ios-rep/assets/110411999/c26158e2-29a6-4120-9aaf-5916467fc57f">
 
 # Назначение и цели приложения
 
