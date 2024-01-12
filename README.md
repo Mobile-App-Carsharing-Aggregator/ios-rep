@@ -43,10 +43,10 @@
 - С главного экрана можно перейти в экран с информацией о профиле, экран с фильтрами или экран поиска авто.
 
 ## Стек технологий
-Swift
-Combine
-Coordinator
-Yandex MapKit
-Swiftlint
-SnapKit
-Kingfisher
+Swift     
+Combine      
+Coordinator      
+Yandex MapKit    
+Swiftlint    
+SnapKit     
+Kingfisher     
