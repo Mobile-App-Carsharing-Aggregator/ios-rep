@@ -67,17 +67,16 @@ final class ProfileMenuCell: UITableViewCell {
     func setupConstraints() {
         itemImage.snp.makeConstraints { make in
             make.centerY.equalTo(itemLabel.snp.centerY)
-//            make.leading.equalTo(contentView.snp.leading)
-            make.centerX.equalTo(contentView.snp.leading).offset(12)
+            make.centerX.equalTo(contentView.snp.leading).offset(33)
         }
         
         itemLabel.snp.makeConstraints { make in
             make.centerY.equalTo(contentView.snp.centerY)
-            make.leading.equalTo(contentView.snp.leading).offset(36)
+            make.leading.equalTo(contentView.snp.leading).offset(57)
         }
         
         transferButton.snp.makeConstraints { make in
-            make.trailing.equalTo(contentView.snp.trailing)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-21)
             make.centerY.equalTo(itemImage.snp.centerY)
         }
     }

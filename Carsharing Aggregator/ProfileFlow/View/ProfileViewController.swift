@@ -113,8 +113,8 @@ final class ProfileViewController: UIViewController {
         }
         
         tableView.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(21)
-            make.trailing.equalTo(view.snp.trailing).offset(-21)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
             make.top.equalTo(avatarImage.snp.bottom).offset(20)
             make.bottom.equalToSuperview()
         }
@@ -154,11 +154,11 @@ extension ProfileViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             switch indexPath.row {
-            case 0: 
+            case 0:
                 cell.configureCell(with: .MyMarks)
-            case 1: 
+            case 1:
                 cell.configureCell(with: .SearchHistory)
-            default: 
+            default:
                 break
             }
         case 1:
@@ -182,6 +182,10 @@ extension ProfileViewController: UITableViewDataSource {
     // MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        44
+        if indexPath.section == 1 {
+            return 88
+        } else {
+            return 44
+        }
     }
 }
