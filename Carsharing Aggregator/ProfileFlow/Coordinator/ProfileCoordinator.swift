@@ -27,7 +27,13 @@ final class ProfileCoordinator: ChildCoordinator {
         vc.coordinator = self
         vc.modalPresentationStyle = .pageSheet
         if let sheet = vc.sheetPresentationController {
-            sheet.detents = [.medium()]
+            if #available(iOS 16.0, *) {
+                sheet.detents = [.custom(resolver: { context in
+                    return  462
+                })]
+            } else {
+                /* need customize for iOS <16 */
+            }
             sheet.prefersGrabberVisible = true
             sheet.largestUndimmedDetentIdentifier = .large
         }
