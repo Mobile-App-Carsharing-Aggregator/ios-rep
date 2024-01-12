@@ -22,7 +22,7 @@ struct Car: Codable {
     let typeEngine: EngineType
     let various: [Various]
     let typeCar: CarType
-    var rating: Double
+    var rating: String
     var coordinates: Coordinates
     let stateNumber: String
 }
