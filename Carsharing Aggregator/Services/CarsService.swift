@@ -33,10 +33,6 @@ final class CarsService: CarsServiceProtocol {
     private init() {}
     
     func getCars(with filters: String, completion: @escaping ([Car]) -> Void) {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-//            guard let cars = self?.getMockCars() else { return }
-//            completion(cars)
-//        }
         DispatchQueue.main.async { [weak self] in
             self?.getCarsFromNetwork(with: filters) { result in
                 switch result {

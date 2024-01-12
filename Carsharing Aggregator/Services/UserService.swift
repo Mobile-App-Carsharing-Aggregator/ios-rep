@@ -22,6 +22,14 @@ private struct UserLoginRequest: NetworkRequest {
     var dto: Encodable?
 }
 
+private struct UserProfileRequest: NetworkRequest {
+    var endpoint: URL? {
+        URL(string: "http://193.107.238.139/api/v1/users/me/")
+    }
+    
+    var headers: [String : String]?
+}
+
 private struct ErrorResponse: Codable {
     let errors: [String: [String]]
 
@@ -39,6 +47,7 @@ import Foundation
 
 protocol UserServiceProtocol {
     func createUser(with dto: UserRegistration, completion: @escaping (Result<UserRegistrationResponse, NetworkError>) -> Void)
+    func getUser(completion: @escaping (Result<UserProfile, NetworkError>) -> Void)
 }
 
 final class DefaultUserService: UserServiceProtocol {
@@ -91,6 +100,27 @@ final class DefaultUserService: UserServiceProtocol {
                 } else {
                     completion(.failure(error as? NetworkError ?? .urlSessionError))
                 }
+            }
+        }
+    }
+    
+    func getUser(completion: @escaping (Result<UserProfile, NetworkError>) -> Void) {
+        guard let token = TokenStorage.shared.getToken() else {
+            completion(.failure(.customError("Не найдены данные логина. Повторите процедуру логина")))
+            return
+        }
+        
+        let getProfileRequest = UserProfileRequest(headers: ["Authorization": "Token \(token)"])
+        
+        networkClient.send(request: getProfileRequest, type: UserProfile.self) { result in
+            switch result {
+            case .success(let userProfile):
+                completion(.success(userProfile))
+            case .failure(let error):
+                if case let NetworkError.httpStatusCode(statusCode, data) = error, let data = data {
+                                print("Ошибка \(statusCode): \(String(data: data, encoding: .utf8) ?? "нет данных")")
+                            }
+                completion(.failure(error as? NetworkError ?? .urlSessionError))
             }
         }
     }
