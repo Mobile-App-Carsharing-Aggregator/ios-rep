@@ -68,6 +68,8 @@
 		C403792B2B262B47008F22F8 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403792A2B262B47008F22F8 /* CarCell.swift */; };
 		C403792F2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */; };
 		C40379322B270F7D008F22F8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379312B270F7D008F22F8 /* Observable.swift */; };
+		C41ECEB42B4F2C1F00D149E5 /* ProfileMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ECEB32B4F2C1F00D149E5 /* ProfileMenuCell.swift */; };
+		C442478A2B529EAD00F215C6 /* ProfileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44247892B529EAD00F215C6 /* ProfileMenu.swift */; };
 		C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F72B1633B70060287C /* ProfileViewController.swift */; };
 		C462D8FA2B1633CB0060287C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F92B1633CB0060287C /* ProfileViewModel.swift */; };
 		C462D8FC2B1634580060287C /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8FB2B1634580060287C /* ProfileCoordinator.swift */; };
@@ -155,6 +157,8 @@
 		C403792A2B262B47008F22F8 /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ReuseIdentifier+Ext.swift"; sourceTree = "<group>"; };
 		C40379312B270F7D008F22F8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		C41ECEB32B4F2C1F00D149E5 /* ProfileMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuCell.swift; sourceTree = "<group>"; };
+		C44247892B529EAD00F215C6 /* ProfileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenu.swift; sourceTree = "<group>"; };
 		C462D8F72B1633B70060287C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C462D8F92B1633CB0060287C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C462D8FB2B1634580060287C /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -425,6 +429,7 @@
 				37B6F3F52B1688F8001F9D55 /* UserModel.swift */,
 				37B6F3F92B1689F5001F9D55 /* CarModel.swift */,
 				E2F06AD52B274B7A00E088DE /* UserRegistration.swift */,
+				C44247892B529EAD00F215C6 /* ProfileMenu.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				C462D8F72B1633B70060287C /* ProfileViewController.swift */,
+				C41ECEB32B4F2C1F00D149E5 /* ProfileMenuCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -882,6 +888,7 @@
 				C494CD0A2B4C1F160007CCA9 /* CarTypeView.swift in Sources */,
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
 				C40379292B262590008F22F8 /* SearchCarCoordinator.swift in Sources */,
+				C442478A2B529EAD00F215C6 /* ProfileMenu.swift in Sources */,
 				370ADE8A2B199AE50090300E /* RegistrationViewModel.swift in Sources */,
 				E2F06ACB2B25DCB700E088DE /* CarsService.swift in Sources */,
 				E221FFD72B14BEAB002A5268 /* FirstOnboardingViewController.swift in Sources */,
@@ -935,6 +942,7 @@
 				37842A432B36D78700FA7150 /* EnterViewController.swift in Sources */,
 				E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */,
 				E221FFD52B14BD82002A5268 /* RootCoordinator.swift in Sources */,
+				C41ECEB42B4F2C1F00D149E5 /* ProfileMenuCell.swift in Sources */,
 				61BF07B32B3329C8004E375E /* AddressService.swift in Sources */,
 				370ADE8C2B199AF20090300E /* RegistrationCoordinator.swift in Sources */,
 				370ADEB22B199CE60090300E /* UITextField+Ext.swift in Sources */,

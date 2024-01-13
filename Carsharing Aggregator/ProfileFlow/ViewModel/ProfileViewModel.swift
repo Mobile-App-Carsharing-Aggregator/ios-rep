@@ -8,20 +8,37 @@
 import Foundation
 
 protocol ProfileViewModelProtocol {
-    var user: User { get }
+    var fullName: String { get }
     var numberOfSections: [Int] { get }
+    func viewWillAppear()
 }
 
 struct ProfileViewModel: ProfileViewModelProtocol {
-    var numberOfSections: [Int] = [1, 6, 3]
+    var numberOfSections: [Int] = [2, 1, 2]
+    // MARK: - Observables
+    @Observable
+    private(set) var fullName: String = ""
     
-    private(set) var user = User(userID: UUID(),
-                                 name: "Jon",
-                                 surname: "Snow",
-                                 email: "winteriscoming@got.com",
-                                 phoneNumber: "+1234567890",
-                                 bonuses: 25,
-                                 paymentCards: [],
-                                 orders: []
-    )
+    // MARK: - Properties
+    weak var coordinator: ProfileCoordinator?
+    private let userService = DefaultUserService.shared
+    private var user: User?
+    
+    // MARK: - Methods
+    func viewWillAppear() {
+        getUser()
+    }
+    
+    private  func getUser() {
+        let user = User(userID: UUID(),
+                    name: "Jon",
+                    surname: "Snow",
+                    email: "winteriscoming@got.com",
+                    phoneNumber: "+1234567890",
+                    bonuses: 25,
+                    paymentCards: [],
+                    orders: []
+        )
+        fullName = "\(user.name) \(user.surname)"
+    }
 }

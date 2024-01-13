@@ -36,7 +36,7 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
                 /* need customize for iOS <16 */
             }
             sheet.prefersGrabberVisible = true
-            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.largestUndimmedDetentIdentifier = .large
         }
         viewControllerRef?.present(vc, animated: true)
     }
