@@ -77,8 +77,8 @@ class MapViewModel {
         CarsService.shared.getCars(with: filtersString, completion: completion)
     }
     
-    func openProfile() {
-        coordinator?.openProfile()
+    func openProfile(on vc: UIViewController) {
+        coordinator?.openProfile(on: vc)
     }
     
     func openFilters(on vc: UIViewController, selectedFilters: [ListSection: [ListItem]]) {

@@ -33,10 +33,6 @@ final class CarsService: CarsServiceProtocol {
     private init() {}
     
     func getCars(with filters: String, completion: @escaping ([Car]) -> Void) {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-//            guard let cars = self?.getMockCars() else { return }
-//            completion(cars)
-//        }
         DispatchQueue.main.async { [weak self] in
             self?.getCarsFromNetwork(with: filters) { result in
                 switch result {
@@ -71,7 +67,7 @@ extension CarsService {
         var cars: [Car] = []
         let carsharingCompany: [CarsharingCompany] = CarsharingCompany.allCases
         let engineTypes: [EngineType] = [.diesel, .electro, .benzine]
-        let carTypes: [CarType] = [.sedan, .hatchback, .minivan, .coupe, .universal, .other]
+        let carTypes: [CarType] = [.sedan, .hatchback, .minivan, .coupe, .universal, .suv]
         
         for (index, location) in carsLocations.enumerated() {
             let car = Car(
@@ -83,7 +79,7 @@ extension CarsService {
                 typeEngine: engineTypes.randomElement()!,
                 various: [],
                 typeCar: carTypes.randomElement()!,
-                rating: 5.0,
+                rating: "1.0",
                 coordinates: Coordinates(latitude: Float(location.latitude), longitude: Float(location.longitude)),
                 stateNumber: "AA001AA75"
             )

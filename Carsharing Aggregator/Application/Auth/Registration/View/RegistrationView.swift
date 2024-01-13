@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 class RegistrationView: UIView {
-    let viewModel = RegistrationViewModel()
+    var registrationViewModel: RegistrationViewModel!
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - UI Properties
@@ -48,7 +48,7 @@ class RegistrationView: UIView {
     private lazy var vkLogoButton = UIButton(with: UIImage.vkLogo!, target: self, action: #selector(vkLogoButtonDidTapped))
     private lazy var yandexLogoButton = UIButton(with: UIImage.yandexLogo!, target: self, action: #selector(yandexLogoButtonDidTapped))
     
-    override init(frame: CGRect) {
+    override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         setConstraints()
     }
@@ -103,36 +103,36 @@ class RegistrationView: UIView {
     
     @objc private func textFIeldDidEnd(_ textField: UITextField) {
         switch textField {
-        case nameTextField: viewModel.name = textField.text ?? ""
+        case nameTextField: registrationViewModel.name = textField.text ?? ""
             textFieldDidEnd(nameTextField, and: nameSublabel)
-            observeField(for: viewModel.$name,
-                         isEmptyPublisher: viewModel.isNameEmptyPublisher,
-                         isValidPublisher: viewModel.isValidNamePublisher,
+            observeField(for: registrationViewModel.$name,
+                         isEmptyPublisher: registrationViewModel.isNameEmptyPublisher,
+                         isValidPublisher: registrationViewModel.isValidNamePublisher,
                          textField: surnameTextField,
                          previousTextField: nameTextField,
                          emptyWarningLabel: emptyNameFieldWarning, validWarningLabel: incorrectNameWarning)
-        case surnameTextField: viewModel.surname = textField.text ?? ""
+        case surnameTextField: registrationViewModel.surname = textField.text ?? ""
             textFieldDidEnd(surnameTextField, and: surnameSublabel)
-            observeField(for: viewModel.$surname,
-                         isEmptyPublisher: viewModel.isSurnameEmptyPublisher,
-                         isValidPublisher: viewModel.isValidSurnamePublisher,
+            observeField(for: registrationViewModel.$surname,
+                         isEmptyPublisher: registrationViewModel.isSurnameEmptyPublisher,
+                         isValidPublisher: registrationViewModel.isValidSurnamePublisher,
                          textField: emailTextField, previousTextField: surnameTextField,
                          emptyWarningLabel: emptySurnameFieldWarning, validWarningLabel: incorrectSurnameWarning)
-        case emailTextField: viewModel.email = textField.text ?? ""
+        case emailTextField: registrationViewModel.email = textField.text ?? ""
             textFieldDidEnd(emailTextField, and: emailSublabel)
-            observeField(for: viewModel.$email,
-                         isEmptyPublisher: viewModel.isEmailEmptyPublisher,
-                         isValidPublisher: viewModel.isValidEmailPublisher,
+            observeField(for: registrationViewModel.$email,
+                         isEmptyPublisher: registrationViewModel.isEmailEmptyPublisher,
+                         isValidPublisher: registrationViewModel.isValidEmailPublisher,
                          textField: passwordTextField, previousTextField: emailTextField,
                          emptyWarningLabel: emptyEmailFieldWarning, validWarningLabel: emailWarninigLabel)
-        case passwordTextField: viewModel.password = textField.text ?? ""
+        case passwordTextField: registrationViewModel.password = textField.text ?? ""
             textFieldDidEnd(passwordTextField, and: passwordSublabel)
-            observeField(for: viewModel.$password,
-                         isEmptyPublisher: viewModel.isPasswordEmptyPublisher, 
-                         isValidPublisher: viewModel.isValidPasswordPublisher,
+            observeField(for: registrationViewModel.$password,
+                         isEmptyPublisher: registrationViewModel.isPasswordEmptyPublisher, 
+                         isValidPublisher: registrationViewModel.isValidPasswordPublisher,
                          textField: confirmPasswordTextField, previousTextField: passwordTextField, 
                          emptyWarningLabel: emptyPasswordFieldWarning, validWarningLabel: passwordWarningLabel)
-        case confirmPasswordTextField: viewModel.confirmPassword = textField.text ?? ""
+        case confirmPasswordTextField: registrationViewModel.confirmPassword = textField.text ?? ""
             textFieldDidEnd(confirmPasswordTextField, and: confirmSublabel)
             observeConfirmField()
         default:
@@ -256,9 +256,9 @@ class RegistrationView: UIView {
     }
 
     private func observeConfirmField() {
-        Publishers.CombineLatest3(viewModel.$confirmPassword,
-                                  viewModel.isConfrimPasswordEmptyPublisher,
-                                  viewModel.isValidConfirmPasswordPublisher)
+        Publishers.CombineLatest3(registrationViewModel.$confirmPassword,
+                                  registrationViewModel.isConfrimPasswordEmptyPublisher,
+                                  registrationViewModel.isValidConfirmPasswordPublisher)
         .sink { [weak self] (_, isEmpty, isValid) in
             guard let self = self else { return }
             self.textFieldIsValid(isValid: isValid, for: self.confirmPasswordTextField)

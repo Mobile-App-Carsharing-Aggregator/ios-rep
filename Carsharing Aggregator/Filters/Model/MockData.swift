@@ -15,17 +15,17 @@ struct MockData {
     let carsharing: [ListItem] = {
         [.init(id: 0, title: CarsharingCompany.YandexDrive.name, image: nil, name: CarsharingCompany.YandexDrive.rawValue),
          .init(id: 1, title: CarsharingCompany.CityDrive.name, image: nil, name: CarsharingCompany.CityDrive.rawValue),
-         .init(id: 2, title: CarsharingCompany.Delimobil.name, image: nil, name: CarsharingCompany.Delimobil.rawValue),
+         .init(id: 2, title: CarsharingCompany.DeliMobil.name, image: nil, name: CarsharingCompany.DeliMobil.rawValue),
          .init(id: 3, title: CarsharingCompany.BelkaCar.name, image: nil, name: CarsharingCompany.BelkaCar.rawValue)]
     }()
     
     let typeOfCar: [ListItem] = {
-        [.init(id: 0, title: "Седан", image: nil, name: CarType.sedan.rawValue),
-         .init(id: 1, title: "Хэтчбек", image: nil, name: CarType.hatchback.rawValue),
-         .init(id: 2, title: "Минивен", image: nil, name: CarType.minivan.rawValue),
-         .init(id: 3, title: "Купе", image: nil, name: CarType.coupe.rawValue),
-         .init(id: 4, title: "Универсал", image: nil, name: CarType.universal.rawValue),
-         .init(id: 5, title: "Внедорожник", image: nil, name: CarType.other.rawValue)]
+        [.init(id: 0, title: CarType.sedan.name, image: nil, name: CarType.sedan.rawValue),
+         .init(id: 1, title: CarType.hatchback.name, image: nil, name: CarType.hatchback.rawValue),
+         .init(id: 2, title: CarType.minivan.name, image: nil, name: CarType.minivan.rawValue),
+         .init(id: 3, title: CarType.coupe.name, image: nil, name: CarType.coupe.rawValue),
+         .init(id: 4, title: CarType.universal.name, image: nil, name: CarType.universal.rawValue),
+         .init(id: 5, title: CarType.suv.name, image: nil, name: CarType.suv.rawValue)]
     }()
     
     let powerReserve: [ListItem] = {

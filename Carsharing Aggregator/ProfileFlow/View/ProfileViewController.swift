@@ -9,89 +9,137 @@ import UIKit
 import SnapKit
 
 final class ProfileViewController: UIViewController {
-    
     // MARK: - UI
-    private lazy var profileNameLabel: UILabel = {
+    private lazy var titleVC: UILabel = {
         let label = UILabel()
-        label.text = "Jon Snow"
-        label.font = UIFont.systemFont(ofSize: 32, weight: .regular)
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.textColor = .carsharing.black
+        label.textAlignment = .center
+        label.text = "Профиль"
         return label
     }()
     
-    private lazy var profileItemButton: UIButton = {
-        let button = UIButton.systemButton(
-            with: .forward!,
-            target: self,
-            action: #selector(didTapProfileItemButton)
-        )
-        button.tintColor = .black
+    private lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .carsharing.greyDark
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.addTarget(self,
+                         action: #selector(didTapCloseButton),
+                         for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var avatarImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "person.crop.circle.fill")
+        image.tintColor = .carsharing.grey
+        return image
+    }()
+    
+    private lazy var profileNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        return label
     }()
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.separatorStyle = .none
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.allowsSelection = false
+        table.register(
+                    ProfileMenuCell.self,
+                    forCellReuseIdentifier: ProfileMenuCell.reuseIdentifier
+                )
         return table
     }()
     
     // MARK: - Properties
     weak var coordinator: Coordinator?
-    var viewModel: ProfileViewModelProtocol?
+    var viewModel: ProfileViewModel?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bind()
         setupUI()
-        setupConstraints()
         tableView.dataSource = self
         tableView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.viewWillAppear()
+    }
+    
     // MARK: - Methods
+    private func bind() {
+        guard let viewModel = viewModel else { return }
+        viewModel.$fullName.bind { [weak self] _ in
+            self?.profileNameLabel.text = "\(viewModel.fullName)"
+        }
+    }
+    
     private func setupUI() {
         view.backgroundColor = .white
-        [profileNameLabel, profileItemButton, tableView].forEach {
+        [titleVC, closeButton, avatarImage, profileNameLabel, tableView].forEach {
             view.addSubview($0)
         }
-        
+        setupConstraints()
     }
     
     private func setupConstraints() {
-        profileNameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(view).offset(20)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+        titleVC.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(view).offset(26)
+            make.height.equalTo(22)
+            make.width.lessThanOrEqualTo(290)
         }
         
-        profileItemButton.snp.makeConstraints { make in
-            make.centerY.equalTo(profileNameLabel)
-            make.trailing.equalTo(view).offset(-12)
+        closeButton.snp.makeConstraints { make in
+            make.centerY.equalTo(titleVC.snp.centerY)
+            make.height.width.equalTo(24)
+            make.trailing.equalTo(view).offset(-30)
+        }
+        
+        avatarImage.snp.makeConstraints { make in
+            make.height.width.equalTo(36)
+            make.leading.equalTo(view).offset(21)
+            make.top.equalTo(titleVC.snp.bottom).offset(22)
+        }
+        
+        profileNameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(avatarImage.snp.trailing).offset(12)
+            make.centerY.equalTo(avatarImage.snp.centerY)
         }
         
         tableView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.top.equalTo(profileNameLabel.snp.bottom).offset(12)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.top.equalTo(avatarImage.snp.bottom).offset(20)
             make.bottom.equalToSuperview()
         }
     }
     
     // MARK: - Actions
     @objc
-    private func didTapProfileItemButton() {
-        
+    private func didTapCloseButton() {
+        dismiss(animated: true)
     }
 }
 
     // MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let viewModel = viewModel else { return 0 }
         switch section {
-        case 0: return 1
-        case 1: return 6
-        case 2: return 3
-        default: return 0
+        case 0:
+            return viewModel.numberOfSections[0]
+        case 1:
+            return viewModel.numberOfSections[1]
+        case 2:
+            return viewModel.numberOfSections[2]
+        default:
+            return 0
         }
     }
     
@@ -101,86 +149,43 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        cell.selectionStyle = .none
-        cell.backgroundColor = .white
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 10, weight: .regular)
-        cell.detailTextLabel?.textColor = .gray
-        
-        var cellText = ""
-        var detailText = ""
-        var accessoryType: UITableViewCell.AccessoryType = .none
+        let cell: ProfileMenuCell = tableView.dequeueReusableCell(withIdentifier: ProfileMenuCell.reuseIdentifier) as! ProfileMenuCell
         
         switch indexPath.section {
         case 0:
-            cellText = "Бонусные баллы"
-            /* TO DO: - add bonuses presentation via viewModel
-             cell.accessoryView =
-             */
-            
-        case 1:
             switch indexPath.row {
             case 0:
-                cellText = "Уведомления"
-                accessoryType = .disclosureIndicator
+                cell.configureCell(with: .MyMarks)
             case 1:
-                cellText = "Карты для оплаты"
-                accessoryType = .disclosureIndicator
-            case 2:
-                cellText = "Заказы"
-                detailText = "Текущие, прошедшие, запланированные"
-                accessoryType = .disclosureIndicator
-            case 3:
-                cellText = "Адреса"
-                detailText = "Дом, работа и остальные"
-                accessoryType = .disclosureIndicator
-            case 4:
-                cellText = "Отзывы"
-            case 5:
-                cellText = "Страховка"
-                
+                cell.configureCell(with: .SearchHistory)
             default:
                 break
             }
+        case 1:
+            cell.configureCell(with: .Settings)
         case 2:
             switch indexPath.row {
             case 0:
-                cellText = "Правила использования"
+                cell.configureCell(with: .Logout)
             case 1:
-                cellText = "Техподдержка"
-            case 2:
-                cellText = "Настройки"
+                cell.configureCell(with: .DeleteAccount)
             default:
                 break
             }
         default:
             break
         }
-        
-        cell.textLabel?.text = cellText
-        cell.detailTextLabel?.text = detailText
-        cell.accessoryType = accessoryType
         return cell
     }
-    
 }
 
     // MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let model = viewModel else { return nil }
-        guard section > (model.numberOfSections.count - 1) else { return nil }
-        
-        let separatorView = UIView()
-        separatorView.backgroundColor = UIColor.systemGray
-        return separatorView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        guard let model = viewModel else { return 0 }
-        guard section > (model.numberOfSections.count - 1) else { return 0 }
-        
-        return 1.0
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 {
+            return 88
+        } else {
+            return 44
+        }
     }
 }
