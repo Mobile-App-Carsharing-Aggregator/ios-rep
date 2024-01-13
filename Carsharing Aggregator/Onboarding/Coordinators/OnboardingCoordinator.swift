@@ -27,7 +27,7 @@ final class OnboardingCoordinator: ChildCoordinator {
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
     }
-
+    
     func start() {
         let viewModel = FirstOnboardingViewModel(coordinator: self)
         let viewController = FirstOnboardingViewController(viewModel: viewModel)
@@ -43,7 +43,6 @@ extension OnboardingCoordinator: OnboardingCoordinatorProtocol {
     }
     
     func startAuthFlow() {
-        parent?.childDidFinish(self)
         delegate?.startAuthFlow()
     }
     
@@ -51,10 +50,13 @@ extension OnboardingCoordinator: OnboardingCoordinatorProtocol {
         parent?.childDidFinish(self)
         delegate?.startTabBarFlow()
     }
+    
+    func didFinishFlow() {
+        parent?.childDidFinish(self)
+    }
 }
 
 protocol OnboardingCoordinatorDelegate: AnyObject {
     func startAuthFlow()
     func startTabBarFlow()
-    
 }

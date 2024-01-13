@@ -54,6 +54,7 @@ final class FirstOnboardingViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupLayout()
+        getUser()
     }
     
     // MARK: - Methods
@@ -86,5 +87,20 @@ final class FirstOnboardingViewController: UIViewController {
     @objc
     private func beginButtonTapped() {
         viewModel.showSecondView()
+    }
+}
+
+extension FirstOnboardingViewController {
+    func getUser() {
+        DefaultUserService.shared.getUser { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let user):
+                    print("Получены данные пользователя: \(user)")
+                case .failure(let error):
+                    print("Ошибка при получении профиля пользователя: \(error)")
+                }
+            }
+        }
     }
 }

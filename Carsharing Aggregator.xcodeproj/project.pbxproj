@@ -95,6 +95,7 @@
 		E2F06AD22B273DB000E088DE /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06AD12B273DB000E088DE /* NetworkTask.swift */; };
 		E2F06AD42B274B4700E088DE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06AD32B274B4700E088DE /* UserService.swift */; };
 		E2F06AD62B274B7A00E088DE /* UserRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F06AD52B274B7A00E088DE /* UserRegistration.swift */; };
+		E2F516E52B518E1300D0BE86 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F516E42B518E1300D0BE86 /* UserProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,6 +187,7 @@
 		E2F06AD12B273DB000E088DE /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
 		E2F06AD32B274B4700E088DE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		E2F06AD52B274B7A00E088DE /* UserRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistration.swift; sourceTree = "<group>"; };
+		E2F516E42B518E1300D0BE86 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -532,6 +534,7 @@
 		C462D8F62B1633950060287C /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
+				E2F516E32B518DFD00D0BE86 /* Model */,
 				C462D8FF2B166BCC0060287C /* ViewModel */,
 				C462D8FE2B166BBD0060287C /* View */,
 				C462D8FD2B166BA90060287C /* Coordinator */,
@@ -723,6 +726,14 @@
 			path = NetworkClient;
 			sourceTree = "<group>";
 		};
+		E2F516E32B518DFD00D0BE86 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E2F516E42B518E1300D0BE86 /* UserProfile.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -902,6 +913,7 @@
 				32453C092B152BAF003E7AA8 /* UIView+Ext.swift in Sources */,
 				E22100002B18E26A002A5268 /* SecondOnboardingViewModel.swift in Sources */,
 				6166DC5E2B299B9D003E57FB /* SelectedCarViewController.swift in Sources */,
+				E2F516E52B518E1300D0BE86 /* UserProfile.swift in Sources */,
 				370ADE9B2B199B9C0090300E /* LoginModel.swift in Sources */,
 				370ADE952B199B740090300E /* LoginCoordinator.swift in Sources */,
 				328BD1312B249BBD00F3AB80 /* RatingCollectionViewCell.swift in Sources */,
