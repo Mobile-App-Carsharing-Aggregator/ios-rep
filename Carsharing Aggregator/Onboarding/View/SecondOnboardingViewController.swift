@@ -10,12 +10,6 @@ import SnapKit
 
 final class SecondOnboardingViewController: UIViewController {
     
-//    private let userForReg = UserRegistration(email: "2@2.ru",
-//                                            username: "Zero11",
-//                                            firstName: "First",
-//                                            lastName: "Second",
-//                                            password: "VaryLongPasswrod2024")
-    
     var viewModel: SecondOnboardingViewModel
     
     // MARK: - UI Elements
@@ -64,8 +58,7 @@ final class SecondOnboardingViewController: UIViewController {
     init(viewModel: SecondOnboardingViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        // registerTest(user: userForReg)
-        //getCars()
+
     }
     
     required init?(coder: NSCoder) {
@@ -125,31 +118,3 @@ final class SecondOnboardingViewController: UIViewController {
         viewModel.skipButtonTapped()
     }
 }
-
- extension SecondOnboardingViewController {
-//    private func registerTest(user: UserRegistration) {
-//        DefaultUserService.shared.createUser(with: userForReg) { [weak self] result in
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .success(let user):
-//                    print("Успешная регистрация: \(user)")
-//                case .failure(let error):
-//                    print("Ошибка регистрации: \(error)")
-//                }
-//            }
-//        }
-//    }
-     
-//     private func getCars() {
-//         CarsService.shared.getCarsFromNetwork { [weak self] result in
-//             DispatchQueue.main.async {
-//                 switch result {
-//                 case .success(let response):
-//                     print("cars response: \(response.results)")
-//                 case .failure(let error):
-//                     print("Ошибка запроса: \(error)")
-//                 }
-//             }
-//         }
-//     }
- }
