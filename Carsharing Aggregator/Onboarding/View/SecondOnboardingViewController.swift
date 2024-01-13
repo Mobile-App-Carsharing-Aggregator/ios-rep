@@ -10,7 +10,7 @@ import SnapKit
 
 final class SecondOnboardingViewController: UIViewController {
     
-    var viewModel: SecondOnboardingViewModel
+    var viewModel: SecondOnboardingViewModelProtocol
     
     // MARK: - UI Elements
     
@@ -59,6 +59,10 @@ final class SecondOnboardingViewController: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
 
+    }
+    
+    deinit {
+        viewModel.vcDeinit()
     }
     
     required init?(coder: NSCoder) {
