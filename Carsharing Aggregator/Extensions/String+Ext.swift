@@ -12,7 +12,7 @@ extension String {
     enum Regex: String {
         case name = "[а-яА-Яa-zA-Z]{3,}"
         case email = "[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}"
-        case password = "^(?=.*[a-zA-Z]).{8,}$"
+        case password = "^(?=.*[a-zA-Z]).{10,15}$"
     }
     
     func isValid(validType: ValidTypes) -> Bool {
