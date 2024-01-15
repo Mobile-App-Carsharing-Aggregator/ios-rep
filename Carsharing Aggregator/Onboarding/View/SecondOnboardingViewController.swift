@@ -83,6 +83,7 @@ final class SecondOnboardingViewController: UIViewController {
         view.addSubview(textLabel)
         view.addSubview(loginButton)
         view.addSubview(skipButton)
+        navigationItem.hidesBackButton = true
     }
     
     private func setupLayout() {

@@ -9,6 +9,8 @@
 	</dict>
 	<key>NSMotionUsageDescription</key>
 	<string>Приложению нужен доступ к данным вашей геолокации, что показать ближайшие автомобили для аренды.</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
