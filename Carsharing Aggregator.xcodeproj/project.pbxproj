@@ -26,6 +26,7 @@
 		328BD1312B249BBD00F3AB80 /* RatingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BD1302B249BBD00F3AB80 /* RatingCollectionViewCell.swift */; };
 		328BD1352B25BCBB00F3AB80 /* MapButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BD1342B25BCBB00F3AB80 /* MapButtonView.swift */; };
 		328BD1372B25EF4500F3AB80 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BD1362B25EF4500F3AB80 /* TabButtonView.swift */; };
+		32B08EB72B555E120085E8FF /* Сonstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B08EB62B555E120085E8FF /* Сonstants.swift */; };
 		32F44C0E2B299E1B00D11FD7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F44C0D2B299E1B00D11FD7 /* UIColor+Ext.swift */; };
 		370ADE822B199A7B0090300E /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE812B199A7B0090300E /* AuthCoordinator.swift */; };
 		370ADE882B199AD20090300E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE872B199AD20090300E /* RegistrationView.swift */; };
@@ -119,6 +120,7 @@
 		328BD1302B249BBD00F3AB80 /* RatingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCollectionViewCell.swift; sourceTree = "<group>"; };
 		328BD1342B25BCBB00F3AB80 /* MapButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButtonView.swift; sourceTree = "<group>"; };
 		328BD1362B25EF4500F3AB80 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
+		32B08EB62B555E120085E8FF /* Сonstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Сonstants.swift"; sourceTree = "<group>"; };
 		32F44C0D2B299E1B00D11FD7 /* UIColor+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		370ADE812B199A7B0090300E /* AuthCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		370ADE872B199AD20090300E /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 				61BF07B22B3329C8004E375E /* AddressService.swift */,
 				616BDE442B33807A000DEE66 /* RouteService.swift */,
 				E208D7FE2B501E9700803CB9 /* TokenStorage.swift */,
+				32B08EB62B555E120085E8FF /* Сonstants.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -897,6 +900,7 @@
 				370ADE8F2B199B200090300E /* RegistrationModel.swift in Sources */,
 				37842A452B36D7A300FA7150 /* UIButton+Ext.swift in Sources */,
 				328BD0FA2B2334A600F3AB80 /* FilterCollectionViewCell.swift in Sources */,
+				32B08EB72B555E120085E8FF /* Сonstants.swift in Sources */,
 				E2F06AD62B274B7A00E088DE /* UserRegistration.swift in Sources */,
 				328BD12F2B2492D800F3AB80 /* MockData.swift in Sources */,
 				378E058F2B4BF3ED002B0F0C /* UIProgressHUD.swift in Sources */,
@@ -1114,23 +1118,25 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G2Z3KJVPLW;
+				DEVELOPMENT_TEAM = KUYRA3PMPA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Carsharing Aggregator/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "FInd and GO";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Приложению нужен доступ к данным вашей геолокации, что показать ближайшие автомобили для аренды.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Alesandr-Garipov.Carsharing-Aggregator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Lobanova-Vika.Carsharing-Aggregator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1149,23 +1155,25 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G2Z3KJVPLW;
+				DEVELOPMENT_TEAM = KUYRA3PMPA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Carsharing Aggregator/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "FInd and GO";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Приложению нужен доступ к данным вашей геолокации, что показать ближайшие автомобили для аренды.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Alesandr-Garipov.Carsharing-Aggregator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Lobanova-Vika.Carsharing-Aggregator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
