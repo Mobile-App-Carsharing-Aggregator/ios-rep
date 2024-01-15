@@ -422,8 +422,7 @@ extension MapViewController: YMKClusterListener, YMKClusterTapListener {
     
     func onClusterTap(with cluster: YMKCluster) -> Bool {
         print("Tapped cluster with \(cluster.size) items")
-        // We return true to notify map that the tap was handled and shouldn't be
-        // propagated further.
+        changeZoom(by: 1.0)
         return true
     }
     

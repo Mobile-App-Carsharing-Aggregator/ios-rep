@@ -147,7 +147,7 @@ extension FiltersViewController {
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(30)
             make.height.equalTo(22)
-            make.width.equalTo(63)
+            make.width.equalTo(70)
         }
         
         backgroundView.snp.makeConstraints { make in
@@ -158,7 +158,7 @@ extension FiltersViewController {
         buttonClearFilters.snp.makeConstraints { make in
             make.centerY.equalTo(titleVC.snp.centerY)
             make.height.equalTo(40)
-            make.width.equalTo(78)
+            make.width.equalTo(85)
             make.trailing.equalToSuperview().inset(21)
         }
         
@@ -177,7 +177,7 @@ extension FiltersViewController {
     
     private func createLayout() -> UICollectionViewLayout {
         UICollectionViewCompositionalLayout { _, _ in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(80), heightDimension: .fractionalHeight(1.0))
+            let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(40), heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = .init(top: 8, leading: 0, bottom: 8, trailing: 0)
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(56))

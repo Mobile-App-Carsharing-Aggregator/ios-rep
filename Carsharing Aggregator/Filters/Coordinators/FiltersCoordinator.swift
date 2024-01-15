@@ -4,7 +4,6 @@
 //
 //  Created by Viktoria Lobanova on 08.12.2023.
 //
-
 import UIKit
 
 final class FiltersCoordinator: ChildCoordinator {
@@ -31,6 +30,19 @@ final class FiltersCoordinator: ChildCoordinator {
         filtersVC.delegate = mapModel
         viewModel.coordinator = self
         filtersVC.modalPresentationStyle = .pageSheet
+        if let sheet = filtersVC.sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                sheet.detents = [.custom(resolver: { context in
+                    return heightSheet
+                })]
+            } else {
+//                // TODO: - customize for iOS <16
+            }
+            
+            sheet.prefersGrabberVisible = true
+            sheet.largestUndimmedDetentIdentifier = .large
+        }
+  
         viewControllerRef?.present(filtersVC, animated: true)
     }
     

@@ -30,7 +30,7 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
         if let sheet = vc.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { context in
-                    return  745
+                    return  heightSheet
                 })]
             } else {
                 /* need customize for iOS <16 */
