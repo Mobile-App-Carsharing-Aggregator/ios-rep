@@ -30,15 +30,27 @@ struct ProfileViewModel: ProfileViewModelProtocol {
     }
     
     private  func getUser() {
-        let user = User(userID: UUID(),
-                    name: "Jon",
-                    surname: "Snow",
-                    email: "winteriscoming@got.com",
-                    phoneNumber: "+1234567890",
-                    bonuses: 25,
-                    paymentCards: [],
-                    orders: []
-        )
-        fullName = "\(user.name) \(user.surname)"
+//        let user = User(userID: UUID(),
+//                    name: "Jon",
+//                    surname: "Snow",
+//                    email: "winteriscoming@got.com",
+//                    phoneNumber: "+1234567890",
+//                    bonuses: 25,
+//                    paymentCards: [],
+//                    orders: []
+//        )
+        DefaultUserService.shared.getUser { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let user):
+                    print("Получены данные пользователя: \(user)")
+                    fullName = "\(user.firstName) \(user.lastName)"
+                case .failure(let error):
+                    print("Ошибка при получении профиля пользователя: \(error)")
+                    fullName = "Jon Snow"
+                }
+            }
+        }
+        
     }
 }
