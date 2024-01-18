@@ -170,6 +170,11 @@ final class SelectedCarViewController: UIViewController {
     
     @objc
     private func bookButtonDidTap() {
+        let company = viewModel.selectedCar.company
+        let appStoreURL = URL(string: "https://apps.apple.com/app/id\(company.appStoreID)")!
+        if UIApplication.shared.canOpenURL(appStoreURL) {
+            UIApplication.shared.open(appStoreURL)
+        }
     }
     
     // MARK: - Methods
@@ -301,13 +306,17 @@ extension SelectedCarViewController: UICollectionViewDataSource {
             guard let selectedCarCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarCell else { return UICollectionViewCell() }
-            selectedCarCell.configure(title: "Полный бак")
+            if viewModel.selectedCar.powerReserve == "full" {
+                selectedCarCell.configure(title: "Полный бак")
+            } else {
+                selectedCarCell.configure(title: "Запас хода: \(viewModel.selectedCar.powerReserve)")
+            }
             return selectedCarCell
         } else if indexPath.row == 2 {
             guard let selectedCarRatingCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarRatingCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarRatingCell else { return UICollectionViewCell() }
-            selectedCarRatingCell.configure(title: "\(Int(viewModel.selectedCar.rating))")
+            selectedCarRatingCell.configure(title: viewModel.selectedCar.rating)
             return selectedCarRatingCell
         }
         return UICollectionViewCell()
