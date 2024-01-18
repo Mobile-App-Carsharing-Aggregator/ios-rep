@@ -39,6 +39,10 @@ final class SelectedCarViewModel {
     }
     
     // MARK: - Methods
+    func closeVC() {
+        coordinator?.coordinatorDidFinish()
+    }
+    
     private func calculateTime() {
         routeService.calculateTime(carCoordinates: selectedCar.coordinates) { [weak self] routeTime in
             self?.time = routeTime

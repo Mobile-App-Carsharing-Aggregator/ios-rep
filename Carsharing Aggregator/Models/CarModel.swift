@@ -22,6 +22,7 @@ struct Car: Codable {
     let typeEngine: EngineType
     let various: [Various]
     let typeCar: CarType
+    let powerReserve: String
     var rating: String
     var coordinates: Coordinates
     let stateNumber: String
@@ -91,7 +92,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
         case .YandexDrive:
             "Яндекс.Драйв"
         case .CityDrive:
-            "СитиДрайв"
+            "СитиМобиль"
         case .DeliMobil:
             "Делимобиль"
         case .BelkaCar:
