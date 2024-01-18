@@ -92,7 +92,7 @@ enum CarsharingCompany: String, Codable, CaseIterable {
         case .YandexDrive:
             "Яндекс.Драйв"
         case .CityDrive:
-            "СитиДрайв"
+            "СитиМобиль"
         case .DeliMobil:
             "Делимобиль"
         case .BelkaCar:
