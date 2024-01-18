@@ -40,7 +40,11 @@ final class AddressService {
             guard let address = object?.address.formattedAddress else { return }
             
             let addressArray = address.components(separatedBy: ", ")
-            let city = "\(addressArray[1]), \(addressArray[0])"
+            var city = ""
+            
+            if addressArray.count == 1 { city = addressArray[0] }
+            if addressArray.count > 1 { city = "\(addressArray[1]), \(addressArray[0])" }
+            
             var street = ""
             
             if addressArray.count > 2 {

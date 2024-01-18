@@ -79,6 +79,7 @@ extension CarsService {
                 typeEngine: engineTypes.randomElement()!,
                 various: [],
                 typeCar: carTypes.randomElement()!,
+                powerReserve: "100km",
                 rating: "1.0",
                 coordinates: Coordinates(latitude: Float(location.latitude), longitude: Float(location.longitude)),
                 stateNumber: "AA001AA75"
