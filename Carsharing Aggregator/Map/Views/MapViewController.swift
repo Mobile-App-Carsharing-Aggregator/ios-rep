@@ -105,7 +105,6 @@ final class MapViewController: UIViewController {
             self?.filtersCollectionView.reloadData()
             self?.updateMapWithFilters()
         }
-        
         viewModel.openReviewAndRating(on: self)
     }
     

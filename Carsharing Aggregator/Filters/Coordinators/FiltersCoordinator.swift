@@ -32,7 +32,7 @@ final class FiltersCoordinator: ChildCoordinator {
         filtersVC.modalPresentationStyle = .pageSheet
         if let sheet = filtersVC.sheetPresentationController {
             if #available(iOS 16.0, *) {
-                sheet.detents = [.custom(resolver: { context in
+                sheet.detents = [.custom(resolver: { _ in
                     return heightLargeSheet
                 })]
             } else {
@@ -42,7 +42,6 @@ final class FiltersCoordinator: ChildCoordinator {
             sheet.prefersGrabberVisible = true
             sheet.largestUndimmedDetentIdentifier = .large
         }
-  
         viewControllerRef?.present(filtersVC, animated: true)
     }
     

@@ -16,18 +16,19 @@ class ReviewAndRatingViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: ReviewAndRatingViewModel
-    var currentRating = 0
-    let maxRating = 5
-    var comment: String = ""
-    
+    private var currentRating = 0
+    private let maxRating = 5
+    private var comment: String = ""
+   
     var delegate: ReviewAndRatingViewControllerDelegate?
     
     // MARK: - UI
     
     private lazy var titleVC: UILabel = {
         let label = UILabel()
-        label.text = "Как вам Škoda Rapid 2?"
+        label.text = "Как вам " + viewModel.modelCar + "?"
         label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.textAlignment = .center
         label.textColor = .carsharing.black
         return label
     }()
@@ -163,15 +164,9 @@ class ReviewAndRatingViewController: UIViewController {
     }
     
     @objc private func buttonSaveTapped() {
-        let alert = UIAlertController(title: "Спасибо за отзыв!",
-                                      message: "Он поможет другим \n пользователям сделать \n выбор",
-                                      preferredStyle: .alert)
-            self.present(alert, animated: true, completion: nil)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
-              alert.dismiss(animated: true, completion: nil)
-            }
-        viewModel.saveReviewAndRating(rating: currentRating, comment: comment)
-        viewModel.coordinator?.coordinatorDidFinish()
+        self.viewModel.saveReviewAndRating(rating: self.currentRating, comment: self.comment)
+        self.viewModel.coordinator?.coordinatorDidFinish()
+        self.viewModel.coordinator?.showRatingAlert()
     }
 }
 
@@ -226,7 +221,7 @@ extension ReviewAndRatingViewController {
             make.centerX.equalTo(view.snp.centerX)
             make.top.equalTo(view.snp.top).offset(30)
             make.height.equalTo(22)
-            make.width.equalTo(215)
+            make.width.equalTo(250)
         }
         buttonClose.snp.makeConstraints { make in
             make.height.width.equalTo(24)

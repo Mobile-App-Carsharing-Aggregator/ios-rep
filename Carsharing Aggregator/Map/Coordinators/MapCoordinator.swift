@@ -65,7 +65,21 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
     func openReviewAndRating(on vc: UIViewController) {
         let ratingCoordinator = ReviewAndRatingCordinator(navigationController: navigationController)
         addChild(ratingCoordinator)
+        ratingCoordinator.delegate = self
         ratingCoordinator.viewControllerRef = vc
         ratingCoordinator.start()
+    }
+}
+
+extension MapCoordinator: ReviewAndRatingCordinatorDelegate {
+    func showRatingAlert() {
+        let alert = UIAlertController(title: "Спасибо за отзыв!",
+                                      message: "Он поможет другим \n пользователям сделать \n выбор",
+                                      preferredStyle: .alert)
+        navigationController.present(alert, animated: true, completion: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+            alert.dismiss(animated: true, completion: nil)
+        }
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 
 class ReviewAndRatingViewModel {
     weak var coordinator: ReviewAndRatingCordinator?
+    var modelCar: String = ""
     
     func saveReviewAndRating(rating: Int, comment: String) {
     deleteCarFromUserDefaults()

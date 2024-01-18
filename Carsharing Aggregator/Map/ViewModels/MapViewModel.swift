@@ -94,9 +94,12 @@ class MapViewModel {
     }
     
     func openReviewAndRating(on vc: UIViewController) {
-        let defaults = UserDefaults.standard
-        if let savedCarData = defaults.dictionary(forKey: "car"){
-            coordinator?.openReviewAndRating(on: vc)
+        if let token = TokenStorage.shared.getToken() {
+            print("Сохранен токен: \(token)")
+            let defaults = UserDefaults.standard
+            if let savedCarData = defaults.dictionary(forKey: "car"){
+                coordinator?.openReviewAndRating(on: vc)
+            }
         }
     }
     

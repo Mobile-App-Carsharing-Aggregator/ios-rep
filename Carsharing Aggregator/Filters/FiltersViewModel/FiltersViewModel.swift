@@ -18,7 +18,7 @@ class FiltersViewModel {
                                    .rating]
     var indexPathToUpdate: IndexPath?
     var shouldUpdateCars: Bool = false
-    
+  
     var selectedFilters: [ListSection: [ListItem]] = [:] {
         didSet {
             if let indexPathToUpdate {

@@ -170,11 +170,7 @@ final class SelectedCarViewController: UIViewController {
     
     @objc
     private func bookButtonDidTap() {
-        let defaults = UserDefaults.standard
-        let car = viewModel.selectedCar
-        let carDictionary = ["id": car.id,
-                             "model": car.model] as [String : Any]
-        defaults.setValue(carDictionary, forKey: "car")
+        viewModel.saveInfoAboutCar()
     }
     
     // MARK: - Methods

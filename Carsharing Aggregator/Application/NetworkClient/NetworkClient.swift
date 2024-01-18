@@ -104,7 +104,6 @@ struct DefaultNetworkClient: NetworkClient {
         }
         
         return urlRequest
-        
     }
     
     private func parse<T: Decodable>(data: Data, type _: T.Type, onResponse: @escaping (Result<T, Error>) -> Void) {
