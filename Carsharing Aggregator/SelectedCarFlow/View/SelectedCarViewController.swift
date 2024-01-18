@@ -175,6 +175,7 @@ final class SelectedCarViewController: UIViewController {
         if UIApplication.shared.canOpenURL(appStoreURL) {
             UIApplication.shared.open(appStoreURL)
         }
+        viewModel.closeVC()
     }
     
     // MARK: - Methods
