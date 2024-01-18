@@ -80,11 +80,18 @@ final class SearchCarViewController: UIViewController {
         let vc = CarModelViewController()
         vc.carModel = car
         if let sheet = vc.sheetPresentationController {
-            sheet.detents = [.medium()]
+            if #available(iOS 16.0, *) {
+                sheet.detents = [.custom(resolver: { context in
+                    return  506
+                })]
+            } else {
+                /* need customize for iOS <16 */
+                sheet.detents = [.large()]
+            }
             sheet.prefersGrabberVisible = true
-            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.largestUndimmedDetentIdentifier = .large
+            present(vc, animated: true)
         }
-        present(vc, animated: true)
     }
     
     // MARK: - Layout Methods

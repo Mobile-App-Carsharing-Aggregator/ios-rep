@@ -73,7 +73,7 @@ class FiltersViewController: UIViewController {
     private lazy var numberOfCarsButton: UIButton = {
         let bookButton = UIButton()
         bookButton.backgroundColor = UIColor.carsharing.black
-        bookButton.setTitle("НАЙТИ", for: .normal)
+        bookButton.setTitle(viewModel.titleNumberOfCarsButton, for: .normal)
         bookButton.setTitleColor(UIColor.carsharing.white, for: .normal)
         bookButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         bookButton.layer.cornerRadius = 26

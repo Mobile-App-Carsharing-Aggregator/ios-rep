@@ -93,6 +93,13 @@ class MapViewModel {
         coordinator?.openCar(on: vc, with: car)
     }
     
+    func openReviewAndRating(on vc: UIViewController) {
+        let defaults = UserDefaults.standard
+        if let savedCarData = defaults.dictionary(forKey: "car"){
+            coordinator?.openReviewAndRating(on: vc)
+        }
+    }
+    
     func coordinatorDidFinish() {
         coordinator?.coordinatorDidFinish()
     }

@@ -6,4 +6,5 @@
 //
 import UIKit
 
-let heightSheet = UIScreen.main.bounds.height * 0.88
+let heightLargeSheet = UIScreen.main.bounds.height * 0.88
+let widthScreen = UIScreen.main.bounds.width

@@ -35,6 +35,8 @@ class FiltersViewModel {
         }) ?? false
     }
     
+    var titleNumberOfCarsButton: String = "ПОКАЗАТЬ"
+        
     func filters(for section: ListSection) -> [ListItem] {
         selectedFilters[section] ?? []
     }

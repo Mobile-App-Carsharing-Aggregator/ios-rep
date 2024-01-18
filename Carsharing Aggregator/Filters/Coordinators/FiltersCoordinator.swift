@@ -33,10 +33,10 @@ final class FiltersCoordinator: ChildCoordinator {
         if let sheet = filtersVC.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { context in
-                    return heightSheet
+                    return heightLargeSheet
                 })]
             } else {
-//                // TODO: - customize for iOS <16
+                sheet.detents = [.large()]
             }
             
             sheet.prefersGrabberVisible = true
