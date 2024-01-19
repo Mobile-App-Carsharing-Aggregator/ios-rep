@@ -7,7 +7,7 @@ class RegistrationView: UIView {
     
     // MARK: - UI Properties
     private lazy var termsOfService: UILabel = {
-        let label = UILabel().createTermsLabel()
+        let label = UILabel.createTermsLabel()
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(labelTapped)))
         return label
     }()
@@ -26,25 +26,25 @@ class RegistrationView: UIView {
         return scrollView
     }()
     
-    private let nameSublabel = UILabel(for: "  Имя  ")
-    private let surnameSublabel = UILabel(for: "  Фамилия  ")
-    private let emailSublabel = UILabel(for: "  Example@mail.ru  ")
-    private let passwordSublabel = UILabel(for: "  Пароль  ")
-    private let confirmSublabel = UILabel(for: "  Пароль еще раз  ")
+    private let nameSublabel = UILabel(placeholderString: "  Имя  ")
+    private let surnameSublabel = UILabel(placeholderString: "  Фамилия  ")
+    private let emailSublabel = UILabel(placeholderString: "  Example@mail.ru  ")
+    private let passwordSublabel = UILabel(placeholderString: "  Пароль  ")
+    private let confirmSublabel = UILabel(placeholderString: "  Пароль еще раз  ")
     
-    private let emptyNameFieldWarning = UILabel(string: "Поле обязательное для заполнения")
-    private let emptySurnameFieldWarning = UILabel(string: "Поле обязательное для заполнения")
-    private let emptyEmailFieldWarning = UILabel(string: "Поле обязательное для заполнения")
-    private let emptyPasswordFieldWarning = UILabel(string: "Поле обязательное для заполнения")
-    private let emptyConfirmFieldWarning = UILabel(string: "Поле обязательное для заполнения")
+    private let emptyNameFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
+    private let emptySurnameFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
+    private let emptyEmailFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
+    private let emptyPasswordFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
+    private let emptyConfirmFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
     
-    private let incorrectNameWarning = UILabel(string: "Допустимые символы: пробел, кириллические \nи латинские буквы")
-    private let incorrectSurnameWarning = UILabel(string: "Допустимые символы: пробел, кириллические \nи латинские буквы")
-    private let emailWarninigLabel = UILabel(string: "Используйте только латинские буквы, цифры,\n знак подчеркивания, точку и минус.")
-    private let passwordWarningLabel = UILabel(string: "Должно быть не менее 10 символов")
-    private let confirmWarningLabel = UILabel(string: "Пароли должны совпадать")
+    private let incorrectNameWarning = UILabel(warningString: "Допустимые символы: пробел, кириллические \nи латинские буквы")
+    private let incorrectSurnameWarning = UILabel(warningString: "Допустимые символы: пробел, кириллические \nи латинские буквы")
+    private let emailWarninigLabel = UILabel(warningString: "Используйте только латинские буквы, цифры,\n знак подчеркивания, точку и минус.")
+    private let passwordWarningLabel = UILabel(warningString: "Должно быть не менее 10 символов")
+    private let confirmWarningLabel = UILabel(warningString: "Пароли должны совпадать")
     
-    private let orLabel = UILabel().createOrLabel(string: "или")
+    private let orLabel = UILabel.createOptionLabel(string: "или")
     private lazy var vkLogoButton = UIButton(with: UIImage.vkLogo!, target: self, action: #selector(vkLogoButtonDidTapped))
     private lazy var yandexLogoButton = UIButton(with: UIImage.yandexLogo!, target: self, action: #selector(yandexLogoButtonDidTapped))
     
@@ -152,11 +152,11 @@ class RegistrationView: UIView {
         confirmPasswordTextField.delegate = self
         emailTextField.delegate = self
     }
-    private func textFieldIsValid(isValid: Bool, for previousTextField: UIView) {
+    private func setTextFieldBorderColor(isValid: Bool, for textField: UIView) {
         if !isValid {
-            previousTextField.layer.borderColor = UIColor.red.cgColor
+            textField.layer.borderColor = UIColor.red.cgColor
         } else {
-            previousTextField.layer.borderColor = UIColor.black.cgColor
+            textField.layer.borderColor = UIColor.black.cgColor
         }
     }
     
@@ -166,7 +166,7 @@ class RegistrationView: UIView {
                                                offsetEmpty: CGFloat, offsetValid: CGFloat) {
         let previousTextField = previousTextField ?? scrollView
         let offset = isEmpty ? offsetEmpty : offsetValid
-            textFieldIsValid(isValid: isValid, for: previousTextField)
+        setTextFieldBorderColor(isValid: isValid, for: previousTextField)
       
         textField.snp.remakeConstraints { make in
             make.top.equalTo(previousTextField.snp.bottom).offset(offset)
@@ -211,7 +211,7 @@ class RegistrationView: UIView {
         let previousTextField = previousTextField ?? scrollView
         let offset = isValid ? 16 : 53
         let termsOffset = isValid ? 16 : 53
-        textFieldIsValid(isValid: isValid, for: previousTextField)
+        setTextFieldBorderColor(isValid: isValid, for: previousTextField)
         textField.snp.remakeConstraints { make in
             make.top.equalTo(previousTextField.snp.bottom).offset(offset)
             make.centerX.equalTo(scrollView.snp.centerX)
@@ -226,7 +226,7 @@ class RegistrationView: UIView {
     
     private func updateForValidConfirmTextField(_ label: UILabel, relativeTo previousTextField: UITextField, isValid: Bool) {
         let offset = isValid ? 12 : 40
-        textFieldIsValid(isValid: isValid, for: previousTextField)
+        setTextFieldBorderColor(isValid: isValid, for: previousTextField)
         label.snp.remakeConstraints { make in
             make.top.equalTo(previousTextField.snp.bottom).offset(offset)
             make.leading.equalTo(previousTextField.snp.leading)
@@ -241,7 +241,7 @@ class RegistrationView: UIView {
                               validWarningLabel: UILabel) {
         Publishers.CombineLatest3(publisher, isEmptyPublisher, isValidPublisher)
             .sink { [weak self] (_, isEmpty, isValid) in
-                guard let self = self else { return }
+                guard let self else { return }
                 if isEmpty {
                     self.updateConstraintsForEmptyTextField(textField, relativeTo: previousTextField as? UITextField, isEmpty: isEmpty)
                     emptyWarningLabel.isHidden = !isEmpty
@@ -260,8 +260,8 @@ class RegistrationView: UIView {
                                   registrationViewModel.isConfrimPasswordEmptyPublisher,
                                   registrationViewModel.isValidConfirmPasswordPublisher)
         .sink { [weak self] (_, isEmpty, isValid) in
-            guard let self = self else { return }
-            self.textFieldIsValid(isValid: isValid, for: self.confirmPasswordTextField)
+            guard let self else { return }
+            self.setTextFieldBorderColor(isValid: isValid, for: self.confirmPasswordTextField)
             if isEmpty {
                 self.updateForEmptyConfirmTextField(self.termsOfService, relativeTo: self.confirmPasswordTextField, isEmpty: isEmpty)
                 self.emptyConfirmFieldWarning.isHidden = !isEmpty
@@ -286,33 +286,15 @@ extension RegistrationView {
     private func addSubviews() {
         addSubview(scrollView)
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        scrollView.addSubview(nameTextField)
-        scrollView.addSubview(nameSublabel)
-        scrollView.addSubview(emptyNameFieldWarning)
-        scrollView.addSubview(incorrectNameWarning)
-        scrollView.addSubview(surnameTextField)
-        scrollView.addSubview(surnameSublabel)
-        scrollView.addSubview(emptySurnameFieldWarning)
-        scrollView.addSubview(incorrectSurnameWarning)
-        scrollView.addSubview(emailTextField)
-        scrollView.addSubview(emailSublabel)
-        scrollView.addSubview(emptyEmailFieldWarning)
-        scrollView.addSubview(emailWarninigLabel)
-        scrollView.addSubview(passwordTextField)
-        scrollView.addSubview(passwordSublabel)
-        scrollView.addSubview(emptyPasswordFieldWarning)
-        scrollView.addSubview(passwordWarningLabel)
-        scrollView.addSubview(confirmPasswordTextField)
-        scrollView.addSubview(confirmSublabel)
-        scrollView.addSubview(emptyConfirmFieldWarning)
-        scrollView.addSubview(confirmWarningLabel)
-        scrollView.addSubview(vkLogoButton)
-        scrollView.addSubview(yandexLogoButton)
-        scrollView.addSubview(orLabel)
-        scrollView.addSubview(passwordWarningLabel)
-        scrollView.addSubview(termsOfService)
-        scrollView.addSubview(incorrectNameWarning)
-        scrollView.addSubview(confirmWarningLabel)
+        
+        [nameTextField, nameSublabel, emptyNameFieldWarning, incorrectNameWarning, surnameTextField, surnameSublabel,
+         emptySurnameFieldWarning, incorrectSurnameWarning, emailTextField, emailSublabel, emptyEmailFieldWarning, emailWarninigLabel,
+         passwordTextField, passwordSublabel, emptyPasswordFieldWarning, passwordWarningLabel, confirmPasswordTextField, confirmSublabel,
+         emptyConfirmFieldWarning, confirmWarningLabel, vkLogoButton, yandexLogoButton, orLabel, passwordWarningLabel, termsOfService,
+         incorrectNameWarning, confirmWarningLabel].forEach {
+            scrollView.addSubview($0)
+        }
+        
         addEndingTargets()
         addStartTarget()
         setupDelegate()

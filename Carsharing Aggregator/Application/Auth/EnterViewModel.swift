@@ -6,14 +6,20 @@ class EnterViewModel {
     var loginViewModel: LoginViewModel!
     private var userService = DefaultUserService.shared
     var registrationViewModel: RegistrationViewModel!
+    private var cancellables: Set<AnyCancellable> = []
     
     var onError: ((String) -> Void)?
+    
+    @Published private(set) var isLoading = false
+    @Published private(set) var currentButtonState: EnterButtonState = .login
     
     init(coordinator: LoginCoordinator) {
         self.coordinator = coordinator
     }
     
-    private var cancellables: Set<AnyCancellable> = []
+    func changeCurrentButtonState() {
+        currentButtonState = (currentButtonState == .login) ? .registration : .login
+    }
     
     func isSubmitRegistrationEnabled() {
         guard let registrationViewModel else { return }
@@ -22,17 +28,16 @@ class EnterViewModel {
                                                  lastName: registrationViewModel.surname,
                                                  password: registrationViewModel.password,
                                                  confirmPassword: registrationViewModel.confirmPassword)
-        print(registrationModel)
+        isLoading = true
         userService.createUser(with: registrationModel) { result in
             DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                UIProgressHUD.show()
+                guard let self else { return }
                 switch result {
                 case .success(_):
                     let loginModel = UserLogin(email: registrationModel.email, password: registrationModel.password)
                     self.login(loginModel: loginModel)
                 case .failure(let error):
-                    UIProgressHUD.dismiss()
+                    isLoading = false
                     if case NetworkError.customError(let errorMessage) = error {
                         self.onError?(errorMessage)
                     } else {
@@ -57,7 +62,6 @@ class EnterViewModel {
                             self.onError?("Неизвестная ошибка")
                         }
                     }
-                    
                 }
             }
         }
@@ -67,23 +71,21 @@ class EnterViewModel {
         guard let loginViewModel else { return }
         let loginModel = UserLogin(email: loginViewModel.email, password: loginViewModel.password)
         login(loginModel: loginModel)
-        print("login tapped")
-        
     }
     
     private func login(loginModel: UserLogin) {
+        isLoading = true
         userService.userLogin(with: loginModel) { result in
             DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                UIProgressHUD.show()
+                guard let self else { return }
                 switch result {
                 case .success(let token):
                     print("TOKEN: \(token)")
                     TokenStorage.shared.saveToken(token.authToken)
                     coordinator.startTabBarFlow()
-                    UIProgressHUD.dismiss()
+                    isLoading = false
                 case .failure(let error):
-                    UIProgressHUD.dismiss()
+                    isLoading = false
                     if case NetworkError.customError(let errorMessage) = error {
                         self.onError?(errorMessage)
                     } else {
@@ -108,10 +110,8 @@ class EnterViewModel {
                             self.onError?("Неизвестная ошибка")
                         }
                     }
-                    
                 }
             }
         }
     }
-
 }
