@@ -147,6 +147,6 @@ final class CarModelViewController: UIViewController {
     
     @objc
     private func didTapCloseButton() {
-        
+        dismiss(animated: true)
     }
 }
