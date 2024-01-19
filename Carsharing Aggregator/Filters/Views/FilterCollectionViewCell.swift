@@ -29,11 +29,36 @@ class FilterCollectionViewCell: UICollectionViewCell {
         fatalError()
     }
     
-    func configure(title: String, textColor: UIColor, borderColor: UIColor) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        isUserInteractionEnabled = true
+        backgroundColor = UIColor.carsharing.white90
+        layer.borderColor = UIColor.carsharing.black.cgColor
+        label.textColor = UIColor.carsharing.black
+    }
+    
+    func configure(title: String, textColor: UIColor? = nil, borderColor: UIColor? = nil, isEnabled: Bool, isSelected: Bool) {
         backgroundColor = .white.withAlphaComponent(0.9)
         label.text = title
-        layer.borderColor = borderColor.cgColor
-        label.textColor = textColor
+        isUserInteractionEnabled = isEnabled
+        if isEnabled {
+            backgroundColor = isSelected ? UIColor.carsharing.green : UIColor.carsharing.white90
+            layer.borderColor = isSelected ? UIColor.carsharing.green.cgColor : UIColor.carsharing.black.cgColor
+            label.textColor = UIColor.carsharing.black
+        } else {
+            backgroundColor = UIColor.carsharing.greyLight
+            layer.borderColor = UIColor.carsharing.greyLight.cgColor
+            label.textColor = UIColor.carsharing.greyDark
+        }
+        
+        if let borderColor {
+            layer.borderColor = borderColor.cgColor
+        }
+        
+        if let textColor {
+            label.textColor = textColor
+        }
+        
         label.sizeToFit()
     }
     
@@ -43,8 +68,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
     
     private func setupLayout() {
         label.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+            make.leading.trailing.equalToSuperview().inset(16)
             make.centerY.equalToSuperview()
         }
     }

@@ -20,15 +20,15 @@ class LoginCoordinator: ChildCoordinator, Coordinator {
     }
     
     func start() {
-        let loginViewModel = LoginViewModel()
-        let loginVC = LoginViewController(loginViewModel: loginViewModel)
-        loginViewModel.coordinator = self
+        let enterViewModel = EnterViewModel(coordinator: self)
+        let loginVC = EnterViewController(enterViewModel: enterViewModel)
+        enterViewModel.coordinator = self
         navigationController.setAttributesForCarsharingTitle(loginVC: loginVC)
         navigationController.pushViewController(loginVC, animated: true)
     }
     
-    func openRegisterCoordinator() {
-        parent?.openRegisterCoordinator()
+    func startTabBarFlow() {
+        parent?.finishAuthAndStartTabBarFlow()
     }
     
 }

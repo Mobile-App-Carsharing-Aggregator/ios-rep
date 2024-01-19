@@ -32,19 +32,22 @@ extension UIImage {
     static let locationMark = UIImage(named: "locationmark")
     static let swithLight = UIImage(named: "light")
     static let starFeedback = UIImage(named: "starbig")
-    static let pointLightBlue = UIImage(named: "ellipsLightBlue")
-    static let pointPurple = UIImage(named: "ellipsPurple")
-    static let pointLightGreen = UIImage(named: "ellipsLightGreen")
-    static let pointMediumGreen = UIImage(named: "ellipsMediumGreen")
+    static let pointYandex = UIImage(named: "ellipsYandex")
+    static let pointCitydrive = UIImage(named: "ellipsCitydrive")
+    static let pointDelimobil = UIImage(named: "ellipsDelimobil")
+    static let pointBelka = UIImage(named: "ellipsBelka")
+    static let walking = UIImage(named: "walkingMan")
 
     // MARK: - TabBar icons
     static let tabProfile = UIImage(named: "profile")
     static let tabCarSearch = UIImage(named: "carSearch")
     static let tabFilters = UIImage(named: "filters")
+    static let tabFilterChosen = UIImage(named: "filter_chosen")
     static let tabOrder = UIImage(named: "order")
     static let locationButton = UIImage(named: "compas")
     static let plusButton = UIImage(named: "plus")
     static let minusButton = UIImage(named: "minus")
+    static let closeXsmall = UIImage(named: "closeSmall")
     
     // MARK: - Images
     static let onboardingBackgroundImage = UIImage(named: "onboarding background image")
@@ -55,7 +58,16 @@ extension UIImage {
     static let city = UIImage(named: "cityCarsharing")
     static let deli = UIImage(named: "deliCarsharing")
     static let drive = UIImage(named: "driveCarsharing")
-
+    static let belka = UIImage(named: "belkaCarsharing")
+    static let vkLogo = UIImage(named: "vk")
+    static let yandexLogo = UIImage(named: "yandex")
+    
+    // MARK: - Menu
+    static let starItemMenu = UIImage(named: "starMenu")
+    static let listItemMenu = UIImage(named: "listMenu")
+    static let settingsItemMenu = UIImage(named: "settingsMenu")
+    static let exitItemMenu = UIImage(named: "exitMenu")
+    static let deleteItemMenu = UIImage(named: "deleteMenu")
     // MARK: - Actions
     
 func withShadow(blur: CGFloat, offset: CGSize, color: UIColor, size: CGSize) -> UIImage {

@@ -8,9 +8,10 @@
 import Foundation
 
 enum NetworkError: Error {
-    case httpStatusCode(Int)
+    case httpStatusCode(Int, Data?)
     case urlRequestError(Error)
     case urlSessionError
+    case customError(String)
     case decode
 }
 
@@ -29,6 +30,7 @@ struct DefaultNetworkClient: NetworkClient {
         self.session = session
         self.decoder = decoder
         self.encoder = encoder
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
     func send(request: NetworkRequest, onResponse: @escaping (Result<Data, Error>) -> Void) -> NetworkTask? {
@@ -42,7 +44,8 @@ struct DefaultNetworkClient: NetworkClient {
             }
             
             guard 200..<300 ~= response.statusCode else {
-                onResponse(.failure(NetworkError.httpStatusCode(response.statusCode)))
+                let errorData = data
+                onResponse(.failure(NetworkError.httpStatusCode(response.statusCode, errorData)))
                 return
             }
             
@@ -81,6 +84,10 @@ struct DefaultNetworkClient: NetworkClient {
         
         var urlRequest = URLRequest(url: endpoint)
         urlRequest.httpMethod = request.httpMethod.rawValue
+        
+        if let headers = request.headers {
+            headers.forEach { urlRequest.setValue($1, forHTTPHeaderField: $0) }
+        }
         
         if let dto = request.dto {
             do {

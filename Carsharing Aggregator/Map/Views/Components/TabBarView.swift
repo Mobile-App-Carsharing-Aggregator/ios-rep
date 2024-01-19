@@ -15,8 +15,12 @@ protocol TabViewDelegate: AnyObject {
 
 final class TabBarView: UIView {
     
+    // MARK: - Properties
+    
     weak var delegate: TabViewDelegate?
-   
+  
+    // MARK: - UI
+    
     private lazy var actionsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -72,8 +76,11 @@ final class TabBarView: UIView {
         return view
     }()
     
+    // MARK: - LifeCycle
+    
     init() {
         super.init(frame: .zero)
+        
         self.addSubviews()
         self.setupLayout()
         self.configureTabBarStackView()
@@ -88,6 +95,8 @@ final class TabBarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
  
+    // MARK: - Private methods
+    
     private func addSubviews() {
         addSubview(borderView)
         borderView.addSubview(actionsStackView)

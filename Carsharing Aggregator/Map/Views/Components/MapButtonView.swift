@@ -10,9 +10,13 @@ import SnapKit
 
 final class MapButtonView: UIView {
     
+    // MARK: - Properties
+    
     private let imageButton: UIImage
     private let radiusButton: Double
     private let action: () -> Void
+    
+    // MARK: - UI
     
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -36,6 +40,8 @@ final class MapButtonView: UIView {
         return view
     }()
     
+    // MARK: - LifeCycle
+    
     init(with image: UIImage, radius: Double, action: @escaping () -> Void) {
         self.imageButton = image
         self.radiusButton = radius
@@ -55,6 +61,8 @@ final class MapButtonView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private methods
     
     private func addSubviews() {
         addSubview(borderView)

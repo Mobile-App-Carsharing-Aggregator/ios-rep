@@ -30,19 +30,20 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
         if let sheet = vc.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { context in
-                    return  745
+                    return  heightSheet
                 })]
             } else {
                 /* need customize for iOS <16 */
             }
             sheet.prefersGrabberVisible = true
-            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.largestUndimmedDetentIdentifier = .large
         }
         viewControllerRef?.present(vc, animated: true)
     }
     
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
+        viewControllerRef?.dismiss(animated: true)
     }
     
     func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {

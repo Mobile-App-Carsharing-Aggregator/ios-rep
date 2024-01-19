@@ -10,20 +10,29 @@ import Foundation
 class FiltersViewModel {
     weak var coordinator: FiltersCoordinator?
     
-    var onRefreshAction: ((IndexPath) -> Void)?
+    var onRefreshAction: ((IndexPath, Bool) -> Void)?
     let sections: [ListSection] = [.carsharing,
                                    .typeOfCar,
                                    .powerReserve,
+                                   .different,
                                    .rating]
     var indexPathToUpdate: IndexPath?
+    var shouldUpdateCars: Bool = false
     
-    private var selectedFilters: [ListSection: [ListItem]] = [:] {
+    var selectedFilters: [ListSection: [ListItem]] = [:] {
         didSet {
             if let indexPathToUpdate {
-                onRefreshAction?(indexPathToUpdate)
+                onRefreshAction?(indexPathToUpdate, shouldUpdateCars)
             }
             indexPathToUpdate = nil
+            shouldUpdateCars = false
         }
+    }
+    
+    var isSelectedBigCompany: Bool {
+        selectedFilters[ListSection.different]?.contains(where: { item in
+            item.title == MockData.bigCompanyTitle
+        }) ?? false
     }
     
     func filters(for section: ListSection) -> [ListItem] {
@@ -34,6 +43,12 @@ class FiltersViewModel {
         let sectionIndex = sections.firstIndex(of: section) ?? 0
         let itemIndex = sections[sectionIndex].items.firstIndex(of: item) ?? 0
         indexPathToUpdate = IndexPath(item: itemIndex, section: sectionIndex)
+        if item.title == MockData.bigCompanyTitle {
+            shouldUpdateCars = true
+        } else {
+            shouldUpdateCars = false
+        }
+        
         if let index = selectedFilters[section]?.firstIndex(of: item) {
             selectedFilters[section]?.remove(at: index)
         } else {
@@ -44,5 +59,16 @@ class FiltersViewModel {
                 selectedFilters[section] = [item]
             }
         }
+        
+        if item.title == MockData.bigCompanyTitle {
+            removeSmallCars()
+        }
+    }
+    
+    func removeSmallCars() {
+        var cars = selectedFilters[.typeOfCar]
+        selectedFilters[.typeOfCar] = cars?.filter({ item in
+            !MockData.shared.smallCarsTitles.contains(item.title)
+        })
     }
 }

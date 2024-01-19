@@ -7,13 +7,14 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class SelectedCarViewController: UIViewController {
     
     // MARK: - Layout properties
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = viewModel.selectedCar.name + " " + viewModel.selectedCar.model
+        nameLabel.text = viewModel.selectedCar.brand + " " + viewModel.selectedCar.model
         nameLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         return nameLabel
     }()
@@ -29,7 +30,13 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var carImage: UIImageView = {
         let carImage = UIImageView()
-        carImage.image = UIImage.car1
+        guard let url = URL(string: viewModel.selectedCar.image ?? "") else { return UIImageView() }
+        let cache = ImageCache.default
+        cache.diskStorage.config.expiration = .days(1)
+        carImage.kf.indicatorType = .activity
+        carImage.kf.setImage(with: url,
+                             placeholder: nil,
+                             options: [.cacheSerializer(FormatIndicatedCacheSerializer.png)])
         return carImage
     }()
     
@@ -50,16 +57,7 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var logoImage: UIImageView = {
         let logoImage = UIImageView()
-        switch viewModel.selectedCar.company {
-        case .yandexDrive:
-            logoImage.image = .drive
-        case .cityDrive:
-            logoImage.image = .city
-        case .delimobil:
-            logoImage.image = .deli
-        default:
-            logoImage.image = .drive
-        }
+        logoImage.image = viewModel.selectedCar.company.bigIcon
         return logoImage
     }()
     
@@ -67,6 +65,12 @@ final class SelectedCarViewController: UIViewController {
         let locationImage = UIImageView()
         locationImage.image = .locationMark2
         return locationImage
+    }()
+    
+    private lazy var timeImage: UIImageView = {
+        let timeImage = UIImageView()
+        timeImage.image = .walking
+        return timeImage
     }()
     
     private lazy var carsheringStackView: UIStackView = {
@@ -80,7 +84,7 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var carsheringNameLabel: UILabel = {
         let carsheringNameLabel = UILabel()
-        carsheringNameLabel.text = viewModel.selectedCar.company.rawValue
+        carsheringNameLabel.text = viewModel.selectedCar.company.name
         carsheringNameLabel.font = .systemFont(ofSize: 16)
         carsheringNameLabel.textColor = .carsharing.black
         return carsheringNameLabel
@@ -88,7 +92,7 @@ final class SelectedCarViewController: UIViewController {
     
     private lazy var priceLabel: UILabel = {
         let priceLabel = UILabel()
-        priceLabel.text = "от 8 ₽/мин"
+        priceLabel.text = "от \(viewModel.selectedCar.company.price) ₽/мин"
         priceLabel.font = .systemFont(ofSize: 14)
         priceLabel.textColor = .carsharing.greyDark
         return priceLabel
@@ -97,26 +101,34 @@ final class SelectedCarViewController: UIViewController {
     private lazy var addressStackView: UIStackView = {
         let addressStackView = UIStackView()
         addressStackView.axis = .vertical
-        addressStackView.alignment = .fill
+        addressStackView.alignment = .top
         addressStackView.spacing = 0
-        addressStackView.distribution = .fillEqually
+        addressStackView.distribution = .fill
         return addressStackView
     }()
     
     private lazy var addressLabel: UILabel = {
         let addressLabel = UILabel()
-        addressLabel.text = "Железнодорожный проезд, с5"
-        addressLabel.font = .systemFont(ofSize: 14)
+        addressLabel.font = .systemFont(ofSize: 16)
+        addressLabel.adjustsFontSizeToFitWidth = true
+        addressLabel.minimumScaleFactor = 0.5
         addressLabel.textColor = .carsharing.black
+        addressLabel.numberOfLines = 0
         return addressLabel
     }()
     
     private lazy var cityLabel: UILabel = {
         let cityLabel = UILabel()
-        cityLabel.text = "Москва, Россия"
-        cityLabel.font = .systemFont(ofSize: 12)
+        cityLabel.font = .systemFont(ofSize: 14)
         cityLabel.textColor = .carsharing.greyDark
         return cityLabel
+    }()
+    
+    private lazy var timeLabel: UILabel = {
+        let timeLabel = UILabel()
+        timeLabel.font = .systemFont(ofSize: 16)
+        timeLabel.textColor = .carsharing.black
+        return timeLabel
     }()
     
     private lazy var bookButton: UIButton = {
@@ -145,7 +157,7 @@ final class SelectedCarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bind()
         setupUI()
         setupConstraints()
     }
@@ -158,32 +170,57 @@ final class SelectedCarViewController: UIViewController {
     
     @objc
     private func bookButtonDidTap() {
+        let company = viewModel.selectedCar.company
+        let appStoreURL = URL(string: "https://apps.apple.com/app/id\(company.appStoreID)")!
+        if UIApplication.shared.canOpenURL(appStoreURL) {
+            UIApplication.shared.open(appStoreURL)
+        }
+        viewModel.closeVC()
     }
     
     // MARK: - Methods
+    private func bind() {
+        viewModel.$city.bind() { [weak self] city in
+            self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
+            self?.cityLabel.text = city
+        }
+        
+        viewModel.$street.bind() { [weak self] street in
+            self?.addressStackView.addArrangedSubview(self?.addressLabel ?? UILabel())
+            self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
+            self?.addressLabel.text = street
+        }
+        
+        viewModel.$time.bind() { [weak self] _ in
+            guard let self = self else { return }
+            self.timeLabel.text = "~\(self.viewModel.time)"
+        }
+    }
+    
     private func setupUI() {
         view.backgroundColor = .white
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: nameLabel)
         navigationItem.rightBarButtonItem = closeButton
         navigationController?.navigationBar.tintColor = .carsharing.black
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.prefersLargeTitles = false
         
-        [carImage, collectionView, logoImage, locationImage, carsheringStackView, addressStackView, bookButton].forEach {
+        [nameLabel, carImage, collectionView, logoImage, locationImage, timeImage, carsheringStackView, addressStackView, timeLabel, bookButton].forEach {
             view.addSubview($0)
         }
         
         [carsheringNameLabel, priceLabel].forEach {
             carsheringStackView.addArrangedSubview($0)
         }
-        
-        [addressLabel, cityLabel].forEach {
-            addressStackView.addArrangedSubview($0)
-        }
     }
     
     func setupConstraints() {
+        nameLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(26)
+            make.height.equalTo(22)
+        }
+        
         carImage.snp.makeConstraints { make in
             make.top.equalTo(view).offset(58)
             make.centerX.equalTo(view.snp.centerX)
@@ -193,18 +230,23 @@ final class SelectedCarViewController: UIViewController {
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(21)
             make.top.equalTo(carImage.snp.bottom).offset(12)
-            make.bottom.equalToSuperview().offset(-235)
+            make.height.equalTo(24)
         }
         
         logoImage.snp.makeConstraints { make in
             make.leading.equalTo(collectionView.snp.leading)
-            make.top.equalTo(collectionView.snp.bottom).offset(20)
-            make.size.equalTo(CGSize(width: 40, height: 40))
+            make.top.equalTo(collectionView.snp.bottom).offset(30)
+            make.size.equalTo(CGSize(width: 24, height: 24))
         }
         
         locationImage.snp.makeConstraints { make in
             make.centerX.equalTo(logoImage.snp.centerX)
-            make.top.equalTo(logoImage.snp.bottom).offset(25)
+            make.top.equalTo(logoImage.snp.bottom).offset(28)
+        }
+        
+        timeImage.snp.makeConstraints { make in
+            make.centerX.equalTo(logoImage.snp.centerX)
+            make.top.equalTo(locationImage.snp.bottom).offset(28)
         }
         
         carsheringStackView.snp.makeConstraints { make in
@@ -215,14 +257,22 @@ final class SelectedCarViewController: UIViewController {
         
         addressStackView.snp.makeConstraints { make in
             make.leading.equalTo(carsheringStackView.snp.leading)
+            make.trailing.equalToSuperview().inset(21)
             make.centerY.equalTo(locationImage.snp.centerY)
             make.height.equalTo(40)
+        }
+        
+        timeLabel.snp.makeConstraints { make in
+            make.leading.equalTo(carsheringStackView.snp.leading)
+            make.trailing.equalToSuperview().inset(21)
+            make.centerY.equalTo(timeImage.snp.centerY)
+            // make.height.equalTo(21)
         }
         
         bookButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(21)
             make.height.equalTo(52)
-            make.top.equalTo(addressStackView.snp.bottom).offset(20)
+            make.top.equalTo(timeLabel.snp.bottom).offset(28)
         }
     }
     
@@ -251,45 +301,23 @@ extension SelectedCarViewController: UICollectionViewDataSource {
             guard let selectedCarCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarCell else { return UICollectionViewCell() }
-            switch viewModel.selectedCar.type {
-            case .sedan:
-                selectedCarCell.configure(title: "Седан")
-            case .hatchback:
-                selectedCarCell.configure(title: "Хэтчбек")
-            case .minivan:
-                selectedCarCell.configure(title: "Минивен")
-            case .coupe:
-                selectedCarCell.configure(title: "Купе")
-            case .universal:
-                selectedCarCell.configure(title: "Универсал")
-            case .other:
-                selectedCarCell.configure(title: "Другое")
-            }
+            selectedCarCell.configure(title: viewModel.selectedCar.typeCar.name)
             return selectedCarCell
         } else if indexPath.row == 1 {
             guard let selectedCarCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarCell else { return UICollectionViewCell() }
-            selectedCarCell.configure(title: "Полный бак")
+            if viewModel.selectedCar.powerReserve == "full" {
+                selectedCarCell.configure(title: "Полный бак")
+            } else {
+                selectedCarCell.configure(title: "Запас хода: \(viewModel.selectedCar.powerReserve)")
+            }
             return selectedCarCell
         } else if indexPath.row == 2 {
             guard let selectedCarRatingCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectedCarRatingCell.reuseIdentifier,
                 for: indexPath) as? SelectedCarRatingCell else { return UICollectionViewCell() }
-            switch viewModel.selectedCar.rating {
-            case 1.0:
-                selectedCarRatingCell.configure(title: "1")
-            case 2.0:
-                selectedCarRatingCell.configure(title: "2")
-            case 3.0:
-                selectedCarRatingCell.configure(title: "3")
-            case 4.0:
-                selectedCarRatingCell.configure(title: "4")
-            case 5.0:
-                selectedCarRatingCell.configure(title: "5")
-            default:
-                selectedCarRatingCell.configure(title: "1")
-            }
+            selectedCarRatingCell.configure(title: viewModel.selectedCar.rating)
             return selectedCarRatingCell
         }
         return UICollectionViewCell()

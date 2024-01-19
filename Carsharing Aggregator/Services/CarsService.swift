@@ -5,22 +5,56 @@
 //  Created by Aleksandr Garipov on 10.12.2023.
 //
 
+private struct GetCarsRequest: NetworkRequest {
+    var endpoint: URL? {
+        URL(string: "http://193.107.238.139/api/v1/cars/" + filters)
+    }
+    var httpMethod: HttpMethod { .get }
+    
+    var filters: String
+    
+    init(filters: String) {
+        self.filters = filters
+    }
+}
+
 import Foundation
 
 protocol CarsServiceProtocol {
-    func getCars(completion: @escaping ([Car]) -> Void)
+    func getCars(with filters: String, completion: @escaping ([Car]) -> Void)
 }
 
 final class CarsService: CarsServiceProtocol {
     
     static let shared = CarsService()
     
+    private let networkClient = DefaultNetworkClient(session: .shared, decoder: JSONDecoder(), encoder: JSONEncoder())
+    
     private init() {}
     
-    func getCars(completion: @escaping ([Car]) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-            guard let cars = self?.getMockCars() else { return }
-            completion(cars)
+    func getCars(with filters: String, completion: @escaping ([Car]) -> Void) {
+        DispatchQueue.main.async { [weak self] in
+            self?.getCarsFromNetwork(with: filters) { result in
+                switch result {
+                case .success(let carsResponse):
+                    completion(carsResponse.results)
+                case .failure(let error):
+                    print("error \(error)")
+                }
+            }
+        }
+    }
+    
+    func getCarsFromNetwork(with filters: String, completion: @escaping (Result<GetCarsResponse, NetworkError>) -> Void) {
+        let getCarsRequest = GetCarsRequest(filters: filters)
+        
+        networkClient.send(request: getCarsRequest, type: GetCarsResponse.self) { result in
+            switch result {
+            case .success(let carsResponse):
+                completion(.success(carsResponse))
+            case .failure(let error):
+                completion(.failure(error as? NetworkError ?? .urlSessionError))
+            }
         }
     }
 }
@@ -33,22 +67,22 @@ extension CarsService {
         var cars: [Car] = []
         let carsharingCompany: [CarsharingCompany] = CarsharingCompany.allCases
         let engineTypes: [EngineType] = [.diesel, .electro, .benzine]
-        let carTypes: [CarType] = [.sedan, .hatchback, .minivan, .coupe, .universal, .other]
+        let carTypes: [CarType] = [.sedan, .hatchback, .minivan, .coupe, .universal, .suv]
         
         for (index, location) in carsLocations.enumerated() {
             let car = Car(
-                id: UUID(),
+                image: "", id: Array(0...30).randomElement()!,
                 isAvailable: index % 2 == 0,
                 company: carsharingCompany.randomElement()!,
-                name: "Машина \(index + 1)",
+                brand: "Машина \(index + 1)",
                 model: "Модель \(index + 1)",
-                engineValue: [1.5, 2.0, 2.5, 3.5].randomElement()!,
-                engineType: engineTypes.randomElement()!,
-                type: carTypes.randomElement()!,
-                rating: Double(arc4random_uniform(5) + 1),
+                typeEngine: engineTypes.randomElement()!,
+                various: [],
+                typeCar: carTypes.randomElement()!,
+                powerReserve: "100km",
+                rating: "1.0",
                 coordinates: Coordinates(latitude: Float(location.latitude), longitude: Float(location.longitude)),
-                coefficient: Double(arc4random_uniform(100)) / 100.0,
-                childSeat: index % 3 == 0
+                stateNumber: "AA001AA75"
             )
             cars.append(car)
         }
