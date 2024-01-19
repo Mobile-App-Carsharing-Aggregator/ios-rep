@@ -34,8 +34,7 @@ final class SelectedCarCoordinator: ChildCoordinator {
                     return  527
                 })]
             } else {
-                // TODO: - customize for iOS <16
-                sheet.detents = [.medium()]
+                sheet.detents = [.large()]
             }
             
             sheet.prefersGrabberVisible = true

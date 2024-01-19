@@ -105,6 +105,7 @@ final class MapViewController: UIViewController {
             self?.filtersCollectionView.reloadData()
             self?.updateMapWithFilters()
         }
+        viewModel.openReviewAndRating(on: self)
     }
     
     // MARK: - Private methods
@@ -353,7 +354,6 @@ extension MapViewController {
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        
     }
 }
 
@@ -421,8 +421,16 @@ extension MapViewController: YMKClusterListener, YMKClusterTapListener {
     }
     
     func onClusterTap(with cluster: YMKCluster) -> Bool {
-        print("Tapped cluster with \(cluster.size) items")
-        changeZoom(by: 1.0)
+        map.move(
+            with: YMKCameraPosition(
+                target: cluster.appearance.geometry,
+                zoom: map.cameraPosition.zoom + 1,
+                azimuth: map.cameraPosition.azimuth,
+                tilt: map.cameraPosition.tilt
+            ),
+            animation: YMKAnimation(type: .smooth, duration: 1.0)
+        )
+        
         return true
     }
     

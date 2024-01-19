@@ -170,6 +170,7 @@ final class SelectedCarViewController: UIViewController {
     
     @objc
     private func bookButtonDidTap() {
+        viewModel.saveInfoAboutCar()
         let company = viewModel.selectedCar.company
         let appStoreURL = URL(string: "https://apps.apple.com/app/id\(company.appStoreID)")!
         if UIApplication.shared.canOpenURL(appStoreURL) {
