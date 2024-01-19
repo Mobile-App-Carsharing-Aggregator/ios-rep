@@ -6,22 +6,7 @@ final class EnterViewController: UIViewController {
     
     private let registrationViewModel = RegistrationViewModel()
     private let loginViewModel = LoginViewModel()
-    
-    var currentButtonState: EnterButtonState = .login {
-        didSet {
-            updateButtonColors()
-            print(currentButtonState)
-            switch currentButtonState {
-            case .login:
-                setupLoginButtonBinding()
-            case .registration:
-                setupRegistrationButtonBinding()
-            }
-        }
-    }
-    
-    var cancellables: Set<AnyCancellable> = []
-    
+    private var cancellables: Set<AnyCancellable> = []
     private let enterViewModel: EnterViewModel
     
     init(enterViewModel: EnterViewModel) {
@@ -52,8 +37,8 @@ final class EnterViewController: UIViewController {
         target: self,
         action: #selector(didTapRegistrationButton))
     
-    var currentButtonSelectionState: EnterButtonState.ButtonSelectionState {
-        return currentButtonState == .login ? .selected : .deselected
+    private var currentButtonSelectionState: EnterButtonState.ButtonSelectionState {
+        return enterViewModel.currentButtonState == .login ? .selected : .deselected
     }
     
     private func setupRegistrationButtonBinding() {
@@ -78,6 +63,30 @@ final class EnterViewController: UIViewController {
             .store(in: &cancellables)
     }
     
+    private func setupLoadingBinding() {
+        enterViewModel.$isLoading
+            .receive(on: RunLoop.main)
+            .sink { isLoading in
+                isLoading == true ? UIProgressHUD.show() : UIProgressHUD.dismiss()
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func setupButtonStateBinding() {
+        enterViewModel.$currentButtonState
+            .receive(on: RunLoop.main)
+            .sink { [weak self] currentButtonState in
+                self?.updateButtonColors()
+                switch currentButtonState {
+                case .login:
+                    self?.setupLoginButtonBinding()
+                case .registration:
+                    self?.setupRegistrationButtonBinding()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
     private var loginView: LoginView = {
         let view = LoginView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +101,7 @@ final class EnterViewController: UIViewController {
     }()
     
     private lazy var enterButton = UIButton(
-        for: currentButtonState,
+        for: enterViewModel.currentButtonState,
         target: self,
         action: #selector(didTapEnterButton))
     
@@ -117,42 +126,35 @@ final class EnterViewController: UIViewController {
         enterViewModel.registrationViewModel = registrationViewModel
         enterViewModel.loginViewModel = loginViewModel
         
-        switch currentButtonState {
-        case .login:
-            setupLoginButtonBinding()
-        case .registration:
-            setupRegistrationButtonBinding()
-        }
-        
         enterViewModel.onError = { [weak self] errorMessage in
             self?.showAlert(with: errorMessage)
         }
+        
+        setupLoadingBinding()
+        setupButtonStateBinding()
     }
     
     @objc private func didTapRegistrationButton() {
         if loginView.isHidden == false {
             loginView.isHidden = true
         }
-        currentButtonState = .registration
+        enterViewModel.changeCurrentButtonState()
         registrationView.isHidden = false
-        
     }
     
     @objc private func didTapLoginButton() {
         if registrationView.isHidden == false {
             registrationView.isHidden = true
         }
-        currentButtonState = .login
+        enterViewModel.changeCurrentButtonState()
         loginView.isHidden = false
     }
     
     @objc private func didTapEnterButton() {
-        switch currentButtonState {
+        switch enterViewModel.currentButtonState {
         case .login:
-            print("login pressed")
             enterViewModel.isSubmitLoginEnabled()
         case .registration:
-            print("registration pressed")
             enterViewModel.isSubmitRegistrationEnabled()
         }
     }
@@ -164,8 +166,7 @@ final class EnterViewController: UIViewController {
     }
     
     private func updateEnterButtonTitle() {
-        enterButton.setTitle(currentButtonState.enterTitle, for: .normal)
-        
+        enterButton.setTitle(enterViewModel.currentButtonState.enterTitle, for: .normal)
     }
     
     private func showAlert(with message: String) {
@@ -208,11 +209,13 @@ extension EnterViewController {
             make.trailing.equalTo(view.snp.trailing)
             make.bottom.equalTo(enterButton.snp.top)
         }
+        
         stackView.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).offset(105)
             make.left.equalTo(view.snp.left).offset(21)
             make.right.equalTo(view.snp.right).offset(-21)
         }
+        
         loginButton.snp.makeConstraints { make in
             make.leading.equalTo(stackView.snp.leading).offset(6)
         }

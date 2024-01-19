@@ -45,11 +45,7 @@ struct DefaultNetworkClient: NetworkClient {
             
             guard 200..<300 ~= response.statusCode else {
                 let errorData = data
-                if response.statusCode == 400 {
-                    onResponse(.failure(NetworkError.httpStatusCode(400, errorData)))
-                } else {
-                    onResponse(.failure(NetworkError.httpStatusCode(response.statusCode, errorData)))
-                }
+                onResponse(.failure(NetworkError.httpStatusCode(response.statusCode, errorData)))
                 return
             }
             

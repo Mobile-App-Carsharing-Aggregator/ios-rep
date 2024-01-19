@@ -27,7 +27,7 @@ final class AddressService {
             return options
         }()
         
-        let searchHandler = { (response: YMKSearchResponse?, error: Error?) -> Void in
+        let searchHandler = { [weak self] (response: YMKSearchResponse?, error: Error?) -> Void in
             if let error {
                 print(error)
                 completion("Адрес не найден", "")
@@ -39,23 +39,10 @@ final class AddressService {
                 YMKSearchToponymObjectMetadata.self) as? YMKSearchToponymObjectMetadata
             guard let address = object?.address.formattedAddress else { return }
             
-            let addressArray = address.components(separatedBy: ", ")
-            var city = ""
+            let city = self?.findCity(for: address)
+            let street = self?.findStreet(for: address)
             
-            if addressArray.count == 1 { city = addressArray[0] }
-            if addressArray.count > 1 { city = "\(addressArray[1]), \(addressArray[0])" }
-            
-            var street = ""
-            
-            if addressArray.count > 2 {
-                street = addressArray[2]
-                let streetArray = addressArray.dropFirst(3)
-                for item in streetArray {
-                    street.append(", \(item)")
-                }
-            }
-            
-            completion(city, street)
+            completion(city ?? "", street ?? "")
         }
         
         searchSession = searchManager.submit(
@@ -64,5 +51,29 @@ final class AddressService {
             searchOptions: searchOptions,
             responseHandler: searchHandler
         )
+    }
+    
+    private func findCity(for address: String) -> String {
+        let addressArray = address.components(separatedBy: ", ")
+        
+        if addressArray.count == 1 { return addressArray[0] }
+        if addressArray.count > 1 { return "\(addressArray[1]), \(addressArray[0])" }
+        
+        return ""
+    }
+    
+    private func findStreet(for address: String) -> String {
+        let addressArray = address.components(separatedBy: ", ")
+        var street = ""
+        
+        if addressArray.count > 2 {
+            street = addressArray[2]
+            let streetArray = addressArray.dropFirst(3)
+            for item in streetArray {
+                street.append(", \(item)")
+            }
+        }
+        
+        return street
     }
 }

@@ -47,7 +47,9 @@ final class RouteService {
             }
 
             guard let pedestrianRoutes else { return }
-            guard let routeTime = pedestrianRoutes.first?.weight.time.text else { return }
+            guard let routeTime = pedestrianRoutes.first?.weight.time.text else {
+                return completion("Не удалось рассчитать время")
+            }
             completion(routeTime)
         }
         
