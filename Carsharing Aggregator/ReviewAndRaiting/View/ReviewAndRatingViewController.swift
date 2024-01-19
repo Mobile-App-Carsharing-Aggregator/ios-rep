@@ -83,7 +83,7 @@ class ReviewAndRatingViewController: UIViewController {
         text.backgroundColor = .carsharing.white
         text.layer.borderWidth = 1
         text.layer.borderColor = UIColor(named: "darkGrey")?.cgColor ?? UIColor.gray.cgColor
-        text.text = "Комментарий"
+        text.text = ""
         text.textColor = .carsharing.greyDark
         text.font = .systemFont(ofSize: 16)
         text.textAlignment = .left
@@ -145,6 +145,7 @@ class ReviewAndRatingViewController: UIViewController {
     
     @objc private func buttonCommentTapped() {
         buttonComment.isHidden = true
+        textViewComment.text = "Комментарий"
         delegate?.commentViewOpened()
         view.addSubview(textViewComment)
         view.addSubview(labelForTextView)
@@ -164,7 +165,9 @@ class ReviewAndRatingViewController: UIViewController {
     }
     
     @objc private func buttonSaveTapped() {
-        self.viewModel.saveReviewAndRating(rating: self.currentRating, comment: self.comment)
+        self.viewModel.saveReviewAndRating(
+            rating: currentRating,
+            comment: textViewComment.text)
         self.viewModel.coordinator?.coordinatorDidFinish()
         self.viewModel.coordinator?.showRatingAlert()
     }
@@ -188,7 +191,7 @@ extension ReviewAndRatingViewController: UITextViewDelegate {
             comment = textView.text
             return false
         } else {
-            if textView.text.count + (text.count - range.length) <= 3 {
+            if textView.text.count + (text.count - range.length) <= 200 {
                 return true
             } else {
                 return false

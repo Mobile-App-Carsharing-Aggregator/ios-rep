@@ -27,7 +27,7 @@ private struct UserProfileRequest: NetworkRequest {
         URL(string: "http://193.107.238.139/api/v1/users/me/")
     }
     
-    var headers: [String : String]?
+    var headers: [String: String]?
 }
 
 private struct ErrorResponse: Codable {

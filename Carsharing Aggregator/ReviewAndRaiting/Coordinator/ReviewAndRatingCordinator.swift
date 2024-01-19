@@ -28,12 +28,14 @@ final class ReviewAndRatingCordinator: ChildCoordinator {
     func start() {
         let defaults = UserDefaults.standard
         let viewModel = ReviewAndRatingViewModel()
+        viewModel.coordinator = self
         let reviewVC = ReviewAndRatingViewController(viewModel: viewModel)
         reviewVC.delegate = self
-        viewModel.coordinator = self
         
-        if let car = defaults.dictionary(forKey: "car") as? [String: String] {
-                viewModel.modelCar = car["model"] ?? ""
+        if let car = defaults.dictionary(forKey: "car"),
+           let id = car["id"] as? Int,
+           let model = car["model"] as? String {
+            viewModel.modelCar = model
                 if let sheet = reviewVC.sheetPresentationController {
                     if #available(iOS 16.0, *) {
                         sheet.detents = [.custom(resolver: { _ in

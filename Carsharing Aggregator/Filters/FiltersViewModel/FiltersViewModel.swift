@@ -10,7 +10,7 @@ import Foundation
 class FiltersViewModel {
     weak var coordinator: FiltersCoordinator?
     
-    var onRefreshAction: ((IndexPath, Bool) -> Void)?
+    var onRefreshAction: ((_ indexPathToUpdate: IndexPath, _ shouldUpdateCars: Bool) -> Void)?
     let sections: [ListSection] = [.carsharing,
                                    .typeOfCar,
                                    .powerReserve,

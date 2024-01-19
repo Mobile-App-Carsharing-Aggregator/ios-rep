@@ -30,6 +30,8 @@
 		328BD1352B25BCBB00F3AB80 /* MapButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BD1342B25BCBB00F3AB80 /* MapButtonView.swift */; };
 		328BD1372B25EF4500F3AB80 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BD1362B25EF4500F3AB80 /* TabButtonView.swift */; };
 		32B08EB72B555E120085E8FF /* Сonstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B08EB62B555E120085E8FF /* Сonstants.swift */; };
+		32D48A372B595E7000ACE28E /* ReviewAndRatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D48A362B595E7000ACE28E /* ReviewAndRatingService.swift */; };
+		32D48A392B5965F900ACE28E /* ReviewAndRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D48A382B5965F900ACE28E /* ReviewAndRating.swift */; };
 		32F44C0E2B299E1B00D11FD7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F44C0D2B299E1B00D11FD7 /* UIColor+Ext.swift */; };
 		370ADE822B199A7B0090300E /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE812B199A7B0090300E /* AuthCoordinator.swift */; };
 		370ADE882B199AD20090300E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370ADE872B199AD20090300E /* RegistrationView.swift */; };
@@ -127,6 +129,8 @@
 		328BD1342B25BCBB00F3AB80 /* MapButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButtonView.swift; sourceTree = "<group>"; };
 		328BD1362B25EF4500F3AB80 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
 		32B08EB62B555E120085E8FF /* Сonstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Сonstants.swift"; sourceTree = "<group>"; };
+		32D48A362B595E7000ACE28E /* ReviewAndRatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAndRatingService.swift; sourceTree = "<group>"; };
+		32D48A382B5965F900ACE28E /* ReviewAndRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAndRating.swift; sourceTree = "<group>"; };
 		32F44C0D2B299E1B00D11FD7 /* UIColor+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		370ADE812B199A7B0090300E /* AuthCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		370ADE872B199AD20090300E /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -480,6 +484,7 @@
 				37B6F3F92B1689F5001F9D55 /* CarModel.swift */,
 				E2F06AD52B274B7A00E088DE /* UserRegistration.swift */,
 				C44247892B529EAD00F215C6 /* ProfileMenu.swift */,
+				32D48A382B5965F900ACE28E /* ReviewAndRating.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -764,6 +769,7 @@
 				616BDE442B33807A000DEE66 /* RouteService.swift */,
 				E208D7FE2B501E9700803CB9 /* TokenStorage.swift */,
 				32B08EB62B555E120085E8FF /* Сonstants.swift */,
+				32D48A362B595E7000ACE28E /* ReviewAndRatingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -971,6 +977,7 @@
 				370ADE952B199B740090300E /* LoginCoordinator.swift in Sources */,
 				328BD1312B249BBD00F3AB80 /* RatingCollectionViewCell.swift in Sources */,
 				E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */,
+				32D48A372B595E7000ACE28E /* ReviewAndRatingService.swift in Sources */,
 				328BD1042B2336A700F3AB80 /* ListSection.swift in Sources */,
 				328BD0FE2B23353E00F3AB80 /* FiltersCoordinator.swift in Sources */,
 				E2F06AD22B273DB000E088DE /* NetworkTask.swift in Sources */,
@@ -992,6 +999,7 @@
 				3266F2342B56AC4C006F5C9E /* ReviewAndRatingViewController.swift in Sources */,
 				328BD12D2B2490D000F3AB80 /* ListItem.swift in Sources */,
 				3266F2362B56B8A1006F5C9E /* ReviewAndRatingViewModel.swift in Sources */,
+				32D48A392B5965F900ACE28E /* ReviewAndRating.swift in Sources */,
 				E2F06AD42B274B4700E088DE /* UserService.swift in Sources */,
 				C40379272B262579008F22F8 /* SearchCarViewModel.swift in Sources */,
 				37842A432B36D78700FA7150 /* EnterViewController.swift in Sources */,

@@ -63,11 +63,15 @@ final class MapCoordinator: ParentCoordinator, ChildCoordinator {
     }
     
     func openReviewAndRating(on vc: UIViewController) {
-        let ratingCoordinator = ReviewAndRatingCordinator(navigationController: navigationController)
-        addChild(ratingCoordinator)
-        ratingCoordinator.delegate = self
-        ratingCoordinator.viewControllerRef = vc
-        ratingCoordinator.start()
+        let defaults = UserDefaults.standard
+        if let car = defaults.dictionary(forKey: "car") {
+            let ratingCoordinator = ReviewAndRatingCordinator(navigationController: navigationController)
+            
+            addChild(ratingCoordinator)
+            ratingCoordinator.delegate = self
+            ratingCoordinator.viewControllerRef = vc
+            ratingCoordinator.start()
+        }
     }
 }
 
