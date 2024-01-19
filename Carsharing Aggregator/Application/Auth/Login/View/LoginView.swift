@@ -15,16 +15,16 @@ class LoginView: UIView {
         keyboardType: .password,
         textContentType: .password)
     
-    var loginViewModel: LoginViewModel!
+    private var loginViewModel: LoginViewModel!
     
     func configure(with viewModel: LoginViewModel) {
         self.loginViewModel = viewModel
     }
     
-    private let emailSublabel = UILabel(for: "  Example@mail.ru  ")
-    private let passwordSublabel = UILabel(for: "  Пароль  ")
-    private let orLabel = UILabel().createOrLabel(string: "или")
-    private let userAgreemant = UILabel().createOrLabel(string: "Нажимая кнопку “Создать аккаунт” вы\nсоглашаетесь с ")
+    private let emailSublabel = UILabel(placeholderString: "  Example@mail.ru  ")
+    private let passwordSublabel = UILabel(placeholderString: "  Пароль  ")
+    private let orLabel = UILabel.createOptionLabel(string: "или")
+    private let userAgreemant = UILabel.createOptionLabel(string: "Нажимая кнопку “Создать аккаунт” вы\nсоглашаетесь с ")
     
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
@@ -61,10 +61,10 @@ class LoginView: UIView {
     @objc private func yandexLogoButtonDidTapped() {
         print("YANDEX TAPPED")
     }
-    private let emptyEmailFieldWarning = UILabel(string: "Поле обязательное для заполнения")
-    private let emptyPasswordFieldWarning = UILabel(string: "Поле обязательное для заполнения")
-    private let emailWarninigLabel = UILabel(string: "Проверьте почту")
-    private let passwordWarningLabel = UILabel(string: "Неверный пароль, попробуйте еще раз")
+    private let emptyEmailFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
+    private let emptyPasswordFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
+    private let emailWarninigLabel = UILabel(warningString: "Проверьте почту")
+    private let passwordWarningLabel = UILabel(warningString: "Неверный пароль, попробуйте еще раз")
     private var cancellables: Set<AnyCancellable> = []
     
 // MARK: - Life Cycle
@@ -135,14 +135,13 @@ class LoginView: UIView {
     private func observeEmailField() {
         Publishers.CombineLatest3(loginViewModel.$email, loginViewModel.isEmailEmptyPublisher, loginViewModel.isEmailValidPublisher)
             .sink { [weak self] (_, isEmpty, isValid) in
-                guard let self = self else { return }
+                guard let self else { return }
+                self.emptyEmailFieldWarning.isHidden = !isEmpty
                 if isEmpty {
                     self.updateConstraintsForEmptyTextField(self.passwordTextField, relativeTo: self.emailTextField, isEmpty: isEmpty)
-                    self.emptyEmailFieldWarning.isHidden = !isEmpty
                     self.emailWarninigLabel.isHidden = isEmpty
                 } else {
                     self.updateConstraintsForValidTextField(self.passwordTextField, relativeTo: self.emailTextField, isValid: isValid)
-                    self.emptyEmailFieldWarning.isHidden = !isEmpty
                     self.emailWarninigLabel.isHidden = isValid
                 }
             }
@@ -152,14 +151,12 @@ class LoginView: UIView {
     private func observePasswordField() {
         Publishers.CombineLatest3(loginViewModel.$password, loginViewModel.isPasswordEmptyPublisher, loginViewModel.isPasswordValidPublisher)
             .sink { [weak self] (_, isEmpty, isValid) in
-                guard let self = self else { return }
+                guard let self else { return }
+                self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: 33)
+                self.emptyPasswordFieldWarning.isHidden = !isEmpty
                 if isEmpty {
-                    self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: 33)
-                    self.emptyPasswordFieldWarning.isHidden = !isEmpty
                     self.passwordWarningLabel.isHidden = isEmpty
                 } else {
-                    self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: 33)
-                    self.emptyPasswordFieldWarning.isHidden = !isEmpty
                     self.passwordWarningLabel.isHidden = isValid
                 }
             }

@@ -1,7 +1,7 @@
 import UIKit
 
 extension UILabel {
-    func createOrLabel(string str: String) -> UILabel {
+    static func createOptionLabel(string str: String) -> UILabel {
         let label = UILabel()
         label.textColor = UIColor(
             red: 0.079,
@@ -23,7 +23,7 @@ extension UILabel {
         return label
     }
     
-    convenience init(string warningString: String) {
+    convenience init(warningString: String) {
         self.init()
         self.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         self.textColor = UIColor(red: 1,
@@ -42,7 +42,7 @@ extension UILabel {
         self.isHidden = true
     }
     
-    func createTermsLabel() -> UILabel {
+    static func createTermsLabel() -> UILabel {
         let label = UILabel()
 
         let regularAttributes: [NSAttributedString.Key: Any] = [
@@ -67,7 +67,7 @@ extension UILabel {
         return label
     }
   
-    convenience init(for placeholder: String) {
+    convenience init(placeholderString: String) {
         self.init()
         self.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         self.textColor = UIColor(red: 0.325,
@@ -77,7 +77,7 @@ extension UILabel {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.12
         self.attributedText = NSMutableAttributedString(
-            string: placeholder,
+            string: placeholderString,
             attributes: [
                 NSAttributedString.Key.kern: -0.15,
                 NSAttributedString.Key.paragraphStyle: paragraphStyle
