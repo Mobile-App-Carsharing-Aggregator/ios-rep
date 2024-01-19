@@ -181,18 +181,18 @@ final class SelectedCarViewController: UIViewController {
     
     // MARK: - Methods
     private func bind() {
-        viewModel.$city.bind() { [weak self] city in
+        viewModel.$city.bind { [weak self] city in
             self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
             self?.cityLabel.text = city
         }
         
-        viewModel.$street.bind() { [weak self] street in
+        viewModel.$street.bind { [weak self] street in
             self?.addressStackView.addArrangedSubview(self?.addressLabel ?? UILabel())
             self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
             self?.addressLabel.text = street
         }
         
-        viewModel.$time.bind() { [weak self] _ in
+        viewModel.$time.bind { [weak self] _ in
             guard let self = self else { return }
             self.timeLabel.text = "~\(self.viewModel.time)"
         }
