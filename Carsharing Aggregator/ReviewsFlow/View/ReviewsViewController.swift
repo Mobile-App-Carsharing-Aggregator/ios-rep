@@ -27,23 +27,24 @@ final class ReviewsViewController: UIViewController {
         return titleLabel
     }()
     
-    private lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        button.tintColor = .carsharing.greyDark
-        button.addTarget(self,
-                         action: #selector(didTapBackButton),
-                         for: .touchUpInside)
-        return button
+    private lazy var backFromReviewsButton: UIButton = {
+        let backFromReviewsButton = UIButton()
+        backFromReviewsButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        backFromReviewsButton.tintColor = .carsharing.greyDark
+        backFromReviewsButton.addTarget(self,
+                                        action: #selector(didTapBackFromReviews),
+                                        for: .touchUpInside)
+        return backFromReviewsButton
     }()
     
-    private lazy var closeButton: UIBarButtonItem = {
-        let closeButton = UIBarButtonItem()
-        closeButton.image = UIImage(systemName: "xmark")?.withTintColor(.carsharing.greyDark)
-        closeButton.style = .plain
-        closeButton.target = self
-        closeButton.action = #selector(didTapCloseButton)
-        return closeButton
+    private lazy var closeReviewsButton: UIButton = {
+        let closeReviewsButton = UIButton()
+        closeReviewsButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeReviewsButton.tintColor = .carsharing.greyDark
+        closeReviewsButton.addTarget(self,
+                                     action: #selector(didTapCloseReviews),
+                                     for: .touchUpInside)
+        return closeReviewsButton
     }()
     
     // MARK: - Properties
@@ -67,26 +68,23 @@ final class ReviewsViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @objc
-    private func didTapBackButton() {
-        viewModel.coordinator?.coordinatorDidFinish()
+    @objc private func didTapBackFromReviews() {
+        print("BACK")
+//        viewModel.coordinator?.coordinatorDidFinish()
     }
     
-    @objc
-    private func didTapCloseButton() {
-        viewModel.coordinator?.coordinatorDidFinish()
+    @objc private func didTapCloseReviews() {
+        print("CLOSE")
+//        viewModel.coordinator?.coordinatorDidFinish()
     }
     
     // MARK: - Methods
     private func setupUI() {
         view.backgroundColor = .white
-        
-        navigationItem.rightBarButtonItem = closeButton
-        navigationController?.navigationBar.tintColor = .carsharing.black
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.prefersLargeTitles = false
         
-        [placeholderLabel, titleLabel].forEach {
+        [placeholderLabel, titleLabel, closeReviewsButton, backFromReviewsButton].forEach {
             view.addSubview($0)
         }
     }
@@ -100,6 +98,18 @@ final class ReviewsViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(26)
             make.height.equalTo(22)
+        }
+        
+        closeReviewsButton.snp.makeConstraints { make in
+            make.height.width.equalTo(24)
+            make.centerY.equalTo(titleLabel.snp.centerY)
+            make.trailing.equalToSuperview().offset(-21)
+        }
+        
+        backFromReviewsButton.snp.makeConstraints { make in
+            make.centerY.equalTo(titleLabel.snp.centerY)
+            make.height.width.equalTo(24)
+            make.leading.equalToSuperview().offset(30)
         }
     }
 }
