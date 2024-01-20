@@ -47,6 +47,16 @@ final class ReviewsViewController: UIViewController {
         return closeReviewsButton
     }()
     
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
+        tableView.register(ReviewsCell.self, forCellReuseIdentifier: ReviewsCell.reuseIdentifier)
+        tableView.dataSource = self
+        tableView.delegate = self
+        return tableView
+    }()
+    
     // MARK: - Properties
     var viewModel: ReviewsViewModel
     
@@ -62,29 +72,44 @@ final class ReviewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bind()
         setupUI()
         setupConstraints()
     }
     
     // MARK: - Actions
     @objc private func didTapBackFromReviews() {
-        print("BACK")
-//        viewModel.coordinator?.coordinatorDidFinish()
+        viewModel.coordinator?.coordinatorDidFinish()
     }
     
     @objc private func didTapCloseReviews() {
-        print("CLOSE")
-//        viewModel.coordinator?.coordinatorDidFinish()
+        viewModel.coordinator?.coordinatorDidFinish()
     }
     
     // MARK: - Methods
+    private func reloadPlaceholder() {
+        if viewModel.reviews.count == 0 {
+            placeholderLabel.isHidden = false
+            tableView.isHidden = true
+        } else {
+            placeholderLabel.isHidden = true
+            tableView.isHidden = false
+        }
+    }
+    
+    private func bind() {
+        viewModel.$reviews.bind { [weak self] _ in
+            self?.tableView.reloadData()
+            self?.reloadPlaceholder()
+        }
+    }
+    
     private func setupUI() {
         view.backgroundColor = .white
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.prefersLargeTitles = false
         
-        [placeholderLabel, titleLabel, closeReviewsButton, backFromReviewsButton].forEach {
+        [placeholderLabel, titleLabel, closeReviewsButton, backFromReviewsButton, tableView].forEach {
             view.addSubview($0)
         }
     }
@@ -111,5 +136,29 @@ final class ReviewsViewController: UIViewController {
             make.height.width.equalTo(24)
             make.leading.equalToSuperview().offset(30)
         }
+        
+        tableView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(74)
+        }
     }
 }
+
+// MARK: - UITableViewDataSource
+extension ReviewsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.reviews.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: ReviewsCell.reuseIdentifier, for: indexPath) as? ReviewsCell else { return UITableViewCell()}
+        
+        let review = viewModel.reviews[indexPath.row]
+        cell.configureCell(with: review)
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension ReviewsViewController: UITableViewDelegate {}

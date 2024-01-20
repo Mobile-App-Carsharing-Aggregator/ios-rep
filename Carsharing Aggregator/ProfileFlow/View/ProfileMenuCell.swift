@@ -83,5 +83,3 @@ final class ProfileMenuCell: UITableViewCell {
         }
     }
 }
-
-extension ProfileMenuCell: Reusable {}
