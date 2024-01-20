@@ -45,7 +45,7 @@ final class ProfileViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.separatorStyle = .none
-        table.allowsSelection = false
+        table.allowsSelection = true
         table.register(
                     ProfileMenuCell.self,
                     forCellReuseIdentifier: ProfileMenuCell.reuseIdentifier
@@ -132,6 +132,25 @@ final class ProfileViewController: UIViewController {
     private func didTapCloseButton() {
         dismiss(animated: true)
     }
+    
+    private func showAlertForLogout() {
+        let alert = UIAlertController(title: "Выход", message: "Вы уверены, что хотите выйти из аккаунта?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Выйти", style: .destructive) { [weak self] _ in
+            self?.viewModel.logout()
+            self?.dismiss(animated: true)
+        })
+        present(alert, animated: true)
+    }
+
+    private func showAlertForDeleteAccount() {
+        let alert = UIAlertController(title: "Удаление аккаунта", message: "Вы уверены, что хотите удалить аккаунт?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
+            self?.viewModel.deleteAccount()
+        })
+        present(alert, animated: true)
+    }
 }
 
     // MARK: - UITableViewDataSource
@@ -184,6 +203,7 @@ extension ProfileViewController: UITableViewDataSource {
         default:
             break
         }
+        cell.selectionStyle = .none
         return cell
     }
 }
@@ -195,6 +215,22 @@ extension ProfileViewController: UITableViewDelegate {
             return 88
         } else {
             return 44
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 2:
+            switch indexPath.row {
+            case 0:
+                showAlertForLogout()
+            case 1:
+                showAlertForDeleteAccount()
+            default:
+                break
+            }
+        default:
+            break
         }
     }
 }

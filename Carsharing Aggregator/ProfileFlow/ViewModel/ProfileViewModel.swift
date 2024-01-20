@@ -12,6 +12,8 @@ protocol ProfileViewModelProtocol {
     var fullName: String { get }
     var numberOfSections: [Int] { get }
     func viewWillAppear()
+    func logout()
+    func deleteAccount()
 }
 
 final class ProfileViewModel: ProfileViewModelProtocol {
@@ -32,6 +34,14 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     func openReviews(on vc: UIViewController) {
         coordinator?.openReviews(on: vc)
+    }
+    
+    func logout() {
+        TokenStorage.shared.deleteToken()
+    }
+    
+    func deleteAccount() {
+        print("func deleteAccount()")
     }
     
     private  func getUser() {
