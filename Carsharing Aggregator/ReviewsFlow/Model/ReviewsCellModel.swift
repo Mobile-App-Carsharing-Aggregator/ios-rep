@@ -11,6 +11,6 @@ struct ReviewsCellModel {
     let date: String
     let carModel: String
     let company: CarsharingCompany
-    let rating: Float
+    let rating: Int
     let comment: String
 }
