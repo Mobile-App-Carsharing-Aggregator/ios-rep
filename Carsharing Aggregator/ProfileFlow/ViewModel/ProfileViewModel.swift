@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ProfileViewModelProtocol {
     var fullName: String { get }
@@ -13,7 +14,7 @@ protocol ProfileViewModelProtocol {
     func viewWillAppear()
 }
 
-struct ProfileViewModel: ProfileViewModelProtocol {
+final class ProfileViewModel: ProfileViewModelProtocol {
     var numberOfSections: [Int] = [2, 1, 2]
     // MARK: - Observables
     @Observable
@@ -27,6 +28,10 @@ struct ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - Methods
     func viewWillAppear() {
         getUser()
+    }
+    
+    func openReviews(on vc: UIViewController) {
+        coordinator?.openReviews(on: vc)
     }
     
     private  func getUser() {
@@ -44,13 +49,12 @@ struct ProfileViewModel: ProfileViewModelProtocol {
                 switch result {
                 case .success(let user):
                     print("Получены данные пользователя: \(user)")
-                    fullName = "\(user.firstName) \(user.lastName)"
+                    self.fullName = "\(user.firstName) \(user.lastName)"
                 case .failure(let error):
                     print("Ошибка при получении профиля пользователя: \(error)")
-                    fullName = "Jon Snow"
+                    self.fullName = "John Snow"
                 }
             }
         }
-        
     }
 }

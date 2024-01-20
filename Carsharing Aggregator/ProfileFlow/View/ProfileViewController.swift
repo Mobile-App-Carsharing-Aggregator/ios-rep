@@ -54,10 +54,18 @@ final class ProfileViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    weak var coordinator: Coordinator?
-    var viewModel: ProfileViewModel?
+    var viewModel: ProfileViewModel
     
     // MARK: - Lifecycle
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
@@ -68,14 +76,13 @@ final class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.viewWillAppear()
+        viewModel.viewWillAppear()
     }
     
     // MARK: - Methods
     private func bind() {
-        guard let viewModel = viewModel else { return }
         viewModel.$fullName.bind { [weak self] _ in
-            self?.profileNameLabel.text = "\(viewModel.fullName)"
+            self?.profileNameLabel.text = self?.viewModel.fullName
         }
     }
     
@@ -130,7 +137,6 @@ final class ProfileViewController: UIViewController {
     // MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else { return 0 }
         switch section {
         case 0:
             return viewModel.numberOfSections[0]
@@ -144,8 +150,7 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard let model = viewModel else { return 0 }
-        return model.numberOfSections.count
+        return viewModel.numberOfSections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -156,6 +161,10 @@ extension ProfileViewController: UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 cell.configureCell(with: .MyMarks)
+                cell.transferButtonTappedHandler = { [weak self] in
+                    guard let self else { return }
+                    self.viewModel.openReviews(on: self)
+                }
             case 1:
                 cell.configureCell(with: .SearchHistory)
             default:

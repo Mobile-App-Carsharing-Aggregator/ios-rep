@@ -1,37 +1,35 @@
 //
-//  SelectedCarCoordinator.swift
+//  ReviewsCoordinator.swift
 //  Carsharing Aggregator
 //
-//  Created by Дарья Шишмакова on 13.12.2023.
+//  Created by Дарья Шишмакова on 19.01.2024.
 //
 
 import UIKit
 
-final class SelectedCarCoordinator: ChildCoordinator {
+final class ReviewsCoordinator: ChildCoordinator {
     
     // MARK: - Properties
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
-    weak var parent: MapCoordinator?
-    var selectedCar: Car
+    weak var parent: ProfileCoordinator?
     
     // MARK: - LifeCycle
-    init(navigationController: UINavigationController, selectedCar: Car) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.selectedCar = selectedCar
     }
     
     // MARK: - Methods
     func start() {
-        let viewModel = SelectedCarViewModel(selectedCar: selectedCar)
-        let viewController = SelectedCarViewController(viewModel: viewModel)
+        let viewModel = ReviewsViewModel()
+        let viewController = ReviewsViewController(viewModel: viewModel)
         viewModel.coordinator = self
         let navVC = UINavigationController(rootViewController: viewController)
         
         if let sheet = navVC.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { _ in
-                    return  527
+                    return  496
                 })]
             } else {
                 sheet.detents = [.large()]
