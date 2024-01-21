@@ -821,14 +821,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		E22A74E72B5D02D800118CC9 /* SearchHistoryFllow */ = {
+		E22A74E72B5D02D800118CC9 /* SearchHistoryFlow */ = {
 			isa = PBXGroup;
 			children = (
 				E22A74EA2B5D030500118CC9 /* Coordinator */,
 				E22A74E82B5D02EF00118CC9 /* View */,
 				E22A74E92B5D02F700118CC9 /* ViewModel */,
 			);
-			path = SearchHistoryFllow;
+			path = SearchHistoryFlow;
 			sourceTree = "<group>";
 		};
 		E22A74E82B5D02EF00118CC9 /* View */ = {
@@ -885,7 +885,7 @@
 				6166DC5C2B299B7C003E57FB /* SelectedCarFlow */,
 				61F74D982B5AF56C0079EE40 /* ReviewsFlow */,
 				E22A74DD2B5CFF0200118CC9 /* SettingsFlow */,
-				E22A74E72B5D02D800118CC9 /* SearchHistoryFllow */,
+				E22A74E72B5D02D800118CC9 /* SearchHistoryFlow */,
 				32453BFC2B14D6EF003E7AA8 /* Map */,
 				37B6F3F42B1688E9001F9D55 /* Models */,
 				E221FFCD2B14BC0F002A5268 /* Onboarding */,
