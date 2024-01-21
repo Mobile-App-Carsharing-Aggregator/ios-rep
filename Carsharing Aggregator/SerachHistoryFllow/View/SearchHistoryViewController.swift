@@ -37,12 +37,13 @@ final class SearchHistoryViewController: UIViewController {
         return button
     }()
     
-    private lazy var closeButton: UIBarButtonItem = {
-        let closeButton = UIBarButtonItem()
-        closeButton.image = UIImage(systemName: "xmark")?.withTintColor(.carsharing.greyDark)
-        closeButton.style = .plain
-        closeButton.target = self
-        closeButton.action = #selector(didTapCloseButton)
+    private lazy var closeButton: UIButton = {
+        let closeButton = UIButton()
+        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeButton.tintColor = .carsharing.greyDark
+        closeButton.addTarget(self,
+                              action: #selector(didTapCloseButton),
+                              for: .touchUpInside)
         return closeButton
     }()
     
@@ -81,12 +82,7 @@ final class SearchHistoryViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        navigationItem.rightBarButtonItem = closeButton
-        navigationController?.navigationBar.tintColor = .carsharing.black
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.prefersLargeTitles = false
-        
-        [placeholderLabel, titleLabel].forEach {
+        [placeholderLabel, titleLabel, closeButton, backButton].forEach {
             view.addSubview($0)
         }
     }
@@ -101,6 +97,17 @@ final class SearchHistoryViewController: UIViewController {
             make.top.equalToSuperview().offset(26)
             make.height.equalTo(22)
         }
+        
+        closeButton.snp.makeConstraints { make in
+            make.height.width.equalTo(24)
+            make.centerY.equalTo(titleLabel.snp.centerY)
+            make.trailing.equalToSuperview().offset(-21)
+        }
+        
+        backButton.snp.makeConstraints { make in
+            make.centerY.equalTo(titleLabel.snp.centerY)
+            make.height.width.equalTo(24)
+            make.leading.equalToSuperview().offset(30)
+        }
     }
 }
-

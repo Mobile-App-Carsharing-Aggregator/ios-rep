@@ -42,11 +42,8 @@ final class ProfileMenuCell: UITableViewCell {
     }
     
     // MARK: - Actions
-    var transferButtonTappedHandler: (() -> Void)?
-    
     @objc
     private func didTapTransferButton() {
-        transferButtonTappedHandler?()
     }
     
     // MARK: - Methods

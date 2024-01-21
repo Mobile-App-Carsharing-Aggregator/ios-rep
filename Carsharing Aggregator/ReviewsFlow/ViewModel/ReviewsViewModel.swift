@@ -40,7 +40,11 @@ final class ReviewsViewModel {
             guard let self else { return }
             switch result {
             case .success(let userReviews):
-                self.getCarsInfo(for: userReviews)
+                if userReviews.count != 0 {
+                    self.getCarsInfo(for: userReviews)
+                } else {
+                    self.isLoading = false
+                }
             case .failure(let error):
                 self.isLoading = false
                 print("Ошибка получения отвызов: \(error)")
