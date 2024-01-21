@@ -78,6 +78,7 @@
 		C403792B2B262B47008F22F8 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403792A2B262B47008F22F8 /* CarCell.swift */; };
 		C403792F2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */; };
 		C40379322B270F7D008F22F8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40379312B270F7D008F22F8 /* Observable.swift */; };
+		C40EF24D2B5D794C00E6F780 /* EmptyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40EF24C2B5D794C00E6F780 /* EmptyProfileViewController.swift */; };
 		C41ECEB42B4F2C1F00D149E5 /* ProfileMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ECEB32B4F2C1F00D149E5 /* ProfileMenuCell.swift */; };
 		C442478A2B529EAD00F215C6 /* ProfileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44247892B529EAD00F215C6 /* ProfileMenu.swift */; };
 		C462D8F82B1633B70060287C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D8F72B1633B70060287C /* ProfileViewController.swift */; };
@@ -183,6 +184,7 @@
 		C403792A2B262B47008F22F8 /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		C403792E2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ReuseIdentifier+Ext.swift"; sourceTree = "<group>"; };
 		C40379312B270F7D008F22F8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		C40EF24C2B5D794C00E6F780 /* EmptyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyProfileViewController.swift; sourceTree = "<group>"; };
 		C41ECEB32B4F2C1F00D149E5 /* ProfileMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuCell.swift; sourceTree = "<group>"; };
 		C44247892B529EAD00F215C6 /* ProfileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenu.swift; sourceTree = "<group>"; };
 		C462D8F72B1633B70060287C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 		C462D8FE2B166BBD0060287C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C40EF24C2B5D794C00E6F780 /* EmptyProfileViewController.swift */,
 				C462D8F72B1633B70060287C /* ProfileViewController.swift */,
 				C41ECEB32B4F2C1F00D149E5 /* ProfileMenuCell.swift */,
 			);
@@ -818,14 +821,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		E22A74E72B5D02D800118CC9 /* SerachHistoryFllow */ = {
+		E22A74E72B5D02D800118CC9 /* SearchHistoryFllow */ = {
 			isa = PBXGroup;
 			children = (
 				E22A74EA2B5D030500118CC9 /* Coordinator */,
 				E22A74E82B5D02EF00118CC9 /* View */,
 				E22A74E92B5D02F700118CC9 /* ViewModel */,
 			);
-			path = SerachHistoryFllow;
+			path = SearchHistoryFllow;
 			sourceTree = "<group>";
 		};
 		E22A74E82B5D02EF00118CC9 /* View */ = {
@@ -882,7 +885,7 @@
 				6166DC5C2B299B7C003E57FB /* SelectedCarFlow */,
 				61F74D982B5AF56C0079EE40 /* ReviewsFlow */,
 				E22A74DD2B5CFF0200118CC9 /* SettingsFlow */,
-				E22A74E72B5D02D800118CC9 /* SerachHistoryFllow */,
+				E22A74E72B5D02D800118CC9 /* SearchHistoryFllow */,
 				32453BFC2B14D6EF003E7AA8 /* Map */,
 				37B6F3F42B1688E9001F9D55 /* Models */,
 				E221FFCD2B14BC0F002A5268 /* Onboarding */,
@@ -1152,6 +1155,7 @@
 				370ADE8C2B199AF20090300E /* RegistrationCoordinator.swift in Sources */,
 				E22A74E02B5CFF4400118CC9 /* SettingsViewController.swift in Sources */,
 				3266F2382B56B8EC006F5C9E /* ReviewAndRatingCordinator.swift in Sources */,
+				C40EF24D2B5D794C00E6F780 /* EmptyProfileViewController.swift in Sources */,
 				370ADEB22B199CE60090300E /* UITextField+Ext.swift in Sources */,
 				C403792F2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift in Sources */,
 				C403792B2B262B47008F22F8 /* CarCell.swift in Sources */,

@@ -113,7 +113,7 @@ final class ProfileViewController: UIViewController {
         }
         
         avatarImage.snp.makeConstraints { make in
-            make.height.width.equalTo(36)
+            make.height.width.equalTo(40)
             make.leading.equalTo(view).offset(21)
             make.top.equalTo(titleVC.snp.bottom).offset(22)
         }
@@ -134,17 +134,19 @@ final class ProfileViewController: UIViewController {
     // MARK: - Actions
     @objc
     private func didTapCloseButton() {
-        dismiss(animated: true)
+        viewModel.coordinator?.coordinatorDidFinish()
     }
     
     private func showAlertForLogout() {
-        
-    // TODO: - перенести логику в ViewModel
-        guard let token = TokenStorage.shared.getToken() else {
+        guard viewModel.checkProfile() else {
             showErrorAlert()
             return
         }
-        let alert = UIAlertController(title: "Выход", message: "Вы уверены, что хотите выйти из аккаунта?", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: "Выход",
+            message: "Вы уверены, что хотите выйти из аккаунта?",
+            preferredStyle: .alert
+        )
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addAction(UIAlertAction(title: "Выйти", style: .destructive) { [weak self] _ in
             self?.viewModel.logout()
@@ -154,12 +156,15 @@ final class ProfileViewController: UIViewController {
     }
 
     private func showAlertForDeleteAccount() {
-    // TODO: перенести логику в ViewModel
-        guard let token = TokenStorage.shared.getToken() else {
+        guard viewModel.checkProfile() else {
             showErrorAlert()
             return
         }
-        let alert = UIAlertController(title: "Удаление аккаунта", message: "Вы уверены, что хотите удалить аккаунт?", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: "Удаление аккаунта",
+            message: "Вы уверены, что хотите удалить аккаунт?",
+            preferredStyle: .alert
+        )
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addAction(UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
             self?.viewModel.deleteAccount()
@@ -168,23 +173,36 @@ final class ProfileViewController: UIViewController {
     }
     
     private func showAlertAfterDeleteAccount(message: String) {
-        let alert = UIAlertController(title: "Удаление аккаунта", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default) { [weak self] _ in
+        let alert = UIAlertController(
+            title: "Удаление аккаунта",
+            message: message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(
+            title: "Ок",
+            style: .default
+        ) { [weak self] _ in
             self?.dismiss(animated: true)
-        } )
+        }
+        )
         present(alert, animated: true)
     }
     
     private func showErrorAlert() {
-        let alert = UIAlertController(title: "Ошибка", message: "Для этой процедуры вы должны быть залогинены", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: "Ошибка",
+            message: "Для этой процедуры вы должны быть залогинены",
+            preferredStyle: .alert
+        )
         alert.addAction(UIAlertAction(title: "Ок", style: .default) { [weak self] _ in
             self?.dismiss(animated: true)
-        } )
+        } 
+        )
         present(alert, animated: true)
     }
 }
 
-    // MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {

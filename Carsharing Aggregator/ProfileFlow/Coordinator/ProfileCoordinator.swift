@@ -23,14 +23,23 @@ final class ProfileCoordinator: ChildCoordinator, ParentCoordinator {
     // MARK: - Methods
     func start() {
         let viewModel = ProfileViewModel()
-        let viewController = ProfileViewController(viewModel: viewModel)
         viewModel.coordinator = self
+        let view: UIViewController?
+        var sheetHeight: CGFloat
+        if viewModel.checkProfile() {
+            view = ProfileViewController(viewModel: viewModel)
+            sheetHeight = 462
+        } else {
+            view = EmptyProfileViewController(viewModel: viewModel)
+            sheetHeight = 189
+        }
+        guard let viewController = view else { return }
         
         viewController.modalPresentationStyle = .pageSheet
         if let sheet = viewController.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { _ in
-                    return  462
+                    return sheetHeight
                 })]
             } else {
                 /* need customize for iOS <16 */
