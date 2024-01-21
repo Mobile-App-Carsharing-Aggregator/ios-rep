@@ -30,13 +30,23 @@ private struct UserProfileRequest: NetworkRequest {
     var headers: [String: String]?
 }
 
+private struct DeleteUserRequest: NetworkRequest {
+    var userId: Int
+    var endpoint: URL? {
+        URL(string: "http://193.107.238.139/api/v1/users/\(userId)/")
+    }
+    var httpMethod: HttpMethod { .delete }
+    
+    var headers: [String: String]?
+}
+
 private struct ErrorResponse: Codable {
     let errors: [String: [String]]
-
+    
     var allMessages: [String] {
         return errors.values.flatMap { $0 }
     }
-
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         errors = try container.decode([String: [String]].self)
@@ -118,8 +128,34 @@ final class DefaultUserService: UserServiceProtocol {
                 completion(.success(userProfile))
             case .failure(let error):
                 if case let NetworkError.httpStatusCode(statusCode, data) = error, let data = data {
-                                print("Ошибка \(statusCode): \(String(data: data, encoding: .utf8) ?? "нет данных")")
-                            }
+                    print("Ошибка \(statusCode): \(String(data: data, encoding: .utf8) ?? "нет данных")")
+                    if statusCode == 401 {
+                        TokenStorage.shared.deleteToken()
+                    }
+                }
+                
+                completion(.failure(error as? NetworkError ?? .urlSessionError))
+            }
+        }
+    }
+    
+    func deleteUser(withUserId userId: Int, completion: @escaping (Result<Void, NetworkError>) -> Void) {
+        guard let token = TokenStorage.shared.getToken() else {
+            completion(.failure(.customError("Не найдены данные логина. Повторите процедуру логина")))
+            return
+        }
+        
+        let  deleteRequest = DeleteUserRequest(userId: userId, headers: ["Authorization": "Token \(token)"])
+        
+        networkClient.send(request: deleteRequest) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+                TokenStorage.shared.deleteToken()
+            case .failure(let error):
+                if case let NetworkError.httpStatusCode(statusCode, data) = error, let data = data {
+                    print("Ошибка \(statusCode): \(String(data: data, encoding: .utf8) ?? "нет данных")")
+                }
                 completion(.failure(error as? NetworkError ?? .urlSessionError))
             }
         }

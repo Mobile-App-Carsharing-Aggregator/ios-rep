@@ -49,6 +49,22 @@ final class ProfileCoordinator: ChildCoordinator, ParentCoordinator {
         reviewsCoordinator.start()
     }
     
+    func openSettings(on vc: UIViewController) {
+        let settingsCoordinator = SettingsCoordinator(navigationController: navigationController)
+        settingsCoordinator.parent = self
+        addChild(settingsCoordinator)
+        settingsCoordinator.viewControllerRef = vc
+        settingsCoordinator.start()
+    }
+    
+    func openSearchHistory(on vc: UIViewController) {
+        let searchHistoryCoordinator = SearchHistoryCoordinator(navigationController: navigationController)
+        searchHistoryCoordinator.parent = self
+        addChild(searchHistoryCoordinator)
+        searchHistoryCoordinator.viewControllerRef = vc
+        searchHistoryCoordinator.start()
+    }
+    
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
     }
