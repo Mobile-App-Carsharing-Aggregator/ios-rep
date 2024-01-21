@@ -69,6 +69,7 @@
 		61BF07B32B3329C8004E375E /* AddressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF07B22B3329C8004E375E /* AddressService.swift */; };
 		61F3CEE52B5C342600D620A3 /* ReviewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F3CEE42B5C342600D620A3 /* ReviewsCell.swift */; };
 		61F3CEE72B5C355E00D620A3 /* UITableViewCell + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F3CEE62B5C355E00D620A3 /* UITableViewCell + Ext.swift */; };
+		61F3CEE92B5D155F00D620A3 /* ReviewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F3CEE82B5D155F00D620A3 /* ReviewsService.swift */; };
 		61F74D9E2B5AF6280079EE40 /* ReviewsCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F74D9D2B5AF6280079EE40 /* ReviewsCellModel.swift */; };
 		61F74DA02B5AF7440079EE40 /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F74D9F2B5AF7440079EE40 /* ReviewsViewController.swift */; };
 		61F74DA22B5B04460079EE40 /* ReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F74DA12B5B04460079EE40 /* ReviewsViewModel.swift */; };
@@ -169,6 +170,7 @@
 		61BF07B22B3329C8004E375E /* AddressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressService.swift; sourceTree = "<group>"; };
 		61F3CEE42B5C342600D620A3 /* ReviewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsCell.swift; sourceTree = "<group>"; };
 		61F3CEE62B5C355E00D620A3 /* UITableViewCell + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + Ext.swift"; sourceTree = "<group>"; };
+		61F3CEE82B5D155F00D620A3 /* ReviewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsService.swift; sourceTree = "<group>"; };
 		61F74D9D2B5AF6280079EE40 /* ReviewsCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsCellModel.swift; sourceTree = "<group>"; };
 		61F74D9F2B5AF7440079EE40 /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		61F74DA12B5B04460079EE40 /* ReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewModel.swift; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 				E208D7FE2B501E9700803CB9 /* TokenStorage.swift */,
 				32B08EB62B555E120085E8FF /* Сonstants.swift */,
 				32D48A362B595E7000ACE28E /* ReviewAndRatingService.swift */,
+				61F3CEE82B5D155F00D620A3 /* ReviewsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1001,6 +1004,7 @@
 				C4A3F8592B29131400B62BB3 /* TransitionToCarSharingButton.swift in Sources */,
 				37A1A23F2B149A02002C26DA /* UINavigationCotroller+Ext.swift in Sources */,
 				37B6F3F62B1688F8001F9D55 /* UserModel.swift in Sources */,
+				61F3CEE92B5D155F00D620A3 /* ReviewsService.swift in Sources */,
 				C494CD0A2B4C1F160007CCA9 /* CarTypeView.swift in Sources */,
 				E221FFD32B14BCEC002A5268 /* OnboardingCoordinator.swift in Sources */,
 				C40379292B262590008F22F8 /* SearchCarCoordinator.swift in Sources */,
