@@ -21,11 +21,13 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - Observables
     @Observable
     private(set) var fullName: String = ""
+    @Observable
+    private(set) var deleteUserSuccess: String = ""
     
     // MARK: - Properties
     weak var coordinator: ProfileCoordinator?
     private let userService = DefaultUserService.shared
-    private var user: User?
+    private var user: UserProfile?
     
     // MARK: - Methods
     func viewWillAppear() {
@@ -36,12 +38,33 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         coordinator?.openReviews(on: vc)
     }
     
+    func openSettings(on vc: UIViewController) {
+        coordinator?.openSettings(on: vc)
+    }
+    
+    func openSearchHistory(on vc: UIViewController) {
+        coordinator?.openSearchHistory(on: vc)
+    }
+    
     func logout() {
         TokenStorage.shared.deleteToken()
     }
     
     func deleteAccount() {
-        print("func deleteAccount()")
+        guard let user else {
+            deleteUserSuccess = "Ошибка удаления, не найден профиль для удаления, повторите процедуру логина"
+            return
+        }
+        DefaultUserService.shared.deleteUser(withUserId: user.id) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    self?.deleteUserSuccess = "Ваши данные удалены, надеемся увидеть вас снова!"
+                case .failure(let error):
+                    self?.deleteUserSuccess = "Ошибка удаления: \(error.localizedDescription)"
+                }
+            }
+        }
     }
     
     private  func getUser() {
@@ -60,6 +83,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
                 case .success(let user):
                     print("Получены данные пользователя: \(user)")
                     self.fullName = "\(user.firstName) \(user.lastName)"
+                    self.user = user
                 case .failure(let error):
                     print("Ошибка при получении профиля пользователя: \(error)")
                     self.fullName = "John Snow"
