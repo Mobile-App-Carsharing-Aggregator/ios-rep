@@ -138,6 +138,12 @@ final class ProfileViewController: UIViewController {
     }
     
     private func showAlertForLogout() {
+        
+    // TODO: - перенести логику в ViewModel
+        guard let token = TokenStorage.shared.getToken() else {
+            showErrorAlert()
+            return
+        }
         let alert = UIAlertController(title: "Выход", message: "Вы уверены, что хотите выйти из аккаунта?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addAction(UIAlertAction(title: "Выйти", style: .destructive) { [weak self] _ in
@@ -148,6 +154,11 @@ final class ProfileViewController: UIViewController {
     }
 
     private func showAlertForDeleteAccount() {
+    // TODO: перенести логику в ViewModel
+        guard let token = TokenStorage.shared.getToken() else {
+            showErrorAlert()
+            return
+        }
         let alert = UIAlertController(title: "Удаление аккаунта", message: "Вы уверены, что хотите удалить аккаунт?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addAction(UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
@@ -158,6 +169,14 @@ final class ProfileViewController: UIViewController {
     
     private func showAlertAfterDeleteAccount(message: String) {
         let alert = UIAlertController(title: "Удаление аккаунта", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default) { [weak self] _ in
+            self?.dismiss(animated: true)
+        } )
+        present(alert, animated: true)
+    }
+    
+    private func showErrorAlert() {
+        let alert = UIAlertController(title: "Ошибка", message: "Для этой процедуры вы должны быть залогинены", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default) { [weak self] _ in
             self?.dismiss(animated: true)
         } )
@@ -232,6 +251,20 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 1:
+                self.viewModel.openSearchHistory(on: self)
+            default:
+                break
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                self.viewModel.openSettings(on: self)
+            default:
+                break
+            }
         case 2:
             switch indexPath.row {
             case 0:

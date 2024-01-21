@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  SearchHistoryViewController.swift
 //  Carsharing Aggregator
 //
 //  Created by Aleksandr Garipov on 21.01.2024.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SettingsViewController: UIViewController {
+final class SearchHistoryViewController: UIViewController {
     
     // MARK: - Layout properties
     private lazy var placeholderLabel: UILabel = {
@@ -20,7 +20,7 @@ final class SettingsViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Настройки"
+        titleLabel.text = "История поиска"
         titleLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         titleLabel.textColor = .carsharing.black
         titleLabel.textAlignment = .center
@@ -47,10 +47,10 @@ final class SettingsViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    var viewModel: SettingsViewModel
+    var viewModel: SearchHistoryViewModel
     
     // MARK: - LifeCycle
-    init(viewModel: SettingsViewModel) {
+    init(viewModel: SearchHistoryViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -103,3 +103,4 @@ final class SettingsViewController: UIViewController {
         }
     }
 }
+

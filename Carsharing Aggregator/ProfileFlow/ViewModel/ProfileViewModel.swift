@@ -38,6 +38,14 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         coordinator?.openReviews(on: vc)
     }
     
+    func openSettings(on vc: UIViewController) {
+        coordinator?.openSettings(on: vc)
+    }
+    
+    func openSearchHistory(on vc: UIViewController) {
+        coordinator?.openSearchHistory(on: vc)
+    }
+    
     func logout() {
         TokenStorage.shared.deleteToken()
     }
