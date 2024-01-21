@@ -84,6 +84,10 @@ final class ProfileViewController: UIViewController {
         viewModel.$fullName.bind { [weak self] _ in
             self?.profileNameLabel.text = self?.viewModel.fullName
         }
+        
+        viewModel.$deleteUserSuccess.bind { [weak self] message in
+            self?.showAlertAfterDeleteAccount(message: message)
+        }
     }
     
     private func setupUI() {
@@ -149,6 +153,14 @@ final class ProfileViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
             self?.viewModel.deleteAccount()
         })
+        present(alert, animated: true)
+    }
+    
+    private func showAlertAfterDeleteAccount(message: String) {
+        let alert = UIAlertController(title: "Удаление аккаунта", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default) { [weak self] _ in
+            self?.dismiss(animated: true)
+        } )
         present(alert, animated: true)
     }
 }
