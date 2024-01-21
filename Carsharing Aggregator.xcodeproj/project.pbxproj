@@ -95,6 +95,9 @@
 		E221FFDA2B14C19A002A5268 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFD92B14C19A002A5268 /* ViewModel.swift */; };
 		E221FFDC2B14C254002A5268 /* FirstOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFDB2B14C254002A5268 /* FirstOnboardingViewModel.swift */; };
 		E221FFFE2B18DD30002A5268 /* SecondOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221FFFD2B18DD30002A5268 /* SecondOnboardingViewController.swift */; };
+		E22A74E02B5CFF4400118CC9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A74DF2B5CFF4400118CC9 /* SettingsViewController.swift */; };
+		E22A74E42B5CFF7600118CC9 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A74E32B5CFF7600118CC9 /* SettingsCoordinator.swift */; };
+		E22A74E62B5CFF8300118CC9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A74E52B5CFF8300118CC9 /* SettingsViewModel.swift */; };
 		E2B5D6452B048EF800801719 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6442B048EF800801719 /* AppDelegate.swift */; };
 		E2B5D6472B048EF800801719 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5D6462B048EF800801719 /* SceneDelegate.swift */; };
 		E2B5D64E2B048EF900801719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B5D64D2B048EF900801719 /* Assets.xcassets */; };
@@ -195,6 +198,9 @@
 		E221FFDB2B14C254002A5268 /* FirstOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingViewModel.swift; sourceTree = "<group>"; };
 		E221FFFD2B18DD30002A5268 /* SecondOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingViewController.swift; sourceTree = "<group>"; };
 		E221FFFF2B18E26A002A5268 /* SecondOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnboardingViewModel.swift; sourceTree = "<group>"; };
+		E22A74DF2B5CFF4400118CC9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E22A74E32B5CFF7600118CC9 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		E22A74E52B5CFF8300118CC9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E2B5D6412B048EF800801719 /* Carsharing Aggregator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carsharing Aggregator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B5D6442B048EF800801719 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2B5D6462B048EF800801719 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -772,6 +778,40 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		E22A74DD2B5CFF0200118CC9 /* SettingsFlow */ = {
+			isa = PBXGroup;
+			children = (
+				E22A74DE2B5CFF2100118CC9 /* View */,
+				E22A74E22B5CFF5500118CC9 /* ViewModel */,
+				E22A74E12B5CFF4B00118CC9 /* Coordinator */,
+			);
+			path = SettingsFlow;
+			sourceTree = "<group>";
+		};
+		E22A74DE2B5CFF2100118CC9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E22A74DF2B5CFF4400118CC9 /* SettingsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E22A74E12B5CFF4B00118CC9 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				E22A74E32B5CFF7600118CC9 /* SettingsCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		E22A74E22B5CFF5500118CC9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E22A74E52B5CFF8300118CC9 /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E2B5D6382B048EF800801719 = {
 			isa = PBXGroup;
 			children = (
@@ -801,6 +841,7 @@
 				3266F22E2B56AACB006F5C9E /* ReviewAndRaiting */,
 				6166DC5C2B299B7C003E57FB /* SelectedCarFlow */,
 				61F74D982B5AF56C0079EE40 /* ReviewsFlow */,
+				E22A74DD2B5CFF0200118CC9 /* SettingsFlow */,
 				32453BFC2B14D6EF003E7AA8 /* Map */,
 				37B6F3F42B1688E9001F9D55 /* Models */,
 				E221FFCD2B14BC0F002A5268 /* Onboarding */,
@@ -1037,9 +1078,11 @@
 				37B6F3FA2B1689F5001F9D55 /* CarModel.swift in Sources */,
 				322D34552B31745B00D4D1AE /* SelectedFilterCollectionViewCell.swift in Sources */,
 				E221FFFE2B18DD30002A5268 /* SecondOnboardingViewController.swift in Sources */,
+				E22A74E62B5CFF8300118CC9 /* SettingsViewModel.swift in Sources */,
 				611F12832B2B8CEE009D27CC /* SelectedCarRatingCell.swift in Sources */,
 				6166DC652B29FAF4003E57FB /* SelectedCarCoordinator.swift in Sources */,
 				E221FFDC2B14C254002A5268 /* FirstOnboardingViewModel.swift in Sources */,
+				E22A74E42B5CFF7600118CC9 /* SettingsCoordinator.swift in Sources */,
 				370ADE822B199A7B0090300E /* AuthCoordinator.swift in Sources */,
 				E208D7FF2B501E9700803CB9 /* TokenStorage.swift in Sources */,
 				32857E8D2B1F41A8003AE9AC /* GeometryProvider.swift in Sources */,
@@ -1063,6 +1106,7 @@
 				C41ECEB42B4F2C1F00D149E5 /* ProfileMenuCell.swift in Sources */,
 				61BF07B32B3329C8004E375E /* AddressService.swift in Sources */,
 				370ADE8C2B199AF20090300E /* RegistrationCoordinator.swift in Sources */,
+				E22A74E02B5CFF4400118CC9 /* SettingsViewController.swift in Sources */,
 				3266F2382B56B8EC006F5C9E /* ReviewAndRatingCordinator.swift in Sources */,
 				370ADEB22B199CE60090300E /* UITextField+Ext.swift in Sources */,
 				C403792F2B263C32008F22F8 /* UICollectionView+ReuseIdentifier+Ext.swift in Sources */,
