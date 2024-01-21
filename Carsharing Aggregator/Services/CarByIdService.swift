@@ -1,5 +1,5 @@
 //
-//  ReviewsService.swift
+//  CarByIdService.swift
 //  Carsharing Aggregator
 //
 //  Created by Дарья Шишмакова on 21.01.2024.
@@ -7,31 +7,31 @@
 
 import Foundation
 
-private struct GetReviewsRequest: NetworkRequest {
+private struct GetCarByIdRequest: NetworkRequest {
     var endpoint: URL? {
-        URL(string: "http://193.107.238.139/api/v1/reviews/?user=" + userId)
+        URL(string: "http://193.107.238.139/api/v1/cars/" + carId)
     }
     var httpMethod: HttpMethod { .get }
     
-    var userId: String
+    var carId: String
     
-    init(userId: String) {
-        self.userId = userId
+    init(carId: String) {
+        self.carId = carId
     }
 }
 
-final class ReviewsService {
+final class CarByIdService {
     
     private let networkClient = DefaultNetworkClient(session: .shared, decoder: JSONDecoder(), encoder: JSONEncoder())
     
-    func getReviews(for userId: String, completion: @escaping (Result<[Review], NetworkError>) -> Void) {
-        let getReviewsRequest = GetReviewsRequest(userId: userId)
+    func getCar(for carId: String, completion: @escaping (Result<Car, NetworkError>) -> Void) {
+        let getCarByIdRequest = GetCarByIdRequest(carId: carId)
         
-        networkClient.send(request: getReviewsRequest, type: GetReviewsResponse.self) { result in
+        networkClient.send(request: getCarByIdRequest, type: Car.self) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
-                    completion(.success(response.results))
+                    completion(.success(response))
                 case .failure(let error):
                     print("error \(error)")
                 }

@@ -13,15 +13,17 @@ final class ReviewsCoordinator: ChildCoordinator {
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
     weak var parent: ProfileCoordinator?
+    var userID: Int
     
     // MARK: - LifeCycle
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, userID: Int) {
         self.navigationController = navigationController
+        self.userID = userID
     }
     
     // MARK: - Methods
     func start() {
-        let viewModel = ReviewsViewModel()
+        let viewModel = ReviewsViewModel(userID: userID)
         let viewController = ReviewsViewController(viewModel: viewModel)
         viewModel.coordinator = self
         

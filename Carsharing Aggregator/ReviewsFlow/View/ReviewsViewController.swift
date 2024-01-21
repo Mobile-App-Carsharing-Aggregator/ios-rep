@@ -79,6 +79,7 @@ final class ReviewsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.getReviewsFromNetwork()
         reloadPlaceholder()
     }
     
@@ -106,6 +107,10 @@ final class ReviewsViewController: UIViewController {
         viewModel.$reviews.bind { [weak self] _ in
             self?.tableView.reloadData()
             self?.reloadPlaceholder()
+        }
+        
+        viewModel.$isLoading.bind { isLoading in
+            isLoading == true ? UIProgressHUD.show() : UIProgressHUD.dismiss()
         }
     }
     
