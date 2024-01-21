@@ -77,6 +77,11 @@ final class ReviewsViewController: UIViewController {
         setupConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadPlaceholder()
+    }
+    
     // MARK: - Actions
     @objc private func didTapBackFromReviews() {
         viewModel.coordinator?.coordinatorDidFinish()
@@ -106,8 +111,6 @@ final class ReviewsViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.prefersLargeTitles = false
         
         [placeholderLabel, titleLabel, closeReviewsButton, backFromReviewsButton, tableView].forEach {
             view.addSubview($0)
