@@ -92,6 +92,7 @@ final class CarModelViewController: UIViewController {
         for company in carModel.companies {
             let view = TransitionToCarSharingButton()
             view.configure(with: company)
+            view.delegate = self
             vStack.addArrangedSubview(view)
         }
     }
@@ -163,15 +164,10 @@ final class CarModelViewController: UIViewController {
         viewModel?.didTapCloseButton()
     }
 }
-//
-//// MARK: - TransitionToCarSharingButtonDelegate
-//
-//extension CarModelViewController: TransitionToCarSharingButtonDelegate {
-//    func didTapLink(sender: sender, carsharingCompany: carsharingCompany) {
-//        guard let company = carsharingCompany else { return }
-//        let appStoreURL = URL(string: "https://apps.apple.com/app/id\(company.appStoreID)")!
-//        if UIApplication.shared.canOpenURL(appStoreURL) {
-//            UIApplication.shared.open(appStoreURL)
-//        }
-//    }
-//}
+
+// MARK: - TransitionToCarSharingButtonDelegate
+extension CarModelViewController: TransitionToCarSharingButtonDelegate {
+    func didTapLink(carsharingCompany: CarsharingCompany) {
+        viewModel?.transferToCarshering(company: carsharingCompany)
+    }
+}

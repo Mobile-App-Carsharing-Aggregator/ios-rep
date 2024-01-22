@@ -5,7 +5,7 @@
 //  Created by Vitaly Anpilov on 22.01.2024.
 //
 
-import Foundation
+import UIKit
 
 final class CarModelViewModel {
     
@@ -23,6 +23,13 @@ final class CarModelViewModel {
     
     func didTapCloseButton() {
         coordinator?.parent?.coordinatorDidFinish()
+    }
+    
+    func transferToCarshering(company: CarsharingCompany) {
+        let appStoreURL = URL(string: "https://apps.apple.com/app/id\(company.appStoreID)")!
+        if UIApplication.shared.canOpenURL(appStoreURL) {
+            UIApplication.shared.open(appStoreURL)
+        }
     }
     
     private func getCarModel() {

@@ -26,11 +26,25 @@ final class CarModelCoordinator: ChildCoordinator {
         let viewController = CarModelViewController()
         viewController.viewModel = viewModel
         viewModel.coordinator = self
+        let sheetHeight = { [self] in
+            switch selectedCarModel.companies.count {
+            case 1:
+                return 316
+            case 2:
+                return 384
+            case 3:
+                return 452
+            case 4:
+                return 520
+            default:
+                return 520
+            }
+        }
       
         if let sheet = viewController.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { context in
-                    return  506
+                    return  CGFloat(sheetHeight())
                 })]
             } else {
                 /* need customize for iOS <16 */
