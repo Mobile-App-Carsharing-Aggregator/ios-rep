@@ -146,8 +146,8 @@ final class ProfileViewController: UIViewController {
         }
         guard let email = viewModel.user?.email else { return }
         let alert = UIAlertController(
-            title: "Выход",
-            message: "Вы уверены, что хотите \n выйти из аккаунта \n \"\(email)\"?",
+            title: "Вы уверены, что хотите \n выйти из аккаунта \n \"\(email)\"?",
+            message: "",
             preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addAction(UIAlertAction(title: "Выйти", style: .destructive) { [weak self] _ in
@@ -165,8 +165,8 @@ final class ProfileViewController: UIViewController {
         }
         guard let email = viewModel.user?.email else { return }
         let alert = UIAlertController(
-            title: "Удаление аккаунта",
-            message: "Вы уверены, что хотите \n удалить аккаунт \n \"\(email)\"?",
+            title: "Вы уверены, что хотите \n удалить аккаунт \n \"\(email)\"?",
+            message: "",
             preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addAction(UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
