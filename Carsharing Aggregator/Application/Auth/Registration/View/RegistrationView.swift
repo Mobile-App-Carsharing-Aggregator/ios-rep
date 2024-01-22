@@ -11,11 +11,11 @@ class RegistrationView: UIView {
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(labelTapped)))
         return label
     }()
-    private lazy var nameTextField = UITextField(placeholder: "Имя", isSecure: false, keyboardType: .other, textContentType: .other)
-    private lazy var surnameTextField = UITextField(placeholder: "Фамилия", isSecure: false, keyboardType: .other, textContentType: .other)
-    private lazy var emailTextField = UITextField(placeholder: "Example@mail.ru", isSecure: false, keyboardType: .email, textContentType: .email)
-    private lazy var passwordTextField = UITextField(placeholder: "Пароль", isSecure: true, keyboardType: .password, textContentType: .password)
-    private lazy var confirmPasswordTextField = UITextField(placeholder: "Пароль еще раз", isSecure: true, keyboardType: .password,
+    private lazy var nameTextField = MyTextField(placeholder: "Имя", isSecure: false, keyboardType: .other, textContentType: .other)
+    private lazy var surnameTextField = MyTextField(placeholder: "Фамилия", isSecure: false, keyboardType: .other, textContentType: .other)
+    private lazy var emailTextField = MyTextField(placeholder: "Example@mail.ru", isSecure: false, keyboardType: .email, textContentType: .email)
+    private lazy var passwordTextField = MyTextField(placeholder: "Пароль", isSecure: true, keyboardType: .password, textContentType: .password)
+    private lazy var confirmPasswordTextField = MyTextField(placeholder: "Пароль еще раз", isSecure: true, keyboardType: .password,
         textContentType: .password)
     
     private let scrollView: UIScrollView = {

@@ -33,7 +33,10 @@ enum KeyboardType {
     }
 }
 
-extension UITextField {
+class MyTextField: UITextField {
+    var eyeButton: UIButton?
+    var deleteButton: UIButton?
+    
     func setTextField(textField: UITextField,
                       validType: String.ValidTypes,
                       wrongMessage: String,
@@ -54,7 +57,7 @@ extension UITextField {
             
         }
     }
-    
+        
     convenience init(placeholder: String,
                      isSecure: Bool,
                      keyboardType: KeyboardType,
@@ -93,27 +96,41 @@ extension UITextField {
         layer.masksToBounds = true
         layer.cornerRadius = 12
         layer.borderWidth = 1
-        layer.borderColor = UIColor.black.cgColor
+        layer.borderColor = UIColor.carsharing.black.cgColor
+        clearButtonMode = .whileEditing
         translatesAutoresizingMaskIntoConstraints = false
-            clearButtonMode = .whileEditing
+       
+        let rightViewContainer = UIView(frame: isSecure ? CGRect(x: 0, y: 0, width: 62, height: 20) : CGRect(x: 0, y: 0, width: 38, height: 20))
+            
             let clearButton = UIButton(type: .custom)
             clearButton.setImage(UIImage(named: "close_small"), for: .normal)
             clearButton.addTarget(self, action: #selector(deleteText), for: .touchUpInside)
             clearButton.tintColor = .black
-            clearButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-            let rightViewContainer = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 20))
+            clearButton.frame = isSecure ? CGRect(x: 0, y: 0, width: 24, height: 24) : CGRect(x: 0, y: 0, width: 24, height: 24)
+            self.deleteButton = clearButton
             rightViewContainer.addSubview(clearButton)
-
-            rightView = rightViewContainer
-            rightViewMode = .whileEditing
         if isSecure {
             isSecureTextEntry = true
             self.textContentType = .oneTimeCode
+            let eyeButton = UIButton(type: .custom)
+            eyeButton.setImage(isSecureTextEntry ? UIImage(named: "eyesClosed") : UIImage(named: "eyesOpen"), for: .normal)
+            eyeButton.tintColor = .carsharing.grey
+            eyeButton.addTarget(self, action: #selector(toogleEyeButton), for: .touchUpInside)
+            self.eyeButton = eyeButton
+            eyeButton.frame = CGRect(x: 24, y: 0, width: 24, height: 24)
+            rightViewContainer.addSubview(eyeButton)
         }
+        rightView = rightViewContainer
+        rightViewMode = .whileEditing
     }
    
     @objc func deleteText() {
         self.text = ""
+    }
+    
+    @objc func toogleEyeButton() {
+        isSecureTextEntry = !isSecureTextEntry
+        eyeButton?.setImage(isSecureTextEntry ? UIImage(named: "eyesClosed") : UIImage(named: "eyesOpen"), for: .normal)
     }
     
     func setPhoneNumberMask(textField: UITextField, mask: String, string: String, range: NSRange) -> String {

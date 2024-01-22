@@ -115,7 +115,7 @@ final class MapViewController: UIViewController {
             with: YMKCameraPosition(
                 target: viewModel.userPoint(),
                 zoom: currentZoom,
-                azimuth: 50,
+                azimuth: 0,
                 tilt: 0
             ),
             animation: YMKAnimation(type: YMKAnimationType.linear, duration: 0),

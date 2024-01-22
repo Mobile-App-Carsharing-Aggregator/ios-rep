@@ -144,7 +144,11 @@ final class ProfileViewController: UIViewController {
             showErrorAlert()
             return
         }
-        let alert = UIAlertController(title: "Выход", message: "Вы уверены, что хотите выйти из аккаунта?", preferredStyle: .alert)
+        guard let email = viewModel.user?.email else { return }
+        let alert = UIAlertController(
+            title: "Выход",
+            message: "Вы уверены, что хотите \n выйти из аккаунта \n \"\(email)\"?",
+            preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addAction(UIAlertAction(title: "Выйти", style: .destructive) { [weak self] _ in
             self?.viewModel.logout()
@@ -159,7 +163,11 @@ final class ProfileViewController: UIViewController {
             showErrorAlert()
             return
         }
-        let alert = UIAlertController(title: "Удаление аккаунта", message: "Вы уверены, что хотите удалить аккаунт?", preferredStyle: .alert)
+        guard let email = viewModel.user?.email else { return }
+        let alert = UIAlertController(
+            title: "Удаление аккаунта",
+            message: "Вы уверены, что хотите \n удалить аккаунт \n \"\(email)\"?",
+            preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addAction(UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
             self?.viewModel.deleteAccount()
