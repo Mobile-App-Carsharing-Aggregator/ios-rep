@@ -37,6 +37,8 @@ extension UIImage {
     static let pointDelimobil = UIImage(named: "ellipsDelimobil")
     static let pointBelka = UIImage(named: "ellipsBelka")
     static let walking = UIImage(named: "walkingMan")
+    static let dots = UIImage(named: "dotButton")
+    static let smallGreenRating = UIImage(named: "smallStarGreen")
 
     // MARK: - TabBar icons
     static let tabProfile = UIImage(named: "profile")

@@ -45,7 +45,7 @@ final class ProfileViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.separatorStyle = .none
-        table.allowsSelection = false
+        table.allowsSelection = true
         table.register(
                     ProfileMenuCell.self,
                     forCellReuseIdentifier: ProfileMenuCell.reuseIdentifier
@@ -54,10 +54,18 @@ final class ProfileViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    weak var coordinator: Coordinator?
-    var viewModel: ProfileViewModel?
+    var viewModel: ProfileViewModel
     
     // MARK: - Lifecycle
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
@@ -68,14 +76,17 @@ final class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.viewWillAppear()
+        viewModel.viewWillAppear()
     }
     
     // MARK: - Methods
     private func bind() {
-        guard let viewModel = viewModel else { return }
         viewModel.$fullName.bind { [weak self] _ in
-            self?.profileNameLabel.text = "\(viewModel.fullName)"
+            self?.profileNameLabel.text = self?.viewModel.fullName
+        }
+        
+        viewModel.$deleteUserSuccess.bind { [weak self] message in
+            self?.showAlertAfterDeleteAccount(message: message)
         }
     }
     
@@ -125,12 +136,57 @@ final class ProfileViewController: UIViewController {
     private func didTapCloseButton() {
         dismiss(animated: true)
     }
+    
+    private func showAlertForLogout() {
+        
+    // TODO: - перенести логику в ViewModel
+        guard let token = TokenStorage.shared.getToken() else {
+            showErrorAlert()
+            return
+        }
+        let alert = UIAlertController(title: "Выход", message: "Вы уверены, что хотите выйти из аккаунта?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Выйти", style: .destructive) { [weak self] _ in
+            self?.viewModel.logout()
+            self?.dismiss(animated: true)
+        })
+        present(alert, animated: true)
+    }
+
+    private func showAlertForDeleteAccount() {
+    // TODO: перенести логику в ViewModel
+        guard let token = TokenStorage.shared.getToken() else {
+            showErrorAlert()
+            return
+        }
+        let alert = UIAlertController(title: "Удаление аккаунта", message: "Вы уверены, что хотите удалить аккаунт?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
+            self?.viewModel.deleteAccount()
+        })
+        present(alert, animated: true)
+    }
+    
+    private func showAlertAfterDeleteAccount(message: String) {
+        let alert = UIAlertController(title: "Удаление аккаунта", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default) { [weak self] _ in
+            self?.dismiss(animated: true)
+        })
+        present(alert, animated: true)
+    }
+    
+    private func showErrorAlert() {
+        let alert = UIAlertController(title: "Ошибка", message: "Для этой процедуры вы должны быть залогинены", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default) { [weak self] _ in
+            self?.dismiss(animated: true)
+        })
+        present(alert, animated: true)
+    }
 }
 
     // MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else { return 0 }
         switch section {
         case 0:
             return viewModel.numberOfSections[0]
@@ -144,8 +200,7 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard let model = viewModel else { return 0 }
-        return model.numberOfSections.count
+        return viewModel.numberOfSections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -175,6 +230,7 @@ extension ProfileViewController: UITableViewDataSource {
         default:
             break
         }
+        cell.selectionStyle = .none
         return cell
     }
 }
@@ -186,6 +242,38 @@ extension ProfileViewController: UITableViewDelegate {
             return 88
         } else {
             return 44
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                viewModel.openReviews(on: self)
+            case 1:
+                viewModel.openSearchHistory(on: self)
+            default:
+                break
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                viewModel.openSettings(on: self)
+            default:
+                break
+            }
+        case 2:
+            switch indexPath.row {
+            case 0:
+                showAlertForLogout()
+            case 1:
+                showAlertForDeleteAccount()
+            default:
+                break
+            }
+        default:
+            break
         }
     }
 }
