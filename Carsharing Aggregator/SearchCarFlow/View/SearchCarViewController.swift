@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 final class SearchCarViewController: UIViewController {
     // MARK: - UI
@@ -71,6 +72,15 @@ final class SearchCarViewController: UIViewController {
     // MARK: - Methods
     private func bind() {
         guard let viewModel = viewModel else { return }
+        viewModel.$isLoading.bind { [weak self] isLoading in
+            if isLoading {
+                UIProgressHUD.show()
+            } else {
+                UIProgressHUD.dismiss()
+                self?.carsCollection.reloadData()
+            }
+        }
+        
         viewModel.$carModels.bind { [weak self] _ in
             self?.carsCollection.reloadData()
         }

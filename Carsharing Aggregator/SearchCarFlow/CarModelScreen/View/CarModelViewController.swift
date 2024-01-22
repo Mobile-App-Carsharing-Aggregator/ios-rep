@@ -156,7 +156,7 @@ final class CarModelViewController: UIViewController {
     // MARK: - Actions
     @objc
     private func didTapBackButton() {
-        dismiss(animated: true)
+        viewModel?.coordinator?.coordinatorDidFinish()
     }
     
     @objc

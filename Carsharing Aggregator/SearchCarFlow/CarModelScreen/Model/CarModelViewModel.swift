@@ -35,5 +35,4 @@ final class CarModelViewModel {
     private func getCarModel() {
         carModel = coordinator?.selectedCarModel
     }
-    
 }
