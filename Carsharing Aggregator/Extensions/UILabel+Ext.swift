@@ -50,9 +50,9 @@ extension UILabel {
             .kern: -0.15
         ]
         let linkAttributes: [NSAttributedString.Key: Any] = [
-            .link: NSURL(string: "https://yandex.ru/legal/uslugi_termsofuse/")!,
-            .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-            .kern: -0.15
+            .font: UIFont.systemFont(ofSize: 14, weight: .regular),
+            .kern: -0.15,
+            .foregroundColor: UIColor.carsharing.blue
         ]
         let attributedString = NSMutableAttributedString(string: "Нажимая кнопку \"Создать аккаунт\" вы\nсоглашаетесь с ", attributes: regularAttributes)
         

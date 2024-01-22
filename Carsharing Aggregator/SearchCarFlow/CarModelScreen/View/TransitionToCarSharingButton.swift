@@ -11,7 +11,7 @@ final class TransitionToCarSharingButton: UIView {
     // MARK: - Layout properties
     private var bookingLabel: UILabel = {
         let label = UILabel()
-        label.text = "Забронировать"
+        label.text = "ЗАБРОНИРОВАТЬ"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .carsharing.black
         return label
