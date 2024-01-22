@@ -6,6 +6,5 @@
 //
 import UIKit
 
-//let heightLargeSheet = UIScreen.main.bounds.height * 0.88
-let heightLargeSheet: CGFloat = 800
+let heightLargeSheet = UIScreen.main.bounds.height * 0.88
 let widthScreen = UIScreen.main.bounds.width
