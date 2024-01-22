@@ -10,39 +10,70 @@ import Foundation
 final class ReviewsViewModel {
     
     // MARK: - Observables
+    @Observable
+    private(set) var reviews: [ReviewsCellModel] = []
+    
+    @Observable
+    private(set) var isLoading: Bool = false
     
     // MARK: - Properties
     weak var coordinator: ReviewsCoordinator?
-    var reviews: [ReviewsCellModel] = []
+    private(set) var userID: Int
+    private let reviewsService: ReviewsService
+    private let carByIdService: CarByIdService
     
     // MARK: - LifeCycle
-    init() {
-        getReviews()
+    init(
+        userID: Int,
+        reviewsService: ReviewsService = ReviewsService(),
+        carByIdService: CarByIdService = CarByIdService()
+    ) {
+        self.userID = userID
+        self.reviewsService = reviewsService
+        self.carByIdService = carByIdService
     }
+    
     // MARK: - Methods
-    private func getReviews() {
-        reviews = [
-            ReviewsCellModel(
-                date: "01.01.2024",
-                carModel: "BMW",
-                company: .BelkaCar,
-                rating: 3,
-                comment: "Первый раз взял Яндекс Драйв, навигация немного тупила, но автомобиль новый и чистый. Понравилось."
-            ),
-            ReviewsCellModel(
-                date: "01.01.2024",
-                carModel: "KIA",
-                company: .CityDrive,
-                rating: 4,
-                comment: "Круто"
-            ),
-            ReviewsCellModel(
-                date: "01.01.2024",
-                carModel: "OPEL",
-                company: .YandexDrive,
-                rating: 1,
-                comment: "Первый раз взял Яндекс Драйв, навигация немного тупила, но автомобиль новый и чистый. Понравилось. Первый раз взял Яндекс Драйв, навигация немного тупила. Понравилось."
-            )
-        ]
+    func getReviewsFromNetwork() {
+        isLoading = true
+        reviewsService.getReviews(for: "\(userID)") { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let userReviews):
+                if userReviews.count != 0 {
+                    self.getCarsInfo(for: userReviews)
+                } else {
+                    self.isLoading = false
+                }
+            case .failure(let error):
+                self.isLoading = false
+                print("Ошибка получения отвызов: \(error)")
+            }
+        }
+    }
+    
+    private func getCarsInfo(for userReviews: [Review]) {
+        for review in userReviews {
+            carByIdService.getCar(for: "\(review.car)") { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let car):
+                    let reviewsCellModel = ReviewsCellModel(
+                        date: review.createdAt,
+                        carModel: "\(car.brand) \(car.model)",
+                        company: car.company,
+                        rating: Int(review.rating),
+                        comment: review.comment
+                    )
+                    self.reviews.append(reviewsCellModel)
+                case .failure(let error):
+                    self.isLoading = false
+                    print("Ошибка получения отвызов: \(error)")
+                }
+                if self.reviews.count == userReviews.count {
+                    self.isLoading = false
+                }
+            }
+        }
     }
 }

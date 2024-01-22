@@ -41,8 +41,8 @@ final class ProfileCoordinator: ChildCoordinator, ParentCoordinator {
         viewControllerRef?.present(viewController, animated: true)
     }
     
-    func openReviews(on vc: UIViewController) {
-        let reviewsCoordinator = ReviewsCoordinator(navigationController: navigationController)
+    func openReviews(on vc: UIViewController, for user: UserProfile) {
+        let reviewsCoordinator = ReviewsCoordinator(navigationController: navigationController, userID: user.id)
         reviewsCoordinator.parent = self
         addChild(reviewsCoordinator)
         reviewsCoordinator.viewControllerRef = vc

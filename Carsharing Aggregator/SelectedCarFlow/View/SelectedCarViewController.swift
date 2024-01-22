@@ -19,12 +19,13 @@ final class SelectedCarViewController: UIViewController {
         return nameLabel
     }()
     
-    private lazy var closeButton: UIBarButtonItem = {
-        let closeButton = UIBarButtonItem()
-        closeButton.image = UIImage(systemName: "xmark")?.withTintColor(.carsharing.greyDark)
-        closeButton.style = .plain
-        closeButton.target = self
-        closeButton.action = #selector(didTapCloseButton)
+    private lazy var closeButton: UIButton = {
+        let closeButton = UIButton()
+        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeButton.tintColor = .carsharing.greyDark
+        closeButton.addTarget(self,
+                              action: #selector(didTapCloseButton),
+                              for: .touchUpInside)
         return closeButton
     }()
     
@@ -201,12 +202,8 @@ final class SelectedCarViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        navigationItem.rightBarButtonItem = closeButton
-        navigationController?.navigationBar.tintColor = .carsharing.black
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.prefersLargeTitles = false
-        
-        [nameLabel, carImage, collectionView, logoImage, locationImage, timeImage, carsheringStackView, addressStackView, timeLabel, bookButton].forEach {
+        [nameLabel, closeButton, carImage, collectionView, logoImage, locationImage, timeImage,
+         carsheringStackView, addressStackView, timeLabel, bookButton].forEach {
             view.addSubview($0)
         }
         
@@ -220,6 +217,12 @@ final class SelectedCarViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(26)
             make.height.equalTo(22)
+        }
+        
+        closeButton.snp.makeConstraints { make in
+            make.height.width.equalTo(24)
+            make.centerY.equalTo(nameLabel.snp.centerY)
+            make.trailing.equalToSuperview().offset(-21)
         }
         
         carImage.snp.makeConstraints { make in

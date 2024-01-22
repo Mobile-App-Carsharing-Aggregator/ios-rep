@@ -21,8 +21,15 @@ struct ReviewAndRatingResponse: Codable {
     let review: Review
 }
 
-struct Review: Codable{
+struct Review: Codable {
+    let user: Int
+    let car: Int
     let rating: Float
     let comment: String
-    let created_at: String
+    let createdAt: String
+}
+
+struct GetReviewsResponse: Codable {
+    let count: Int
+    let results: [Review]
 }

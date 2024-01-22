@@ -26,9 +26,8 @@ final class SelectedCarCoordinator: ChildCoordinator {
         let viewModel = SelectedCarViewModel(selectedCar: selectedCar)
         let viewController = SelectedCarViewController(viewModel: viewModel)
         viewModel.coordinator = self
-        let navVC = UINavigationController(rootViewController: viewController)
         
-        if let sheet = navVC.sheetPresentationController {
+        if let sheet = viewController.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { _ in
                     return  527
@@ -41,7 +40,7 @@ final class SelectedCarCoordinator: ChildCoordinator {
             sheet.largestUndimmedDetentIdentifier = .large
         }
   
-        viewControllerRef?.present(navVC, animated: true)
+        viewControllerRef?.present(viewController, animated: true)
     }
     
     func coordinatorDidFinish() {
