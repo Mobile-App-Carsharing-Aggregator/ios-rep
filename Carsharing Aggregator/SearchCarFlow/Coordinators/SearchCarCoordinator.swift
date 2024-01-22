@@ -42,6 +42,7 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
     }
     
     func openSelectedCarModel(on vc: UIViewController, carModel: CarModel) {
+        guard let vcRef = viewControllerRef else { return }
         let coordinator = CarModelCoordinator(navigationController: navigationController, selectedCarModel: carModel)
         coordinator.selectedCarModel = carModel
         coordinator.parent = self

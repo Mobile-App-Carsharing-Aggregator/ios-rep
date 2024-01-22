@@ -26,6 +26,8 @@ final class CarModelCoordinator: ChildCoordinator {
         let viewController = CarModelViewController()
         viewController.viewModel = viewModel
         viewModel.coordinator = self
+        let navVC = UINavigationController(rootViewController: viewController)
+        navVC.isNavigationBarHidden = true
         let sheetHeight = { [self] in
             switch selectedCarModel.companies.count {
             case 1:
@@ -41,7 +43,7 @@ final class CarModelCoordinator: ChildCoordinator {
             }
         }
       
-        if let sheet = viewController.sheetPresentationController {
+        if let sheet = navVC.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { context in
                     return  CGFloat(sheetHeight())
@@ -54,7 +56,7 @@ final class CarModelCoordinator: ChildCoordinator {
             sheet.largestUndimmedDetentIdentifier = .large
             
         }
-        viewControllerRef?.present(viewController, animated: true)
+        viewControllerRef?.present(navVC, animated: true)
     }
     
     func coordinatorDidFinish() {
