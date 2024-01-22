@@ -28,16 +28,11 @@ class LoginView: UIView {
     
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
-        let linkAttributed = [NSAttributedString.Key.link: NSUnderlineStyle.single.rawValue]
-        let attributedString = NSAttributedString(string: "Забыли пароль?", attributes: linkAttributed)
-        button.setAttributedTitle(attributedString, for: .normal)
-        button.setTitleColor(UIColor(red: 0.325,
-                                     green: 0.357,
-                                     blue: 0.855,
-                                     alpha: 1),
-                             for: .normal)
+        let string = "Забыли пароль?"
+        button.setTitle(string, for: .normal)
+        button.setTitleColor(.carsharing.blue, for: .normal)
         
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         button.addTarget(self, action: #selector(forgotPasswordButtonDidTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
