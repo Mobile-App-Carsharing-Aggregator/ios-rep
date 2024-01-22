@@ -120,12 +120,14 @@ class MapViewModel {
                 let stringToAdd = filters.compactMap { $0.name }.joined(separator: ",")
                 string.typeOfCar.append(stringToAdd)
             case .powerReserve:
-                string.powerReserve.append("\(filters.first?.name ?? "")")
+                let stringToAdd = filters.compactMap { $0.name }.joined(separator: ",")
+                string.powerReserve.append(stringToAdd)
             case .different:
                 let stringToAdd = filters.compactMap { "various=" + ($0.name ?? "") }.joined(separator: "&")
                 string.various.append(stringToAdd)
             case .rating:
-                string.rating.append("\(filters.first?.title ?? "")")
+                let stringToAdd = filters.compactMap { $0.title }.joined(separator: ",")
+                string.rating.append(stringToAdd)
             }
         }
         
