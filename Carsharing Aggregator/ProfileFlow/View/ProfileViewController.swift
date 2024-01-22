@@ -178,10 +178,7 @@ final class ProfileViewController: UIViewController {
             message: message,
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(
-            title: "Ок",
-            style: .default
-        ) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Ок", style: .default) { [weak self] _ in
             self?.dismiss(animated: true)
         }
         )
@@ -229,10 +226,6 @@ extension ProfileViewController: UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 cell.configureCell(with: .MyMarks)
-                cell.transferButtonTappedHandler = { [weak self] in
-                    guard let self else { return }
-                    self.viewModel.openReviews(on: self)
-                }
             case 1:
                 cell.configureCell(with: .SearchHistory)
             default:
@@ -271,15 +264,17 @@ extension ProfileViewController: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             switch indexPath.row {
+            case 0:
+                viewModel.openReviews(on: self)
             case 1:
-                self.viewModel.openSearchHistory(on: self)
+                viewModel.openSearchHistory(on: self)
             default:
                 break
             }
         case 1:
             switch indexPath.row {
             case 0:
-                self.viewModel.openSettings(on: self)
+                viewModel.openSettings(on: self)
             default:
                 break
             }

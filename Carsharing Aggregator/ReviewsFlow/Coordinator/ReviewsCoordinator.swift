@@ -13,20 +13,21 @@ final class ReviewsCoordinator: ChildCoordinator {
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
     weak var parent: ProfileCoordinator?
+    var userID: Int
     
     // MARK: - LifeCycle
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, userID: Int) {
         self.navigationController = navigationController
+        self.userID = userID
     }
     
     // MARK: - Methods
     func start() {
-        let viewModel = ReviewsViewModel()
+        let viewModel = ReviewsViewModel(userID: userID)
         let viewController = ReviewsViewController(viewModel: viewModel)
         viewModel.coordinator = self
-        let navVC = UINavigationController(rootViewController: viewController)
         
-        if let sheet = navVC.sheetPresentationController {
+        if let sheet = viewController.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { _ in
                     return  496
@@ -39,7 +40,7 @@ final class ReviewsCoordinator: ChildCoordinator {
             sheet.largestUndimmedDetentIdentifier = .large
         }
   
-        viewControllerRef?.present(navVC, animated: true)
+        viewControllerRef?.present(viewController, animated: true)
     }
     
     func coordinatorDidFinish() {

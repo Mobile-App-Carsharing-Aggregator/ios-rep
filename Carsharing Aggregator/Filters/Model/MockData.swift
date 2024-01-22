@@ -29,9 +29,9 @@ struct MockData {
     }()
     
     let powerReserve: [ListItem] = {
-        [.init(id: 0, title: "Полный бак", image: nil, name: "3"),
-         .init(id: 1, title: "100км", image: nil, name: "2"),
-         .init(id: 2, title: "50км", image: nil, name: "1")]
+        [.init(id: 0, title: "Полный бак", image: nil, name: "full"),
+         .init(id: 1, title: "100км", image: nil, name: "100km"),
+         .init(id: 2, title: "50км", image: nil, name: "50km")]
     }()
     
     let different: [ListItem] = {

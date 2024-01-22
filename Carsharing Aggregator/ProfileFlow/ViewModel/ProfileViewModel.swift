@@ -35,7 +35,8 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     }
     
     func openReviews(on vc: UIViewController) {
-        coordinator?.openReviews(on: vc)
+        guard let user = user else { return }
+        coordinator?.openReviews(on: vc, for: user)
     }
     
     func openSettings(on vc: UIViewController) {
