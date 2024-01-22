@@ -7,6 +7,10 @@
 import UIKit
 import SnapKit
 
+//protocol TransitionToCarSharingButtonDelegate: AnyObject {
+//    func didTapLink(sender: sender, carsharingCompany: carsharingCompany)
+//}
+
 final class TransitionToCarSharingButton: UIView {
     // MARK: - Layout properties
     private var bookingLabel: UILabel = {
@@ -48,7 +52,8 @@ final class TransitionToCarSharingButton: UIView {
     }
     
     // MARK: - Properties
-    var carsharingCompany: CarsharingCompany?
+    private var carsharingCompany: CarsharingCompany?
+    //    weak var delegate: TransitionToCarSharingButtonDelegate?
     
     // MARK: - Actions
     @objc

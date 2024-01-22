@@ -54,34 +54,49 @@ final class CarModelViewController: UIViewController {
     
     private lazy var carTypeView: CarTypeView = {
         let view = CarTypeView()
-        view.configure(title: carModel?.typeCar.name ?? "")
-        
+     
         return view
     }()
     
     // MARK: - Properties
-    var carModel: CarModel?
+    var viewModel: CarModelViewModel?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.viewWillAppear()
+    }
+    
     // MARK: - Methods
+    func bind() {
+        guard let viewModel = viewModel else { return }
+        viewModel.$carModel.bind { [weak self] carModel in
+            guard
+                let carModel = carModel,
+                let self
+            else { return }
+            self.configureStack(for: carModel)
+            self.configureCarInfo(with: carModel)
+            self.carTypeView.configure(title: carModel.typeCar.name)
+        }
+    }
     
     // MARK: - Layout Methods
-    private func configureStack() {
-        guard let companies = carModel?.companies else { return }
-        for company in companies {
+    private func configureStack(for carModel: CarModel) {
+        for company in carModel.companies {
             let view = TransitionToCarSharingButton()
             view.configure(with: company)
             vStack.addArrangedSubview(view)
         }
     }
     
-    private func configureCarInfo() {
-        guard let carModel = carModel else { return }
+    private func configureCarInfo(with carModel: CarModel) {
         guard
             let image = carModel.image,
             let urlImage = URL(string: image)
@@ -95,8 +110,6 @@ final class CarModelViewController: UIViewController {
         [carImage, vStack, carTypeView, titleVC, backButton, closeButton].forEach {
             view.addSubview($0)
         }
-        configureCarInfo()
-        configureStack()
         setupConstraints()
     }
     
@@ -147,6 +160,18 @@ final class CarModelViewController: UIViewController {
     
     @objc
     private func didTapCloseButton() {
-        dismiss(animated: true)
+        viewModel?.didTapCloseButton()
     }
 }
+//
+//// MARK: - TransitionToCarSharingButtonDelegate
+//
+//extension CarModelViewController: TransitionToCarSharingButtonDelegate {
+//    func didTapLink(sender: sender, carsharingCompany: carsharingCompany) {
+//        guard let company = carsharingCompany else { return }
+//        let appStoreURL = URL(string: "https://apps.apple.com/app/id\(company.appStoreID)")!
+//        if UIApplication.shared.canOpenURL(appStoreURL) {
+//            UIApplication.shared.open(appStoreURL)
+//        }
+//    }
+//}
