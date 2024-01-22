@@ -17,16 +17,14 @@ final class SecondOnboardingViewController: UIViewController {
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.onboardingCustomLogoSecond
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private let textLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.text = "найдите идеальный\nавто для каждого мгновения"
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 23)
+        label.text = "найдите идеальный\nавтомобиль для каждого\nмгновения"
         return label
     }()
     
@@ -34,10 +32,10 @@ final class SecondOnboardingViewController: UIViewController {
         let button = UIButton(type: .system)
         button.backgroundColor = .black
         button.tintColor = .white
-        button.setTitle("Войти", for: .normal)
+        button.setTitle("ВОЙТИ", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -46,10 +44,10 @@ final class SecondOnboardingViewController: UIViewController {
         button.backgroundColor = .white
         button.tintColor = .black
         button.layer.borderWidth = 1
-        button.setTitle("Пропустить", for: .normal)
+        button.setTitle("ПРОПУСТИТЬ", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     

@@ -103,7 +103,15 @@ final class EnterViewController: UIViewController {
     private lazy var enterButton = UIButton(
         for: enterViewModel.currentButtonState,
         target: self,
-        action: #selector(didTapEnterButton))
+        action: #selector(didTapEnterButton)
+    )
+    
+    private lazy var skipButton = UIBarButtonItem(
+        title: "Пропустить",
+        style: .plain,
+        target: self,
+        action: #selector(skipButtonTapped)
+    )
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -159,6 +167,10 @@ final class EnterViewController: UIViewController {
         }
     }
     
+    @objc private func skipButtonTapped() {
+        enterViewModel.coordinator.startTabBarFlow()
+    }
+    
     private func updateButtonColors() {
         loginButton.setTitleColor(EnterButtonState.login.color(for: currentButtonSelectionState), for: .normal)
         registrationButton.setTitleColor(EnterButtonState.registration.color(for: currentButtonSelectionState), for: .normal)
@@ -184,6 +196,9 @@ extension EnterViewController {
     
     private func addSubviews() {
         view.backgroundColor = .white
+        skipButton.tintColor = UIColor.carsharing.blue
+        navigationItem.rightBarButtonItem = skipButton
+        
         view.addSubview(loginView)
         view.addSubview(registrationView)
         stackView.addArrangedSubview(loginButton)

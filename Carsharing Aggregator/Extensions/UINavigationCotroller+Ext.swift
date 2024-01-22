@@ -49,8 +49,8 @@ extension UINavigationController {
     
     func setAttributesForCarsharingTitle(loginVC: UIViewController) {
         self.setNavigationBarHidden(false, animated: false)
-        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
-        loginVC.navigationItem.title = "Carsharing"
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)]
+        loginVC.navigationItem.title = "Car.sharing"
         
         let backButton = UIBarButtonItem(
                     image: UIImage(systemName: "chevron.backward"),
@@ -93,6 +93,6 @@ extension UINavigationController {
     }
     
     @objc private func backButtonTapped() {
-            self.popViewController(animated: true)
-        }
+        self.popViewController(animated: true)
+    }
 }
