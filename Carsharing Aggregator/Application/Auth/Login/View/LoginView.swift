@@ -38,13 +38,23 @@ class LoginView: UIView {
         return button
     }()
     
-    private lazy var vkLogoButton = UIButton(with: UIImage.vkLogo!,
+    private lazy var vkLogoButton = UIButton(with: UIImage.vkLogo ?? UIImage(),
                                              target: self,
                                              action: #selector(vkLogoButtonDidTapped))
 
-    private lazy var yandexLogoButton = UIButton(with: UIImage.yandexLogo!,
+    private lazy var yandexLogoButton = UIButton(with: UIImage.yandexLogo ?? UIImage(),
                                              target: self,
                                              action: #selector(yandexLogoButtonDidTapped))
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 16
+        stackView.backgroundColor = .clear
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
     @objc private func forgotPasswordButtonDidTapped() {
         print("FORGOT PASSWORD")
     }
@@ -180,9 +190,10 @@ extension LoginView {
         addSubview(emailWarninigLabel)
         addSubview(forgotPasswordButton)
         addSubview(orLabel)
-        addSubview(yandexLogoButton)
-        addSubview(vkLogoButton)
         addSubview(passwordWarningLabel)
+        addSubview(stackView)
+        stackView.addArrangedSubview(yandexLogoButton)
+        stackView.addArrangedSubview(vkLogoButton)
         setConstraints()
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -235,6 +246,7 @@ extension LoginView {
             make.width.equalTo(348)
             make.height.equalTo(52)
         }
+        
         emailSublabel.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.top).offset(-8)
             make.leading.equalTo(emailTextField.snp.leading).offset(16)
@@ -258,10 +270,12 @@ extension LoginView {
             make.height.equalTo(emailTextField.snp.height)
             make.width.equalTo(emailTextField.snp.width)
         }
+        
         passwordSublabel.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.top).offset(-8)
             make.leading.equalTo(passwordTextField.snp.leading).offset(16)
         }
+        
         emptyPasswordFieldWarning.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.bottom).offset(8)
             make.leading.equalTo(passwordTextField.snp.leading).offset(16)
@@ -273,24 +287,21 @@ extension LoginView {
             make.leading.equalTo(emailWarninigLabel)
             make.trailing.equalTo(emailWarninigLabel)
         }
+        
         forgotPasswordButton.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.bottom).offset(16)
             make.leading.equalTo(emailTextField.snp.leading)
         }
+        
         orLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(snp.centerX)
-            make.bottom.equalTo(yandexLogoButton.snp.top).offset(-12)
-        }
-        yandexLogoButton.snp.makeConstraints { make in
-            make.top.equalTo(forgotPasswordButton.snp.bottom).offset(97)
-            make.leading.equalTo(snp.leading).offset(110)
-        }
-        vkLogoButton.snp.makeConstraints { make in
-            make.top.equalTo(yandexLogoButton.snp.top)
-            make.leading.equalTo(yandexLogoButton.snp.trailing).offset(16)
-            
+            make.centerX.equalToSuperview()
+            make.top.equalTo(forgotPasswordButton.snp.bottom).offset(66)
         }
         
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(orLabel.snp.bottom).offset(12)
+            make.centerX.equalToSuperview()
+        }
     }
 }
 
