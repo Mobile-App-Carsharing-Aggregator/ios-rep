@@ -4,7 +4,7 @@ import Combine
 class LoginView: UIView {
     
     private lazy var emailTextField = UITextField(
-        placeholder: "Enter Email",
+        placeholder: "Example@mail.ru",
         isSecure: false,
         keyboardType: .email,
         textContentType: .email)
