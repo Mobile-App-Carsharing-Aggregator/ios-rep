@@ -76,12 +76,15 @@ final class EmptyProfileViewController: UIViewController {
     // MARK: - Actions
     @objc
     private func didTapCloseButton() {
-       dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     @objc
     private func didTapTransferToLoginButton() {
-        
+        dismiss(animated: true, completion: { [weak self] in
+            self?.viewModel.transferToLoginFlow()
+        }
+        )
     }
     
     // MARK: - Layout Methods

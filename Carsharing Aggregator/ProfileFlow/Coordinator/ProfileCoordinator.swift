@@ -78,6 +78,10 @@ final class ProfileCoordinator: ChildCoordinator, ParentCoordinator {
         parent?.childDidFinish(self)
     }
     
+    func startAuthFlow() {
+        parent?.parent?.startAuthFlow()
+    }
+    
     func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
     }
 }

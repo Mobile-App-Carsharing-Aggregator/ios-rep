@@ -58,6 +58,10 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         }
     }
     
+    func transferToLoginFlow() {
+        coordinator?.startAuthFlow()
+    }
+    
     func deleteAccount() {
         guard let user else {
             deleteUserSuccess = "Ошибка удаления, не найден профиль для удаления, повторите процедуру логина"
@@ -75,7 +79,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         }
     }
     
-    private  func getUser() {
+    private func getUser() {
         DefaultUserService.shared.getUser { result in
             DispatchQueue.main.async {
                 switch result {
