@@ -66,9 +66,9 @@ class LoginView: UIView {
     @objc private func yandexLogoButtonDidTapped() {
         print("YANDEX TAPPED")
     }
-    private let emptyEmailFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
-    private let emptyPasswordFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
-    private let emailWarninigLabel = UILabel(warningString: "Проверьте почту")
+//    private let emptyEmailFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
+//    private let emptyPasswordFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
+    private let emailWarninigLabel = UILabel(warningString: "Введите корректный адрес электронной почты")
     private let passwordWarningLabel = UILabel(warningString: "Неверный пароль, попробуйте еще раз")
     private var cancellables: Set<AnyCancellable> = []
     
@@ -93,7 +93,7 @@ class LoginView: UIView {
     
     private func updateConstraintsForEmptyTextField(_ textField: UITextField, relativeTo previousTextField: UITextField?, isEmpty: Bool) {
         let previousTextField = previousTextField ?? UITextField()
-        let offset = isEmpty ? 33 : 16
+        let offset = isEmpty ? 12 : 33
         if isEmpty {
             previousTextField.layer.borderColor = UIColor.red.cgColor
         } else {
@@ -110,7 +110,7 @@ class LoginView: UIView {
         
     private func updateConstraintsForValidTextField(_ textField: UITextField, relativeTo previousTextField: UITextField?, isValid: Bool) {
         let previousTextField = previousTextField ?? UITextField()
-        let offset = isValid ? 16 : 53
+        let offset = isValid ? 12 : 53
         
         if !isValid {
             previousTextField.layer.borderColor = UIColor.red.cgColor
@@ -126,11 +126,11 @@ class LoginView: UIView {
     }
     
     private func updateConstraintsForLabel(_ view: UIView, relativeTo previousTextField: UITextField, isEmpty: Bool, offset: CGFloat) {
-        if isEmpty {
-            previousTextField.layer.borderColor = UIColor.red.cgColor
-        } else {
-            previousTextField.layer.borderColor = UIColor.black.cgColor
-        }
+//        if isEmpty {
+//            previousTextField.layer.borderColor = UIColor.red.cgColor
+//        } else {
+//            previousTextField.layer.borderColor = UIColor.black.cgColor
+//        }
         view.snp.remakeConstraints { make in
             make.top.equalTo(previousTextField.snp.bottom).offset(offset)
             make.leading.equalTo(previousTextField.snp.leading)
@@ -141,10 +141,11 @@ class LoginView: UIView {
         Publishers.CombineLatest3(loginViewModel.$email, loginViewModel.isEmailEmptyPublisher, loginViewModel.isEmailValidPublisher)
             .sink { [weak self] (_, isEmpty, isValid) in
                 guard let self else { return }
-                self.emptyEmailFieldWarning.isHidden = !isEmpty
+                //self.emptyEmailFieldWarning.isHidden = !isEmpty
                 if isEmpty {
                     self.updateConstraintsForEmptyTextField(self.passwordTextField, relativeTo: self.emailTextField, isEmpty: isEmpty)
                     self.emailWarninigLabel.isHidden = isEmpty
+                    self.emailTextField.layer.borderColor = UIColor.black.cgColor
                 } else {
                     self.updateConstraintsForValidTextField(self.passwordTextField, relativeTo: self.emailTextField, isValid: isValid)
                     self.emailWarninigLabel.isHidden = isValid
@@ -157,12 +158,15 @@ class LoginView: UIView {
         Publishers.CombineLatest3(loginViewModel.$password, loginViewModel.isPasswordEmptyPublisher, loginViewModel.isPasswordValidPublisher)
             .sink { [weak self] (_, isEmpty, isValid) in
                 guard let self else { return }
-                self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: 33)
-                self.emptyPasswordFieldWarning.isHidden = !isEmpty
+              //  self.emptyPasswordFieldWarning.isHidden = !isEmpty
                 if isEmpty {
                     self.passwordWarningLabel.isHidden = isEmpty
+                    self.passwordTextField.layer.borderColor = UIColor.black.cgColor
+                    self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: 12)
                 } else {
+                    self.passwordTextField.layer.borderColor = isValid ? UIColor.black.cgColor : UIColor.red.cgColor
                     self.passwordWarningLabel.isHidden = isValid
+                    self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: isValid ? 12 : 33)
                 }
             }
             .store(in: &cancellables)
@@ -185,8 +189,8 @@ extension LoginView {
         addSubview(emailTextField)
         addSubview(emailSublabel)
         addSubview(passwordSublabel)
-        addSubview(emptyEmailFieldWarning)
-        addSubview(emptyPasswordFieldWarning)
+//        addSubview(emptyEmailFieldWarning)
+//        addSubview(emptyPasswordFieldWarning)
         addSubview(emailWarninigLabel)
         addSubview(forgotPasswordButton)
         addSubview(orLabel)
@@ -252,11 +256,11 @@ extension LoginView {
             make.leading.equalTo(emailTextField.snp.leading).offset(16)
         }
         
-        emptyEmailFieldWarning.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(8)
-            make.leading.equalTo(emailTextField.snp.leading).offset(16)
-            make.trailing.equalTo(emailTextField.snp.trailing)
-        }
+//        emptyEmailFieldWarning.snp.makeConstraints { make in
+//            make.top.equalTo(emailTextField.snp.bottom).offset(8)
+//            make.leading.equalTo(emailTextField.snp.leading).offset(16)
+//            make.trailing.equalTo(emailTextField.snp.trailing)
+//        }
         
         emailWarninigLabel.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(8)
@@ -276,11 +280,11 @@ extension LoginView {
             make.leading.equalTo(passwordTextField.snp.leading).offset(16)
         }
         
-        emptyPasswordFieldWarning.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(8)
-            make.leading.equalTo(passwordTextField.snp.leading).offset(16)
-            make.trailing.equalTo(passwordTextField.snp.trailing)
-        }
+//        emptyPasswordFieldWarning.snp.makeConstraints { make in
+//            make.top.equalTo(passwordTextField.snp.bottom).offset(8)
+//            make.leading.equalTo(passwordTextField.snp.leading).offset(16)
+//            make.trailing.equalTo(passwordTextField.snp.trailing)
+//        }
 
         passwordWarningLabel.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField.snp.bottom).offset(8)
