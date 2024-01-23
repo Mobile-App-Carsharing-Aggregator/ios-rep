@@ -41,12 +41,23 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
         viewControllerRef?.present(vc, animated: true)
     }
     
+    func openSelectedCarModel(on vc: UIViewController, carModel: CarModel) {
+        guard let vcRef = viewControllerRef else { return }
+        let coordinator = CarModelCoordinator(navigationController: navigationController, selectedCarModel: carModel)
+        coordinator.selectedCarModel = carModel
+        coordinator.parent = self
+        addChild(coordinator)
+        coordinator.viewControllerRef = vc
+        coordinator.start()
+    }
+    
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
         viewControllerRef?.dismiss(animated: true)
     }
     
     func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
+        
     }
     
 }

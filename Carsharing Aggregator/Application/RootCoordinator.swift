@@ -17,7 +17,7 @@ final class RootCoordinator: Coordinator, ParentCoordinator {
     }
     
     func start() {
-        if let token = TokenStorage.shared.getToken() {
+        if TokenStorage.shared.getToken() != nil {
             let tabBarCoordinator = MapCoordinator( navigationController: navigationController)
             tabBarCoordinator.parent = self
             addChild(tabBarCoordinator)

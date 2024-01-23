@@ -7,6 +7,10 @@
 import UIKit
 import SnapKit
 
+protocol TransitionToCarSharingButtonDelegate: AnyObject {
+    func didTapLink(carsharingCompany: CarsharingCompany)
+}
+
 final class TransitionToCarSharingButton: UIView {
     // MARK: - Layout properties
     private var bookingLabel: UILabel = {
@@ -48,16 +52,14 @@ final class TransitionToCarSharingButton: UIView {
     }
     
     // MARK: - Properties
-    var carsharingCompany: CarsharingCompany?
+    private var carsharingCompany: CarsharingCompany?
+    weak var delegate: TransitionToCarSharingButtonDelegate?
     
     // MARK: - Actions
     @objc
     private func didTapLink(sender: UIGestureRecognizer) {
         guard let company = carsharingCompany else { return }
-        let appStoreURL = URL(string: "https://apps.apple.com/app/id\(company.appStoreID)")!
-        if UIApplication.shared.canOpenURL(appStoreURL) {
-            UIApplication.shared.open(appStoreURL)
-        }
+        delegate?.didTapLink(carsharingCompany: company)
     }
     
     // MARK: - Methods

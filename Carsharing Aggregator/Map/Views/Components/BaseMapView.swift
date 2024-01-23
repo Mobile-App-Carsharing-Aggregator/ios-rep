@@ -7,7 +7,7 @@
 
 fileprivate struct ApiKey {
     #warning("press api here:")
-    static let apiKey = "123"
+    static let apiKey = "111"
 }
 
 import UIKit
@@ -29,7 +29,6 @@ class BaseMapView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         YMKMapKit.setApiKey("\(ApiKey.apiKey)")
-        YMKMapKit.setLocale("ru_RU")
         YMKMapKit.sharedInstance().onStart()
         setup()
     }
