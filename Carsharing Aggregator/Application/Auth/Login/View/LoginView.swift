@@ -93,7 +93,7 @@ class LoginView: UIView {
     
     private func updateConstraintsForEmptyTextField(_ textField: UITextField, relativeTo previousTextField: UITextField?, isEmpty: Bool) {
         let previousTextField = previousTextField ?? UITextField()
-        let offset = isEmpty ? 33 : 16
+        let offset = isEmpty ? 12 : 33
         if isEmpty {
             previousTextField.layer.borderColor = UIColor.red.cgColor
         } else {
@@ -110,7 +110,7 @@ class LoginView: UIView {
         
     private func updateConstraintsForValidTextField(_ textField: UITextField, relativeTo previousTextField: UITextField?, isValid: Bool) {
         let previousTextField = previousTextField ?? UITextField()
-        let offset = isValid ? 16 : 53
+        let offset = isValid ? 12 : 53
         
         if !isValid {
             previousTextField.layer.borderColor = UIColor.red.cgColor
@@ -142,10 +142,11 @@ class LoginView: UIView {
             .sink { [weak self] (_, isEmpty, isValid) in
                 guard let self else { return }
                 //self.emptyEmailFieldWarning.isHidden = !isEmpty
-   if isEmpty {
-//                    self.updateConstraintsForEmptyTextField(self.passwordTextField, relativeTo: self.emailTextField, isEmpty: isEmpty)
-                  self.emailWarninigLabel.isHidden = isEmpty
-   } else {
+                if isEmpty {
+                    self.updateConstraintsForEmptyTextField(self.passwordTextField, relativeTo: self.emailTextField, isEmpty: isEmpty)
+                    self.emailWarninigLabel.isHidden = isEmpty
+                    self.emailTextField.layer.borderColor = UIColor.black.cgColor
+                } else {
                     self.updateConstraintsForValidTextField(self.passwordTextField, relativeTo: self.emailTextField, isValid: isValid)
                     self.emailWarninigLabel.isHidden = isValid
                 }
@@ -160,11 +161,12 @@ class LoginView: UIView {
               //  self.emptyPasswordFieldWarning.isHidden = !isEmpty
                 if isEmpty {
                     self.passwordWarningLabel.isHidden = isEmpty
-                    
+                    self.passwordTextField.layer.borderColor = UIColor.black.cgColor
+                    self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: 12)
                 } else {
                     self.passwordTextField.layer.borderColor = isValid ? UIColor.black.cgColor : UIColor.red.cgColor
                     self.passwordWarningLabel.isHidden = isValid
-                    self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: isValid ? 20 : 33)
+                    self.updateConstraintsForLabel(self.forgotPasswordButton, relativeTo: self.passwordTextField, isEmpty: isEmpty, offset: isValid ? 12 : 33)
                 }
             }
             .store(in: &cancellables)
