@@ -116,6 +116,7 @@ final class ReviewsViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
+        self.isModalInPresentation = true
         
         [placeholderLabel, titleLabel, closeReviewsButton, backFromReviewsButton, tableView].forEach {
             view.addSubview($0)
