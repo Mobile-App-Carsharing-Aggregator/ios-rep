@@ -27,7 +27,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - Properties
     weak var coordinator: ProfileCoordinator?
     private let userService = DefaultUserService.shared
-    private var user: UserProfile?
+    var user: UserProfile?
     
     // MARK: - Methods
     func viewWillAppear() {

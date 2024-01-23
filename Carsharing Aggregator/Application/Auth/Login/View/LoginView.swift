@@ -3,13 +3,13 @@ import Combine
 
 class LoginView: UIView {
     
-    private lazy var emailTextField = UITextField(
+    private lazy var emailTextField = MyTextField(
         placeholder: "Example@mail.ru",
         isSecure: false,
         keyboardType: .email,
         textContentType: .email)
     
-    private lazy var passwordTextField = UITextField(
+    private lazy var passwordTextField = MyTextField(
         placeholder: "Пароль",
         isSecure: true,
         keyboardType: .password,
