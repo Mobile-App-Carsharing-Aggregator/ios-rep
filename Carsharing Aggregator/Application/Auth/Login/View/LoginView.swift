@@ -162,6 +162,7 @@ class LoginView: UIView {
                 if isEmpty {
                     self.passwordWarningLabel.isHidden = isEmpty
                 } else {
+                    self.passwordTextField.layer.borderColor = isValid ? UIColor.black.cgColor : UIColor.red.cgColor
                     self.passwordWarningLabel.isHidden = isValid
                 }
             }
