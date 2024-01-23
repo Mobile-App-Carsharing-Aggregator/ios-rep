@@ -49,6 +49,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     func logout() {
         TokenStorage.shared.deleteToken()
+        coordinator?.coordinatorDidFinish()
     }
     
     func checkProfile() -> Bool {
@@ -61,9 +62,12 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     func transferToLoginFlow() {
         coordinator?.startAuthFlow()
+        MapViewModel().coordinator?.coordinatorDidFinish()
+        coordinator?.coordinatorDidFinish()
     }
     
     func deleteAccount() {
+        coordinator?.coordinatorDidFinish()
         guard let user else {
             deleteUserSuccess = "Ошибка удаления, не найден профиль для удаления, повторите процедуру логина"
             return

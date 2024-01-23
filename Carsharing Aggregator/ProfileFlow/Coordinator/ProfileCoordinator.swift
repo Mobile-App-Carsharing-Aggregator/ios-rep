@@ -76,6 +76,7 @@ final class ProfileCoordinator: ChildCoordinator, ParentCoordinator {
     
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
+        viewControllerRef?.dismiss(animated: true)
     }
     
     func startAuthFlow() {

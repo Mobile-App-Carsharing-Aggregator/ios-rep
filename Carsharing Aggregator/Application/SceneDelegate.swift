@@ -26,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController.setNavigationBarHidden(true, animated: false)
         let rootCoordinator = RootCoordinator(navigationController: navigationController)
         rootCoordinator.start()
-        YMKMapKit.setLocale("ru_RU")
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
