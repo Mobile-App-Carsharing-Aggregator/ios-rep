@@ -75,10 +75,6 @@ final class ReviewsViewController: UIViewController {
         bind()
         setupUI()
         setupConstraints()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         viewModel.getReviewsFromNetwork()
         reloadPlaceholder()
     }
