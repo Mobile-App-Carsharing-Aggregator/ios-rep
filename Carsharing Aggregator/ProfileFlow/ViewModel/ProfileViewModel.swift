@@ -51,6 +51,18 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         TokenStorage.shared.deleteToken()
     }
     
+    func checkProfile() -> Bool {
+        if TokenStorage.shared.getToken() != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func transferToLoginFlow() {
+        coordinator?.startAuthFlow()
+    }
+    
     func deleteAccount() {
         guard let user else {
             deleteUserSuccess = "Ошибка удаления, не найден профиль для удаления, повторите процедуру логина"
@@ -68,16 +80,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         }
     }
     
-    private  func getUser() {
-//        let user = User(userID: UUID(),
-//                    name: "Jon",
-//                    surname: "Snow",
-//                    email: "winteriscoming@got.com",
-//                    phoneNumber: "+1234567890",
-//                    bonuses: 25,
-//                    paymentCards: [],
-//                    orders: []
-//        )
+    private func getUser() {
         DefaultUserService.shared.getUser { result in
             DispatchQueue.main.async {
                 switch result {
