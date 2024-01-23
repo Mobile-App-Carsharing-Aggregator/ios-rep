@@ -68,7 +68,7 @@ class LoginView: UIView {
     }
     private let emptyEmailFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
     private let emptyPasswordFieldWarning = UILabel(warningString: "Поле обязательное для заполнения")
-    private let emailWarninigLabel = UILabel(warningString: "Проверьте почту")
+    private let emailWarninigLabel = UILabel(warningString: "Введите корректный адрес электронной почты")
     private let passwordWarningLabel = UILabel(warningString: "Неверный пароль, попробуйте еще раз")
     private var cancellables: Set<AnyCancellable> = []
     
