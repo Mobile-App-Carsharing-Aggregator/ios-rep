@@ -9,9 +9,9 @@
 
 
 ## Ссылки
-### Презентация проекта - [посмотреть](https://disk.yandex.ru/i/mjhTgYKLSJWafQ)         
-### Скринкаст работы приложения - [посмотреть](https://disk.yandex.ru/i/Sp2tYv-jm2Vsig)         
-### Дизайн в Figma - [посмотреть](https://www.figma.com/file/ubkBwKt1JpNrIhYzWHJdNv/Агрегатор-каршеринга?type=design&node-id=730-9413&mode=design&t=TM5epAcWfBOYRtnw-0)        
+Презентация проекта - [посмотреть](https://disk.yandex.ru/i/mjhTgYKLSJWafQ)         
+Скринкаст работы приложения - [посмотреть](https://disk.yandex.ru/i/Sp2tYv-jm2Vsig)         
+Дизайн в Figma - [посмотреть](https://www.figma.com/file/ubkBwKt1JpNrIhYzWHJdNv/Агрегатор-каршеринга?type=design&node-id=730-9413&mode=design&t=TM5epAcWfBOYRtnw-0)        
 
 
 ## Изображения
