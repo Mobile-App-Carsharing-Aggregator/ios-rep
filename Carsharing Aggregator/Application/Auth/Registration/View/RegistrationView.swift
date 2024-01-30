@@ -11,11 +11,11 @@ class RegistrationView: UIView {
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(labelTapped)))
         return label
     }()
-    private lazy var nameTextField = UITextField(placeholder: "Имя", isSecure: false, keyboardType: .other, textContentType: .other)
-    private lazy var surnameTextField = UITextField(placeholder: "Фамилия", isSecure: false, keyboardType: .other, textContentType: .other)
-    private lazy var emailTextField = UITextField(placeholder: "Example@mail.ru", isSecure: false, keyboardType: .email, textContentType: .email)
-    private lazy var passwordTextField = UITextField(placeholder: "Пароль", isSecure: true, keyboardType: .password, textContentType: .password)
-    private lazy var confirmPasswordTextField = UITextField(placeholder: "Пароль еще раз", isSecure: true, keyboardType: .password,
+    private lazy var nameTextField = MyTextField(placeholder: "Имя", isSecure: false, keyboardType: .other, textContentType: .other)
+    private lazy var surnameTextField = MyTextField(placeholder: "Фамилия", isSecure: false, keyboardType: .other, textContentType: .other)
+    private lazy var emailTextField = MyTextField(placeholder: "Example@mail.ru", isSecure: false, keyboardType: .email, textContentType: .email)
+    private lazy var passwordTextField = MyTextField(placeholder: "Пароль", isSecure: true, keyboardType: .password, textContentType: .password)
+    private lazy var confirmPasswordTextField = MyTextField(placeholder: "Пароль еще раз", isSecure: true, keyboardType: .password,
         textContentType: .password)
     
     private let scrollView: UIScrollView = {
@@ -45,8 +45,27 @@ class RegistrationView: UIView {
     private let confirmWarningLabel = UILabel(warningString: "Пароли должны совпадать")
     
     private let orLabel = UILabel.createOptionLabel(string: "или")
-    private lazy var vkLogoButton = UIButton(with: UIImage.vkLogo!, target: self, action: #selector(vkLogoButtonDidTapped))
-    private lazy var yandexLogoButton = UIButton(with: UIImage.yandexLogo!, target: self, action: #selector(yandexLogoButtonDidTapped))
+    
+    private lazy var vkLogoButton = UIButton(
+        with: UIImage.vkLogo ?? UIImage(),
+        target: self,
+        action: #selector(vkLogoButtonDidTapped)
+    )
+    
+    private lazy var yandexLogoButton = UIButton(
+        with: UIImage.yandexLogo ?? UIImage(),
+        target: self,
+        action: #selector(yandexLogoButtonDidTapped)
+    )
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 16
+        stackView.backgroundColor = .clear
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
     
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -290,10 +309,13 @@ extension RegistrationView {
         [nameTextField, nameSublabel, emptyNameFieldWarning, incorrectNameWarning, surnameTextField, surnameSublabel,
          emptySurnameFieldWarning, incorrectSurnameWarning, emailTextField, emailSublabel, emptyEmailFieldWarning, emailWarninigLabel,
          passwordTextField, passwordSublabel, emptyPasswordFieldWarning, passwordWarningLabel, confirmPasswordTextField, confirmSublabel,
-         emptyConfirmFieldWarning, confirmWarningLabel, vkLogoButton, yandexLogoButton, orLabel, passwordWarningLabel, termsOfService,
+         emptyConfirmFieldWarning, confirmWarningLabel, stackView, orLabel, passwordWarningLabel, termsOfService,
          incorrectNameWarning, confirmWarningLabel].forEach {
             scrollView.addSubview($0)
         }
+        
+        stackView.addArrangedSubview(yandexLogoButton)
+        stackView.addArrangedSubview(vkLogoButton)
         
         addEndingTargets()
         addStartTarget()
@@ -437,17 +459,11 @@ extension RegistrationView {
         orLabel.snp.makeConstraints { make in
             make.centerX.equalTo(scrollView.snp.centerX)
             make.top.equalTo(termsOfService.snp.bottom).offset(20)
-            make.bottom.equalTo(yandexLogoButton.snp.top).offset(-12)
         }
         
-        yandexLogoButton.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.top.equalTo(orLabel.snp.bottom).offset(12)
-            make.leading.equalTo(scrollView.snp.leading).offset(141)
-        }
-        
-        vkLogoButton.snp.makeConstraints { make in
-            make.top.equalTo(yandexLogoButton.snp.top)
-            make.leading.equalTo(yandexLogoButton.snp.trailing).offset(16)
+            make.centerX.equalTo(scrollView.snp.centerX)
         }
     }
 }

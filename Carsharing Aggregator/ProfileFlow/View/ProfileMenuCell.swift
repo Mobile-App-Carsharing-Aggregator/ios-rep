@@ -10,22 +10,22 @@ import SnapKit
 
 final class ProfileMenuCell: UITableViewCell {
     // MARK: - Layout elements
-    private var itemImage: UIImageView = {
+    private lazy var itemImage: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
     
-    private let itemLabel: UILabel = {
+    private lazy var itemLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .regular)
         return label
     }()
     
-    private var transferButton: UIButton = {
+    private lazy var transferButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(.forward, for: .normal)
         button.tintColor = .carsharing.greyDark
-        button.addTarget(ProfileMenuCell.self,
+        button.addTarget(self,
                          action: #selector(didTapTransferButton),
                          for: .touchUpInside)
         return button
@@ -44,7 +44,6 @@ final class ProfileMenuCell: UITableViewCell {
     // MARK: - Actions
     @objc
     private func didTapTransferButton() {
-        
     }
     
     // MARK: - Methods
@@ -81,5 +80,3 @@ final class ProfileMenuCell: UITableViewCell {
         }
     }
 }
-
-extension ProfileMenuCell: Reusable {}

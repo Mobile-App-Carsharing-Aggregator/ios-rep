@@ -40,6 +40,10 @@ final class SearchCarViewModel: SearchCarViewModelProtocol {
         }
     }
     
+    func didSelected(on vc: UIViewController, carModel: CarModel) {
+        coordinator?.openSelectedCarModel(on: vc, carModel: carModel)
+    }
+    
     private func getUniqCarModel(cars: [Car]) -> [CarModel] {
         var carModelsDictionary: [String: CarModel] = [:]
         

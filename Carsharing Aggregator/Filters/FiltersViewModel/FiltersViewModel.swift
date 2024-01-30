@@ -10,7 +10,7 @@ import Foundation
 class FiltersViewModel {
     weak var coordinator: FiltersCoordinator?
     
-    var onRefreshAction: ((IndexPath, Bool) -> Void)?
+    var onRefreshAction: ((_ indexPathToUpdate: IndexPath, _ shouldUpdateCars: Bool) -> Void)?
     let sections: [ListSection] = [.carsharing,
                                    .typeOfCar,
                                    .powerReserve,
@@ -18,7 +18,7 @@ class FiltersViewModel {
                                    .rating]
     var indexPathToUpdate: IndexPath?
     var shouldUpdateCars: Bool = false
-    
+  
     var selectedFilters: [ListSection: [ListItem]] = [:] {
         didSet {
             if let indexPathToUpdate {
@@ -35,6 +35,8 @@ class FiltersViewModel {
         }) ?? false
     }
     
+    var titleNumberOfCarsButton: String = "ПОКАЗАТЬ"
+        
     func filters(for section: ListSection) -> [ListItem] {
         selectedFilters[section] ?? []
     }

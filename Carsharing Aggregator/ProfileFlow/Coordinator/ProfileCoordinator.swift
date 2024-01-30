@@ -7,12 +7,13 @@
 
 import UIKit
 
-final class ProfileCoordinator: ChildCoordinator {
+final class ProfileCoordinator: ChildCoordinator, ParentCoordinator {
     
     // MARK: - Properties
     var viewControllerRef: UIViewController?
     var navigationController: UINavigationController
-    var parent: MapCoordinator?
+    weak var parent: MapCoordinator?
+    var childCoordinators: [Coordinator] = []
     
     // MARK: - LifeCycle
     init( navigationController: UINavigationController) {
@@ -21,15 +22,24 @@ final class ProfileCoordinator: ChildCoordinator {
     
     // MARK: - Methods
     func start() {
-        let vc = ProfileViewController()
-        let vm = ProfileViewModel()
-        vc.viewModel = vm
-        vc.coordinator = self
-        vc.modalPresentationStyle = .pageSheet
-        if let sheet = vc.sheetPresentationController {
+        let viewModel = ProfileViewModel()
+        viewModel.coordinator = self
+        let view: UIViewController?
+        var sheetHeight: CGFloat
+        if viewModel.checkProfile() {
+            view = ProfileViewController(viewModel: viewModel)
+            sheetHeight = 462
+        } else {
+            view = EmptyProfileViewController(viewModel: viewModel)
+            sheetHeight = 189
+        }
+        guard let viewController = view else { return }
+        
+        viewController.modalPresentationStyle = .pageSheet
+        if let sheet = viewController.sheetPresentationController {
             if #available(iOS 16.0, *) {
-                sheet.detents = [.custom(resolver: { context in
-                    return  462
+                sheet.detents = [.custom(resolver: { _ in
+                    return sheetHeight
                 })]
             } else {
                 /* need customize for iOS <16 */
@@ -37,11 +47,40 @@ final class ProfileCoordinator: ChildCoordinator {
             sheet.prefersGrabberVisible = true
             sheet.largestUndimmedDetentIdentifier = .large
         }
-        viewControllerRef?.present(vc, animated: true)
+        viewControllerRef?.present(viewController, animated: true)
+    }
+    
+    func openReviews(on vc: UIViewController, for user: UserProfile) {
+        let reviewsCoordinator = ReviewsCoordinator(navigationController: navigationController, userID: user.id)
+        reviewsCoordinator.parent = self
+        addChild(reviewsCoordinator)
+        reviewsCoordinator.viewControllerRef = vc
+        reviewsCoordinator.start()
+    }
+    
+    func openSettings(on vc: UIViewController) {
+        let settingsCoordinator = SettingsCoordinator(navigationController: navigationController)
+        settingsCoordinator.parent = self
+        addChild(settingsCoordinator)
+        settingsCoordinator.viewControllerRef = vc
+        settingsCoordinator.start()
+    }
+    
+    func openSearchHistory(on vc: UIViewController) {
+        let searchHistoryCoordinator = SearchHistoryCoordinator(navigationController: navigationController)
+        searchHistoryCoordinator.parent = self
+        addChild(searchHistoryCoordinator)
+        searchHistoryCoordinator.viewControllerRef = vc
+        searchHistoryCoordinator.start()
     }
     
     func coordinatorDidFinish() {
         parent?.childDidFinish(self)
+        viewControllerRef?.dismiss(animated: true)
+    }
+    
+    func startAuthFlow() {
+        parent?.parent?.startAuthFlow()
     }
     
     func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 final class SearchCarViewController: UIViewController {
     // MARK: - UI
@@ -71,20 +72,18 @@ final class SearchCarViewController: UIViewController {
     // MARK: - Methods
     private func bind() {
         guard let viewModel = viewModel else { return }
+        viewModel.$isLoading.bind { [weak self] isLoading in
+            if isLoading {
+                UIProgressHUD.show()
+            } else {
+                UIProgressHUD.dismiss()
+                self?.carsCollection.reloadData()
+            }
+        }
+        
         viewModel.$carModels.bind { [weak self] _ in
             self?.carsCollection.reloadData()
         }
-    }
-    
-    func didSelect(car: CarModel) {
-        let vc = CarModelViewController()
-        vc.carModel = car
-        if let sheet = vc.sheetPresentationController {
-            sheet.detents = [.medium()]
-            sheet.prefersGrabberVisible = true
-            sheet.largestUndimmedDetentIdentifier = .medium
-        }
-        present(vc, animated: true)
     }
     
     // MARK: - Layout Methods
@@ -144,9 +143,11 @@ extension SearchCarViewController: UICollectionViewDataSource {
 extension SearchCarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: CarCell = collectionView.cellForItem(at: indexPath) as! CarCell
-        guard let carModel = cell.carModel else { return }
-        // TODO: - do it via coordinator (todo)
-        didSelect(car: carModel)
+        guard
+            let carModel = cell.carModel,
+            let viewModel = viewModel
+        else { return }
+        viewModel.didSelected(on: self, carModel: carModel)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath

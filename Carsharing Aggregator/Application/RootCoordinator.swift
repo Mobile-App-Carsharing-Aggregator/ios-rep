@@ -17,11 +17,19 @@ final class RootCoordinator: Coordinator, ParentCoordinator {
     }
     
     func start() {
-        let onboardingCoordinator = OnboardingCoordinator(navigationController: navigationController)
-        onboardingCoordinator.parent = self
-        onboardingCoordinator.delegate = self
-        addChild(onboardingCoordinator)
-        onboardingCoordinator.start()
+        if TokenStorage.shared.getToken() != nil {
+            let tabBarCoordinator = MapCoordinator( navigationController: navigationController)
+            tabBarCoordinator.parent = self
+            addChild(tabBarCoordinator)
+            navigationController.viewControllers = []
+            tabBarCoordinator.start()
+        } else {
+            let onboardingCoordinator = OnboardingCoordinator(navigationController: navigationController)
+            onboardingCoordinator.parent = self
+            onboardingCoordinator.delegate = self
+            addChild(onboardingCoordinator)
+            onboardingCoordinator.start()
+        }
     }
     
     func openAuthCoordinator() {

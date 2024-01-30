@@ -30,15 +30,25 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
         if let sheet = vc.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { context in
-                    return  heightSheet
+                    return  heightLargeSheet
                 })]
             } else {
-                /* need customize for iOS <16 */
+                sheet.detents = [.large()]
             }
             sheet.prefersGrabberVisible = true
             sheet.largestUndimmedDetentIdentifier = .large
         }
         viewControllerRef?.present(vc, animated: true)
+    }
+    
+    func openSelectedCarModel(on vc: UIViewController, carModel: CarModel) {
+        guard let vcRef = viewControllerRef else { return }
+        let coordinator = CarModelCoordinator(navigationController: navigationController, selectedCarModel: carModel)
+        coordinator.selectedCarModel = carModel
+        coordinator.parent = self
+        addChild(coordinator)
+        coordinator.viewControllerRef = vc
+        coordinator.start()
     }
     
     func coordinatorDidFinish() {
@@ -47,6 +57,7 @@ final class SearchCarCoordinator: ChildCoordinator, ParentCoordinator {
     }
     
     func popViewController(animated: Bool, useCustomAnimation: Bool, transitionType: CATransitionType) {
+        
     }
     
 }

@@ -55,4 +55,14 @@ final class SelectedCarViewModel {
             self?.street = streetAddress
         }
     }
+    
+    func saveInfoAboutCar() {
+        if let token = TokenStorage.shared.getToken() {
+            let defaults = UserDefaults.standard
+            let car = selectedCar
+            let carDictionary = ["id": car.id,
+                                 "model": car.brand + " " + car.model] as? [String: Any]
+            defaults.setValue(carDictionary, forKey: "car")
+        }
+    }
 }

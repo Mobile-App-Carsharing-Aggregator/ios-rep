@@ -17,14 +17,12 @@ final class FirstOnboardingViewController: UIViewController {
     private let backGroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.onboardingBackgroundImage
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.onboardingCustomLogo
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -32,10 +30,10 @@ final class FirstOnboardingViewController: UIViewController {
         let button = UIButton(type: .system)
         button.backgroundColor = .black
         button.tintColor = .white
-        button.setTitle("Погнали", for: .normal)
+        button.setTitle("ПОГНАЛИ", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(beginButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     

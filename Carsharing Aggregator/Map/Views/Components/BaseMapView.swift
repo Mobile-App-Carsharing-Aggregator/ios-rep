@@ -29,7 +29,6 @@ class BaseMapView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         YMKMapKit.setApiKey("\(ApiKey.apiKey)")
-        YMKMapKit.setLocale("ru_RU")
         YMKMapKit.sharedInstance().onStart()
         setup()
     }

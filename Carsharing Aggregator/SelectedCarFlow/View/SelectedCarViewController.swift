@@ -19,12 +19,13 @@ final class SelectedCarViewController: UIViewController {
         return nameLabel
     }()
     
-    private lazy var closeButton: UIBarButtonItem = {
-        let closeButton = UIBarButtonItem()
-        closeButton.image = UIImage(systemName: "xmark")?.withTintColor(.carsharing.greyDark)
-        closeButton.style = .plain
-        closeButton.target = self
-        closeButton.action = #selector(didTapCloseButton)
+    private lazy var closeButton: UIButton = {
+        let closeButton = UIButton()
+        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeButton.tintColor = .carsharing.greyDark
+        closeButton.addTarget(self,
+                              action: #selector(didTapCloseButton),
+                              for: .touchUpInside)
         return closeButton
     }()
     
@@ -170,6 +171,7 @@ final class SelectedCarViewController: UIViewController {
     
     @objc
     private func bookButtonDidTap() {
+        viewModel.saveInfoAboutCar()
         let company = viewModel.selectedCar.company
         let appStoreURL = URL(string: "https://apps.apple.com/app/id\(company.appStoreID)")!
         if UIApplication.shared.canOpenURL(appStoreURL) {
@@ -180,18 +182,18 @@ final class SelectedCarViewController: UIViewController {
     
     // MARK: - Methods
     private func bind() {
-        viewModel.$city.bind() { [weak self] city in
+        viewModel.$city.bind { [weak self] city in
             self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
             self?.cityLabel.text = city
         }
         
-        viewModel.$street.bind() { [weak self] street in
+        viewModel.$street.bind { [weak self] street in
             self?.addressStackView.addArrangedSubview(self?.addressLabel ?? UILabel())
             self?.addressStackView.addArrangedSubview(self?.cityLabel ?? UILabel())
             self?.addressLabel.text = street
         }
         
-        viewModel.$time.bind() { [weak self] _ in
+        viewModel.$time.bind { [weak self] _ in
             guard let self = self else { return }
             self.timeLabel.text = "~\(self.viewModel.time)"
         }
@@ -200,12 +202,8 @@ final class SelectedCarViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        navigationItem.rightBarButtonItem = closeButton
-        navigationController?.navigationBar.tintColor = .carsharing.black
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.prefersLargeTitles = false
-        
-        [nameLabel, carImage, collectionView, logoImage, locationImage, timeImage, carsheringStackView, addressStackView, timeLabel, bookButton].forEach {
+        [nameLabel, closeButton, carImage, collectionView, logoImage, locationImage, timeImage,
+         carsheringStackView, addressStackView, timeLabel, bookButton].forEach {
             view.addSubview($0)
         }
         
@@ -219,6 +217,12 @@ final class SelectedCarViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(26)
             make.height.equalTo(22)
+        }
+        
+        closeButton.snp.makeConstraints { make in
+            make.height.width.equalTo(24)
+            make.centerY.equalTo(nameLabel.snp.centerY)
+            make.trailing.equalToSuperview().offset(-21)
         }
         
         carImage.snp.makeConstraints { make in

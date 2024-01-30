@@ -24,7 +24,7 @@ final class MapViewController: UIViewController {
     private var currentZoom: Float = 9
     private var cameraPosition: YMKCameraPosition?
     private var userLocationLayer: YMKUserLocationLayer?
-   
+    
     private let fontSize: CGFloat = 16
     private let marginSize: CGFloat = 5
     private let strokeSize: CGFloat = 7
@@ -105,6 +105,7 @@ final class MapViewController: UIViewController {
             self?.filtersCollectionView.reloadData()
             self?.updateMapWithFilters()
         }
+        viewModel.openReviewAndRating(on: self)
     }
     
     // MARK: - Private methods
@@ -114,7 +115,7 @@ final class MapViewController: UIViewController {
             with: YMKCameraPosition(
                 target: viewModel.userPoint(),
                 zoom: currentZoom,
-                azimuth: 50,
+                azimuth: 0,
                 tilt: 0
             ),
             animation: YMKAnimation(type: YMKAnimationType.linear, duration: 0),
@@ -180,19 +181,19 @@ final class MapViewController: UIViewController {
         let collection = map.mapObjects.addClusterizedPlacemarkCollection(with: clusterListener)
         for company in CarsharingCompany.allCases {
             guard let carsInCompany = carsByService[company] else { continue }
-                
+            
             for car in carsInCompany {
                 let coordinates = YMKPoint(
                     latitude: Double(car.coordinates.latitude),
                     longitude: Double(car.coordinates.longitude)
                 )
-                    
+                
                 let placemark = collection.addPlacemark()
                 placemark.geometry = coordinates
                 placemark.setIconWith(company.iconImage, style: YMKIconStyle())
                 placemark.userData = car.id
             }
-                
+            
             collection.clusterPlacemarks(withClusterRadius: GeometryProvider.clusterRadius, minZoom: GeometryProvider.clusterMinZoom)
         }
         if let mapObjectTapListener {
@@ -201,35 +202,54 @@ final class MapViewController: UIViewController {
     }
     
     private func locButtonTapped() {
-        locationManager.requestWhenInUseAuthorization()
-        let scale = UIScreen.main.scale
-        let mapKit = YMKMapKit.sharedInstance()
-        guard let currentPosition = self.locationManager.location else { return }
-        let point = YMKPoint(
-            latitude: currentPosition.coordinate.latitude,
-            longitude: currentPosition.coordinate.longitude
-        )
+        let authorizationStatus: CLAuthorizationStatus
+        authorizationStatus = locationManager.authorizationStatus
         
-        if userLocationLayer != nil {
-            map.move(with: YMKCameraPosition(target: point, zoom: 15, azimuth: 0, tilt: 0))
+        if authorizationStatus == .denied {
+            let alertController = UIAlertController(
+                title: "Для работы приложения \"FInd and Go\" необходим доступ к Вашей геолокации",
+                message: "",
+                preferredStyle: .alert)
+            let okAction = UIAlertAction(
+                title: "Разрешить геолокацию",
+                style: .default,
+                handler: { _ in
+                    UIApplication.shared.open(URL(
+                        string: UIApplication.openSettingsURLString)!)
+                })
+            let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
         } else {
-            let userLocationLayer = mapKit.createUserLocationLayer(with: mapView.mapWindow)
-            self.userLocationLayer = userLocationLayer
-            userLocationLayer.setVisibleWithOn(true)
-            userLocationLayer.isHeadingEnabled = false
-            userLocationLayer.setObjectListenerWith(self)
-            
-            map.move(with: YMKCameraPosition(target: point, zoom: 15, azimuth: 0, tilt: 0))
+            locationManager.requestWhenInUseAuthorization()
+            let mapKit = YMKMapKit.sharedInstance()
+            guard let currentPosition = self.locationManager.location else { return }
+            let point = YMKPoint(
+                latitude: currentPosition.coordinate.latitude,
+                longitude: currentPosition.coordinate.longitude
+            )
+            if userLocationLayer != nil {
+                map.move(with: YMKCameraPosition(target: point, zoom: 15, azimuth: 0, tilt: 0))
+            } else {
+                let userLocationLayer = mapKit.createUserLocationLayer(with: mapView.mapWindow)
+                self.userLocationLayer = userLocationLayer
+                userLocationLayer.setVisibleWithOn(true)
+                userLocationLayer.isHeadingEnabled = false
+                userLocationLayer.setObjectListenerWith(self)
+                
+                map.move(with: YMKCameraPosition(target: point, zoom: 15, azimuth: 0, tilt: 0))
+            }
         }
     }
-
+    
     private func plusButtonTapped() {
         changeZoom(by: 1.0)
     }
     
     private func minusButtonTapped() {
         changeZoom(by: -1.0)
-
+        
     }
     
     private func changeZoom(by amount: Float) {
@@ -352,9 +372,7 @@ extension MapViewController {
 // MARK: - Extension CLLocationManagerDelegate
 
 extension MapViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        
-    }
+    
 }
 
 // MARK: - Extension YMKUserLocationObjectListener
@@ -372,8 +390,8 @@ extension MapViewController: YMKUserLocationObjectListener {
     }
     
     func onObjectUpdated(with view: YMKUserLocationView, event: YMKObjectEvent) {
-       }
     }
+}
 
 // MARK: - Extension YMKMapObjectTapListener
 
@@ -393,7 +411,7 @@ extension MapViewController: YMKMapObjectTapListener {
         }
         return true
     }
-        
+    
     func focusOnPlacemark(_ placemark: YMKPlacemarkMapObject) {
         let place = YMKPoint(
             latitude: (placemark.geometry.latitude - 0.0025),
@@ -421,8 +439,15 @@ extension MapViewController: YMKClusterListener, YMKClusterTapListener {
     }
     
     func onClusterTap(with cluster: YMKCluster) -> Bool {
-        print("Tapped cluster with \(cluster.size) items")
-        changeZoom(by: 1.0)
+        map.move(
+            with: YMKCameraPosition(
+                target: cluster.appearance.geometry,
+                zoom: map.cameraPosition.zoom + 1,
+                azimuth: map.cameraPosition.azimuth,
+                tilt: map.cameraPosition.tilt
+            ),
+            animation: YMKAnimation(type: .smooth, duration: 1.0)
+        )
         return true
     }
     
@@ -505,7 +530,7 @@ extension MapViewController: UICollectionViewDataSource {
         if collectionView == filtersCollectionView {
             return viewModel.getFilters().count
         }
-            return viewModel.sections[section].items.count
+        return viewModel.sections[section].items.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

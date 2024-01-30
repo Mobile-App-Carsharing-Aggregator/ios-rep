@@ -10,9 +10,9 @@ extension String {
     }
     
     enum Regex: String {
-        case name = "[а-яА-Яa-zA-Z]{3,}"
+        case name = "[а-яА-Яa-zA-Z\\-–—]{1,}"
         case email = "[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}"
-        case password = "^(?=.*[a-zA-Z]).{10,15}$"
+        case password = "(?!^[0-9]*$)[a-zA-Z\\p{P}\\p{S}0-9]{10,15}"
     }
     
     func isValid(validType: ValidTypes) -> Bool {
